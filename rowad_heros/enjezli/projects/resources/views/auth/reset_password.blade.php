@@ -37,8 +37,8 @@
             <form method="POST" action="">
 
                 <div class="user-box">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name=" email" required autocomplete="new-password">
-                    <label>  ادخل ايميلك</label>
+                    <input id="password" type="password" class="form-control @error('old_password') is-invalid @enderror" name=" old_password" required autocomplete="new-password">
+                    <label>  كلمة السرالقديمة</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
                     <!-- @error('old_password')

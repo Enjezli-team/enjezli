@@ -45,6 +45,9 @@ Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
 Route::get('/verify', [CustomAuthController::class, 'verify'])->name('verify');
 Route::get('/check_email/{id}', [CustomAuthController::class, 'check_email'])->name('check_email');
+Route::get('/reset_password', [CustomAuthController::class, 'reset_password'])->name('reset_password');
+Route::get('/forgit_password', [CustomAuthController::class, 'forgit_password'])->name('forgit_password');
+Route::post('/forgit_check_email', [CustomAuthController::class, 'forgit_check_email'])->name('forgit_check_email');
 
 
 

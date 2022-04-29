@@ -25,6 +25,29 @@ class CustomAuthController extends Controller
     public function verify ()
     {
         return view('auth.verify');
+    } 
+    public function forgit_password ()
+    {
+        return view('auth.conf');
+    }  
+    public function reset_password ()
+    {
+        return view('auth.reset_password');
+    } 
+    public function forgit_check_email (Request $request)
+    {
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+        ], [
+            'email.required' => 'يجب ادخال البريد الالكتروني .',
+            'email.required' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+        ]);
+        $user_vertify=User::where('email',$request->email)->value('id');
+        if($user_vertify !=""){
+        return view('auth.changename');
+        }else{
+            return redirect('/forgit_password')->withSuccess('enter email correctly');
+        }
     }   
     public function customLogin(Request $request)
     {
@@ -60,8 +83,6 @@ class CustomAuthController extends Controller
         return redirect('/login')->withSuccess(' faild');
 
     }
-
-   
     public function create(Request $request)
     {
       
