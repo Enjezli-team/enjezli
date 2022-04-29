@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+:root {
+    --light: #ecf1f4;
+    --white: #FFFFFF;
+    --dark_blue: #023047;
+    --light_blue: #219EBC;
+    --light_blu: #8ECAE6;
+    --beauty: #176c80;
+}
+
+.p-relative {
+    position: relative;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--dark_blue);
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+}
+
+.gold {
+    color: goldenrod;
+    fill: goldenrod;
+}
+
+
+/*__________________ nav^_^ _____________________*/
+
+.hero_section {
+    background-color: var(--light);
+}
+
+.hero_section nav {
+    height: 5rem;
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    background-color: var(--light);
+    background-color: #ecf1f4;
+    direction: rtl;
+    align-items: center;
+}
+
+
+/* Styling Logo*/
+
+.logo {
+    /* padding: 3vh 3vw;
+    text-align: left;
+    width: 20vw; */
+    padding: 3vh 7vw;
+    /* text-align: left; */
+}
+
+.logo img {
+    height: auto;
+}
+
+
+/* Styling Navigation Links*/
+
+.nav-links {
+    width: 80vw;
+    display: flex;
+    justify-content: end;
+    padding: 3vh 6vw;
+    align-items: center;
+    text-transform: uppercase;
+    list-style: none;
+    font-weight: 600;
+}
+
+.nav-links li a {
+    margin: 0 0.7vw;
+    text-decoration: none;
+    transition: all ease-in-out 350ms;
+    padding: 10px;
+}
+
+.nav-links li a:hover {
+    color: var(--light);
+    background-color: var(--light_blu);
+    padding: 10px;
+    border-radius: 50px;
+    padding: 0.6rem 0.8rem;
+    margin-left: 2vw;
+    border: 1.5px solid var(--light);
+    border-radius: 12px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li a:hover::before {
+    width: 80%;
+}
+
+
+/*Buttons Styling*/
+
+.login-button {
+    padding: 0.6rem 0.8rem;
+    margin-left: 2vw;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5090900;
+    border: 1.5px solid var(--light);
+    border-radius: 12px;
+    background: var(--beauty);
+    color: var(--light);
+}
+
+.login-button:hover {
+    color: var(--dark_blue);
+    background-color: var(--light_blu);
+    transition: all ease-in-out 350ms
+}
+
+
+/*Navigation Icon Styling*/
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background: var(--beauty);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+}
+
+
+/*Responsive Adding Media Queries*/
+
+@media screen and (max-width: 800px) {
+    nav {
+        position: fixed;
+        z-index: 3;
+        background-color: #ecf1f4cf;
+    }
+    .hamburger {
+        display: block;
+        position: absolute;
+        cursor: pointer;
+        left: 8%;
+        top: 44%;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+        transition: all 0.7s ease;
+        z-index: 2000;
+    }
+    .nav-links {
+        background: var(--light);
+        position: fixed;
+        opacity: 1;
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(50px at 90% -20%);
+        -webkit-clip-path: circle(50px at 90% -10%);
+        transition: all 1s ease-out;
+        pointer-events: none;
+        justify-content: space-evenly;
+        z-index: 1000;
+    }
+    .nav-links.open {
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        pointer-events: all;
+    }
+    .nav-links li {
+        opacity: 0;
+    }
+    .nav-links li:nth-child(1) {
+        transition: all 0.5s ease 0.2s;
+    }
+    .nav-links li:nth-child(2) {
+        transition: all 0.5s ease 0.4s;
+    }
+    .nav-links li:nth-child(3) {
+        transition: all 0.5s ease 0.6s;
+    }
+    .nav-links li:nth-child(4) {
+        transition: all 0.5s ease 0.7s;
+    }
+    .nav-links li:nth-child(5) {
+        transition: all 0.5s ease 0.8s;
+    }
+    .nav-links li:nth-child(6) {
+        transition: all 0.5s ease 0.9s;
+        margin: 0;
+    }
+    .nav-links li:nth-child(7) {
+        transition: all 0.5s ease 1s;
+        margin: 0;
+    }
+    li.fade {
+        opacity: 1;
+    }
+    /* Navigation Bar Icon on Click*/
+    .toggle .bars1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .bars2 {
+        transition: all 0s ease;
+        width: 0;
+    }
+    .toggle .bars3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}

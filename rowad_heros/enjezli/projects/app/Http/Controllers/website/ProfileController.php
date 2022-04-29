@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\Skill;
+use App\Models\User;
 use App\Models\UserSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,9 +72,8 @@ class ProfileController extends Controller
         $request->image->move(public_path('images'), $imageName);
         }else{
             $imageName = 'user_avater.png';  
-   
         }
-            
+            User::where('id',Auth::user()->id)->update(['image'=>$imageName]);
       
        $profile = profile::create([
         'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
@@ -92,7 +92,7 @@ class ProfileController extends Controller
             }
         }
 
-return redirect('profiles/'.$profile['id']);
+           return redirect('profiles/'.Auth::user()->id)->withSuccess(' faild');
     }
 
     /**
@@ -103,7 +103,7 @@ return redirect('profiles/'.$profile['id']);
      */
     public function show($id)
     {
-        //
+        return view('website.users.profile.index',['data'=>User::find($id)]);
     }
 
     /**
