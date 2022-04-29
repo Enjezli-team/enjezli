@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auths\CustomAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +27,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 |--------------------------------------------------------------------------
 |
 */
+Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
+Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom'); 
+Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
+
+
 Route::prefix('seeker')->group(function () {
     //   Route::resource('profile',ProfileController::class );
 });
