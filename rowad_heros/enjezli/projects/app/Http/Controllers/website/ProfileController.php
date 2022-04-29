@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers\website;
 
+use App\Models\Profile;
+
+
 use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\RoleUser;
+use App\Models\Skill;
+use App\Models\UserSkill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -11,6 +20,7 @@ class ProfileController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
@@ -24,7 +34,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('website.users.profile.create',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
     }
 
     /**
@@ -35,7 +45,54 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         Validator::validate($request->all(),[
+            
+            'image'=>['mimes:jpg,png,jpeg','size:512'],
+            'phone'=>['required','regex:/^(009677)[0-9]{8}$/'],
+            'country'=>['required'],
+            'major'=>['required'],
+            'role'=>['required'],
+            'Job_title'=>['required'],
+            'describe'=>['required','min:50 ']
+        ],[
+            'phone.required'=>'يرجى ادخال رقم التلفون ',
+            'country.required'=>'يرجى ادخال الدولة ',
+            'role.required'=>'يرجى ادخال نوع الاستخدام ',
+            'major.required'=>'يرجى ادخال الاسم التخصص',
+            'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
+            'describe.required'=>'يرجى ادخال وصف عنك',
+            'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
+            'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
+            'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
+            'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم ويبدا ب009677 ',           
+        ]);
+        if($request->image){
+       $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('images'), $imageName);
+        }else{
+            $imageName = 'user_avater.png';  
+   
+        }
+            
+      
+       $profile = profile::create([
+        'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
+        'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
+        'Job_title'=>$request->Job_title,'image'=>$imageName,'description'=>$request->describe
+        ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
+         return redirect('profiles')->with('completed', 'it has been saved!');
+         if(sizeof($request->skills)>0){
+            foreach($request->skills as $s){
+            UserSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
+            }
+        }
+        if(sizeof($request->role)>0){
+            foreach($request->role as $r){
+                RoleUser::create(['role_id'=>$r,'user_id'=>Auth::user()->id,'user_type'=>'App/Model/User']);
+            }
+        }
+
+return redirect('profiles/'.$profile['id']);
     }
 
     /**
@@ -58,6 +115,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
+        return view('website.profile.edite');
     }
 
     /**

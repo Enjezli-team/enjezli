@@ -17,14 +17,27 @@
         <h2> إنشاء حساب
         </h2>
         <form method="POST" action="{{ route('register.custom') }}">
-            @csrf 
+
+            @csrf
+             <!-- Way 1: Display All Error Messages -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif 
+            
             <div class="user-box">
                 <input id="name" name="name" type="text" class="form-control">
                 <label> الاسم</label>
-                <!-- @error('name')
+                 @error('name')
                 <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror -->
+                    </span> @enderror 
                 <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
                    
                 </span>
@@ -33,10 +46,11 @@
             <div class="user-box">
                 <input id="email" name="email" class="form-control">
                 <label>عنوان البريد الالكتروني</label>
-                <!-- @error('email')
+                 @error('email')
                 <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror -->
+                    </span> 
+                    @enderror 
                 <span style="display:none" id='email-error' class="invalid-feedback dan_mesg_po" role="alert">
                     
                 </span>
@@ -44,10 +58,10 @@
             <div class="user-box">
                 <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                 <label>كلمة السر</label>
-                <!-- @error('password')
+                 @error('password')
                 <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror -->
+                    </span> @enderror
                 <span style="display:none" id='password-error' class="invalid-feedback dan_mesg_po" role="alert">
                     
                 </span>
@@ -55,6 +69,10 @@
             <div class="user-box">
                 <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 <label> تاكيد كلمة السر</label>
+                @error('password_confirmation')
+                <span class="invalid-feedback" role="alert">
+                        <div class='dan_mesg_po'>{{ $message }}</div>
+                    </span> @enderror
                 <span style="display:none" id='confirm-error' class="invalid-feedback dan_mesg_po" role="alert">
                     
                 </span>
