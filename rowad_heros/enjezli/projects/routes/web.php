@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 */
+// Route::get('/', function () {
+//     return view('admin.pages.Home.index');
+// });
 /*
 |--------------------------------------------------------------------------
 | Website Routes
@@ -39,5 +42,5 @@ Route::prefix('seeker')->group(function () {
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Route::resource('users',UserController::class);
-   // Route::resource('setting',SettingController::class );
+//    Route::resource('setting',SettingController::class );
 });
