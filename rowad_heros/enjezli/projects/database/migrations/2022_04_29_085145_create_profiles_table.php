@@ -13,17 +13,20 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+            Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            //$table->string('name');
             $table->string('phone');
  	        $table->date('birth_date');
             $table->integer('gander');
             $table->string('country');
+            $table->string('facebook');
+            $table->string('github');
+            $table->string('tweeter');
             $table->text('major')->nullable();
             $table->text('Job_title')->nullable();
             $table->text('description');
-            $table->integer('is_active')->default(1);
+           // $table->integer('is_active')->default(1);
             $table->foreignId('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

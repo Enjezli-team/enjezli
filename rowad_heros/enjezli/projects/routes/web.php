@@ -2,6 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
+//admin
+use App\Http\Controllers\admin\offersController;
+use App\Http\Controllers\admin\SeekerController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ProjectsController;
+use App\Http\Controllers\admin\ProviderController;
+use App\Http\Controllers\admin\SkillController;
+//website
+use App\Http\Controllers\website\OfferHistoryController;
+use App\Http\Controllers\website\WorkController;
+use App\Http\Controllers\website\ProjectController;
+use App\Http\Controllers\website\OfferController;
+use App\Http\Controllers\website\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,13 +56,20 @@ Route::prefix('seeker')->group(function () {
     //   Route::resource('profile',ProfileController::class );
 });
 
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('profiles',ProfileController::class);
+    Route::resource('offers',OfferController::class );
+    Route::resource('projects',ProjectController::class );
+    Route::resource('works',WorkController::class );
+});
 /*
 |--------------------------------------------------------------------------
 | Admins Routes
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-    // Route::resource('users',UserController::class);
-   // Route::resource('setting',SettingController::class );
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], function () {
+     Route::resource('users',UserController::class);
+    Route::resource('setting',offersController::class );
 });
