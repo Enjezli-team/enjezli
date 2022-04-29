@@ -43,10 +43,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 */
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
+Route::get('/verify', [CustomAuthController::class, 'verify'])->name('verify');
+Route::get('/check_email/{id}', [CustomAuthController::class, 'check_email'])->name('check_email');
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+
+
 Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom'); 
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
