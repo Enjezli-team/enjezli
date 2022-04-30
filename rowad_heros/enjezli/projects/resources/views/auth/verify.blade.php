@@ -13,7 +13,7 @@
         <h2></h2>
         <p>لقد قمنا بارسال رسالة عبر ريدك الالكتروني الرجاء التحقق منها
         </p>
-        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+        <form class="d-inline" method="POST" action="">
             <button type="submit" class="btn btn-link p-0 m-0 align-baseline">إضغط هنا لاعادة إرسال الطلب مرة
                 اخرى</button>
         </form>
