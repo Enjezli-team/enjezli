@@ -22,4 +22,9 @@ class Profile extends Model
         'user_id',
       
     ];
+    
+    public function sal_user(){
+
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -23,4 +23,22 @@ class Project extends Model
         'user_id',
        
     ];
+    //users
+    public function sal_handel_by(){
+
+        return $this->belongsTo(User::class,'handled_by');
+    }
+    public function sal_created_by(){
+
+        return $this->belongsTo(User::class,'user_id');
+    }
+    //skills
+    public function sal_skills_by(){
+
+        return $this->hasMany(ProjectSkill::class,'project_id');
+    }
+     //attachement
+     public function sal_project_attach(){
+        return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',1);
+    }
 }

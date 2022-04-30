@@ -15,6 +15,4 @@ class Review extends Model
         'from_id',
         'to_id',
     ];
-
-    
 }

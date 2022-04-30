@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserSkill extends Model
+class ProjectSkill extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'project_id',
         'skill_id',
         
     ];
-    public function sal_user(){
+    public function sal_peoject(){
 
-        return $this->belongsTo(Project::class,'user_id');
+        return $this->belongsTo(Project::class,'project_id');
     }
-    public function sal_skill_u(){
+    public function sal_skill(){
         return $this->belongsTo(Skill::class,'skill_id');
     }
-  
 }

@@ -293,7 +293,8 @@
 <body>
     <div class="profile">
         <div class="personal_info_container">
-            <div class="profile_img"> <img src="{{ asset('images/'.$data->image) }}" alt=""></div>
+            
+            <div class="profile_img"> <img src="" alt=""></div>
             <div class="padding info_container ">
                 <div class="personal_basic_info">
                     <div class="profile_name">سلمى احمد محمد</div>

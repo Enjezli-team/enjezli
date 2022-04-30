@@ -45,4 +45,52 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+//profile
+    public function sal_profile(){
+
+        return $this->hasOne(Profile::class,'user_id');
+    }
+//projects
+    public function sal_projects_seeker(){
+
+        return $this->hasMany(Project::class,'user_id');
+    }
+    public function sal_projects_provider(){
+
+        return $this->hasMany(Project::class,'handled_by');
+    }
+    //offers
+    public function sal_offers(){
+
+        return $this->hasMany(Offer::class,'user_id');
+    }
+
+    public function sal_offers_history(){
+
+        return $this->hasMany(Offer::class,'user_id');
+    }
+    //skills
+    public function sal_skills(){
+
+        return $this->hasMany(UserSkill::class,'user_id');
+    }
+    //works
+    public function sal_works(){
+
+        return $this->hasMany(UserWork::class,'user_id');
+    }
+    //attachement
+    public function sal_attachments(){
+
+        return $this->hasMany(UserAttachment::class,'user_id');
+    }
+    //notification
+    public function sal_notification_for_me(){
+
+        return $this->hasMany(Notification::class,'receiver_id');
+    }
+    public function sal_notification_from(){
+
+        return $this->hasMany(Notification::class,'sender_id');
+    }
 }

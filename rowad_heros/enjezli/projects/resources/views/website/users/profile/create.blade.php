@@ -25,6 +25,7 @@
                     <form method="POST" action="/profiles" enctype="multipart/form-data">
                         @csrf 
                     <label class="-label" for="file">
+                        
                       <span class="glyphicon glyphicon-camera"></span>
                       <span>
                         <svg id="edit_1_" data-name="edit (1)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -61,10 +62,12 @@
                                                         <span class="invalid-feedback" role="alert">
                                                                 <div class='dan_mesg_po'>ادخل الرقم</div>
                                                             </span>
+                                                            @error('phone')
                                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                        
+                                                            {{ $message }}
+                                                            
                                                         </span>
-
+                                                        @enderror
                                                         </div>
                                                     </div>
 

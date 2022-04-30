@@ -38,7 +38,7 @@
             </div>
         </div>
        
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="/profiles/edit{{$data->id}}">
             <!-- @csrf -->
             
             <div class="row gx-5 " >
@@ -77,7 +77,7 @@
                   <div class="col-lg row-md">
                     <div class="user-box mt-2">
                         <label> <b> رقم الهاتف</b></label>
-                        <input id="phone"  name="phone" type="text" class="form-control">
+                        <input id="phone" value="{{$data->phone}}"    name="phone" type="text" class="form-control">
                     
                         <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'>ادخل الرقم</div>
@@ -92,7 +92,7 @@
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
                                 <label><b> تاريخ الميلاد </b></label>
-                                <input id="date"  name="birth_date" type="date" class="form-control">
+                                <input id="date"  value="{{$data->birth_date}}"   name="birth_date" type="date" class="form-control">
                             
                                 <span class="invalid-feedback" role="alert">
                                         <div class='dan_mesg_po'>ادخل الرقم</div>
@@ -116,7 +116,7 @@
                                     </b>
                                         
                                     </small> 
-                                <select name="gander" class="form-select form-control">
+                                <select name="gander"  class="form-select form-control">
                                     <option selected>ذكر</option>
                                     <option value="1">انثى</option>
                                 </select>
@@ -145,7 +145,7 @@
 
    <div class="user-box mt-3">
     <label><b> حساب Facebook </b> </label>
-    <input id="face"  name="facebook" type="text" class="form-control">
+    <input id="face" value="{{$data->facebook}}"  name="facebook" type="text" class="form-control">
   
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
@@ -157,7 +157,7 @@
 </div>
 <div class="user-box mt-2">
     <label><b> حساب Twitter </b> </label>
-    <input id="face"  name="twiter" type="text" class="form-control">
+    <input id="face" value="{{$data->tweeter}}"  name="tweeter" type="text" class="form-control">
     
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
@@ -171,7 +171,7 @@
 
 <div class="user-box mt-2">
     <label> <b>حساب Github</b>  </label>
-    <input id="face"  name="github" type="text" class="form-control">
+    <input id="face" value="{{$data->github}}"  name="github" type="text" class="form-control">
    
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
@@ -222,18 +222,23 @@
     
             <div class="row gx-5" >
                 <div class="col-lg row-md">
-                <div class="user-box mt-2">
-                        <small><b>
-                            التخصص
-                        </b>
-                            
-                        </small> 
-                    <select name="major" class="form-select form-control">
-                        <option selected>IT</option>
-                        <option value="1">CS</option>
-                    </select>
-               </div>
-            </div>
+                                            
+                                    
+                    <div class="user-box mt-2">
+                        <label> <b> 
+
+                     التخصص</b> </label>
+                        <input id="face" value="{{$data->major}}"  name="major" type="text" class="form-control">
+                    
+                        <span class="invalid-feedback" role="alert">
+                                <div class='dan_mesg_po'> </div>
+                            </span>
+                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                        
+                        </span>
+                    
+                    </div>
+                    </div>
     
             <div class="col-lg row-md">
              
@@ -242,7 +247,7 @@
         <label> <b> 
 
       المسمى الوظيفي</b> </label>
-        <input id="face"  name="Job_title" type="text" class="form-control">
+        <input id="face"  value="{{$data->Job_title}}"  name="Job_title" type="text" class="form-control">
       
         <span class="invalid-feedback" role="alert">
                 <div class='dan_mesg_po'> </div>
@@ -273,6 +278,7 @@
         
         <label>  <b>نبذه تعريفية </b>  </label>
         <textarea id="face"  name="description" type="text" class="form-control" rows="11">
+          {{$data->description}}
             </textarea>
         <span class="invalid-feedback" role="alert">
                 <div class='dan_mesg_po'> </div>

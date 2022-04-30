@@ -13,4 +13,14 @@ class Skill extends Model
         'parent_id',
         
     ];
+    //user 
+    public function sal_skill_for_user(){
+
+        return $this->hasMany(UserSkill::class,'skill_id');
+    }
+    //project 
+    public function sal_skill_for_project(){
+
+        return $this->hasMany(ProjectSkill::class,'skill_id');
+    }
 }
