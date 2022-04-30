@@ -14,7 +14,7 @@
 <div class="container overflow-hidden up mt-5 vh-100">
     <div class="row gx-5 p-3" >
       <div class="col-lg row-md">
-       <div class="p-3 bg-white shadow-lg rounded-3">
+       <div class="p-3 bg-white shape">
         <h2 class="text-center">  المعلومات الشخصية 
         </h2>
         <div class="logo-container">
@@ -41,17 +41,6 @@
             </div>
         </div>
        
-        
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif 
             
                                                 <div class="row gx-5 " >
                                                 <div class="col-lg row-md">
@@ -59,15 +48,9 @@
                                                         <label> <b> رقم الهاتف</b></label>
                                                         <input id="phone"  name="phone" type="text" class="form-control">
                                                     
-                                                        <span class="invalid-feedback" role="alert">
-                                                                <div class='dan_mesg_po'>ادخل الرقم</div>
-                                                            </span>
-                                                            @error('phone')
-                                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                            {{ $message }}
+                                                        @if ($errors->has('phone')) <small class="text-danger">{{ $errors->first('phone') }}</small> @endif
+     
                                                             
-                                                        </span>
-                                                        @enderror
                                                         </div>
                                                     </div>
 
@@ -76,12 +59,9 @@
                                                                 <label><b> تاريخ الميلاد </b></label>
                                                                 <input id="date"  name="birth_date" type="date" class="form-control">
                                                             
-                                                                <span class="invalid-feedback" role="alert">
-                                                                        <div class='dan_mesg_po'>ادخل الرقم</div>
-                                                                    </span>
-                                                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                                
-                                                                </span>
+                                                            
+                                                        @if ($errors->has('birth_date')) <small class="text-danger">{{ $errors->first('birth_date') }}</small> @endif 
+     
 
                                                             </div>
                                                             </div>
@@ -102,6 +82,8 @@
                                                                     <option selected VALUE="1">ذكر</option>
                                                                     <option value="2">انثى</option>
                                                                 </select>
+                                                                @if ($errors->has('gander')) <small class="text-danger">{{ $errors->first('gander') }}</small> @endif 
+     
                                                             </div>
                                                         </div>
 
@@ -118,6 +100,8 @@
                                                                     <option value="1">كوريا</option>
                                                                     <option value="1">كوريا</option>
                                                                 </select>
+                                                                @if ($errors->has('country')) <small class="text-danger">{{ $errors->first('country') }}</small> @endif 
+
                                                                 </div>
                                                                 </div>
                                                             </div>
@@ -128,25 +112,18 @@
                                 <div class="user-box mt-3">
                                     <label><b> حساب Facebook </b> </label>
                                     <input id="face"  name="facebook" type="text" class="form-control">
-                                
-                                    <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                    <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                                    @if ($errors->has('facebook')) <small class="text-danger">{{ $errors->first('facebook') }}</small> @endif 
                                     
-                                    </span>
+                                
+                                  
 
                                 </div>
                                 <div class="user-box mt-2">
                                     <label><b> حساب Twitter </b> </label>
                                     <input id="face"  name="tweeter" type="text" class="form-control">
                                     
-                                    <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                    <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                    
-                                    </span>
+                                    @if ($errors->has('tweeter')) <small class="text-danger">{{ $errors->first('tweeter') }}</small> @endif 
+
 
                                 </div>
 
@@ -155,16 +132,13 @@
                                     <label> <b>حساب Github</b>  </label>
                                     <input id="face"  name="github" type="text" class="form-control">
                                 
-                                    <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                    <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                    </span>
+                                    @if ($errors->has('github')) <small class="text-danger">{{ $errors->first('github') }}</small> @endif 
+     
                                 </div>
                                     </div>
                                     </div>
                                     <div class="col-lg row-md">
-                                        <div class="p-3 bg-white shadow-lg rounded-3">
+                                        <div class="p-3 bg-white shape">
                                             <h2 class="text-center"> ملفي الشخصي
                                             </h2>
                                                 <div class="row gx-5" >
@@ -173,7 +147,8 @@
                                                     <label class="container-checkbox" >  <span class="check_text"> صاحب مشاريع</span>
                                 
                                                         <input type="checkbox"  value="2"  name="role[]" checked="checked">
-                                                        <span class="checkmark"></span>
+                                                        @if ($errors->has('role')) <small class="text-danger">{{ $errors->first('role') }}</small> @endif 
+     
                                                     </label>
                                                     </div>
                                                     
@@ -181,7 +156,8 @@
                                                     <label class="container-checkbox"   >   <span class="check_text"> منجز خدمة  </span>
                                                     
                                                         <input type="checkbox" value="3"  name="role[]"  checked>
-                                                        <span class="checkmark"></span>
+                                                       
+                                                        @if ($errors->has('role')) <small class="text-danger">{{ $errors->first('role') }}</small> @endif 
                                                     </label>
 
                                             </div>
@@ -196,12 +172,8 @@
                                                      التخصص</b> </label>
                                                         <input id="face"  name="major" type="text" class="form-control">
                                                     
-                                                        <span class="invalid-feedback" role="alert">
-                                                                <div class='dan_mesg_po'> </div>
-                                                            </span>
-                                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                        
-                                                        </span>
+                                                     
+                                                        @if ($errors->has('major')) <small class="text-danger">{{ $errors->first('major') }}</small> @endif 
                                                     
                                                     </div>
                                                     </div>
@@ -215,12 +187,8 @@
                                     المسمى الوظيفي</b> </label>
                                         <input id="face"  name="Job_title" type="text" class="form-control">
                                     
-                                        <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                        
-                                        </span>
+                                        @if ($errors->has('Job_title')) <small class="text-danger">{{ $errors->first('Job_title') }}</small> @endif 
+
                                     
                                     </div>
                                     </div>
@@ -234,6 +202,8 @@
                                             <option value="{{ $skill->id }}">{{ $skill->title }}</option>
                                             @endforeach
                                         </select>
+                                        @if ($errors->has('skills')) <small class="text-danger">{{ $errors->first('skills') }}</small> @endif 
+                                        
                                     </div>
 
                                 
@@ -243,12 +213,8 @@
                                         <label>  <b>نبذه تعريفية </b>  </label>
                                         <textarea id="face"  name="describe" type="text" class="form-control" rows="8">
                                             </textarea>
-                                        <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                        
-                                        </span>
+                                            @if ($errors->has('describe')) <small class="text-danger">{{ $errors->first('describe') }}</small> @endif 
+
                                     
                                     </div>
 
