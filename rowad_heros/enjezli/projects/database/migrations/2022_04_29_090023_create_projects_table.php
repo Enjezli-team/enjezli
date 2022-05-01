@@ -18,14 +18,14 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('file')->nullable();
-            $table->text('skills');
             $table->text('duration');
             $table->double('price');
+            $table->double('net_price');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
  	        $table->date('delivery_date')->nullable();
             $table->integer('status')->default(0);
-            $table->foreignId('handled_by');
+            $table->foreignId('handled_by')->nullable();
             $table->foreign('handled_by')->references('id')->on('users')->onDelete('cascade');
 	        $table->foreignId('user_id');
             $table->timestamps();

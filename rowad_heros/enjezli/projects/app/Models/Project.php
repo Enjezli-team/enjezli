@@ -23,9 +23,14 @@ class Project extends Model
         'user_id',
        
     ];
+    public function sal_offers(){
+
+        return $this->hasMany(Offer::class,'project_id');
+    }
     //users
     public function sal_handel_by(){
-
+       
+        
         return $this->belongsTo(User::class,'handled_by');
     }
     public function sal_created_by(){

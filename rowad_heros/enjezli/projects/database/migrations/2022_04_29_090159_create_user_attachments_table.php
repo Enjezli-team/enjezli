@@ -17,7 +17,7 @@ class CreateUserAttachmentsTable extends Migration
             $table->id();
             $table->string('file_name');
             $table->string('file_type');
-            $table->string('attach_type');
+            $table->integer('attach_type');
             $table->integer('is_active')->default(1);
             $table->integer('attach_id');
             // $table->foreignId('attach_id');
