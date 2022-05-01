@@ -45,6 +45,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function user_roles_user(){
+
+        return $this->hasMany(Project::class,'user_id');
+    }
+    
 //profile
     public function sal_profile(){
 

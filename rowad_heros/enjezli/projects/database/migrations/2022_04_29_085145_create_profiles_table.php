@@ -20,9 +20,9 @@ class CreateProfilesTable extends Migration
  	        $table->date('birth_date');
             $table->integer('gander');
             $table->string('country');
-            $table->string('facebook');
-            $table->string('github');
-            $table->string('tweeter');
+            $table->string('facebook')->nullable();
+            $table->string('github')->nullable();
+            $table->string('tweeter')->nullable();
             $table->text('major')->nullable();
             $table->text('Job_title')->nullable();
             $table->text('description');

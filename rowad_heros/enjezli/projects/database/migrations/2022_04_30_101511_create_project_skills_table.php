@@ -15,6 +15,10 @@ class CreateProjectSkillsTable extends Migration
     {
         Schema::create('project_skills', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
+ 	        $table->foreignId('skill_id');
+            $table->foreign('skill_id')->references('id')->on('skills');
             $table->timestamps();
         });
     }

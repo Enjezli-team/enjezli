@@ -63,8 +63,8 @@ Route::prefix('seeker')->group(function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('profiles',ProfileController::class);
-    Route::resource('offers',OfferController::class );
-    Route::resource('projects',ProjectController::class );
+    // Route::resource('offers',OfferController::class );
+    // Route::resource('projects',ProjectController::class );
     Route::resource('works',WorkController::class );
 });
 /*
@@ -77,3 +77,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], func
      Route::resource('users',UserController::class);
     Route::resource('setting',offersController::class );
 });
+
+Route::resource('projects',ProjectController::class );
+Route::resource('offers',OfferController::class );
+Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+
+// Route::get('/add_project', [ProjectsController::class, 'create']);
+// Route::post('/save_project', [ProjectsController::class, 'store']);
+// Route::get('/edit_project/{id}', [ProjectsController::class, 'edit'])->name('edit_project');
+// Route::post('/update_project/{id}', [ProjectsController::class, 'update'])->name('update_project');
+// Route::get('/change_status/{project_id}/{status}', [ProjectsController::class, 'changeStatus'])->name('change_status');
+// Route::get('/offers', [OfferController::class, 'offers']);
+// Route::get('/add_offer',[OfferController::class, 'create']);
+// Route::post('/save_offer/{project_id}',[OfferController::class, 'store']);
+// Route::get('/edit_offer/{offer_id}',[OfferController::class, 'edit']);
+// Route::post('/edit_offer_save/{project_id}',[OfferController::class, 'update']);

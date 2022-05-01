@@ -13,7 +13,7 @@ class ProjectSkill extends Model
         'skill_id',
         
     ];
-    public function sal_peoject(){
+    public function sal_project(){
 
         return $this->belongsTo(Project::class,'project_id');
     }
