@@ -297,9 +297,9 @@
             <div class="profile_img"> <img src="" alt=""></div>
             <div class="padding info_container ">
                 <div class="personal_basic_info">
-                    <div class="profile_name">سلمى احمد محمد</div>
+                    <div class="profile_name">{{$data->name}}</div>
                     <div class="personal_information">
-                        <div class="profile_phone">779977896</div>
+                        <div class="profile_phone">{{$data->profile->phone}}</div>
                         <ul class="social">
                             <li>
                                 <a href="">

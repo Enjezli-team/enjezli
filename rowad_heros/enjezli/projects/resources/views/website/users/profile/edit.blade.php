@@ -38,7 +38,7 @@
             </div>
         </div>
        
-        <form method="POST" action="/profiles/edit{{$data->id}}">
+        <form method="POST" action="/profiles/{{$data->id}}">
             <!-- @csrf -->
             
             <div class="row gx-5 " >
