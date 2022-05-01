@@ -41,22 +41,13 @@
         <form method="POST" action="/profiles/{{$data->sal_user->id}}" enctype="multipart/form-data">
          @csrf 
          @method('PUT')
-         @if ($errors->any())
-         <div class="alert alert-danger">
-             <strong>Whoops!</strong> There were some problems with your input.<br><br>
-             <ul>
-                 @foreach ($errors->all() as $error)
-                     <li>{{ $error }}</li>
-                 @endforeach
-             </ul>
-         </div>
-     @endif            
+                
             <div class="row gx-5 " >
                 <div class="col-lg row-md">
                   <div class="user-box mt-2">
                       <label> <b> الاسم </b></label>
                       <input id="name"  value="{{$data->sal_user->name}}" name="name" type="text" class="form-control">
-                  
+                     
                       <span class="invalid-feedback" role="alert">
                               <div class='dan_mesg_po'>ادخل الاسم</div>
                           </span>
@@ -88,7 +79,8 @@
                     <div class="user-box mt-2">
                         <label> <b> رقم الهاتف</b></label>
                         <input id="phone" value="{{$data->phone}}"    name="phone" type="text" class="form-control">
-                    
+                        @if ($errors->has('phone')) <small class="text-danger">{{ $errors->first('phone') }}</small> @endif 
+
                         <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'>ادخل الرقم</div>
                             </span>
@@ -103,7 +95,8 @@
                                 <div class="user-box mt-2">
                                 <label><b> تاريخ الميلاد </b></label>
                                 <input id="date"  value="{{$data->birth_date}}"   name="birth_date" type="date" class="form-control">
-                            
+                                @if ($errors->has('birth_date')) <small class="text-danger">{{ $errors->first('birth_date') }}</small> @endif 
+
                                 <span class="invalid-feedback" role="alert">
                                         <div class='dan_mesg_po'>ادخل الرقم</div>
                                     </span>
@@ -127,7 +120,7 @@
                                         
                                     </small> 
                                 <select name="gander"  class="form-select form-control">
-                                    <option selected>ذكر</option>
+                                    <option selected>{{$data->gander}}</option>
                                     <option value="1">انثى</option>
                                 </select>
                             </div>
@@ -145,6 +138,7 @@
                                         <option value="{{ $skill->id }}">{{ $skill->title }}</option>
                                         @endforeach
                                     </select>
+                                    
                                   </div>
                                 </div>
                             </div>
@@ -155,7 +149,8 @@
    <div class="user-box mt-3">
     <label><b> حساب Facebook </b> </label>
     <input id="face" value="{{$data->facebook}}"  name="facebook" type="text" class="form-control">
-  
+    @if ($errors->has('facebook')) <small class="text-danger">{{ $errors->first('facebook') }}</small> @endif 
+
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
         </span>
@@ -167,7 +162,8 @@
 <div class="user-box mt-2">
     <label><b> حساب Twitter </b> </label>
     <input id="face" value="{{$data->tweeter}}"  name="tweeter" type="text" class="form-control">
-    
+    @if ($errors->has('tweeter')) <small class="text-danger">{{ $errors->first('tweeter') }}</small> @endif 
+
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
         </span>
@@ -181,7 +177,8 @@
 <div class="user-box mt-2">
     <label> <b>حساب Github</b>  </label>
     <input id="face" value="{{$data->github}}"  name="github" type="text" class="form-control">
-   
+    @if ($errors->has('github')) <small class="text-danger">{{ $errors->first('github') }}</small> @endif 
+
     <span class="invalid-feedback" role="alert">
             <div class='dan_mesg_po'> </div>
         </span>
@@ -289,6 +286,8 @@
         <textarea id="face" name="describe"  type="text" class="form-control" rows="11">
           {{$data->description}}
             </textarea>
+            @if ($errors->has('describe')) <small class="text-danger">{{ $errors->first('describe') }}</small> @endif 
+
         <span class="invalid-feedback" role="alert">
                 <div class='dan_mesg_po'> </div>
             </span>

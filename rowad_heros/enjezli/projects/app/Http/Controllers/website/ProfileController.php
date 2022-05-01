@@ -53,21 +53,27 @@ class ProfileController extends Controller
            // 'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone'=>['required','regex:/^(009677)[0-9]{8}$/'],
             'country'=>['required'],
-            'major'=>['required'],
+            'major'=>[''],
             'role'=>['required'],
-            'Job_title'=>['required'],
+            'tweeter'=>['url'],
+            'facebook'=>['url'],
+            'github'=>['url'],
+            'Job_title'=>[''],
             'describe'=>['required','min:50 ']
         ],[
             'phone.required'=>'يرجى ادخال رقم التلفون ',
             'country.required'=>'يرجى ادخال الدولة ',
             'role.required'=>'يرجى ادخال نوع الاستخدام ',
-            'major.required'=>'يرجى ادخال الاسم التخصص',
-            'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
+            //'major.required'=>'يرجى ادخال الاسم التخصص',
+            //'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required'=>'يرجى ادخال وصف عنك',
+            'tweeter.url'=>'يرجى ادخال عنوان حساب تويتر بشكل صحيح ',
+            'facebook.url'=>'يرجى ادخال عنوان حساب فيسبوك بشكل صحيح ',
+            'github.url'=>'يرجى ادخال عنوان حساب جيت هب بشكل صحيح ',
            // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
            // 'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
-            'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم ويبدا ب009677 ',           
+            'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',           
         ]);
         if($request->image){
        $imageName = time().'.'.$request->image->extension();  
@@ -134,23 +140,29 @@ class ProfileController extends Controller
         Validator::validate($request->all(),[
             
             //'image'=>['mimes:jpg,png,jpeg','size:512'],
-            'phone'=>['required','regex:/^(009677)[0-9]{8}$/'],
+            'phone'=>['required','digits:14'],
             'country'=>['required'],
-            'major'=>['required'],
+            'major'=>[''],
             'role'=>['required'],
-            'Job_title'=>['required'],
+            'tweeter'=>['url'],
+            'facebook'=>['url'],
+            'github'=>['url'],
+            'Job_title'=>[''],
             'describe'=>['required','min:50 ']
         ],[
             'phone.required'=>'يرجى ادخال رقم التلفون ',
             'country.required'=>'يرجى ادخال الدولة ',
             'role.required'=>'يرجى ادخال نوع الاستخدام ',
-            'major.required'=>'يرجى ادخال الاسم التخصص',
-            'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
+            //'major.required'=>'يرجى ادخال الاسم التخصص',
+            //'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required'=>'يرجى ادخال وصف عنك',
+            'tweeter.url'=>'يرجى ادخال عنوان حساب تويتر بشكل صحيح ',
+            'facebook.url'=>'يرجى ادخال عنوان حساب فيسبوك بشكل صحيح ',
+            'github.url'=>'يرجى ادخال عنوان حساب جيت هب بشكل صحيح ',
            // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
             //'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
-            'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم ويبدا ب009677 ',           
+            'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',           
         ]);
         if($request->image){
        $imageName = time().'.'.$request->image->extension();  
