@@ -30,6 +30,7 @@ class CustomAuthController extends Controller
     {
         return view('auth.conf');
     }  
+    
     public function reset_password ()
     {
         return view('auth.reset_password');

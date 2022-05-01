@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::resource('projects',ProjectController::class );
     Route::resource('works',WorkController::class );
     Route::get('my_works/{user_id}',[WorkController::class,'user_works'] );
+    Route::resource('projects',ProjectController::class );
+Route::resource('offers',OfferController::class );
+Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
 });
 /*
 |--------------------------------------------------------------------------
@@ -82,9 +85,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], func
     Route::resource('setting',offersController::class );
 });
 
-Route::resource('projects',ProjectController::class );
-Route::resource('offers',OfferController::class );
-Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+// Route::resource('projects',ProjectController::class );
+// Route::resource('offers',OfferController::class );
+// Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
 
 // Route::get('/add_project', [ProjectsController::class, 'create']);
 // Route::post('/save_project', [ProjectsController::class, 'store']);
