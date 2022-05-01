@@ -47,9 +47,12 @@
                                         <div class="w-100">
                                             <select class="selectpicker w-100" name="skills[]" multiple
                                                 aria-label="المهارات " data-live-search="true">
-                                                <option value="1">CSS</option>
+                                                @foreach ($data as $item)
+                                                <option value="{{$item['id']}}">{{$item['title']}}</option>
+                                                @endforeach
+                                                {{-- <option value="1">CSS</option>
                                                 <option value="2">HTML</option>
-                                                <option value="3">VUE</option>
+                                                <option value="3">VUE</option> --}}
                                             </select>
                                         </div>
                                         @error('skills')

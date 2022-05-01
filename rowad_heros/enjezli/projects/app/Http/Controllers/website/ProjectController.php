@@ -4,8 +4,7 @@ namespace App\Http\Controllers\website;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use App\Models\Offer;
-
-
+use App\Models\Skill;
 use App\Models\ProjectSkill;
 use App\Models\UserAttachment;
 use App\Http\Controllers\Controller;
@@ -33,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('website.users.project.create');
+          $data=Skill::All();
+        return view('website.users.project.create',compact('data'));
     }
 
     /**
@@ -152,7 +152,8 @@ public function show($id)//'sal_created_by',
     public function edit($project_id)
     {
         $data=Project::where('id',$project_id)->first();
-        return view('website.users.project.edit')->with('data',$data);
+        $skills=Skill::All();
+        return view('website.users.project.edit',compact('data','skills'));
     }
 
     /**
