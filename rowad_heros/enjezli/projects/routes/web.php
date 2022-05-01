@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('offers',OfferController::class );
     Route::resource('projects',ProjectController::class );
     Route::resource('works',WorkController::class );
+    Route::get('my_works/{user_id}',[WorkController::class,'user_works'] );
 });
 /*
 |--------------------------------------------------------------------------

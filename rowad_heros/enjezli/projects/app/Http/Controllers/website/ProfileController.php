@@ -24,7 +24,7 @@ class ProfileController extends Controller
      * 
      */
     public function index()
-    { $profile = profile::where([['status', 1]])->get();
+    { $profile = profile::all();
         return view('website.users.profile.index', ['data' => $profile]);
         return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
         //
@@ -50,7 +50,7 @@ class ProfileController extends Controller
     {
          Validator::validate($request->all(),[
             
-            'image'=>['mimes:jpg,png,jpeg','size:512'],
+           // 'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone'=>['required','regex:/^(009677)[0-9]{8}$/'],
             'country'=>['required'],
             'major'=>['required'],
@@ -64,8 +64,8 @@ class ProfileController extends Controller
             'major.required'=>'يرجى ادخال الاسم التخصص',
             'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required'=>'يرجى ادخال وصف عنك',
-            'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
-            'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
+           // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
+           // 'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
             'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم ويبدا ب009677 ',           
         ]);
@@ -94,7 +94,7 @@ class ProfileController extends Controller
             }
         }
 
-           return redirect('profiles/'.Auth::user()->id)->withSuccess(' faild');
+        return redirect('profiles/'.Auth::user()->id)->with('completed', 'it has been saved!');
     }
 
     /**
@@ -118,7 +118,7 @@ class ProfileController extends Controller
     {
         //
         $profile=Profile::find($id);
-        return view('website.users.profile.edit',['data'=>$profile]);
+        return view('website.users.profile.edit',['data'=>$profile,'skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
     
     }
 
@@ -133,7 +133,7 @@ class ProfileController extends Controller
     {
         Validator::validate($request->all(),[
             
-            'image'=>['mimes:jpg,png,jpeg','size:512'],
+            //'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone'=>['required','regex:/^(009677)[0-9]{8}$/'],
             'country'=>['required'],
             'major'=>['required'],
@@ -147,8 +147,8 @@ class ProfileController extends Controller
             'major.required'=>'يرجى ادخال الاسم التخصص',
             'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required'=>'يرجى ادخال وصف عنك',
-            'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
-            'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
+           // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
+            //'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
             'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم ويبدا ب009677 ',           
         ]);
@@ -160,12 +160,12 @@ class ProfileController extends Controller
         }
             User::where('id',Auth::user()->id)->update(['image'=>$imageName]);
       
-            $proprofile =Profile::where('id',$id)->update([
+        $proprofile =Profile::where('id',$id)->update([
         'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
         'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
-        'Job_title'=>$request->Job_title,'image'=>$imageName,'description'=>$request->describe
+        'Job_title'=>$request->Job_title,'description'=>$request->describe
         ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
-         return redirect('profiles')->with('completed', 'it has been saved!');
+         return redirect('profiles/'.Auth::user()->id)->with('completed', 'it has been saved!');
     }
 
     /**

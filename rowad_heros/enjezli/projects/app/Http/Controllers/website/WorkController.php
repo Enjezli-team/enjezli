@@ -82,4 +82,8 @@ class WorkController extends Controller
     {
         //
     }
+    public function user_works($user_id)
+    {
+        //
+    }
 }

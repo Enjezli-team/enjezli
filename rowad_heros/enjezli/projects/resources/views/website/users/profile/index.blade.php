@@ -41,6 +41,8 @@
             height: 200px;
             text-overflow: ellipsis;
             overflow: hidden;
+            width: 15%;
+
         }
         
         .personal_basic_info {}
@@ -294,25 +296,25 @@
     <div class="profile">
         <div class="personal_info_container">
             
-            <div class="profile_img"> <img src="" alt=""></div>
+            <div class="profile_img"> <img src="{{ asset('images/'.$data->image) }}" style="width: 288px;height: 100%;" alt=""></div>
             <div class="padding info_container ">
                 <div class="personal_basic_info">
                     <div class="profile_name">{{$data->name}}</div>
                     <div class="personal_information">
-                        <div class="profile_phone">{{$data->profile->phone}}</div>
+                        <div class="profile_phone">{{$data->sal_profile->phone}}</div>
                         <ul class="social">
                             <li>
-                                <a href="">
+                                <a href="{{$data->sal_profile->facebook}}">
                                     <ion-icon name="logo-facebook"></ion-icon>
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{$data->sal_profile->tweeter}}">
                                     <ion-icon name="logo-instagram"></ion-icon>
                                 </a>
                             </li>
                             <li>
-                                <a href="">
+                                <a href="{{$data->sal_profile->github}}">
                                     <ion-icon name="mail-outline"></ion-icon>
                                 </a>
                             </li>
@@ -324,15 +326,16 @@
 
                 <div>
 
-                    <div class="desc">إنني بدون مبالغة أتنفس بحثًا وعلمًا ولا أجد ضالتي سوى في البحث والتنقيب والتحليل وإجراء التجارب للوصول إلى الابتكارات وحلول المعضلات، والعمل في مركز بحثي مرموق مثل مركز ……. بالطبع سوف يُساعدني على تحقيق هذا المبتغى، وسوف يُساعدني على
-                        أن أكون جزءًا من تحقيق أهدافه في إثراء درجة مساهمته العلمية على الساحة الدولية.</div>
+                    <div class="desc" style=" overflow-wrap: break-word;
+                    word-wrap: break-word;
+                    hyphens: auto;">{{$data->sal_profile->description}}</div>
 
                 </div>
 
             </div>
 
             <div class="edit_pro_container">
-                <button class="edit_pro button button-1">تعديل</button>
+                <a href="/profiles/{{$data->sal_profile->id}}/edit" class="edit_pro button button-1">تعديل</a>
             </div>
         </div>
 
@@ -341,10 +344,10 @@
         <div class="d-grid">
             <div class="personal_info_container myworks">
                 <header class="flex_between">
-                    <h3>أعمالي</h3>
+                    <h3> احدث أعمالي </h3>
 
                     <div>
-                        <button class="blob-btn">
+                        <a href="/my_works/{{ Auth::user()->id }}" class="blob-btn">
                                عرض كل الاعمال
                                
                               <span class="blob-btn__inner">
@@ -355,49 +358,36 @@
                                   <span class="blob-btn__blob"></span>
                                 </span>
                               </span>
-                            </button>
+                            </a>
 
 
                     </div>
 
                 </header>
                 <div class="hr">
-                    <div class="count_project"> 33</div>
+                    <div class="count_project"> {{ $data->sal_works->count() }}</div>
                 </div>
                 <div class="jobs">
+                    @forelse($data->sal_works as $w)
                     <div class="flex_between">
                         <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
+                            <h5 class="project_name">{{ $w->title }}</h5>
+                            <h6 class="project_date">{{ $w->created_at }}</h6>
                         </div>
                         <div class="operation">
 
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
+                         <a href="/works/{{ $w->id }}/edit">   <span><ion-icon class="edit"  name="create-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $w->id }}">  <span><ion-icon class="delete" name="trash-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $w->id }}">  <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></a>
+                        </div>
                     </div>
+                    @empty
                     <div class="flex_between">
                         <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
+                            <h5 class="project_name"> لا يوجد عمل جديد</h5>
                         </div>
-                        <div class="operation">
-
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
                     </div>
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
-                        </div>
-                        <div class="operation">
-
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
-                    </div>
+                    @endforelse
                 </div>
 
             </div>
@@ -405,11 +395,11 @@
 
             <div class="personal_info_container myworks">
                 <header class="flex_between">
-                    <h3>أعمالي</h3>
+                    <h3>احدث مشاريعي</h3>
 
                     <div>
                         <button class="blob-btn">
-                               عرض كل الاعمال
+                               عرض كل مشاريعي
                                
                               <span class="blob-btn__inner">
                                 <span class="blob-btn__blobs">
@@ -426,46 +416,130 @@
 
                 </header>
                 <div class="hr">
-                    <div class="count_project"> 33</div>
+                    <div class="count_project">  {{ $data->sal_projects_provider->count() }}</div>
                 </div>
                 <div class="jobs">
+                    @forelse($data->sal_projects_provider as $p)
                     <div class="flex_between">
                         <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
+                            <h5 class="project_name">{{ $p->title }}</h5>
+                            <h6 class="project_date">{{ $p->created_at }}</h6>
                         </div>
                         <div class="operation">
 
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
+                         <a href="/works/{{ $p->id }}/edit">   <span><ion-icon class="edit"  name="create-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $p->id }}">  <span><ion-icon class="delete" name="trash-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $p->id }}">  <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></a>
+                        </div>
                     </div>
+                    @empty
                     <div class="flex_between">
                         <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
+                            <h5 class="project_name"> لا يوجد مشاريع جديدة</h5>
                         </div>
-                        <div class="operation">
-
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
                     </div>
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name">تصميم موقع لعيادة طبية</h5>
-                            <h6 class="project_date">23/3/2020</h6>
-                        </div>
-                        <div class="operation">
-
-                            <span><ion-icon class="edit"  name="create-outline"></ion-icon></span>
-                            <span><ion-icon class="delete" name="trash-outline"></ion-icon></span>
-                            <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></div>
-                    </div>
+                    @endforelse
                 </div>
 
             </div>
+            <div class="personal_info_container myworks">
+                <header class="flex_between">
+                    <h3>العروض </h3>
 
+                    <div>
+                        <button class="blob-btn">
+                               عرض كل مشاريعي
+                               
+                              <span class="blob-btn__inner">
+                                <span class="blob-btn__blobs">
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                </span>
+                              </span>
+                            </button>
+
+
+                    </div>
+
+                </header>
+                <div class="hr">
+                    <div class="count_project">  {{ $data->sal_offers->count() }}</div>
+                </div>
+                <div class="jobs">
+                    @forelse($data->sal_offers as $o)
+                    <div class="flex_between">
+                        <div>
+                            <h5 class="project_name">{{ $o->title }}</h5>
+                            <h6 class="project_date">{{ $o->created_at }}</h6>
+                        </div>
+                        <div class="operation">
+
+                         <a href="/works/{{ $o->id }}/edit">   <span><ion-icon class="edit"  name="create-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $o->id }}">  <span><ion-icon class="delete" name="trash-outline"></ion-icon></span></a>
+                         <a href="/works/{{ $o->id }}">  <span><ion-icon  class="more" name="ellipsis-vertical-circle-outline"></ion-icon></span></a>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="flex_between">
+                        <div>
+                            <h5 class="project_name"> لا يوجد عروض جديدة</h5>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+
+            </div>
+            <div class="personal_info_container myworks">
+                <header class="flex_between">
+                    <h3>مهارتي </h3>
+
+                    <div>
+                        <button class="blob-btn">
+                               عرض  مهارتي
+                               
+                              <span class="blob-btn__inner">
+                                <span class="blob-btn__blobs">
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                  <span class="blob-btn__blob"></span>
+                                </span>
+                              </span>
+                            </button>
+
+
+                    </div>
+
+                </header>
+                <div class="hr">
+                    <div class="count_project">  {{ $data->sal_skills->count() }}</div>
+                </div>
+                <div class="jobs">
+                    @forelse($data->sal_skills as $s)
+                    <div class="flex_between">
+                        <div>
+                            <h5 class="project_name">{{ $s->title }}</h5>
+                            <h6 class="project_date">{{ $s->created_at }}</h6>
+                        </div>
+                        <div class="operation">
+
+                        
+                         <a href="/works/{{ $s->id }}">  <span><ion-icon class="delete" name="trash-outline"></ion-icon></span></a>
+                      
+                        </div>
+                    </div>
+                    @empty
+                    <div class="flex_between">
+                        <div>
+                            <h5 class="project_name"> لا يوجد مهارات جديدة</h5>
+                        </div>
+                    </div>
+                    @endforelse
+                </div>
+
+            </div>
         </div>
     </div>
     </div>

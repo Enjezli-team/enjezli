@@ -38,14 +38,24 @@
             </div>
         </div>
        
-        <form method="POST" action="/profiles/{{$data->id}}">
-            <!-- @csrf -->
-            
+        <form method="POST" action="/profiles/{{$data->sal_user->id}}" enctype="multipart/form-data">
+         @csrf 
+         @method('PUT')
+         @if ($errors->any())
+         <div class="alert alert-danger">
+             <strong>Whoops!</strong> There were some problems with your input.<br><br>
+             <ul>
+                 @foreach ($errors->all() as $error)
+                     <li>{{ $error }}</li>
+                 @endforeach
+             </ul>
+         </div>
+     @endif            
             <div class="row gx-5 " >
                 <div class="col-lg row-md">
                   <div class="user-box mt-2">
                       <label> <b> الاسم </b></label>
-                      <input id="name"  name="name" type="text" class="form-control">
+                      <input id="name"  value="{{$data->sal_user->name}}" name="name" type="text" class="form-control">
                   
                       <span class="invalid-feedback" role="alert">
                               <div class='dan_mesg_po'>ادخل الاسم</div>
@@ -60,7 +70,7 @@
                           <div class="col-lg row-md">
                               <div class="user-box mt-2">
                               <label><b> الايميل  </b></label>
-                              <input id="email"  name="email" type="email" class="form-control">
+                              <input id="email" value="{{$data->sal_user->email}}"  name="email" type="email" class="form-control">
                           
                               <span class="invalid-feedback" role="alert">
                                       <div class='dan_mesg_po'>ادخل الايميل   </div>
@@ -130,12 +140,11 @@
                                     </b>
                                         
                                     </small> 
-                                <select name="country" class="form-select form-control">
-                                    <option selected>اليمن</option>
-                                    <option value="1">كوريا</option>
-                                    <option value="1">كوريا</option>
-                                    <option value="1">كوريا</option>
-                                </select>
+                                    <select class=" w-100" name="country" multiple aria-label="المهارات ">
+                                        @foreach ($skills as $skill)
+                                        <option value="{{ $skill->id }}">{{ $skill->title }}</option>
+                                        @endforeach
+                                    </select>
                                   </div>
                                 </div>
                             </div>
@@ -199,7 +208,7 @@
               
                     <label class="container-checkbox">  <span class="check_text"> صاحب مشاريع</span>
   
-                        <input type="checkbox" name="seeker" checked="checked">
+                        <input type="checkbox" name="role[]" checked="checked">
                         <span class="checkmark"></span>
                       </label>
                       </div>
@@ -207,7 +216,7 @@
                     <div class="col-lg row-md">
                       <label class="container-checkbox">  <span class="check_text"> منجز خدمة  </span>
                       
-                        <input type="checkbox" name="provider">
+                        <input type="checkbox"  name="role[]">
                         <span class="checkmark"></span>
                       </label>
                   
@@ -265,9 +274,9 @@
     <label> <b>المهارات</b>   </label>
     <div class="w-100">
         <select class="selectpicker w-100" name="skills" multiple aria-label="المهارات " data-live-search="true">
-          <option value="1">CSS</option>
-          <option value="2">HTML</option>
-          <option value="3">VUE</option>
+            @foreach ($skills as $skill)
+            <option value="{{ $skill->id }}">{{ $skill->title }}</option>
+            @endforeach
         </select>
       </div>
 
@@ -277,7 +286,7 @@
     <div class="user-box mt-2">
         
         <label>  <b>نبذه تعريفية </b>  </label>
-        <textarea id="face"  name="description" type="text" class="form-control" rows="11">
+        <textarea id="face" name="describe"  type="text" class="form-control" rows="11">
           {{$data->description}}
             </textarea>
         <span class="invalid-feedback" role="alert">
