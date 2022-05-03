@@ -20,7 +20,7 @@
 
             @csrf
              <!-- Way 1: Display All Error Messages -->
-        @if ($errors->any())
+        {{-- @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
@@ -29,10 +29,12 @@
                 @endforeach
             </ul>
         </div>
-    @endif 
+    @endif  --}}
             
             <div class="user-box">
                 <input id="name" name="name" type="text" class="form-control">
+                @if ($errors->has('name')) <small class="text-danger">{{ $errors->first('name') }}</small> @endif 
+
                 <label> الاسم</label>
                  @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -45,6 +47,7 @@
             </div>
             <div class="user-box">
                 <input id="email" name="email" class="form-control">
+                @if ($errors->has('email')) <small class="text-danger">{{ $errors->first('email') }}</small> @endif 
                 <label>عنوان البريد الالكتروني</label>
                  @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -68,6 +71,8 @@
             </div>
             <div class="user-box">
                 <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                @if ($errors->has('password_confirmation')) <small class="text-danger">{{ $errors->first('password_confirmation') }}</small> @endif 
+
                 <label> تاكيد كلمة السر</label>
                 @error('password_confirmation')
                 <span class="invalid-feedback" role="alert">

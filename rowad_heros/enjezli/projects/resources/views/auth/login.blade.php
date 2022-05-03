@@ -29,6 +29,7 @@
                 <div class="user-box">
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
+                        @if ($errors->has('email')) <small class="text-danger">{{ $errors->first('email') }}</small> @endif 
 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
@@ -46,6 +47,8 @@
                     <div class="inputContainer">
 
                         <input type="password" name="password" type="password" class="form-control ">
+                        @if ($errors->has('password')) <small class="text-danger">{{ $errors->first('password') }}</small> @endif 
+
                         <label>كلمة السر </label>
                     </div>
                     <!-- @error('password')
@@ -69,11 +72,11 @@
             </form>
             <div class="login_links">
                 <div>
-                    <!-- @if (Route::has('password.request')) -->
-                    <a class="btn from-top" href="conf.html">
+                     {{-- <!-- @if (Route::has('password.request')) --> --}}
+                    <a class="btn from-top" href="/conf">
                             نسيت كلمة المرور
                         </a>
-                    <!-- @endif -->
+                    {{-- <!-- @endif --> --}}
                 </div>
                 <a href="/register" class="btn from-top">إنشاء حساب</a>
             </div>

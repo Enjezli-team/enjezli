@@ -11,8 +11,9 @@
                     <img src=" {{ asset('auth_assets/svg/logo.svg')}}" alt="">
                 </div>
             </div>
-            <form class="p-3 mt-3" method="POST" action="/forgit_check_email">
+            <form class="p-3 mt-3" method="POST" action="{{ route('forgit_check_email') }}">
                 @csrf 
+               
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <strong>Whoops!</strong> There were some problems with your input.<br><br>

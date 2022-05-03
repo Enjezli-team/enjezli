@@ -100,7 +100,7 @@ class ProfileController extends Controller
             }
         }
 
-        return redirect('profiles/'.Auth::user()->id)->with('completed', 'it has been saved!');
+        return redirect('profiles/'.Auth::user()->id)->with('success', '  تم حفظ البياتات بنجاج');
     }
 
     /**
@@ -177,7 +177,7 @@ class ProfileController extends Controller
         'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
         'Job_title'=>$request->Job_title,'description'=>$request->describe
         ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
-         return redirect('profiles/'.Auth::user()->id)->with('completed', 'it has been saved!');
+         return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
     }
 
     /**

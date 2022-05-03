@@ -24,6 +24,8 @@ class CreateOffersTable extends Migration
             $table->foreign('provider_id')->references('id')->on('users');
  	        $table->foreignId('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
+           
+
             $table->timestamps();
         });
     }
