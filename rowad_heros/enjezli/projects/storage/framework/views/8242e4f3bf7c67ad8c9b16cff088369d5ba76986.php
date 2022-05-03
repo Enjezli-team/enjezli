@@ -13,7 +13,7 @@
     <div class="hero_section">
         <nav>
             <div class="logo">
-                <a href=""> <img src="<?php echo e(asset('svg/logo.svg')); ?>" alt=""></a>
+                <a href="<?php echo e(route("home")); ?>"> <img src="<?php echo e(asset('svg/logo.svg')); ?>" alt=""></a>
             </div>
             <div class="hamburger">
                 <div class="bars1"></div>

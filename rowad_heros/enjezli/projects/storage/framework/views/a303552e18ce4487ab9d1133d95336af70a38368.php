@@ -10,9 +10,9 @@
 <?php $__env->startSection('content'); ?>
 
 
-<div class="loginContainer_2 sign-up-container">
+<div class="loginContainer_2 sign-up-container up">
 
-    <div class="container overflow-hidden up mt-5 form_con">
+    <div class="container overflow-hidden  mt-5 form_con">
         <div class="row">
             <div class="col">
                 <div class="mx-auto p-3">
@@ -30,8 +30,8 @@
 
                                     <?php echo csrf_field(); ?>
 
-                                    <div class="user-box mt-3">
-                                        <label><b> مدة التسليم </b>(أيام) </label>
+                                    <div class="user-box mt-3 d-grid gap-3">
+                                        <label>    مدة التسليم    (أيام) </label>
                                         <input id="face" name="duration" type="number" class="form-control">
 
                                         <span class="invalid-feedback" role="alert">
@@ -44,8 +44,8 @@
                                     </div>
 
 
-                                    <div class="user-box mt-3">
-                                        <label><b> سعر العرض </b> ($)</label>
+                                    <div class="user-box mt-3 d-grid gap-3">
+                                        <label>    سعر العرض     ($)</label>
                                         <input id="face" name="price" type="text" class="form-control">
                                         
                                         <span class="invalid-feedback" role="alert">
@@ -59,9 +59,9 @@
 
 
 
-                                    <div class="user-box mt-2">
+                                    <div class="user-box mt-2 d-grid gap-3">
 
-                                        <label> <b>تفاصيل العرض </b> </label>
+                                        <label>    تفاصيل العرض     </label>
                                         <textarea id="face" name="description" type="text" class="form-control" rows="6">
                                                     </textarea>
                                         <span class="invalid-feedback" role="alert">

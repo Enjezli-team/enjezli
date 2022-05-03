@@ -7,43 +7,36 @@
 <link rel="stylesheet" href="<?php echo e(asset('auth_assets/offer_assests/css/style.css ')); ?>">
 
 
-
 <?php $__env->startSection('content'); ?>
 
-<div class="loginContainer_2 sign-up-container up">
 
-    <div class="container overflow-hidden  mt-5 form_con">
+<div class="loginContainer_2 sign-up-container  up">
+
+    <div class="container overflow-hidden mt-5 form_con">
         <div class="row">
             <div class="col">
-                <div class="mx-auto  p-3">
+                <div class="mx-auto p-3">
                     <div class="">
                         <div class="">
                             <div class="p-3  shadow-lg rounded-3">
-                                <h2 class="text-center"> تعديل عرض
+                                <h2 class="text-center"> إضافة عمل
                                 </h2>
                                 <div class="logo-container">
 
                                 </div>
 
-                                <form method="POST" action="<?php echo e(route('offers.update', 1)); ?>"
+                                <form method="POST" action="<?php echo e(route('offers.store', 1)); ?>"
                                     enctype="multipart/form-data">
 
                                     <?php echo csrf_field(); ?>
-                                    <div class="user-box mt-3  d-grid gap-3">
-                                        <label>   مدة التسليم   (أيام) </label>
-                                        <input id="face" name="duration" type="number" class="form-control"
-                                            value="<?php echo e($data['duration']); ?>">
-                                        <?php $__errorArgs = ['duration'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class="text-danger"><?php echo e($message); ?>*</small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
 
+                                    <div class="user-box mt-3">
+                                        <label>عنوان العمل</label>
+                                        <input id="face" name="duration" type="text" class="form-control">
+
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class='dan_mesg_po'> </div>
+                                        </span>
                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                         </span>
@@ -51,21 +44,13 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
 
-                                    <div class="user-box mt-3  d-grid gap-3">
-                                        <label>   سعر العرض    ($)</label>
-                                        <input id="face" name="price" type="text" class="form-control"
-                                            value="<?php echo e($data['price']); ?>">
+                                    <div class="user-box mt-3">
+                                        <label>رابط العمل</label>
+                                        <input id="face" name="price" type="url" class="form-control">
                                         
-                                        <?php $__errorArgs = ['price'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class="text-danger"><?php echo e($message); ?>*</small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class='dan_mesg_po'> </div>
+                                        </span>
                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                         </span>
@@ -74,24 +59,14 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-                                    <div class="user-box mt-2  d-grid gap-3">
+                                    <div class="user-box mt-2">
 
-                                        <label>   تفاصيل العرض    </label>
+                                        <label> <b> وصف العمل </b> </label>
                                         <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                                    <?php echo e($data['description']); ?>
-
                                                     </textarea>
-                                        <?php $__errorArgs = ['description'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <small class="text-danger"><?php echo e($message); ?>*</small>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-
+                                        <span class="invalid-feedback" role="alert">
+                                            <div class='dan_mesg_po'> </div>
+                                        </span>
                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                         </span>
@@ -165,4 +140,4 @@ unset($__errorArgs, $__bag); ?>
             });
         </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/offers/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/ooooo/create.blade.php ENDPATH**/ ?>

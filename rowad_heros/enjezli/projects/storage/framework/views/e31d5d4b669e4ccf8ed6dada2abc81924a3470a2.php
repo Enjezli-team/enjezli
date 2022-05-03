@@ -9,7 +9,7 @@
 
 
 <div class="loginContainer_2 sign-up-container">
-  
+
     <div class="container overflow-hidden up mt-5">
         <div class="row gx-5 p-3  gap-3 ">
             <div class="col-lg row-md">

@@ -78,8 +78,9 @@
 }
 
 .up {
-    position: relative;
     padding: 20px;
+    margin-top: 12vh;
+    margin-bottom: 5vh;
 }
 
 .img-squares_4 {
@@ -179,4 +180,8 @@ button:focus {
 
 .form_con {
     max-width: 42rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.175)!important;
 }

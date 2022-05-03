@@ -13,7 +13,7 @@
     <div class="hero_section">
         <nav>
             <div class="logo">
-                <a href=""> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+                <a href="{{ route("home") }}"> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
             </div>
             <div class="hamburger">
                 <div class="bars1"></div>

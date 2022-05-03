@@ -44,7 +44,6 @@
     object-fit: cover;
     width: 77px;
     height: 77px;
-    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
     border-radius: 100px;
     z-index: 0;
 }
@@ -78,7 +77,6 @@
 }
 
 .up {
-    position: relative;
     padding: 20px;
     margin-top: 12vh;
     margin-bottom: 5vh;
@@ -181,4 +179,8 @@ button:focus {
 
 .form_con {
     max-width: 42rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 0rem 1rem rgba(0, 0, 0, 0.175)!important;
 }

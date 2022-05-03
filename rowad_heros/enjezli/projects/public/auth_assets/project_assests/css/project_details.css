@@ -1,167 +1,162 @@
-/******************/
-
-.details_container {
-    padding: 47px 16px;
-}
-
-.personal_info_container {
-    max-width: 52em;
-    border-radius: 17px;
-    background: white;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    padding: 5vh 3vw;
-}
-
-.personal_info_container h5 {
-    font-size: 14px;
-    padding: 2px 4px;
-}
-
-.project_container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 33px;
-}
-
-.container_card {
-    padding: 1vh 2vw;
-    color: var(--dark_blue);
-    display: grid;
-    gap: 14px;
-}
-
-.container_card header {
-    padding-top: 17px;
-    gap: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.container_card header h3 {
-    font-size: 14px;
-}
-
-.container_card header h4 {
-    font-size: 12px;
-}
-
-.img_con {
-    width: 69px;
-    overflow: hidden;
-    height: 69px;
-    border-radius: 50%;
-    background-color: aliceblue;
-    margin-bottom: 4vh;
-}
-
-.img_con img {
-    height: inherit;
-    width: inherit;
-}
-
-
-/* btn */
-
-.show_more {
-    font-size: 16px;
-    padding: 1px 8px 3px;
-    outline: 0;
-    border: 1px solid #186d80;
-    cursor: pointer;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0);
-    padding: 4px 6px;
-    font-size: 13px;
-}
-
-.show_more:after {
-    content: "";
-    background-color: var(--light_blue);
-    width: 100%;
-    z-index: -1;
-    position: absolute;
-    height: 100%;
-    top: 7px;
-    left: 7px;
-    transition: 0.2s;
-}
-
-.show_more:hover:after {
-    top: 0px;
-    left: 0px;
-}
-
-.gold {
-    fill: goldenrod;
-}
-
-.desc {
-    height: 73px;
-    overflow: hidden;
-}
-
-
-/**/
-
-.title {
-    text-align: center;
-    padding: 32px;
-    color: var(--beauty);
-    width: 500px;
-    border-radius: 0.25px;
-    margin: auto;
-}
-
-
-/*bootstrap cust*/
-
-.card-header {
-    padding: 0.5rem 1rem;
-    margin-bottom: 0;
-    background-color: transparent;
-    border-bottom: none;
-    border-right: 2px solid #8ecae6;
-}
-
-.accordion-button:not(.collapsed) {
-    /* color: #0c63e4; */
-    background-color: transparent;
-    box-shadow: none;
-}
-
-.accordion-item {
-    background-color: #fff;
-    border: 1px solid none;
-}
-
-.accordion-button:focus {
-    z-index: 3;
-    border-color: transparent;
-    outline: 0;
-    box-shadow: none;
-    background: transparent;
-}
-
-.accordion-button:focus {
-    z-index: 3;
-    border-color: transparent;
-    outline: 0;
-    box-shadow: none;
-    background: transparent;
-}
-
-.select {
-    font-size: 14px;
-}
-
-.accordion-button {
-    border: none;
-}
-
-.accordion-collapse {
-    border: none;
-}
+    /******************/
+    
+    .details_container {
+        padding: 47px 16px;
+    }
+    
+    .personal_info_container {
+        max-width: 52em;
+        border-radius: 17px;
+        background: white;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
+        padding: 5vh 3vw;
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175)!important;
+    }
+    
+    .personal_info_container h5 {
+        font-size: 14px;
+        padding: 2px 4px;
+    }
+    
+    .project_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 33px;
+    }
+    
+    .container_card {
+        padding: 1vh 2vw;
+        color: var(--dark_blue);
+        display: grid;
+        gap: 14px;
+    }
+    
+    .container_card header {
+        padding-top: 17px;
+        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .container_card header h3 {
+        font-size: 14px;
+    }
+    
+    .container_card header h4 {
+        font-size: 12px;
+    }
+    
+    .img_con {
+        width: 69px;
+        overflow: hidden;
+        height: 69px;
+        border-radius: 50%;
+        background-color: aliceblue;
+        margin-bottom: 4vh;
+    }
+    
+    .img_con img {
+        height: inherit;
+        width: inherit;
+    }
+    /* btn */
+    
+    .show_more {
+        font-size: 16px;
+        padding: 1px 8px 3px;
+        outline: 0;
+        border: 1px solid #186d80;
+        cursor: pointer;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 4px 6px;
+        font-size: 13px;
+    }
+    
+    .show_more:after {
+        content: "";
+        background-color: var(--light_blue);
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 7px;
+        left: 7px;
+        transition: 0.2s;
+    }
+    
+    .show_more:hover:after {
+        top: 0px;
+        left: 0px;
+    }
+    
+    .gold {
+        fill: goldenrod;
+    }
+    
+    .desc {
+        height: 73px;
+        overflow: hidden;
+    }
+    /**/
+    
+    .title {
+        text-align: center;
+        padding: 32px;
+        color: var(--beauty);
+        width: 500px;
+        border-radius: 0.25px;
+        margin: auto;
+    }
+    /*bootstrap cust*/
+    
+    .card-header {
+        padding: 0.5rem 1rem;
+        margin-bottom: 0;
+        background-color: transparent;
+        border-bottom: none;
+        border-right: 2px solid #8ecae6;
+    }
+    
+    .accordion-button:not(.collapsed) {
+        color: #1c869f;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    
+    .accordion-item {
+        background-color: #fff;
+        border: 1px solid none;
+    }
+    
+    .accordion-button:focus {
+        z-index: 3;
+        border-color: transparent;
+        outline: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+    
+    .accordion-button:focus {
+        z-index: 3;
+        border-color: transparent;
+        outline: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+    
+    .select {
+        font-size: 14px;
+    }
+    
+    .accordion-button {
+        border: none;
+    }
+    
+    .accordion-collapse {
+        border: none;
+    }
