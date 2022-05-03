@@ -11,19 +11,23 @@
                     <img src=" {{ asset('auth_assets/svg/logo.svg')}}" alt="">
                 </div>
             </div>
-            <form class="p-3 mt-3" method="POST" action="{{ route('forgit_check_email') }}">
+            @if (session('status'))
+                <div class="text-success">
+                تم الارسال بنجاح يرجى مراجعة ايميلك
+                  
+                </div>
+                @elseif(session('email'))
+                <div class="text-success">
+                لم يتم الرسال لرجاء اعادة المحاوله
+                   
+                </div>
+                
+            @endif
+            <form class="p-3 mt-3" method="POST" action="{{ route('password.email') }}">
                 @csrf 
                
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+               
+              
                 <div class="user-box">
                     <input type="email" name="email" id="email" placeholder="">
                     <label> ادخل عنوان بريدك الالكتروني </label>

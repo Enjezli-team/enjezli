@@ -34,10 +34,20 @@
             </div>
             <h2>تغيير كلمة المرور
             </h2>
-            <form method="POST" action="">
-
+           
+            @if(session('status'))
+            <div class="text-success">
+            لم يتم الرسال لرجاء اعادة المحاوله
+                   
+        </div>
+                
+        @endif
+            <form action="{{ route('password.update') }}" enctype="multipart/form-data"  method="POST">
+                @csrf 
+                
+                <input id="token" type="hidden"  name="token" value="{{ $token }}">            
                 <div class="user-box">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name=" email" required autocomplete="new-password">
+                    <input id="email" type="email" class="form-control" name="email" required >
                     <label>  ادخل ايميلك</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
@@ -51,7 +61,7 @@
                 @endif -->
                 </div>
                 <div class="user-box">
-                    <input id="password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new-password">
+                    <input id="password" type="password" class="form-control " name="password" required >
                     <label>كلمة السر الجديدة</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
@@ -62,7 +72,7 @@
                 @enderror -->
                 </div>
                 <div class="user-box">
-                    <input type="password" id="password-confirm" type="password" class="form-control" name="new_password_confirmation" required autocomplete="new-password">
+                    <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required >
                     <label> تاكيد كلمة السر</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
                     <!-- {{-- @error('new_password')
@@ -72,7 +82,7 @@
                 </div>
 
                 <div class='btn-cont'>
-                    <button class='btn' href='#' type="submit">
+                    <button class='btn' type="submit">
                     تغيير كلة السر 
                     <span class='line-1'></span>
                     <span class='line-2'></span>

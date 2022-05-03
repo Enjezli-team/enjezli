@@ -34,7 +34,7 @@
             </div>
             <h2>تغيير كلمة المرور
             </h2>
-            <form method="POST" action="{{ route('update-password') }}">
+            <form method="POST" action="/profiles">
                 @csrf
                 @if (session('status'))
                 <small class="text-success">

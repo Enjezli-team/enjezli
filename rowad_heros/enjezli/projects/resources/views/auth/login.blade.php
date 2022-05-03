@@ -12,6 +12,18 @@
                 </div>
             </div>
             <h2>تسجيل الدخول</h2>
+            @if (session('status'))
+                <div class="text-success">
+                تم الارسال بنجاح يرجى مراجعة ايميلك
+                  
+                </div>
+                @elseif(session('failed'))
+                <div class="text-success">
+                لم يتم الرسال لرجاء اعادة المحاوله
+                   
+                </div>
+                
+            @endif
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
                  @if ($errors->any())
@@ -72,11 +84,11 @@
             </form>
             <div class="login_links">
                 <div>
-                     {{-- <!-- @if (Route::has('password.request')) --> --}}
-                    <a class="btn from-top" href="/conf">
+                    {{-- @if (Route::has('password.request'))  --}}
+                    <a class="btn from-top" href="{{ route('password.request') }}">
                             نسيت كلمة المرور
                         </a>
-                    {{-- <!-- @endif --> --}}
+                     {{-- @endif  --}}
                 </div>
                 <a href="/register" class="btn from-top">إنشاء حساب</a>
             </div>

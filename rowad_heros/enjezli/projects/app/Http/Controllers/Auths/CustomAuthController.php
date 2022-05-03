@@ -7,6 +7,7 @@ use App\Mail\welcomeEmail;
 use App\Models\Profile;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -106,12 +107,13 @@ class CustomAuthController extends Controller
     public function forgit_check_email (Request $request)
     {
         $validatedData = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users',
+           
         ], [
             'email.required' => 'يجب ادخال البريد الالكتروني .',
             'email.required' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
         ]);
-        $user_vertify=User::where('email',$request->email)->value('id');
+        $user_vertify=User::where('email',$request->email)->value('token');
         if($user_vertify !=""){
         return view('auth.changename');
         }else{

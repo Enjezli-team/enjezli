@@ -22,7 +22,7 @@
             <div class="login_icon_box">
                 <!-- <img src="assests/svg/logo.svg" alt=""> -->
                 <div class="profile-pic">
-                    <form method="POST" action="/profiles/" enctype="multipart/form-data">
+                    <form method="POST" action="/profiles" enctype="multipart/form-data">
                         @csrf 
                     <label class="-label" for="file">
                         

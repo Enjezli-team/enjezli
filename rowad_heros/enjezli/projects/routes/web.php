@@ -16,6 +16,14 @@ use App\Http\Controllers\website\WorkController;
 use App\Http\Controllers\website\ProjectController;
 use App\Http\Controllers\website\OfferController;
 use App\Http\Controllers\website\ProfileController;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +65,55 @@ Route::get('/check_email/{id}', [CustomAuthController::class, 'check_email'])->n
 Route::get('/reset_password', [CustomAuthController::class, 'reset_password'])->name('reset_password');
 Route::post('/reset_password', [CustomAuthController::class, 'updatePassword'])->name('update-password');
 Route::get('/conf', [CustomAuthController::class, 'forgit_password'])->name('forgit_password');
-Route::post('/forgit_check_email', [CustomAuthController::class, 'forgit_check_email'])->name('forgit_check_email');
+// Route::post('/forgit_check_email', [CustomAuthController::class, 'forgit_check_email'])->name('forgit_check_email');
 
+//start forgot password routes
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|confirmed',
+    ]);
+ 
+    $status = Password::reset(
+        $request->only('email', 'password', 'token'),
+        function ($user, $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+ 
+            $user->save();
+ 
+            event(new PasswordReset($user));
+        }
+    );
+ 
+    return $status === Password::PASSWORD_RESET
+                ? redirect('/login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->name('password.update');
+
+//end forgot password routes
 
 Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom'); 
