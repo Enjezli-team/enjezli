@@ -1,12 +1,8 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
-  referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/style.css ')}}">
+
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ')}}">
+@extends("website.layouts.master")
 
-
-    
+@section("content")
     <div class="profile">
 
 
@@ -16,7 +12,7 @@
 
             @forelse ($data as $item)
                 
-            <a href="{{route('projects.show',$item['id'])}}"> <div class="personal_info_container myworks">
+            <a class='title' href="{{route('projects.show',$item['id'])}}"> <div class="personal_info_container myworks">
                 <div class="container_card">
                     <header class="">
                         <h2>{{ $item['title']}}</h2>
@@ -70,7 +66,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="liks_shows">
+                        {{-- <div class="liks_shows">
 
 
                             <ul>
@@ -81,8 +77,8 @@
                                         <span>10</span>
                                     </a>
                                 </li> --}}
-                            </ul>
-                        </div>
+                            {{-- </ul>
+                        </div> --}} 
                     </header>
 
                     <div class="hr">
@@ -104,8 +100,5 @@
         
     </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
 
-</html>
+@endsection
