@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ProjectsController;
 use App\Http\Controllers\admin\ProviderController;
 use App\Http\Controllers\admin\SkillController;
+use App\Http\Controllers\HomeController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -26,6 +27,10 @@ use App\Http\Controllers\website\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/**home page */
+Route::get('/home',[HomeController::class,"index"]);
+
 /*
 Route::get('/', function () {
     return view('welcome');
