@@ -9,6 +9,8 @@
 <?php $__env->startSection("content"); ?>
   
     <div class="container mt-5 details_container">
+
+    <div class='title'><h3>تصميم نظام محاسبي متكامل</h3></div>
         <div class="row">
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->

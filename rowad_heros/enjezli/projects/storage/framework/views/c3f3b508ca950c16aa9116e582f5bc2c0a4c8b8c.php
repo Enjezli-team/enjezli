@@ -5,30 +5,29 @@
 <link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/style.css ')); ?>">
 
 
-<?php $__env->startSection("content"); ?>
 
+<?php $__env->startSection("content"); ?>
 
 <div class="loginContainer_2 sign-up-container up">
  
-    <div class="container overflow-hidden  mt-5 form_con ">
+    <div class="container overflow-hidden  mt-5  form_con">
         <div class="row">
             <div class="col">
-                <div class="mx-auto p-3">
+                <div class="mx-auto  p-3">
                     <div class="">
                         <div class="">
-                            <div class="p-3 shadow-lg rounded-3">
-                                <h2 class="text-center"> تعديل مشروع
+                            <div class="p-3  shadow-lg rounded-3">
+                                <h2 class="text-center"> إضافة مشروع
                                 </h2>
                                 <div class="logo-container">
 
                                 </div>
                                 
-                                <form method="POST"  class='d-grid gap-4'action="<?php echo e(route('projects.update',$data['id'])); ?>" enctype="multipart/form-data">
+                                <form method="POST" class='d-grid gap-4'  action="<?php echo e(route('projects.store')); ?>" enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
-                                    <?php echo method_field('PATCH'); ?>
                                     <div class="user-box mt-3 d-grid gap-4">
-                                        <label> عنوان المشروع  </label>
-                                        <input id="face" name="title" type="text" class="form-control" value="<?php echo e($data['title']); ?>">
+                                        <label>  عنوان المشروع   </label>
+                                        <input id="face" name="title" type="text" class="form-control">
                                         <?php $__errorArgs = ['title'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -46,13 +45,14 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="user-box d-grid gap-4">
 
-                                        <label> المهارات </label>
+                                        <label>  المهارات  </label>
                                         <div class="w-100">
                                             <select class="selectpicker w-100" name="skills[]" multiple
                                                 aria-label="المهارات " data-live-search="true">
-                                                <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($skill['id']); ?>"><?php echo e($skill['title']); ?></option>
+                                                <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($item['id']); ?>"><?php echo e($item['title']); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                
                                             </select>
                                         </div>
                                         <?php $__errorArgs = ['skills'];
@@ -71,11 +71,9 @@ unset($__errorArgs, $__bag); ?>
 
                                     <div class="user-box mt-2 d-grid gap-4">
 
-                                        <label> تفاصيل المشروع  </label>
+                                        <label>  تفاصيل المشروع   </label>
                                         <textarea id="face" name="description" type="text" class="form-control"
                                             rows="6">
-                                           <?php echo e($data['description']); ?>
-
                                             </textarea>
                                             <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -91,17 +89,17 @@ unset($__errorArgs, $__bag); ?>
                                         
 
 
-                                    <div class="row gx-5 ">
+                                    <div class="row gx-5">
                                         <div class="col-lg row-md">
 
                                             <div class="user-box mt-2 d-grid gap-4">
-                                                <small>
+                                                <small> 
                                                         الميزانية المتوقعة
-                                                    
+                                                     
 
                                                 </small>
-                                                <input id="face" name="price" type="text" class="form-control" value='<?php echo e($data['price']); ?>'>
-                                                
+                                                <input id="face" name="price" type="text" class="form-control">
+
                                             </div>
                                             <?php $__errorArgs = ['price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -116,14 +114,14 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                         </div>
 
-                                        <div class="col-lg row-md ">
+                                        <div class="col-lg row-md">
                                             <div class="user-box mt-2 d-grid gap-4">
-                                                <small>
+                                                <small> 
                                                         المدة المتوقعة للتسليم
-                                                    
+                                                     
                                                  (أيام)  
                                                 </small>
-                                                <input id="face" name="duration" type="number" class="form-control" value='<?php echo e($data['duration']); ?>'>
+                                                <input id="face" name="duration" type="number" class="form-control">
                                                 <?php $__errorArgs = ['duration'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -145,7 +143,7 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-                                    <div class="user-box mt-2 ">
+                                    <div class="user-box mt-2">
                                             
                                         <div class="input-group custom-file-button">
                                             <label class="input-group-text" for="inputGroupFile">ملفات توضيحية</label>
@@ -156,6 +154,7 @@ unset($__errorArgs, $__bag); ?>
 
 
 
+                                    
                                     <div class='btn-cont'>
                                    <button class="show_more" type='submit'> حفظ</button>
                                     <button class="show_more" type=''> الغاء</button>
@@ -199,4 +198,4 @@ unset($__errorArgs, $__bag); ?>
             });
         </script>
         <?php $__env->stopSection(); ?>
-<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/project/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/project/create.blade.php ENDPATH**/ ?>

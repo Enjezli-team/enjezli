@@ -24,8 +24,8 @@
                 <li><a href="">بحث عن منجز</a></li>
                 <li><a href="">تصفح المشاريع</a></li>
                 <li><a href="">اضف مشروع</a></li>
-                <li><a href="login.html">تسجيل دخول</a></li>
-                <li><a href="register.html" class="login-button"> إنشاء حساب</a></button>
+                <li><a href="{{ route("login") }}">تسجيل دخول</a></li>
+                <li><a href="{{ route("register") }}" class="login-button"> إنشاء حساب</a></button>
                 </li>
             </ul>
         </nav>

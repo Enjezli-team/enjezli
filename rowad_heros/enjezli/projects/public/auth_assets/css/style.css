@@ -5,6 +5,8 @@
     direction: rtl;
     font-family: 'Tajawal', sans-serif;
 }
+
+
 /* input:-webkit-autofill {
     -webkit-backgroud-color: white !important;
   }
@@ -12,16 +14,16 @@
       color:red;
   } */
 
-  label{
-      /* display: none; */
-  }
-:root {
+label {
+    /* display: none; */
+}
+
+ :root {
     --light: #ecf1f4;
     --white: #FFFFFF;
     --dark_blue: #023047;
-    --light_blue: #219EBC;
-    --light_blu: #8ECAE6;
-    --beauty: #176c80;
+    --light_blue: #8ECAE6;
+    --beauty: #219EBC;
 }
 
  :root {
@@ -30,19 +32,17 @@
 
 .loginContainer {
     position: relative;
-    left:0;
+    left: 0;
     font-family: sans-serif;
     background: var(--light);
     direction: ltr;
     height: 100%;
     width: 100%;
-   
-     /* background-image: url(../svg/enLogo.svg);
+    /* background-image: url(../svg/enLogo.svg);
      background-repeat: no-repeat; */
-  
 }
 
-.img-squares{
+.img-squares {
     width: 630px;
     height: 100%;
     position: absolute;
@@ -51,21 +51,25 @@
     transform: translate(-50%, -50%);
     /* background-image: url(../svg/enLogo.svg);
     background-repeat: no-repeat; */
-} 
-.img-squares img{
-    width: 100%;
-    height: 100%;  
 }
-.logo-container{
-    width:100%;
+
+.img-squares img {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-container {
+    width: 100%;
     display: flex;
     /* align-items: center; */
     margin-bottom: 14px;
     justify-content: center;
 }
-.verfy .login-box{
+
+.verfy .login-box {
     width: 400px;
 }
+
 .login-box {
     position: absolute;
     top: 50%;
@@ -75,23 +79,26 @@
     transform: translate(-50%, -50%);
     /* background: var(--beauty); */
     background: white;
-    
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
     border-radius: 10px;
 }
-.loginContainer .rest-box{
+
+.loginContainer .rest-box {
     margin-bottom: 35px;
-    }
-.sign-up{
+}
+
+.sign-up {
     width: 400px;
     padding: 20px 50px;
 }
-.sign-up-container .img-squares{
+
+.sign-up-container .img-squares {
     width: 710px;
     top: 48%;
     left: 48%;
 }
+
 .login_icon_box {
     background-color: var(--light);
     text-align: center;
@@ -104,7 +111,7 @@
     box-shadow: 2px 0px 1px #ecf1f47d;
     /* position: relative;
     right: 126px;*/
-    top: -10px; 
+    top: -10px;
 }
 
 .login-box h2 {
@@ -121,21 +128,19 @@
     position: relative;
 }
 
-.form-control{
+.form-control {
     border-radius: 0!important;
 }
+
 .login-box .user-box input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
     /* color: #fff; */
     color: var(--dark_blue);
-
     border: none;
     /* border-bottom: 1px solid #fff; */
     border-bottom: 1.3px solid gray;
-
-   
     margin-bottom: 19px;
     /* outline: none; */
     background: transparent;
@@ -160,7 +165,6 @@
     left: 0;
     /* color: var(--basic2); */
     color: var(--dark_blue);
-
     font-size: 12px;
 }
 
@@ -191,7 +195,6 @@ a {
     width: 116px;
     /* color: white; */
     color: var(--dark_blue);
-
 }
 
 .btn:before,
@@ -257,7 +260,6 @@ a {
     /* padding: 40px; */
     /* background: var(--light); */
     background: var(--beauty);
-
     box-sizing: border-box;
     box-shadow: 0 15px 25px #6f73766e;
     border-radius: 3px;
@@ -275,10 +277,7 @@ a {
     border: none;
     /* background-color: #a9c0c6; */
     /* background-color: var(--light_blue); */
-
     color: var(--white);
- 
-
 }
 
 .btn-cont .btn:hover .line-1 {
@@ -500,13 +499,12 @@ a {
     color: var(--beauty);
 }
 
-
- .verfy button {
-        text-decoration: none;
-        background-color: #186d80;
-        color: #e9eff0;
-        height: 44px;
-        width: 100%;
+.verfy button {
+    text-decoration: none;
+    background-color: #186d80;
+    color: #e9eff0;
+    height: 44px;
+    width: 100%;
 }
 
 .verfy button:hover {
@@ -516,9 +514,8 @@ a {
 
 .dan_mesg_po {
     /* color: var(--dark_blue); */
-    color:red;
+    color: red;
     font-size: 11px;
-
     margin-top: -10px;
     margin-bottom: 30px;
 }
@@ -532,7 +529,6 @@ a {
     border-color: none;
     box-shadow: 0 0 0 0.25rem none;
 }
-
 
 
 /* profile */

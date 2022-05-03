@@ -125,7 +125,7 @@ a {
 
 .show_more:after {
     content: "";
-    background-color: var(--light_blu);
+    background-color: var(--light_blue);
     width: 100%;
     z-index: -1;
     position: absolute;

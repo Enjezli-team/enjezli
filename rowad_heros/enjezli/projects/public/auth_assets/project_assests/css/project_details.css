@@ -74,11 +74,13 @@
     cursor: pointer;
     position: relative;
     background-color: rgba(0, 0, 0, 0);
+    padding: 4px 6px;
+    font-size: 13px;
 }
 
 .show_more:after {
     content: "";
-    background-color: var(--light_blu);
+    background-color: var(--light_blue);
     width: 100%;
     z-index: -1;
     position: absolute;
@@ -100,6 +102,18 @@
 .desc {
     height: 73px;
     overflow: hidden;
+}
+
+
+/**/
+
+.title {
+    text-align: center;
+    padding: 32px;
+    color: var(--beauty);
+    width: 500px;
+    border-radius: 0.25px;
+    margin: auto;
 }
 
 
@@ -130,4 +144,24 @@
     outline: 0;
     box-shadow: none;
     background: transparent;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.select {
+    font-size: 14px;
+}
+
+.accordion-button {
+    border: none;
+}
+
+.accordion-collapse {
+    border: none;
 }

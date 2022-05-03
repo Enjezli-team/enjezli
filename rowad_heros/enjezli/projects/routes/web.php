@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ProjectsController;
 use App\Http\Controllers\admin\ProviderController;
 use App\Http\Controllers\admin\SkillController;
+use App\Http\Controllers\HomeController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -35,9 +36,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 */
-Route::get('/', function () {
-    return view('admin.pages.Home.index');
-});
+// Route::get('/', function () {
+//     return view('admin.pages.Home.index');
+// });
+
+
+Route::get('/', [HomeController::class,'index']);
 /*
 |--------------------------------------------------------------------------
 | Website Routes

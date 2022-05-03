@@ -4,12 +4,12 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/style.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/profile_assests/css/style.css')); ?>">
 
 
 
 <div class="loginContainer_2 sign-up-container">
-
+  
     <div class="container overflow-hidden up mt-5">
         <div class="row gx-5 p-3  gap-3 ">
             <div class="col-lg row-md">
@@ -43,15 +43,15 @@
                         </div>
                     </div>
 
-                    <form method="POST" action="/profiles/{{ $data->sal_user->id }}" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
+                    <form method="POST" action="/profiles/<?php echo e($data->sal_user->id); ?>" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('PUT'); ?>
 
                         <div class="row gx-5 ">
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
                                     <label> <b> الاسم </b></label>
-                                    <input id="name" value="{{ $data->sal_user->name }}" name="name" type="text"
+                                    <input id="name" value="<?php echo e($data->sal_user->name); ?>" name="name" type="text"
                                         class="form-control">
 
                                     <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
                                     <label><b> الايميل </b></label>
-                                    <input id="email" value="{{ $data->sal_user->email }}" name="email" type="email"
+                                    <input id="email" value="<?php echo e($data->sal_user->email); ?>" name="email" type="email"
                                         class="form-control">
 
                                     <span class="invalid-feedback" role="alert">
@@ -85,11 +85,11 @@
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
                                     <label> <b> رقم الهاتف</b></label>
-                                    <input id="phone" value="{{ $data->phone }}" name="phone" type="text"
+                                    <input id="phone" value="<?php echo e($data->phone); ?>" name="phone" type="text"
                                         class="form-control">
-                                    @if ($errors->has('phone'))
-                                        <small class="text-danger">{{ $errors->first('phone') }}</small>
-                                    @endif
+                                    <?php if($errors->has('phone')): ?>
+                                        <small class="text-danger"><?php echo e($errors->first('phone')); ?></small>
+                                    <?php endif; ?>
 
                                     <span class="invalid-feedback" role="alert">
                                         <div class='dan_mesg_po'>ادخل الرقم</div>
@@ -104,11 +104,11 @@
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
                                     <label><b> تاريخ الميلاد </b></label>
-                                    <input id="date" value="{{ $data->birth_date }}" name="birth_date" type="date"
+                                    <input id="date" value="<?php echo e($data->birth_date); ?>" name="birth_date" type="date"
                                         class="form-control">
-                                    @if ($errors->has('birth_date'))
-                                        <small class="text-danger">{{ $errors->first('birth_date') }}</small>
-                                    @endif
+                                    <?php if($errors->has('birth_date')): ?>
+                                        <small class="text-danger"><?php echo e($errors->first('birth_date')); ?></small>
+                                    <?php endif; ?>
 
                                     <span class="invalid-feedback" role="alert">
                                         <div class='dan_mesg_po'>ادخل الرقم</div>
@@ -133,7 +133,7 @@
 
                                     </small>
                                     <select name="gander" class="form-select form-control">
-                                        <option selected>{{ $data->gander }}</option>
+                                        <option selected><?php echo e($data->gander); ?></option>
                                         <option value="1">انثى</option>
                                     </select>
                                 </div>
@@ -147,9 +147,9 @@
 
                                     </small>
                                     <select class=" w-100" name="country" multiple aria-label="المهارات ">
-                                        @foreach ($skills as $skill)
-                                            <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($skill->id); ?>"><?php echo e($skill->title); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
 
                                 </div>
@@ -161,11 +161,11 @@
 
                         <div class="user-box mt-3">
                             <label><b> حساب Facebook </b> </label>
-                            <input id="face" value="{{ $data->facebook }}" name="facebook" type="text"
+                            <input id="face" value="<?php echo e($data->facebook); ?>" name="facebook" type="text"
                                 class="form-control">
-                            @if ($errors->has('facebook'))
-                                <small class="text-danger">{{ $errors->first('facebook') }}</small>
-                            @endif
+                            <?php if($errors->has('facebook')): ?>
+                                <small class="text-danger"><?php echo e($errors->first('facebook')); ?></small>
+                            <?php endif; ?>
 
                             <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'> </div>
@@ -177,11 +177,11 @@
                         </div>
                         <div class="user-box mt-2">
                             <label><b> حساب Twitter </b> </label>
-                            <input id="face" value="{{ $data->tweeter }}" name="tweeter" type="text"
+                            <input id="face" value="<?php echo e($data->tweeter); ?>" name="tweeter" type="text"
                                 class="form-control">
-                            @if ($errors->has('tweeter'))
-                                <small class="text-danger">{{ $errors->first('tweeter') }}</small>
-                            @endif
+                            <?php if($errors->has('tweeter')): ?>
+                                <small class="text-danger"><?php echo e($errors->first('tweeter')); ?></small>
+                            <?php endif; ?>
 
                             <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'> </div>
@@ -195,11 +195,11 @@
 
                         <div class="user-box mt-2">
                             <label> <b>حساب Github</b> </label>
-                            <input id="face" value="{{ $data->github }}" name="github" type="text"
+                            <input id="face" value="<?php echo e($data->github); ?>" name="github" type="text"
                                 class="form-control">
-                            @if ($errors->has('github'))
-                                <small class="text-danger">{{ $errors->first('github') }}</small>
-                            @endif
+                            <?php if($errors->has('github')): ?>
+                                <small class="text-danger"><?php echo e($errors->first('github')); ?></small>
+                            <?php endif; ?>
 
                             <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'> </div>
@@ -220,7 +220,7 @@
                     </h2>
 
 
-                    <!-- @csrf -->
+                    <!-- <?php echo csrf_field(); ?> -->
 
                     <div class="row gx-5">
                         <div class="col-lg row-md">
@@ -256,7 +256,7 @@
                                 <label> <b>
 
                                         التخصص</b> </label>
-                                <input id="face" value="{{ $data->major }}" name="major" type="text"
+                                <input id="face" value="<?php echo e($data->major); ?>" name="major" type="text"
                                     class="form-control">
 
                                 <span class="invalid-feedback" role="alert">
@@ -276,7 +276,7 @@
                                 <label> <b>
 
                                         المسمى الوظيفي</b> </label>
-                                <input id="face" value="{{ $data->Job_title }}" name="Job_title" type="text"
+                                <input id="face" value="<?php echo e($data->Job_title); ?>" name="Job_title" type="text"
                                     class="form-control">
 
                                 <span class="invalid-feedback" role="alert">
@@ -296,9 +296,9 @@
                         <div class="w-100">
                             <select class="selectpicker w-100" name="skills" multiple aria-label="المهارات "
                                 data-live-search="true">
-                                @foreach ($skills as $skill)
-                                    <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($skill->id); ?>"><?php echo e($skill->title); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
@@ -309,11 +309,12 @@
 
                         <label> <b>نبذه تعريفية </b> </label>
                         <textarea id="face" name="describe" type="text" class="form-control" rows="11">
-          {{ $data->description }}
+          <?php echo e($data->description); ?>
+
             </textarea>
-                        @if ($errors->has('describe'))
-                            <small class="text-danger">{{ $errors->first('describe') }}</small>
-                        @endif
+                        <?php if($errors->has('describe')): ?>
+                            <small class="text-danger"><?php echo e($errors->first('describe')); ?></small>
+                        <?php endif; ?>
 
                         <span class="invalid-feedback" role="alert">
                             <div class='dan_mesg_po'> </div>
@@ -356,3 +357,4 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         $('#datepicker').datepicker();
     });
 </script>
+<?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/profile/edit.blade.php ENDPATH**/ ?>
