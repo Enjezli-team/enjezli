@@ -22,7 +22,7 @@
             <div class="login_icon_box">
                 <!-- <img src="assests/svg/logo.svg" alt=""> -->
                 <div class="profile-pic">
-                    <form method="POST" action="/profiles" enctype="multipart/form-data">
+                    <form method="POST" action="/profiles/" enctype="multipart/form-data">
                         @csrf 
                     <label class="-label" for="file">
                         
@@ -79,8 +79,8 @@
                                                                         
                                                                     </small> 
                                                                 <select name="gander" class="form-select form-control">
-                                                                    <option selected VALUE="1">ذكر</option>
-                                                                    <option value="2">انثى</option>
+                                                                    <option selected VALUE="ذكر">ذكر</option>
+                                                                    <option value="انثى">انثى</option>
                                                                 </select>
                                                                 @if ($errors->has('gander')) <small class="text-danger">{{ $errors->first('gander') }}</small> @endif 
      
@@ -96,9 +96,9 @@
                                                                     </small> 
                                                                 <select  name="country" class="form-select form-control">
                                                                     <option selected>اليمن</option>
-                                                                    <option value="1">كوريا</option>
-                                                                    <option value="1">كوريا</option>
-                                                                    <option value="1">كوريا</option>
+                                                                    <option value="كوريا">كوريا</option>
+                                                                    <option value="الصين">الصين</option>
+                                                                    <option value="الهند">الهند</option>
                                                                 </select>
                                                                 @if ($errors->has('country')) <small class="text-danger">{{ $errors->first('country') }}</small> @endif 
 

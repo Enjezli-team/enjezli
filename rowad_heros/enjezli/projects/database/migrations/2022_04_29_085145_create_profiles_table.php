@@ -17,8 +17,8 @@ class CreateProfilesTable extends Migration
             $table->id();
             //$table->string('name');
             $table->string('phone');
+            $table->string('gander');
  	        $table->date('birth_date');
-            $table->integer('gander');
             $table->string('country');
             $table->string('facebook')->nullable();
             $table->string('github')->nullable();

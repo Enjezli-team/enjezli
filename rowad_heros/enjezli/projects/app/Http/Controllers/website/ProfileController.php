@@ -141,7 +141,7 @@ class ProfileController extends Controller
             
             //'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone'=>['required','digits:14'],
-            'country'=>['required'],
+            //'country'=>['required'],
             'major'=>[''],
             'role'=>['required'],
             'tweeter'=>['url'],
