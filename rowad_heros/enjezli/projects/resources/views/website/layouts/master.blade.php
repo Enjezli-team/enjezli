@@ -24,8 +24,14 @@
                 <li><a href="">بحث عن منجز</a></li>
                 <li><a href="">تصفح المشاريع</a></li>
                 <li><a href="">اضف مشروع</a></li>
+                @auth
+                    
+                <li><a href="{{ route("logout") }}" class="login-button">  تسجيل الخروج</a></button>   
+                @endauth
+                @guest 
                 <li><a href="{{ route("login") }}">تسجيل دخول</a></li>
-                <li><a href="{{ route("register") }}" class="login-button"> إنشاء حساب</a></button>
+                <li><a href="{{ route("register") }}" class="login-button"> إنشاء حساب</a></button>   
+                @endguest
                 </li>
             </ul>
         </nav>
