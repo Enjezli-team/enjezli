@@ -4,35 +4,35 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
-@extends("website.layouts.master")
-
-@section('content')
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/offer_assests/css/style.css ')); ?>">
 
 
-<div class="loginContainer_2 sign-up-container up">
+<?php $__env->startSection('content'); ?>
 
-    <div class="container overflow-hidden  mt-5 form_con">
+
+<div class="loginContainer_2 sign-up-container  up">
+
+    <div class="container overflow-hidden mt-5 form_con">
         <div class="row">
             <div class="col">
                 <div class="mx-auto p-3">
                     <div class="">
                         <div class="">
                             <div class="p-3  shadow-lg rounded-3">
-                                <h2 class="text-center"> إضافة عرض
+                                <h2 class="text-center"> إضافة عمل
                                 </h2>
                                 <div class="logo-container">
 
                                 </div>
 
-                                <form method="POST" action="{{ route('offers.store', 1) }}"
+                                <form method="POST" action="<?php echo e(route('offers.store', 1)); ?>"
                                     enctype="multipart/form-data">
 
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
 
-                                    <div class="user-box mt-3 d-grid gap-3">
-                                        <label>    مدة التسليم    (أيام) </label>
-                                        <input id="face" name="duration" type="number" class="form-control">
+                                    <div class="user-box mt-3">
+                                        <label>عنوان العمل</label>
+                                        <input id="face" name="duration" type="text" class="form-control">
 
                                         <span class="invalid-feedback" role="alert">
                                             <div class='dan_mesg_po'> </div>
@@ -44,10 +44,10 @@
                                     </div>
 
 
-                                    <div class="user-box mt-3 d-grid gap-3">
-                                        <label>    سعر العرض     ($)</label>
-                                        <input id="face" name="price" type="text" class="form-control">
-                                        {{-- <small class="text-danger">سوف تكون مستحقاتك 12.00$ بعد خصم عمولة موقع مستقل</small> --}}
+                                    <div class="user-box mt-3">
+                                        <label>رابط العمل</label>
+                                        <input id="face" name="price" type="url" class="form-control">
+                                        
                                         <span class="invalid-feedback" role="alert">
                                             <div class='dan_mesg_po'> </div>
                                         </span>
@@ -59,9 +59,9 @@
 
 
 
-                                    <div class="user-box mt-2 d-grid gap-3">
+                                    <div class="user-box mt-2">
 
-                                        <label>    تفاصيل العرض     </label>
+                                        <label> <b> وصف العمل </b> </label>
                                         <textarea id="face" name="description" type="text" class="form-control" rows="6">
                                                     </textarea>
                                         <span class="invalid-feedback" role="alert">
@@ -139,4 +139,5 @@
                 $('#datepicker').datepicker();
             });
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/ooooo/create.blade.php ENDPATH**/ ?>

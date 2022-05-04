@@ -4,11 +4,11 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_details.css ') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/project_details.css ')); ?>">
 
-@extends("website.layouts.master")
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
     <div class="container mt-5 details_container">
 
@@ -24,26 +24,21 @@
                         <div class="row">
                             <div class="">
                                 <ul class="list-unstyled mb-0 list-unstyled job_det">
-                                    {{ $data['description'] }}
+                                    <?php echo e($data['description']); ?>
 
-                                    {{-- <li>البحث عن مصمم بلغة الفلاتر وقاعة بيانات فاير بيس</li>
-                                    <li>الموقع يدعم اللغتين</li>
-                                    <li>امكانية الدفع عبر الموقع</li>
-                                    <li>البحث عن مصمم بلغة الفلاتر وقاعة بيانات فاير بيس</li>
-                                    <li>الموقع يدعم اللغتين</li>
-                                    <li>امكانية الدفع عبر الموقع</li> --}}
+
+                                    
                                 </ul>
                             </div>
-                            {{-- <div class="text-start"> <button class="show_more "> تنزيل الوصف</button>
-                            </div> --}}
+                            
                             <ul class="list-unstyled mb-0 list-unstyled job_det attachment_contianer">
-                                @if (!$data->sal_project_attach->isEmpty())
+                                <?php if(!$data->sal_project_attach->isEmpty()): ?>
                                     <h4> ملفات توضيحية</h4>
-                                    @forelse ($data->sal_project_attach as $attach)
-                                        <li><a>{{ $attach->file_name }}</a> </li>
-                                    @empty
-                                    @endforelse
-                                @endif
+                                    <?php $__empty_1 = true; $__currentLoopData = $data->sal_project_attach; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <li><a><?php echo e($attach->file_name); ?></a> </li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
 
                             </ul>
                         </div>
@@ -56,11 +51,12 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                    @forelse ($data->sal_skills_by as $skill)
-                                        {{ $skill->sal_skill->title }}
-                                    @empty
+                                    <?php $__empty_1 = true; $__currentLoopData = $data->sal_skills_by; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <?php echo e($skill->sal_skill->title); ?>
+
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                         <div> لا توجد مهارات </div>
-                                    @endforelse
+                                    <?php endif; ?>
 
 
 
@@ -79,22 +75,24 @@
                 <div class="">
                     <div class=" card p-5  personal_info_container myworks">
                         <div class="card-header"> اضافة عرض </div>
-                        <form method="POST" action="{{ route('offers.store') }}" enctype="multipart/form-data">
-                            @csrf
+                        <form method="POST" action="<?php echo e(route('offers.store')); ?>" enctype="multipart/form-data">
+                            <?php echo csrf_field(); ?>
                             <input style="display:none" id="face" name="project_id" type="number" class="form-control"
-                                value="{{ $data->id }}">
+                                value="<?php echo e($data->id); ?>">
                             <div class="user-box mt-3">
                                 <label><b> مدة التسليم </b>(أيام) </label>
                                 <input id="face" name="duration" type="number" class="form-control">
-                                @error('description')
-                                    <small class="text-danger">{{ $message }}*</small>
-                                @enderror
-                                {{-- <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
-                                            </span> --}}
+                                <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="text-danger"><?php echo e($message); ?>*</small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                
 
                             </div>
 
@@ -106,15 +104,17 @@
 
                                 <small class="text-danger">سوف تكون مستحقاتك 12.00$ بعد خصم عمولة موقع مستقل</small>
 
-                                @error('price')
-                                    <small class="text-danger">{{ $message }}*</small>
-                                @enderror
-                                {{-- <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
-                                            </span> --}}
+                                <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="text-danger"><?php echo e($message); ?>*</small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                
 
                             </div>
 
@@ -125,15 +125,17 @@
                                 <label> <b>تفاصيل العرض </b> </label>
                                 <textarea id="face" name="description" type="text" class="form-control" rows="6">
                                                 </textarea>
-                                @error('description')
-                                    <small class="text-danger">{{ $message }}*</small>
-                                @enderror
-                                {{-- <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
-                                            </span> --}}
+                                <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="text-danger"><?php echo e($message); ?>*</small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                
 
                             </div>
 
@@ -169,7 +171,7 @@
                 <div class="accordion mt-3 " id="accordionExample">
                     <div class="accordion-item">
 
-                        @if (!$data->sal_offers->isEmpty())
+                        <?php if(!$data->sal_offers->isEmpty()): ?>
                             <h2 class="accordion-header d-flex justify-content-between align-items-center p-3 pt-1 pm-1"
                                 id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -187,7 +189,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
 
-                                @foreach ($data->sal_offers as $offer)
+                                <?php $__currentLoopData = $data->sal_offers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $offer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="accordion-body">
 
                                         <div class="personal_info_container myworks">
@@ -200,8 +202,9 @@
                                                         <header class="">
 
                                                             <div>
-                                                                <h3> {{ $offer->sal_provider_by->name }}</h3>
-                                                                <h4> {{ $offer->sal_provider_by->sal_profile->Job_title }}
+                                                                <h3> <?php echo e($offer->sal_provider_by->name); ?></h3>
+                                                                <h4> <?php echo e($offer->sal_provider_by->sal_profile->Job_title); ?>
+
                                                                 </h4>
                                                             </div>
                                                             <div>
@@ -230,18 +233,17 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="desc"> {{ $offer->description }}</div>
+                                            <div class="desc"> <?php echo e($offer->description); ?></div>
                                         </div>
                                     </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
                             </div>
 
-                            {{-- @else
-                                   <div> لا توجد عروض</div> --}}
-                        @endif
+                            
+                        <?php endif; ?>
 
 
 
@@ -272,28 +274,24 @@
                         <ul>
                             <li class="d-flex justify-content-between align-items-center  gap-10">
                                 حالة المشروع
-                                @if ($data->status == 1)
+                                <?php if($data->status == 1): ?>
                                     <span>مفتوح</span>
-                                @else
+                                <?php else: ?>
                                     مغلق
-                                @endif
+                                <?php endif; ?>
                             </li>
-                            {{-- <li class="d-flex justify-content-between align-items-center">
-                                تاريخ النشر <span>منذ ساعه</span>
-                            </li> --}}
+                            
                             <li class="d-flex justify-content-between align-items-center">
-                                الميزانية <span>${{ $data->price }}</span>
+                                الميزانية <span>$<?php echo e($data->price); ?></span>
                             </li>
                             <li class="d-flex justify-content-between align-items-center">
                                 مدة التنفيذ
-                                <span><span>{{ $data->duration }}</span>ايام
+                                <span><span><?php echo e($data->duration); ?></span>ايام
                                 </span>
                             </li>
-                            {{-- <li class="d-flex justify-content-between align-items-center">
-                                متوسط العروض <span>{{$offers_avg}}$</span>
-                            </li> --}}
+                            
                             <li class="d-flex justify-content-between align-items-center">
-                                عدد العروض <span>{{ $offers_count }}</span>
+                                عدد العروض <span><?php echo e($offers_count); ?></span>
                             </li>
                         </ul>
                     </div>
@@ -303,21 +301,21 @@
                         <div class="d-grid">
                             <label class="d-flex align-items-baseline gap-2">
                                 <input type="radio" class="option-input radio" name="example"
-                                    @if ($data->status == 1) checked
-                             @else
-                                disabled @endif />
+                                    <?php if($data->status == 1): ?> checked
+                             <?php else: ?>
+                                disabled <?php endif; ?> />
                                 مرحلة تلقي العروض </label>
                             <label class="d-flex align-items-baseline gap-2">
                                 <input type="radio" class="option-input radio" name="example"
-                                    @if ($data->status == 2) checked
-                                @else
-                                     disabled @endif />
+                                    <?php if($data->status == 2): ?> checked
+                                <?php else: ?>
+                                     disabled <?php endif; ?> />
                                 مرحلة التنفيذ</label>
                             <label class="d-flex align-items-baseline gap-2"> <input type="radio" class="option-input radio"
                                     name="example"
-                                    @if ($data->status == 3) checked
-                            @else
-                                 disabled @endif />
+                                    <?php if($data->status == 3): ?> checked
+                            <?php else: ?>
+                                 disabled <?php endif; ?> />
                                 مرحلة التسليم </label>
                         </div>
 
@@ -330,13 +328,13 @@
 
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
-                            {{-- <img src="{{$data->sal_created_by->image}}" alt=""> --}}
+                            
                         </div>
                         <div class="container_card">
                             <header class="">
 
                                 <div>
-                                    <h3> {{ $data->sal_created_by->name }}</h3>
+                                    <h3> <?php echo e($data->sal_created_by->name); ?></h3>
                                     <h4> مدير شركة </h4>
                                 </div>
                         </div>
@@ -359,4 +357,6 @@
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
 
-    @endsection
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/project/show.blade.php ENDPATH**/ ?>

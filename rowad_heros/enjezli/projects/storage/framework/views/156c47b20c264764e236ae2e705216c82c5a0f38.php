@@ -1,28 +1,29 @@
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/header.css') }}">
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/profile_show.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/profile_assests/css/header.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/profile_assests/css/profile_show.css')); ?>">
 
 <div class="profile">
     <div class="personal_info_container">
 
-        <div class="profile_img"> <img src="{{ asset('images/' . $data->image) }}" alt=""></div>
+        <div class="profile_img"> <img src="<?php echo e(asset('images/' . $data->image)); ?>"
+                 alt=""></div>
         <div class="padding info_container ">
             <div class="personal_basic_info">
-                <div class="profile_name">{{ $data->name }}</div>
+                <div class="profile_name"><?php echo e($data->name); ?></div>
                 <div class="personal_information">
-                    <div class="profile_phone">{{ $data->sal_profile->phone }}</div>
+                    <div class="profile_phone"><?php echo e($data->sal_profile->phone); ?></div>
                     <ul class="social">
                         <li>
-                            <a href="{{ $data->sal_profile->facebook }}">
+                            <a href="<?php echo e($data->sal_profile->facebook); ?>">
                                 <ion-icon name="logo-facebook"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ $data->sal_profile->tweeter }}">
+                            <a href="<?php echo e($data->sal_profile->tweeter); ?>">
                                 <ion-icon name="logo-instagram"></ion-icon>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ $data->sal_profile->github }}">
+                            <a href="<?php echo e($data->sal_profile->github); ?>">
                                 <ion-icon name="mail-outline"></ion-icon>
                             </a>
                         </li>
@@ -36,14 +37,14 @@
 
                 <div class="desc" style=" overflow-wrap: break-word;
                     word-wrap: break-word;
-                     : auto;">{{ $data->sal_profile->description }}</div>
+                     : auto;"><?php echo e($data->sal_profile->description); ?></div>
 
             </div>
 
         </div>
 
         <div class="edit_pro_container">
-            <button class="show_more " type='submit'> <a href="/profiles/{{ $data->sal_profile->id }}/edit"
+            <button class="show_more " type='submit'> <a href="/profiles/<?php echo e($data->sal_profile->id); ?>/edit"
                     class="edit_pro button button-1">تعديل</a></button>
 
         </div>
@@ -57,7 +58,7 @@
                 <h3> احدث أعمالي </h3>
 
                 <div>
-                    <a href="/my_works/{{ Auth::user()->id }}" class="show_more show_more_1 ">
+                    <a href="/my_works/<?php echo e(Auth::user()->id); ?>" class="show_more show_more_1 ">
                         عرض كل الاعمال
 
                     </a>
@@ -69,38 +70,39 @@
             <div class='p-relative m_21'>
 
                 <div class="hr">
-                    <div class="count_project"> {{ $data->sal_works->count() }}
+                    <div class="count_project"> <?php echo e($data->sal_works->count()); ?>
+
                     </div>
                 </div>
 
                 <div class="jobs">
-                    @forelse($data->sal_works as $w)
+                    <?php $__empty_1 = true; $__currentLoopData = $data->sal_works; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $w): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="flex_between">
                             <div>
-                                <h5 class="project_name">{{ $w->title }}</h5>
-                                <h6 class="project_date">{{ $w->created_at }}</h6>
+                                <h5 class="project_name"><?php echo e($w->title); ?></h5>
+                                <h6 class="project_date"><?php echo e($w->created_at); ?></h6>
                             </div>
                             <div class="operation">
 
-                                <a href="/works/{{ $w->id }}/edit"> <span>
+                                <a href="/works/<?php echo e($w->id); ?>/edit"> <span>
                                         <ion-icon class="edit" name="create-outline"></ion-icon>
                                     </span></a>
-                                <a href="/works/{{ $w->id }}"> <span>
+                                <a href="/works/<?php echo e($w->id); ?>"> <span>
                                         <ion-icon class="delete" name="trash-outline"></ion-icon>
                                     </span></a>
-                                <a href="/works/{{ $w->id }}"> <span>
+                                <a href="/works/<?php echo e($w->id); ?>"> <span>
                                         <ion-icon class="more" name="ellipsis-vertical-circle-outline">
                                         </ion-icon>
                                     </span></a>
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name"> لا يوجد عمل جديد</h5>
                             </div>
                         </div>
-                    @endforelse
+                    <?php endif; ?>
                 </div>
 
             </div>
@@ -123,36 +125,36 @@
             <div class='p-relative m_21'>
 
                 <div class="hr">
-                    <div class="count_project"> {{ $data->sal_projects_provider->count() }}</div>
+                    <div class="count_project"> <?php echo e($data->sal_projects_provider->count()); ?></div>
                 </div>
             </div>
             <div class="jobs">
-                @forelse($data->sal_projects_provider as $p)
+                <?php $__empty_1 = true; $__currentLoopData = $data->sal_projects_provider; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <div class="flex_between">
                         <div>
-                            <h5 class="project_name">{{ $p->title }}</h5>
-                            <h6 class="project_date">{{ $p->created_at }}</h6>
+                            <h5 class="project_name"><?php echo e($p->title); ?></h5>
+                            <h6 class="project_date"><?php echo e($p->created_at); ?></h6>
                         </div>
                         <div class="operation">
 
-                            <a href="/works/{{ $p->id }}/edit"> <span>
+                            <a href="/works/<?php echo e($p->id); ?>/edit"> <span>
                                     <ion-icon class="edit" name="create-outline"></ion-icon>
                                 </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
+                            <a href="/works/<?php echo e($p->id); ?>"> <span>
                                     <ion-icon class="delete" name="trash-outline"></ion-icon>
                                 </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
+                            <a href="/works/<?php echo e($p->id); ?>"> <span>
                                     <ion-icon class="more" name="ellipsis-vertical-circle-outline"></ion-icon>
                                 </span></a>
                         </div>
                     </div>
-                @empty
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <div class="flex_between">
                         <div>
                             <h5 class="project_name"> لا يوجد مشاريع جديدة</h5>
                         </div>
                     </div>
-                @endforelse
+                <?php endif; ?>
             </div>
 
         </div>
@@ -174,37 +176,37 @@
             <div class='p-relative m_21'>
 
                 <div class=" hr">
-                    <div class="count_project"> {{ $data->sal_offers->count() }}</div>
+                    <div class="count_project"> <?php echo e($data->sal_offers->count()); ?></div>
                 </div>
 
                 <div class="jobs">
-                    @forelse($data->sal_offers as $o)
+                    <?php $__empty_1 = true; $__currentLoopData = $data->sal_offers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $o): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="flex_between">
                             <div>
-                                <h5 class="project_name">{{ $o->title }}</h5>
-                                <h6 class="project_date">{{ $o->created_at }}</h6>
+                                <h5 class="project_name"><?php echo e($o->title); ?></h5>
+                                <h6 class="project_date"><?php echo e($o->created_at); ?></h6>
                             </div>
                             <div class="operation">
 
-                                <a href="/works/{{ $o->id }}/edit"> <span>
+                                <a href="/works/<?php echo e($o->id); ?>/edit"> <span>
                                         <ion-icon class="edit" name="create-outline"></ion-icon>
                                     </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
+                                <a href="/works/<?php echo e($o->id); ?>"> <span>
                                         <ion-icon class="delete" name="trash-outline"></ion-icon>
                                     </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
+                                <a href="/works/<?php echo e($o->id); ?>"> <span>
                                         <ion-icon class="more" name="ellipsis-vertical-circle-outline">
                                         </ion-icon>
                                     </span></a>
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name"> لا يوجد عروض جديدة</h5>
                             </div>
                         </div>
-                    @endforelse
+                    <?php endif; ?>
                 </div>
 
             </div>
@@ -212,7 +214,7 @@
 
 
         </div>
-        <div class="personal_info_container myworks">
+  <div class="personal_info_container myworks">
             <header class="flex_between">
                 <h3>مهارتي </h3>
 
@@ -228,42 +230,43 @@
 
             </header>
             <div class='p-relative  m_21'>
-
+                 
                 <div class="hr">
-                    <div class="count_project"> {{ $data->sal_skills->count() }}</div>
+                    <div class="count_project"> <?php echo e($data->sal_skills->count()); ?></div>
                 </div>
 
                 <div class="jobs">
-                    @forelse($data->sal_skills as $s)
+                    <?php $__empty_1 = true; $__currentLoopData = $data->sal_skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $s): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="flex_between">
                             <div>
-                                <h5 class="project_name">{{ $s->title }}</h5>
-                                <h6 class="project_date">{{ $s->created_at }}</h6>
+                                <h5 class="project_name"><?php echo e($s->title); ?></h5>
+                                <h6 class="project_date"><?php echo e($s->created_at); ?></h6>
                             </div>
                             <div class="operation">
 
 
-                                <a href="/works/{{ $s->id }}"> <span>
+                                <a href="/works/<?php echo e($s->id); ?>"> <span>
                                         <ion-icon class="delete" name="trash-outline"></ion-icon>
                                     </span></a>
 
                             </div>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name"> لا يوجد مهارات جديدة</h5>
                             </div>
                         </div>
-                    @endforelse
+                    <?php endif; ?>
                 </div>
 
             </div>
         </div>
+     </div>
     </div>
-</div>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
 
-</html>
+    </html>
+<?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/profile/index.blade.php ENDPATH**/ ?>

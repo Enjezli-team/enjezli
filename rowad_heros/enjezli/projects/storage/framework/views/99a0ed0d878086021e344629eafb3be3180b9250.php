@@ -4,10 +4,10 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/style.css ') }}">
-@extends("website.layouts.master")
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/style.css ')); ?>">
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="loginContainer_2 sign-up-container up">
 
         <div class="container overflow-hidden  mt-5 form_con ">
@@ -22,24 +22,26 @@
                                     <div class="logo-container">
 
                                     </div>
-                                    {{-- /update_project/{{$data['id']}} --}}
+                                    
                                     <form method="POST" class='d-grid gap-4'
-                                        action="{{ route('projects.update', $data['id']) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PATCH')
+                                        action="<?php echo e(route('projects.update', $data['id'])); ?>" enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('PATCH'); ?>
                                         <div class="user-box mt-3 d-grid gap-4">
                                             <label> عنوان المشروع </label>
                                             <input id="face" name="title" type="text" class="form-control"
-                                                value="{{ $data['title'] }}">
-                                            @error('title')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            {{-- <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                        </span> --}}
+                                                value="<?php echo e($data['title']); ?>">
+                                            <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                            
 
                                         </div>
 
@@ -49,14 +51,21 @@
                                             <div class="w-100">
                                                 <select class="selectpicker w-100" name="skills[]" multiple
                                                     aria-label="المهارات " data-live-search="true">
-                                                    @foreach ($skills as $skill)
-                                                        <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($skill['id']); ?>"><?php echo e($skill['title']); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
-                                            @error('skills')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
+                                            <?php $__errorArgs = ['skills'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                         </div>
 
@@ -64,19 +73,20 @@
 
                                             <label> تفاصيل المشروع </label>
                                             <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                           {{ $data['description'] }}
+                                           <?php echo e($data['description']); ?>
+
                                             </textarea>
-                                            @error('description')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            {{-- <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                        </span>
-
-                                    </div> --}}
+                                            <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                            
 
 
                                             <div class="row gx-5 ">
@@ -89,17 +99,19 @@
 
                                                         </small>
                                                         <input id="face" name="price" type="text" class="form-control"
-                                                            value='{{ $data['price'] }}'>
-                                                        {{-- <select name="price" class="form-select form-control">
-
-                                                    <option value="100">100$-200$</option>
-                                                    <option value="200">300$-400$</option>
-                                                    <option value="3">500$-600$</option>
-                                                </select> --}}
+                                                            value='<?php echo e($data['price']); ?>'>
+                                                        
                                                     </div>
-                                                    @error('price')
-                                                        <small class="text-danger">{{ $message }}*</small>
-                                                    @enderror
+                                                    <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <small class="text-danger"><?php echo e($message); ?>*</small>
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                 </div>
 
                                                 <div class="col-lg row-md ">
@@ -110,16 +122,18 @@
                                                             (أيام)
                                                         </small>
                                                         <input id="face" name="duration" type="number"
-                                                            class="form-control" value='{{ $data['duration'] }}'>
-                                                        @error('duration')
-                                                            <small class="text-danger">{{ $message }}*</small>
-                                                        @enderror
-                                                        {{-- <span class="invalid-feedback" role="alert">
-                                                    <div class='dan_mesg_po'> </div>
-                                                </span>
-                                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                                </span> --}}
+                                                            class="form-control" value='<?php echo e($data['duration']); ?>'>
+                                                        <?php $__errorArgs = ['duration'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <small class="text-danger"><?php echo e($message); ?>*</small>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,4 +203,6 @@
                         $('#datepicker').datepicker();
                     });
                 </script>
-            @endsection
+            <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/project/edit.blade.php ENDPATH**/ ?>

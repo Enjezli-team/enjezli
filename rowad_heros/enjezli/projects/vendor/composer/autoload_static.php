@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd
+class ComposerStaticInit63cf11d02520aa53140ed3b6e6fb8200
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -568,6 +568,7 @@ class ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\welcomeEmail' => __DIR__ . '/../..' . '/app/Mail/welcomeEmail.php',
         'App\\Models\\Chat' => __DIR__ . '/../..' . '/app/Models/Chat.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Offer' => __DIR__ . '/../..' . '/app/Models/Offer.php',
@@ -5679,10 +5680,10 @@ class ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8358db955bec78d7e832e4e80c9a09dd::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit63cf11d02520aa53140ed3b6e6fb8200::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit63cf11d02520aa53140ed3b6e6fb8200::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit63cf11d02520aa53140ed3b6e6fb8200::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit63cf11d02520aa53140ed3b6e6fb8200::$classMap;
 
         }, null, ClassLoader::class);
     }

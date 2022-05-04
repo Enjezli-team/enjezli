@@ -4,7 +4,7 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/style.css ') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/profile_assests/css/style.css ')); ?>">
 
 
 
@@ -23,7 +23,7 @@
                             <!-- <img src="assests/svg/logo.svg" alt=""> -->
                             <div class="profile-pic">
                                 <form method="POST" action="/profiles" enctype="multipart/form-data">
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
                                     <label class="-label" for="file">
 
                                         <span class="glyphicon glyphicon-camera"></span>
@@ -54,9 +54,9 @@
                                 <label> <b> رقم الهاتف</b></label>
                                 <input id="phone" name="phone" type="text" class="form-control">
 
-                                @if ($errors->has('phone'))
-                                    <small class="text-danger">{{ $errors->first('phone') }}</small>
-                                @endif
+                                <?php if($errors->has('phone')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('phone')); ?></small>
+                                <?php endif; ?>
 
 
                             </div>
@@ -68,9 +68,9 @@
                                 <input id="date" name="birth_date" type="date" class="form-control">
 
 
-                                @if ($errors->has('birth_date'))
-                                    <small class="text-danger">{{ $errors->first('birth_date') }}</small>
-                                @endif
+                                <?php if($errors->has('birth_date')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('birth_date')); ?></small>
+                                <?php endif; ?>
 
 
                             </div>
@@ -92,9 +92,9 @@
                                     <option selected VALUE="1">ذكر</option>
                                     <option value="2">انثى</option>
                                 </select>
-                                @if ($errors->has('gander'))
-                                    <small class="text-danger">{{ $errors->first('gander') }}</small>
-                                @endif
+                                <?php if($errors->has('gander')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('gander')); ?></small>
+                                <?php endif; ?>
 
                             </div>
                         </div>
@@ -112,9 +112,9 @@
                                     <option value="1">كوريا</option>
                                     <option value="1">كوريا</option>
                                 </select>
-                                @if ($errors->has('country'))
-                                    <small class="text-danger">{{ $errors->first('country') }}</small>
-                                @endif
+                                <?php if($errors->has('country')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('country')); ?></small>
+                                <?php endif; ?>
 
                             </div>
                         </div>
@@ -126,9 +126,9 @@
                     <div class="user-box mt-3">
                         <label><b> حساب Facebook </b> </label>
                         <input id="face" name="facebook" type="text" class="form-control">
-                        @if ($errors->has('facebook'))
-                            <small class="text-danger">{{ $errors->first('facebook') }}</small>
-                        @endif
+                        <?php if($errors->has('facebook')): ?>
+                            <small class="text-danger"><?php echo e($errors->first('facebook')); ?></small>
+                        <?php endif; ?>
 
 
 
@@ -138,9 +138,9 @@
                         <label><b> حساب Twitter </b> </label>
                         <input id="face" name="tweeter" type="text" class="form-control">
 
-                        @if ($errors->has('tweeter'))
-                            <small class="text-danger">{{ $errors->first('tweeter') }}</small>
-                        @endif
+                        <?php if($errors->has('tweeter')): ?>
+                            <small class="text-danger"><?php echo e($errors->first('tweeter')); ?></small>
+                        <?php endif; ?>
 
 
                     </div>
@@ -150,9 +150,9 @@
                         <label> <b>حساب Github</b> </label>
                         <input id="face" name="github" type="text" class="form-control">
 
-                        @if ($errors->has('github'))
-                            <small class="text-danger">{{ $errors->first('github') }}</small>
-                        @endif
+                        <?php if($errors->has('github')): ?>
+                            <small class="text-danger"><?php echo e($errors->first('github')); ?></small>
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -167,9 +167,9 @@
                             <label class="container-checkbox"> <span class="check_text"> صاحب مشاريع</span>
 
                                 <input type="checkbox" value="2" name="role[]" checked="checked">
-                                @if ($errors->has('role'))
-                                    <small class="text-danger">{{ $errors->first('role') }}</small>
-                                @endif
+                                <?php if($errors->has('role')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('role')); ?></small>
+                                <?php endif; ?>
 
                             </label>
                         </div>
@@ -179,9 +179,9 @@
 
                                 <input type="checkbox" value="3" name="role[]" checked>
 
-                                @if ($errors->has('role'))
-                                    <small class="text-danger">{{ $errors->first('role') }}</small>
-                                @endif
+                                <?php if($errors->has('role')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('role')); ?></small>
+                                <?php endif; ?>
                             </label>
 
                         </div>
@@ -197,9 +197,9 @@
                                 <input id="face" name="major" type="text" class="form-control">
 
 
-                                @if ($errors->has('major'))
-                                    <small class="text-danger">{{ $errors->first('major') }}</small>
-                                @endif
+                                <?php if($errors->has('major')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('major')); ?></small>
+                                <?php endif; ?>
 
                             </div>
                         </div>
@@ -213,9 +213,9 @@
                                         المسمى الوظيفي</b> </label>
                                 <input id="face" name="Job_title" type="text" class="form-control">
 
-                                @if ($errors->has('Job_title'))
-                                    <small class="text-danger">{{ $errors->first('Job_title') }}</small>
-                                @endif
+                                <?php if($errors->has('Job_title')): ?>
+                                    <small class="text-danger"><?php echo e($errors->first('Job_title')); ?></small>
+                                <?php endif; ?>
 
 
                             </div>
@@ -227,13 +227,13 @@
                         <div class="w-100">
                             <select class="selectpicker w-100" name="skills[]" multiple aria-label="المهارات "
                                 data-live-search="true">
-                                @foreach ($skills as $skill)
-                                    <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($skill->id); ?>"><?php echo e($skill->title); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
-                            @if ($errors->has('skills'))
-                                <small class="text-danger">{{ $errors->first('skills') }}</small>
-                            @endif
+                            <?php if($errors->has('skills')): ?>
+                                <small class="text-danger"><?php echo e($errors->first('skills')); ?></small>
+                            <?php endif; ?>
 
                         </div>
 
@@ -244,9 +244,9 @@
                         <label> <b>نبذه تعريفية </b> </label>
                         <textarea id="face" name="describe" type="text" class="form-control" rows="8">
                                             </textarea>
-                        @if ($errors->has('describe'))
-                            <small class="text-danger">{{ $errors->first('describe') }}</small>
-                        @endif
+                        <?php if($errors->has('describe')): ?>
+                            <small class="text-danger"><?php echo e($errors->first('describe')); ?></small>
+                        <?php endif; ?>
 
 
                     </div>
@@ -289,3 +289,4 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         $('#datepicker').datepicker();
     });
 </script>
+<?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/profile/create.blade.php ENDPATH**/ ?>

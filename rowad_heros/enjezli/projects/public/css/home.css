@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
- :root {
+:root {
     --light: #ecf1f4;
     --white: #FFFFFF;
     --dark_blue: #023047;
-    --light_blue: #219EBC;
-    --light_blu: #8ECAE6;
-    --beauty: #176c80;
+    --light_blue: #8ECAE6;
+    --beauty: #219EBC;
 }
 
 .p-relative {
@@ -46,6 +45,7 @@ body {
     background-color: var(--light);
     background-color: #ecf1f48f;
     align-items: center;
+    top: 0;
 }
 
 
@@ -82,11 +82,12 @@ body {
     text-decoration: none;
     transition: all ease-in-out 350ms;
     padding: 10px;
+    color: var(--dark_blue);
 }
 
 .nav-links li a:hover {
     color: var(--light);
-    background-color: var(--light_blu);
+    background-color: var(--light_blue);
     padding: 10px;
     border-radius: 50px;
     padding: 0.6rem 0.8rem;
@@ -114,13 +115,13 @@ body {
     background-color: #c5090900;
     border: 1.5px solid var(--light);
     border-radius: 12px;
-    background: var(--beauty);
     color: var(--light);
+    background-color: var(--light_blue);
 }
 
 .login-button:hover {
     color: var(--dark_blue);
-    background-color: var(--light_blu);
+    background-color: var(--light_blue);
     transition: all ease-in-out 350ms
 }
 
@@ -297,17 +298,17 @@ body {
     1% {
         background-position: 0 0;
         opacity: 1;
-        border-left: 1px solid var(--light_blu);
+        border-left: 1px solid var(--light_blue);
     }
     50% {
         background-position: 150px 0;
         opacity: 1;
-        border-left: 1px solid var(--light_blu);
+        border-left: 1px solid var(--light_blue);
     }
     100% {
         background-position: 400px 0;
         opacity: 1;
-        border-left: 1px solid var(--light_blu);
+        border-left: 1px solid var(--light_blue);
     }
 }
 
@@ -317,7 +318,7 @@ body {
     }
     1%,
     99% {
-        border-left: 1px solid var(--light_blu);
+        border-left: 1px solid var(--light_blue);
     }
     100% {
         border-right: none;
@@ -482,8 +483,8 @@ body {
 
 .button__horizontal {
     --vertical-offset: calc(var(--offset) * -1);
-    border-top: var(--border-size) solid var(--light_blu);
-    border-bottom: var(--border-size) solid var(--light_blu);
+    border-top: var(--border-size) solid var(--light_bleu);
+    border-bottom: var(--border-size) solid var(--light_blue);
 }
 
 .button__horizontal::before {
@@ -499,8 +500,8 @@ body {
 
 .button__vertical {
     --horizontal-offset: calc(var(--offset) * -1);
-    border-left: var(--border-size) solid var(--light_blu);
-    border-right: var(--border-size) solid var(--light_blu);
+    border-left: var(--border-size) solid var(--light_blue);
+    border-right: var(--border-size) solid var(--light_blue);
 }
 
 .button__vertical::before {
@@ -539,7 +540,7 @@ body {
 }
 
 .footer_content h4 {
-    color: var(--light_blu);
+    color: var(--light_blue);
     font-size: 17px;
     font-weight: 900;
     line-height: 31px;
@@ -607,6 +608,7 @@ footer .soc_container {
     padding: 12px 6px;
     cursor: pointer;
     fill: var(--white);
+    width: 34px;
 }
 
 .svg:hover {
@@ -614,6 +616,7 @@ footer .soc_container {
     filter: drop-shadow(6px 4px 3px var(--main));
     transform: translate(10px, 10px);
     border-radius: 9px;
+    width: 53px;
 }
 
 .svg:first-child {
@@ -632,10 +635,6 @@ footer .soc_container {
     fill: var(--active);
     transform: scale(1.3);
     filter: brightness(0.5);
-}
-
-.svg {
-    height: 18px;
 }
 
 .svg .social {
@@ -659,6 +658,15 @@ footer .soc_container {
         position: static;
         display: flex;
         gap: 12px;
+    }
+    .svg:first-child {
+        background-color: transparent;
+    }
+    .svg:nth-child(2) {
+        background-color: transparent;
+    }
+    .svg:nth-child(3) {
+        background-color: transparent;
     }
 }
 

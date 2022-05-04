@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enjezle</title>
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/home.css')); ?>">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <div class="hero_section">
         <nav>
             <div class="logo">
-                <a href="{{ route("home") }}"> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+                <a href="<?php echo e(route("home")); ?>"> <img src="<?php echo e(asset('svg/logo.svg')); ?>" alt=""></a>
             </div>
             <div class="hamburger">
                 <div class="bars1"></div>
@@ -24,8 +24,8 @@
                 <li><a href="">بحث عن منجز</a></li>
                 <li><a href="">تصفح المشاريع</a></li>
                 <li><a href="">اضف مشروع</a></li>
-                <li><a href="{{ route("login") }}">تسجيل دخول</a></li>
-                <li><a href="{{ route("register") }}" class="login-button"> إنشاء حساب</a></button>
+                <li><a href="<?php echo e(route("login")); ?>">تسجيل دخول</a></li>
+                <li><a href="<?php echo e(route("register")); ?>" class="login-button"> إنشاء حساب</a></button>
                 </li>
             </ul>
         </nav>
@@ -48,7 +48,7 @@
 
     </div>
     <main>
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
     <div class="pg-footer">
         <footer class="footer">
@@ -196,7 +196,8 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script nomodule src="{{ asset('js/home.js') }}"></script>
+    <script nomodule src="<?php echo e(asset('js/home.js')); ?>"></script>
 </body>
 
 </html>
+<?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/layouts/master.blade.php ENDPATH**/ ?>

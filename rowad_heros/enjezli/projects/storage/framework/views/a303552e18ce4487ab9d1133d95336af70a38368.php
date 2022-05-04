@@ -4,10 +4,10 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
-@extends("website.layouts.master")
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/offer_assests/css/style.css ')); ?>">
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 
 <div class="loginContainer_2 sign-up-container up">
@@ -25,10 +25,10 @@
 
                                 </div>
 
-                                <form method="POST" action="{{ route('offers.store', 1) }}"
+                                <form method="POST" action="<?php echo e(route('offers.store', 1)); ?>"
                                     enctype="multipart/form-data">
 
-                                    @csrf
+                                    <?php echo csrf_field(); ?>
 
                                     <div class="user-box mt-3 d-grid gap-3">
                                         <label>    مدة التسليم    (أيام) </label>
@@ -47,7 +47,7 @@
                                     <div class="user-box mt-3 d-grid gap-3">
                                         <label>    سعر العرض     ($)</label>
                                         <input id="face" name="price" type="text" class="form-control">
-                                        {{-- <small class="text-danger">سوف تكون مستحقاتك 12.00$ بعد خصم عمولة موقع مستقل</small> --}}
+                                        
                                         <span class="invalid-feedback" role="alert">
                                             <div class='dan_mesg_po'> </div>
                                         </span>
@@ -139,4 +139,5 @@
                 $('#datepicker').datepicker();
             });
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/offers/create.blade.php ENDPATH**/ ?>

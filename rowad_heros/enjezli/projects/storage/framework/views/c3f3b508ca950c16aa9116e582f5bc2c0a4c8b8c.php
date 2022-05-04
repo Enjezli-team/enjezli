@@ -4,42 +4,43 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/style.css ') }}">
-@extends("website.layouts.master")
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/style.css ')); ?>">
 
-@section('content')
+
+
+<?php $__env->startSection('content'); ?>
     <div class="loginContainer_2 sign-up-container up">
 
-        <div class="container overflow-hidden  mt-5 form_con ">
+        <div class="container overflow-hidden  mt-5  form_con">
             <div class="row">
                 <div class="col">
-                    <div class="mx-auto p-3">
+                    <div class="mx-auto  p-3">
                         <div class="">
                             <div class="">
-                                <div class="p-3 shadow-lg rounded-3">
-                                    <h2 class="text-center"> تعديل مشروع
+                                <div class="p-3  shadow-lg rounded-3">
+                                    <h2 class="text-center"> إضافة مشروع
                                     </h2>
                                     <div class="logo-container">
 
                                     </div>
-                                    {{-- /update_project/{{$data['id']}} --}}
-                                    <form method="POST" class='d-grid gap-4'
-                                        action="{{ route('projects.update', $data['id']) }}" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PATCH')
+                                    
+                                    <form method="POST" class='d-grid gap-4' action="<?php echo e(route('projects.store')); ?>"
+                                        enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
                                         <div class="user-box mt-3 d-grid gap-4">
                                             <label> عنوان المشروع </label>
-                                            <input id="face" name="title" type="text" class="form-control"
-                                                value="{{ $data['title'] }}">
-                                            @error('title')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            {{-- <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                        </span> --}}
+                                            <input id="face" name="title" type="text" class="form-control">
+                                            <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                            
 
                                         </div>
 
@@ -49,14 +50,22 @@
                                             <div class="w-100">
                                                 <select class="selectpicker w-100" name="skills[]" multiple
                                                     aria-label="المهارات " data-live-search="true">
-                                                    @foreach ($skills as $skill)
-                                                        <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($item['id']); ?>"><?php echo e($item['title']); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    
                                                 </select>
                                             </div>
-                                            @error('skills')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
+                                            <?php $__errorArgs = ['skills'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                         </div>
 
@@ -64,22 +73,21 @@
 
                                             <label> تفاصيل المشروع </label>
                                             <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                           {{ $data['description'] }}
                                             </textarea>
-                                            @error('description')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            {{-- <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                                            <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                            
 
-                                        </span>
 
-                                    </div> --}}
-
-
-                                            <div class="row gx-5 ">
+                                            <div class="row gx-5">
                                                 <div class="col-lg row-md">
 
                                                     <div class="user-box mt-2 d-grid gap-4">
@@ -88,21 +96,22 @@
 
 
                                                         </small>
-                                                        <input id="face" name="price" type="text" class="form-control"
-                                                            value='{{ $data['price'] }}'>
-                                                        {{-- <select name="price" class="form-select form-control">
+                                                        <input id="face" name="price" type="text" class="form-control">
 
-                                                    <option value="100">100$-200$</option>
-                                                    <option value="200">300$-400$</option>
-                                                    <option value="3">500$-600$</option>
-                                                </select> --}}
                                                     </div>
-                                                    @error('price')
-                                                        <small class="text-danger">{{ $message }}*</small>
-                                                    @enderror
+                                                    <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <small class="text-danger"><?php echo e($message); ?>*</small>
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                 </div>
 
-                                                <div class="col-lg row-md ">
+                                                <div class="col-lg row-md">
                                                     <div class="user-box mt-2 d-grid gap-4">
                                                         <small>
                                                             المدة المتوقعة للتسليم
@@ -110,16 +119,18 @@
                                                             (أيام)
                                                         </small>
                                                         <input id="face" name="duration" type="number"
-                                                            class="form-control" value='{{ $data['duration'] }}'>
-                                                        @error('duration')
-                                                            <small class="text-danger">{{ $message }}*</small>
-                                                        @enderror
-                                                        {{-- <span class="invalid-feedback" role="alert">
-                                                    <div class='dan_mesg_po'> </div>
-                                                </span>
-                                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                                </span> --}}
+                                                            class="form-control">
+                                                        <?php $__errorArgs = ['duration'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <small class="text-danger"><?php echo e($message); ?>*</small>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +140,7 @@
 
 
 
-                                            <div class="user-box mt-2 ">
+                                            <div class="user-box mt-2">
 
                                                 <div class="input-group custom-file-button">
                                                     <label class="input-group-text" for="inputGroupFile">ملفات
@@ -139,6 +150,7 @@
                                                 </div>
 
                                             </div>
+
 
 
 
@@ -189,4 +201,6 @@
                         $('#datepicker').datepicker();
                     });
                 </script>
-            @endsection
+            <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("website.layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\n\Enjezli-new\rowad_heros\enjezli\projects\resources\views/website/users/project/create.blade.php ENDPATH**/ ?>
