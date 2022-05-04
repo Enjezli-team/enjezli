@@ -30,6 +30,7 @@ class Offer extends Model
 public function sal_project_id(){
 
     return $this->belongsTo(Project::class,'project_id');
+    
 }
  //attachement
  public function sal_offer_attach(){

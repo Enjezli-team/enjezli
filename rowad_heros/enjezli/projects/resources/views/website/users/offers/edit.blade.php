@@ -25,17 +25,15 @@
 
                                 </div>
 
-                                <form method="POST" action="{{ route('offers.update', 1) }}"
-                                    enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('offers.update', $data['id']) }}" enctype="multipart/form-data">
 
                                     @csrf
-                                    <div class="user-box mt-3  d-grid gap-3">
-                                        <label>   مدة التسليم   (أيام) </label>
-                                        <input id="face" name="duration" type="number" class="form-control"
-                                            value="{{ $data['duration'] }}">
-                                        @error('duration')
-                                            <small class="text-danger">{{ $message }}*</small>
-                                        @enderror
+                                    @method('PATCH')
+                                            <div class="user-box mt-3">
+                                                <label><b> مدة التسليم   </b>(أيام) </label>
+                                                <input id="face" name="duration" type="number" class="form-control" value="{{$data['duration']}}">
+                                                @error('duration')
+                                                <small class="text-danger">{{$message}}*</small> 
 
                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 

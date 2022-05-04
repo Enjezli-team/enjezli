@@ -139,6 +139,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::resource('offers',OfferController::class );
 Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
 });
+Route::resource('projects',ProjectController::class );
 /*
 |--------------------------------------------------------------------------
 | Admins Routes
@@ -151,8 +152,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], func
 });
 
 // Route::resource('projects',ProjectController::class );
-// Route::resource('offers',OfferController::class );
-// Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+Route::resource('offers',OfferController::class );
+Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+
+Route::post('/offer/cancel_confirm', [OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
+Route::post('/offer/cancel', [OfferController::class, 'cancelOffer'])->name('cancelOffer');
+
+
+Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+
+
 
 // Route::get('/add_project', [ProjectsController::class, 'create']);
 // Route::post('/save_project', [ProjectsController::class, 'store']);

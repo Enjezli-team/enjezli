@@ -19,7 +19,7 @@ class CreateOffersTable extends Migration
             $table->double('net_price');
             $table->text('duration');
             $table->text('description')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->foreignId('provider_id');
             $table->foreign('provider_id')->references('id')->on('users');
  	        $table->foreignId('project_id');
