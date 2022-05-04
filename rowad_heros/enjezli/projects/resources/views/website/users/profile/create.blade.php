@@ -18,11 +18,11 @@
                     <h2 class="text-center"> المعلومات الشخصية
                     </h2>
                     <div class="logo-container">
-
+                        <form method="POST" action="/profiles" enctype="multipart/form-data">
                         <div class="login_icon_box">
                             <!-- <img src="assests/svg/logo.svg" alt=""> -->
                             <div class="profile-pic">
-                                <form method="POST" action="/profiles" enctype="multipart/form-data">
+                                
                                     @csrf
                                     <label class="-label" for="file">
 
@@ -89,8 +89,8 @@
 
                                 </small>
                                 <select name="gander" class="form-select form-control">
-                                    <option selected VALUE="ذكر">ذكر</option>
-                                    <option value="انثى">انثى</option>
+                                    <option selected VALUE="1">ذكر</option>
+                                    <option value="2">انثى</option>
                                 </select>
                                 @if ($errors->has('gander'))
                                     <small class="text-danger">{{ $errors->first('gander') }}</small>
@@ -166,7 +166,7 @@
 
                             <label class="container-checkbox"> <span class="check_text"> صاحب مشاريع</span>
 
-                                <input type="checkbox" value="2" name="role[]" checked="checked">
+                                <input type="checkbox" value="seeker" name="role[]" checked="checked">
                                 @if ($errors->has('role'))
                                     <small class="text-danger">{{ $errors->first('role') }}</small>
                                 @endif
@@ -177,7 +177,7 @@
                         <div class="col-lg row-md">
                             <label class="container-checkbox"> <span class="check_text"> منجز خدمة </span>
 
-                                <input type="checkbox" value="3" name="role[]" checked>
+                                <input type="checkbox" value="provider" name="role[]" checked>
 
                                 @if ($errors->has('role'))
                                     <small class="text-danger">{{ $errors->first('role') }}</small>

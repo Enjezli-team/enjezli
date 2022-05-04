@@ -162,14 +162,13 @@
 
 
         <div class="d-grid  project_container">
-
+            @forelse ($data as $item)
             <div class="personal_info_container myworks">
-                <div class="img_con">
-                    <img src="a{{ asset('auth_assets/work_assests/images/igor-miske-JVSgcV8_vb4-unsplash.jpg')}}" alt="">
-                </div>
+               
+             
                 <div class="container_card">
                     <header class="">
-                        <h2>{{ $data->sal_works->title }}  </h2>
+                        <h2>{{ $item->sal_works->title }}</h2>
                         <div class="flex jbetween">
                             <div>
                                 <div class="flex">
@@ -224,9 +223,10 @@
                     </div>
 
                 </div>
-
+              
             </div>
-
+            @empty
+            @endforelse
 
          
         </div>

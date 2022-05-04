@@ -7,7 +7,7 @@ a {
 }
 
 .personal_info_container {
-    max-width: 52em;
+    width: 22em;
     border-radius: 17px;
     background: white;
     backdrop-filter: blur(10px);
@@ -15,6 +15,7 @@ a {
     box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
     padding: 5vh 3vw;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175)!important;
+    height: 324px;
 }
 
 .project_container {
@@ -60,7 +61,7 @@ a {
 }
 
 
-/**********/
+/****/
 
 .container_card .desc {
     height: 44px;
@@ -139,7 +140,7 @@ a {
 }
 
 
-/*Responsive Adding Media Queries*/
+/Responsive Adding Media Queries/
 
 @media screen and (max-width: 800px) {
     .profile {
@@ -234,4 +235,9 @@ a {
     text-align: center;
     overflow: hidden;
     height: 70px;
+}
+
+.desc {
+    height: 48px;
+    overflow: hidden;
 }

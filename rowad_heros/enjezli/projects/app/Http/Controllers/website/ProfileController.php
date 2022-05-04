@@ -24,9 +24,10 @@ class ProfileController extends Controller
      * 
      */
     public function index()
-    { $profile = profile::all();
-        return view('website.users.profile.index', ['data' => $profile]);
-        return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
+    { $profile = User::with(['sal_works','sal_skills','sal_projects_provider','sal_profile'])->find(Auth::user()->id);
+        // return response($profile);
+        return view('website.users.profile.index')->with('data' , $profile);
+        // return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
         //
     }
 
@@ -88,19 +89,32 @@ class ProfileController extends Controller
         'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
         'Job_title'=>$request->Job_title,'image'=>$imageName,'description'=>$request->describe
         ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
-         return redirect('profiles')->with('completed', 'it has been saved!');
-         if(sizeof($request->skills)>0){
-            foreach($request->skills as $s){
-            UserSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
-            }
-        }
-        if(sizeof($request->role)>0){
+        foreach($request->skills as $skill){
+            // return response($request->skills);
+            // print_r($request->skills);
+         
+            $userSkill=new UserSkill;
+            $userSkill->user_id=Auth::user()->id;
+            $userSkill->skill_id=$skill;
+            $userSkill->save();
+           
+         }  
+         if(sizeof($request->role)>0){
             foreach($request->role as $r){
-                RoleUser::create(['role_id'=>$r,'user_id'=>Auth::user()->id,'user_type'=>'App/Model/User']);
-            }
+               Auth::user()->attachRole($r);
+            }      
+         return redirect('profiles')->with('completed', 'it has been saved!');
+        //  if(sizeof($request->skills)>0){
+        //     foreach($request->skills as $s){
+        //     UserSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
+        
+        //     }
+       
+       
         }
+       
 
-        return redirect('profiles/'.Auth::user()->id)->with('success', '  تم حفظ البياتات بنجاج');
+        return redirect()->route('profiles.show',Auth::user()->id)->with('success', '  تم حفظ البياتات بنجاج');
     }
 
     /**
@@ -170,14 +184,21 @@ class ProfileController extends Controller
         }else{
             $imageName = 'user_avater.png';  
         }
-            User::where('id',Auth::user()->id)->update(['image'=>$imageName]);
-      
-        $proprofile =Profile::where('id',$id)->update([
-        'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
-        'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
-        'Job_title'=>$request->Job_title,'description'=>$request->description
-        ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github,]);
-        
+            User::where('id',Auth::user()->id)->update([
+                'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
+                'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
+                'Job_title'=>$request->Job_title,'image'=>$imageName,'description'=>$request->describe
+                ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
+                foreach($request->skills as $skill){
+                    // return response($request->skills);
+                    // print_r($request->skills);
+                 
+                    $userSkill=new UserSkill;
+                    $userSkill->user_id=Auth::user()->id;
+                    $userSkill->skill_id=$skill;
+                    $userSkill->save();
+                   
+                 }        
       
          return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
     }

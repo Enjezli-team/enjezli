@@ -17,9 +17,12 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $data=UserWork::where('is_active',1)->get();
-        // return response( $data);
-        return view('website.users.works.index',compact('data'));
+        // $data=UserWork::where('is_active',1)->get();
+        // // return response( $data);
+        // return view('website.users.works.index',compact('data'));
+        $works = User::with('sal_works')->find(Auth::user()->id);
+        // return response($works);
+        return view('website.users.works.index')->with('data' , $works);
     }
 
     /**
@@ -91,13 +94,13 @@ class WorkController extends Controller
 
                     
                 }
-                return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
-
+                return redirect('works')->with(['error'=>'لم يتم تعديل البيانات ']);
                
             }
              };
           
-             return redirect('works')->with(['error'=>'لم يتم تعديل البيانات ']);
+             
+             return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
 
           
         }
