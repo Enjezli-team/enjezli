@@ -155,9 +155,9 @@
                                 <option value="الهند">الهند</option>
                                 <option value="كوريا">كوريا</option>
                             </select>
-                            @if ($errors->has('country')) <small class="text-danger">{{ $errors->first('country') }}</small> @endif 
-
-                            </div>
+                            @if ($errors->has('country'))
+                                    <small class="text-danger">{{ $errors->first('country') }}</small>
+                                @endif                            </div>
                             </div>
                         </div>
 
@@ -313,11 +313,9 @@
                     <div class="user-box mt-2">
 
                         <label> <b>نبذه تعريفية </b> </label>
-                        <textarea id="face" name="describe" type="text" class="form-control" rows="11">
-          {{ $data->description }}
-            </textarea>
+                        <textarea id="face" name="description" type="text" class="form-control" rows="11">{{ $data->description }} </textarea>
                         @if ($errors->has('describe'))
-                            <small class="text-danger">{{ $errors->first('describe') }}</small>
+                            <small class="text-danger">{{ $errors->first('description') }}</small>
                         @endif
 
                         <span class="invalid-feedback" role="alert">

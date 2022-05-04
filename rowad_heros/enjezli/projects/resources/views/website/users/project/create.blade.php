@@ -65,8 +65,7 @@
                                         <div class="user-box mt-2 d-grid gap-4">
 
                                             <label> تفاصيل المشروع </label>
-                                            <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                            </textarea>
+                                            <textarea id="face" name="description" type="text" class="form-control" rows="6"></textarea>
                                             @error('description')
                                                 <small class="text-danger">{{ $message }}*</small>
                                             @enderror

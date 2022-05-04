@@ -127,7 +127,7 @@ class CustomAuthController extends Controller
         //     'password' => 'required',
         // ]);
        $validatedData = $request->validate([
-            'password' => 'required|',
+            'password' => 'required',
             'email' => 'required|email',
         ], [
             'password.required' => 'يجب ادخال كلمة السر.',
@@ -137,7 +137,7 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email','password');
         $credentials = ['email'=>$request->email,'password'=>$request->password,'status'=>1,'is_blocked'=>0];
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->type==2){
+            if(Auth::user()->type==2 && Auth::user()->email_verified_at!=Null){
                 $profile=Profile::where('user_id',Auth::user()->id)->value('id');
                 if($profile==''){
             return redirect()->intended('/profiles/create')->withSuccess('Signed in');
@@ -148,6 +148,11 @@ class CustomAuthController extends Controller
             }if(Auth::user()->type==1){
                 //check profile
                return redirect()->intended('/admin')->withSuccess('Signed in');
+                }else{
+                    Session::flush();
+        Auth::logout();
+  
+        return Redirect('login');
                 }
 
         }
@@ -159,12 +164,15 @@ class CustomAuthController extends Controller
       
         $validatedData = $request->validate([
             'name' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
             'email' => 'required|email|unique:users',
-           // 'password_confirmation' => 'required|confirmed|min:8',
+         'password_confirmation' => 'required',
         ], [
             'name.required' => 'يجب ادخال الاسم',
+            ' password_confirmation.confirmed' => '   كلمة السر غير مطابقة.',
+
             'password.required' => 'يجب ادخال كلمة السر.',
+            'password.confirmed' => 'كلمة السر غير مطابقة .',
             'email.required' => 'يجب ادخال البريد الالكتروني .',
             'email.required' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
             'email.unique' => 'هذا البريد موجود  .',

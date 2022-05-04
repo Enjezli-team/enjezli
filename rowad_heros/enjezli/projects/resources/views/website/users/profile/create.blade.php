@@ -89,8 +89,8 @@
 
                                 </small>
                                 <select name="gander" class="form-select form-control">
-                                    <option selected VALUE="1">ذكر</option>
-                                    <option value="2">انثى</option>
+                                    <option selected VALUE="ذكر">ذكر</option>
+                                    <option value="انثى">انثى</option>
                                 </select>
                                 @if ($errors->has('gander'))
                                     <small class="text-danger">{{ $errors->first('gander') }}</small>
@@ -242,8 +242,7 @@
                     <div class="user-box mt-2">
 
                         <label> <b>نبذه تعريفية </b> </label>
-                        <textarea id="face" name="describe" type="text" class="form-control" rows="8">
-                                            </textarea>
+                        <textarea id="face" name="describe" type="text" class="form-control" rows="8"></textarea>
                         @if ($errors->has('describe'))
                             <small class="text-danger">{{ $errors->first('describe') }}</small>
                         @endif

@@ -175,8 +175,10 @@ class ProfileController extends Controller
         $proprofile =Profile::where('id',$id)->update([
         'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
         'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
-        'Job_title'=>$request->Job_title,'description'=>$request->describe
-        ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
+        'Job_title'=>$request->Job_title,'description'=>$request->description
+        ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github,]);
+        
+      
          return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
     }
 
