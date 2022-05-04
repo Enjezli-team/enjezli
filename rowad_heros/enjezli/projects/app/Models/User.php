@@ -69,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
     //offers
     public function sal_offers(){
 
-        return $this->hasMany(Offer::class,'user_id');
+        return $this->hasMany(Offer::class,'provider_id');
     }
 
     public function sal_offers_history(){

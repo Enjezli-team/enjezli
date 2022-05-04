@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\website;
-
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\UserWork;
+use App\Models\User;
+use App\Models\UserAttachment;
+use Illuminate\Support\Facades\Auth;
 class WorkController extends Controller
 {
     /**
@@ -14,7 +17,9 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $data=UserWork::where('is_active',1)->get();
+        // return response( $data);
+        return view('website.users.works.index',compact('data'));
     }
 
     /**
@@ -24,7 +29,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        // $data=Skill::All();
+        return view('website.users.works.create');
     }
 
     /**
@@ -35,8 +41,67 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+      
+            Validator::validate($request->all(),[
+                'title'=> array(
+                  'required',
+                  'min:10',
+                  
+                  // 'regex:/^[a-zA-Z\s]+$/u'
+                ),
+               
+               
+                'description'=>  array(
+                  'required',
+                  // 'regex:/(^([a-zA-Z\s]+)(\d+)?[.،:؛]?$)/u'
+                )
+               
+               
+            ],[
+                'title.required'=>'يجب ادخال عنوان المشروع',
+                'title.min'=>'لا يقل  عن 10 حروف',
+              
+                // 'title.regex'=>'يجب أن يحتوي  على حروف فقط ',
+               
+                'description.required'=>'يجب أدخال وصف المشروع ',
+                // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
+          
+            ]);
+                 $works=new UserWork();
+                 $works->title=$request->title;
+                 $works->link=$request->link;
+                 $works->description=$request->description;
+                 $works->user_id=Auth::user()->id;
+           
+             if($works->save()){
+              
+             
+           
+              if($request->hasFile('files')){
+                foreach($request->file('files') as $file){
+                    $Attachments=new UserAttachment;
+                    $Attachments->attach_id= $works->id;
+                    $Attachments->attach_type='1';
+                    $fileNme=time().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path('images'), $fileNme);
+                    $Attachments->file_name=$fileNme;
+                    $Attachments->file_type=$file->getClientOriginalExtension();
+                    $Attachments->user_id= Auth::user()->id;
+                    $Attachments->save();
+
+                    
+                }
+                return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
+
+               
+            }
+             };
+          
+             return redirect('works')->with(['error'=>'لم يتم تعديل البيانات ']);
+
+          
+        }
+ 
 
     /**
      * Display the specified resource.

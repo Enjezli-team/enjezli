@@ -48,7 +48,7 @@ class ProjectController extends Controller
             'title'=> array(
               'required',
               'min:10',
-              'max:50',
+              
               // 'regex:/^[a-zA-Z\s]+$/u'
             ),
             'price'=>['required','numeric'],
