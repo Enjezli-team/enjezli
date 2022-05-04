@@ -23,9 +23,10 @@
 
                                 </div>
 
-                            <form method="POST" action="{{ route('offers.update', 1) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('offers.update', $data['id']) }}" enctype="multipart/form-data">
 
                                     @csrf
+                                    @method('PATCH')
                                             <div class="user-box mt-3">
                                                 <label><b> مدة التسليم   </b>(أيام) </label>
                                                 <input id="face" name="duration" type="number" class="form-control" value="{{$data['duration']}}">

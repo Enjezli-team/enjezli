@@ -36,6 +36,7 @@ public function sal_owner_by(){
 public function sal_project_id(){
 
     return $this->belongsTo(Project::class,'project_id');
+    
 }
  //attachement
  public function sal_offer_attach(){

@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function user_roles_user(){
 
-        return $this->hasMany(Project::class,'user_id');
+        return $this->hasMany(RoleUser::class,'user_id');
     }
     
 //profile

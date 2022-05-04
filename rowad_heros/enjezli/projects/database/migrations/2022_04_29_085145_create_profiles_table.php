@@ -26,7 +26,7 @@ class CreateProfilesTable extends Migration
             $table->text('major')->nullable();
             $table->text('Job_title')->nullable();
             $table->text('description');
-           // $table->integer('is_active')->default(1);
+           $table->integer('status')->default(1);
             $table->foreignId('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

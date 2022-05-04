@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\website;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Offer;
+use App\Models\Project;
 use App\Models\UserAttachment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class OfferController extends Controller
 {
@@ -16,7 +19,10 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        $offers=Offer::with(['sal_project_id'])->where('provider_id',Auth::user()->id)->get();
+
+       return view('website.users.offers.index',compact('offers'));
+      
     }
 
     /**
@@ -61,16 +67,19 @@ class OfferController extends Controller
         $model=new Offer;
         $model->price=$request->price;
         $model->net_price=$request->price;
-        $model->net_price=$request->price;
+        $website_precentage= $model->price / 10;
+        $model->net_price=$model->price-$website_precentage;
+            
+        // $model->net_price=$request->price;
         $model->duration=$request->duration;
-        $model->provider_id=1;//Auth_id
+        $model->provider_id=Auth::User()->id;//Auth_id
         $model->project_id=$project_id;
         $model->status=1;
         // if($request->input('description')){
             $model->description=$request->description;
         // }
         if($model->save()){
-            // // 
+          
             
             if($request->hasFile('files')){
                     
@@ -120,7 +129,130 @@ class OfferController extends Controller
         // return response( $data);
         return view('website.users.offers.edit')->with('data',$data);
     }
+    public function acceptOffer(Request $request)
+    {  
+         //check if the user is the project owner
+         // and is   and the status of the offer is acceptOffer $offer->status==1
+       $offer= Offer::find($request->offer_id);     
+        if($request->project_owner==Auth::user()->id && $request->offer_status==1){
+            $offer->status=2;
+          
+             if($offer->save()){
+                // return response($offer);
+                return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
+               
+                 }
+                 else{
+                    return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
 
+                 }
+
+             }
+     
+    }
+    //seeker cancel the confirmation before the provider confirm
+    public function cancelConfirm(Request $request)
+    {
+       
+        //check if the user is the project owner
+        // and is   and the status of the offer is acceptOffer $offer->status==2
+        $data= Offer::find($request->offer_id);    
+        if($request->project_owner==Auth::user()->id && $request->offer_status==2 && $request->project_status==2){
+            $data->status=1;
+            
+            if($data->save()){
+
+                return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
+            } 
+            else{
+                return redirect()->back()->with(['success'=>'فشلت العملية']);
+            }
+
+            }
+      
+         }
+   //provider confirm the offer last confirmation and start work
+         public function confirmOffer(Request $request)
+    {
+       $data=Offer::with('sal_project_id')->where('project_id',$request->project_id)
+        ->where('id',$request->offer_id)->first();
+    // $data=Offer::where('project_id',$request->project_id)->first();
+
+    //    $project=Offer::where('id',$request->project_id)->first();
+    
+
+       if($data->sal_project_id->status==1){
+        $data->status=3;
+        $data->sal_project_id->status=2;
+        $data->sal_project_id->handled_by= $data->provider_id;
+      
+       //project is in excution
+        if($data->save()&& $data->sal_project_id->save()){
+            // return response($data);
+            return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
+        } 
+        else{
+            return redirect()->back()->with(['success'=>'فشلت العملية']);
+        }
+       }
+    //    return response($data->sal_project_id->status);
+        //check if the user is the provider in the offer
+        // and is  and the status of the project is acceptOffer $project->status==1
+        // مفتوح then change the project status to قيد التنفيذ 
+
+      
+    }
+  //provider cancel the offer before the seeker accept or after the seeker accepts
+  public function  cancelOffer (Request $request)
+  {
+     
+      //check if the user is the project owner
+      // and is   and the status of the offer is acceptOffer $offer->status==2
+      $data= Offer::find($request->offer_id);  
+        
+      if($data->provider_id==Auth::user()->id && $data->status==1 ){
+        // $request->offer_status==1
+          $data->status=0;
+        
+
+          }
+        else if($data->provider_id==Auth::user()->id && $data->status==2 ){
+        // $request->offer_status==1
+            $data->status=4;
+            }
+     
+              if($data->save()){
+
+                return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
+                // return response($data);
+            } 
+            else{
+                return redirect()->back()->with(['success'=>'فشلت العملية']);
+            }
+          
+           
+       }
+ 
+  /**----------------------
+   * seeker confirm that the project is delivered
+   *------------------------**/
+    public function confirmDelivery($id)
+    {
+        
+      //check if the user is the provider 
+      // and is   and the status of the project is acceptOffer $project->status==1
+    //   مفتوح then change the project status to قيد التنفيذ 
+
+      
+    }
+    public function finishWork($id)
+    {
+      //check if the user is the provider 
+      // and is   and the status of the project is acceptOffer $project->status==1
+    //   مفتوح then change the project status to قيد التنفيذ 
+
+      
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -151,7 +283,8 @@ class OfferController extends Controller
         ]);
         $model= Offer::find($offer_id);
         $model->price=$request->price;
-        $model->net_price=$request->price;
+        $website_precentage= $model->price / 10;
+        $model->net_price=$model->price-$website_precentage;
         $model->duration=$request->duration;
         // if($request->input('description')){
             $model->description=$request->description;

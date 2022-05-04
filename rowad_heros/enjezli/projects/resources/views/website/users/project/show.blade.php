@@ -3,13 +3,22 @@
   referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_details.css ')}}">
-
-
-  
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->
+                <div class="card-header">  {{Auth::user()->name}}</div>
+                <div class="card-header"> 
+                     {{-- {{Auth::user()->Role}} --}}
+                    {{-- @forelse (Auth::user()->Role as $role)
+                    {{  $role}}
+                   
+                @empty
+                    
+                @endforelse  --}}
+                 
+               
+               </div>
                 <div class="card mb-4 personal_info_container myworks">
                     <div class="card-header"> تفاصيل المشروع</div>
                     <div class="card-body">
@@ -32,7 +41,9 @@
                                 @if (!$data->sal_project_attach->isEmpty()) 
                                     <h4> ملفات توضيحية</h4>
                                         @forelse ($data->sal_project_attach as $attach)
-                                        <li><a>{{$attach->file_name}}</a> </li>  
+                                            <li>
+                                                    <a href='http://localhost:8000/public/images/{{$attach->file_name}}' style='color:black'>{{$attach->file_name}}</a>
+                                            </li>  
                                         @empty
                                             
                                         @endforelse
@@ -69,9 +80,8 @@
                 </div>
                 <!-- اضافة عرض
                 -->
-
-
-
+              
+                @if ($canMakeOffer && $data->status==1)
                 <div class="">
                     <div class=" card p-5  personal_info_container myworks">
                         <div class="card-header"> اضافة عرض </div>
@@ -119,8 +129,7 @@
                             <div class="user-box mt-2">
 
                                 <label> <b>تفاصيل العرض </b> </label>
-                                <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                                </textarea>
+                                <textarea id="face" name="description" type="text" class="form-control" rows="6"></textarea>
                                 @error('description')
                                      <small class="text-danger">{{$message}}*</small> 
                                 @enderror
@@ -160,6 +169,9 @@
 
                     </div>
                 </div>
+                @endif
+
+               
 
 
                 <div class="accordion mt-3 " id="accordionExample">
@@ -183,7 +195,7 @@
                                 @foreach ($data->sal_offers as $offer)
                                   <div class="accordion-body">
                                
-                                    <div class="personal_info_container myworks">
+                                   <div class="personal_info_container myworks">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-start">
                                                 <div class="img_con">
@@ -215,14 +227,93 @@
 
                                                 </div>
                                             </div>
+                                          
+                                        {{-- if the user is the publisher of th e offer and the status of the 
+                                            the offer is in the first status "not accepted by the seeker 
+                                            so that he can edit the offer "--}}
+
+                                            @if (Auth::user()->id==$offer->provider_id && $offer->status==1 && $data->status==1)
                                             <div class="select">
-                                                <select id="standard-select">
+                                                <a href="{{route('offers.edit',$offer->id)}}" style="color:black"> تعديل</a>
+                                                {{-- <select id="standard-select">
+                                                    
                                                     <option value="">الاحدث</option>
                                                     <option value="">الاقدم</option>
-                                                </select>
+                                                </select> --}}
                                             </div>
+                                            {{-- if the user is the publisher of the project let hime 
+                                                accept and reject the accepted once  before the offer last confirmation --}}
+
+                                            @elseif(Auth::user()->id==$data['user_id']&& $offer->status==1 && $data->status==1)
+                                                <form action="{{route('acceptOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'>
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                    <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
+                                                    <button style="color:black ;border:none;background:transparent" type='submit '> قبول العرض</button>
+                                                </form>
+                                                  {{-- if the user is the publisher of the project let hime 
+                                                accept and reject the accepted once  before the offer last confirmation --}}
+                                                {{-- cancel offer will return the offer to the default status which is 1 --}}
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==2 && $data->status==1 )
+                                            <form action="{{route('cancelConfirm')}}" method="post">
+                                                @csrf
+                                                <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'>
+                                                <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
+                                                <input style="display:none" type="text" name="project_status" value='{{$data['status']}}'>
+                                                <button  style="color:black ;border:none;background:transparent" type='submit '> الغاء الموافقة </button>
+                                            </form>
+                                          
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
+                                                <a style="color:black" class="status">تم رفضه</a> 
+                                            {{-- <a href="" style="color:black"> الغاء  الموافقة</a> --}}
+
+                                            {{-- @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
+                                            <a style="color:black">ملغي</a> --}}
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==3&&$data->status==2||Auth::user()->id==$data->handled_by)
+                                            <a style="color:black" class="status">قيد التنفيذ </a>
+
+                                            {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==5&&$data->status==3||Auth::user()->id==$data->handled_by)
+                                            <a style="color:black" class="status">مغلق </a> 
+                                            
+                                            @endif
+                                            
+                                            {{-- @if($data->status==1 && $offer->status== 1 && Auth::user()->id==$offer->provider_id)
+
+                                                <a style="color:black" class="status">بانتظار الموافقة</a> 
+                                                <form action="{{route('cancelOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء عرض السعر   </button>
+                                                </form>
+                                            
+                                            @elseif($data->status==1 && $offer->status==2)
+                                            <a style="color:black" class="status">تمت الموافقة </a> 
+                                                <form action="{{route('confirmOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="project_id" value='{{$data->id}}'>
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>  تأكيد قبول المشروع  </button>
+                                                </form>
+                                                <form action="{{route('cancelOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>    رفض المشروع    </button>
+                                                </form>
+                                                @elseif($data->status==2 && $offer->status==3)
+                                                <a style="color:black" class="status">قيد التنفيذ </a> 
+                                                @elseif($data->status==3 && $offer->status==3)
+                                                <a style="color:black" class="status">تم التسليم  </a> 
+                                          @endif --}}
                                         </div>
                                         <div class="desc"> {{$offer->description}}</div>
+                                        @if(Auth::user()->id==$data['user_id'])
+                                        السعر  <span class="desc"> {{$offer->price}}</span> 
+                                        المدة <span class="desc"> {{$offer->duration}}</span>
+
+                
+                                        @endif
                                     </div>
                                 </div>
                                 @endforeach
