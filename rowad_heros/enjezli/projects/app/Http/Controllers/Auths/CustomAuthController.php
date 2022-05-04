@@ -126,13 +126,13 @@ class CustomAuthController extends Controller
         //     'email' => 'required',
         //     'password' => 'required',
         // ]);
-       /* $validatedData = $request->validate([
+       $validatedData = $request->validate([
             'password' => 'required|',
             'email' => 'required|email',
         ], [
             'password.required' => 'يجب ادخال كلمة السر.',
             'email.required' => 'يجب ادخال البريد الالكتروني .',
-        ]);*/
+        ]);
    
         $credentials = $request->only('email','password');
         $credentials = ['email'=>$request->email,'password'=>$request->password,'status'=>1,'is_blocked'=>0];

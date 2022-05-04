@@ -26,22 +26,17 @@
             @endif
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
-                 @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+               
+            
+   
 
     
                 <div class="user-box">
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
-                        @if ($errors->has('email')) <small class="text-danger">{{ $errors->first('email') }}</small> @endif 
+                        @if ($errors->has('email'))
+                         <small class="text-danger">{{ $errors->first('email') }}</small>
+                          @endif 
 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
@@ -59,7 +54,9 @@
                     <div class="inputContainer">
 
                         <input type="password" name="password" type="password" class="form-control ">
-                        @if ($errors->has('password')) <small class="text-danger">{{ $errors->first('password') }}</small> @endif 
+                        @if ($errors->has('password'))
+                         <small class="text-danger">{{ $errors->first('password') }}</small> 
+                         @endif 
 
                         <label>كلمة السر </label>
                     </div>

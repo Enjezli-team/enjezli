@@ -33,8 +33,10 @@
             
             <div class="user-box">
                 <input id="name" name="name" type="text" class="form-control">
-                @if ($errors->has('name')) <small class="text-danger">{{ $errors->first('name') }}</small> @endif 
-
+              
+                @if ($errors->has('name'))
+                                    <small class="text-danger">{{ $errors->first('name') }}</small>
+                                @endif 
                 <label> الاسم</label>
                  @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -47,7 +49,9 @@
             </div>
             <div class="user-box">
                 <input id="email" name="email" class="form-control">
-                @if ($errors->has('email')) <small class="text-danger">{{ $errors->first('email') }}</small> @endif 
+                @if ($errors->has('email'))
+                 <small class="text-danger">{{ $errors->first('email') }}</small>
+                  @endif 
                 <label>عنوان البريد الالكتروني</label>
                  @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -59,19 +63,20 @@
                 </span>
             </div>
             <div class="user-box">
-                <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                <input id="password" name="password" type="password" class="form-control" name="password" required autocomplete="new-password">
                 <label>كلمة السر</label>
-                 @error('password')
-                <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror
+                @if ($errors->has('password'))
+                                    <small class="text-danger">{{ $errors->first('password') }}</small>
+                                @endif 
                 <span style="display:none" id='password-error' class="invalid-feedback dan_mesg_po" role="alert">
                     
                 </span>
             </div>
             <div class="user-box">
                 <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                @if ($errors->has('password_confirmation')) <small class="text-danger">{{ $errors->first('password_confirmation') }}</small> @endif 
+                @if ($errors->has('password_confirmation'))
+                 <small class="text-danger">{{ $errors->first('password_confirmation') }}</small>
+                  @endif 
 
                 <label> تاكيد كلمة السر</label>
                 @error('password_confirmation')

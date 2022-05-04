@@ -257,7 +257,7 @@
 
                     <div class='btn-cont'>
                         <button class="show_more" type='submit'> حفظ</button>
-                        <button class="show_more" type=''> الغاء</button>
+                        <button class="show_more"  type=''> الغاء</button>
                     </div>
 
                     </form>

@@ -128,31 +128,36 @@
 
                                 <div class="user-box mt-2">
                                     <small><b>
-                                            الجنس
-                                        </b>
-
-                                    </small>
-                                    <select name="gander" class="form-select form-control">
-                                        <option selected>{{ $data->gander }}</option>
-                                        <option value="1">انثى</option>
-                                    </select>
+                                        الجنس
+                                    </b>
+                                        
+                                    </small> 
+                                <select name="gander"  class="form-select form-control">
+                                    <option selected>{{$data->gander}}</option>               
+                                   <option value="ذكر">ذكر</option>
+                                    <option value="انثى">انثى</option>
+                                </select>
                                 </div>
                             </div>
 
-                            <div class="col-lg row-md">
-                                <div class="user-box mt-2">
-                                    <small><b>
-                                            الدولة
-                                        </b>
+                            
+                        <div class="col-lg row-md">
+                            <div class="user-box mt-2">
+                                <small><b>
+                                    الدولة
+                                </b>
+                                    
+                                </small> 
+                            <select  name="country" class="form-select form-control">
+                                <option selected>{{$data->country}}</option>
+                                <option value="اليمن">اليمن</option>
+                                <option value="الصين">الصين</option>
+                                <option value="الهند">الهند</option>
+                                <option value="كوريا">كوريا</option>
+                            </select>
+                            @if ($errors->has('country')) <small class="text-danger">{{ $errors->first('country') }}</small> @endif 
 
-                                    </small>
-                                    <select class=" w-100" name="country" multiple aria-label="المهارات ">
-                                        @foreach ($skills as $skill)
-                                            <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div>
+                            </div>
                             </div>
                         </div>
 
@@ -253,16 +258,7 @@
 
 
                             <div class="user-box mt-2">
-                                    <small><b>
-                                        الجنس
-                                    </b>
-                                        
-                                    </small> 
-                                <select name="gander"  class="form-select form-control">
-                                    <option selected>{{$data->gander}}</option>               
-                                   <option value="ذكر">ذكر</option>
-                                    <option value="انثى">انثى</option>
-                                </select>
+                                    
                                 <label> <b>
 
                                         التخصص</b> </label>
@@ -280,24 +276,6 @@
                         </div>
 
                         <div class="col-lg row-md">
-                            <div class="user-box mt-2">
-                                <small><b>
-                                    الدولة
-                                </b>
-                                    
-                                </small> 
-                            <select  name="country" class="form-select form-control">
-                                <option selected>{{$data->country}}</option>
-                                <option value="اليمن">اليمن</option>
-                                <option value="الصين">الصين</option>
-                                <option value="الهند">الهند</option>
-                                <option value="كوريا">كوريا</option>
-                            </select>
-                            @if ($errors->has('country')) <small class="text-danger">{{ $errors->first('country') }}</small> @endif 
-
-                            </div>
-                            </div>
-
 
                             <div class="user-box mt-2">
                                 <label> <b>
