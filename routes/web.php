@@ -98,10 +98,22 @@ Route::post('/reset-password', function (Request $request) {
         'token' => 'required',
         'email' => 'required|email',
         'password' => 'required|confirmed',
+    ],[
+        'name.required' => 'يجب ادخال الاسم',
+        ' password_confirmation.confirmed' => '   كلمة السر غير مطابقة.',
+
+        'password.required' => 'يجب ادخال كلمة السر.',
+        'password.confirmed' => 'كلمة السر غير مطابقة .',
+        'email.required' => 'يجب ادخال البريد الالكتروني .',
+        'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+       
+
+       
     ]);
 
+
     $status = Password::reset(
-        $request->only('email', 'password', 'token'),
+        $request->only('email', 'password','password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
@@ -149,7 +161,7 @@ Route::resource('projects', ProjectController::class);
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
     // Route::resource('users', UserController::class);
     // Route::resource('setting', offersController::class);
     

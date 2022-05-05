@@ -51,34 +51,31 @@
                     <label>  ادخل ايميلك</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
-                    <!-- @error('old_password')
-                    <span class="invalid-feedback" role="alert">
+                  
+                    @error('email')
+                <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span>
-                @enderror
-                @if (session('error'))
-                <div class='dan_mesg_po'>{{session('error') }}</div>
-                @endif -->
+                    </span> @enderror 
                 </div>
                 <div class="user-box">
                     <input id="password" type="password" class="form-control " name="password" required >
                     <label>كلمة السر الجديدة</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
-                    <!-- @error('new_password')
-                    <span class="invalid-feedback" role="alert">
+                    @error('password')
+                <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span>
-                @enderror -->
+                    </span> @enderror 
                 </div>
                 <div class="user-box">
                     <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required >
                     <label> تاكيد كلمة السر</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
-                    <!-- {{-- @error('new_password')
-                <span style="color:red;font-size:12px"> {{ $message }} </span> 
-              
-               @enderror --}} -->
+                   
+                    @error('password_confirmation')
+                <span class="invalid-feedback" role="alert">
+                        <div class='dan_mesg_po'>{{ $message }}</div>
+                    </span> @enderror 
                 </div>
 
                 <div class='btn-cont'>
