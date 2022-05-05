@@ -44,7 +44,7 @@ php artisan migrate
 php artisan make:controller seeker/NameController --resource
 ```
 
-## admin
+### admin
 
 ```bash
 php artisan make:controller admin/NameController --resource
