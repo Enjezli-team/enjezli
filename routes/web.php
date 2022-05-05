@@ -37,7 +37,7 @@ use Illuminate\Support\Str;
 */
 
 /**home page */
-Route::get('/home',[HomeController::class,"index"]);
+Route::get('/home', [HomeController::class, "index"]);
 
 /*
 Route::get('/', function () {
@@ -53,7 +53,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -63,8 +63,8 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 */
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
- Route::get('/verify_email/{token}', [CustomAuthController::class, 'verify'])->name('verify');
- Route::get('/verify', [CustomAuthController::class, 'verifyy'])->name('verify');
+Route::get('/verify_email/{token}', [CustomAuthController::class, 'verify'])->name('verify');
+Route::get('/verify', [CustomAuthController::class, 'verifyy'])->name('verify');
 Route::get('/check_email/{id}', [CustomAuthController::class, 'check_email'])->name('check_email');
 Route::get('/reset_password', [CustomAuthController::class, 'reset_password'])->name('reset_password');
 Route::post('/reset_password', [CustomAuthController::class, 'updatePassword'])->name('update-password');
@@ -78,14 +78,14 @@ Route::get('/forgot-password', function () {
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
- 
+
     $status = Password::sendResetLink(
         $request->only('email')
     );
- 
+
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->name('password.email');
 
 Route::get('/reset-password/{token}', function ($token) {
@@ -98,30 +98,30 @@ Route::post('/reset-password', function (Request $request) {
         'email' => 'required|email',
         'password' => 'required|confirmed',
     ]);
- 
+
     $status = Password::reset(
         $request->only('email', 'password', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
             ])->setRememberToken(Str::random(60));
- 
+
             $user->save();
- 
+
             event(new PasswordReset($user));
         }
     );
- 
+
     return $status === Password::PASSWORD_RESET
-                ? redirect('/login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect('/login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->name('password.update');
 
 //end forgot password routes
 
 
-Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
-Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom'); 
+Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 
 
@@ -131,37 +131,53 @@ Route::prefix('seeker')->group(function () {
 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('profiles',ProfileController::class);
+    Route::resource('profiles', ProfileController::class);
     // Route::resource('offers',OfferController::class );
     // Route::resource('projects',ProjectController::class );
-    Route::resource('works',WorkController::class );
-    Route::get('my_works/{user_id}',[WorkController::class,'user_works'] );
-    Route::resource('projects',ProjectController::class );
-Route::resource('offers',OfferController::class );
-Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+    Route::resource('works', WorkController::class);
+    Route::get('my_works/{user_id}', [WorkController::class, 'user_works']);
+    Route::resource('projects', ProjectController::class);
+    Route::resource('offers', OfferController::class);
+    Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
 });
-Route::resource('projects',ProjectController::class );
+
+Route::resource('projects', ProjectController::class);
 /*
 |--------------------------------------------------------------------------
 | Admins Routes
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], function () {
-     Route::resource('users',UserController::class);
-    Route::resource('setting',offersController::class );
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::resource('users', UserController::class);
+    Route::resource('setting', offersController::class);
 });
 
 // Route::resource('projects',ProjectController::class );
-Route::resource('offers',OfferController::class );
-Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+Route::resource('offers', OfferController::class);
+
+Route::get(
+    '/change_status/{project_id}/{status}',
+    [ProjectController::class, 'changeStatus']
+)->name('change_status');
+
 Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
 
-Route::post('/offer/cancel_confirm', [OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
-Route::post('/offer/cancel', [OfferController::class, 'cancelOffer'])->name('cancelOffer');
+Route::post(
+    '/offer/cancel_confirm',
+    [OfferController::class, 'cancelConfirm']
+)->name('cancelConfirm');
+
+Route::post(
+    '/offer/cancel',
+    [OfferController::class, 'cancelOffer']
+)->name('cancelOffer');
 
 
-Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+Route::post(
+    '/offer/confirm',
+    [OfferController::class, 'confirmOffer']
+)->name('confirmOffer');
 
 
 
