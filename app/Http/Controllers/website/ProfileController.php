@@ -26,7 +26,7 @@ class ProfileController extends Controller
      */
     public function index()
    {
-         $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+         $profile = user::with(['sal_works','sal_skills.sal_skill_u','sal_profile'])->find(Auth::user()->id);
         
         // return response($profile);
         // return view('website.users.profile.index')->with('data' , $profile);
