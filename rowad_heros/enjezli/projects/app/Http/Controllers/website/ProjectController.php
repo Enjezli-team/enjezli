@@ -131,7 +131,8 @@ public function show($id)//'sal_created_by',
                             'sal_skills_by.sal_skill',
                             'sal_offers.sal_provider_by.sal_profile',])->where('id',$id)->first();
                             // $offers_count=Project::with('sal_offers')->count();
-                            $offers_count=Offer::where('project_id',$id)->count();
+                            $offers_count=Offer::where('project_id',$id)
+                                                ->where('status','<>',0)->count();
                             // $offers_avg=Offer::where('project_id',$id)->groupBy('project_id')
                             // ->avg('price');
                             // $offers_avg=Offer::where('project_id',$id)
@@ -240,7 +241,7 @@ public function show($id)//'sal_created_by',
    
       if($request->hasFile('files')){
         UserAttachment::where('attach_id',$project_id)
-                       ->where('attach_type','project') ->delete();
+                       ->where('attach_type','1') ->delete();
         foreach($request->file('files') as $file){
             $Attachments=new UserAttachment;
             $Attachments->attach_id= $project->id;

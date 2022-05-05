@@ -156,12 +156,12 @@ class OfferController extends Controller
        
         //check if the user is the project owner
         // and is   and the status of the offer is acceptOffer $offer->status==2
-        $data= Offer::find($request->offer_id);    
-        if($request->project_owner==Auth::user()->id && $request->offer_status==2 && $request->project_status==2){
-            $data->status=1;
-            
-            if($data->save()){
-
+        $offer=Offer::with('sal_project_id')->where('project_id',$request->project_id)
+                     ->where('id',$request->offer_id)->first();  
+    if($request->project_owner==Auth::user()->id &&$offer->status==2 && $offer->sal_project_id->status==1){
+            $offer->status=1;
+            if($offer->save()){
+            // return response( $offer);
                 return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
             } 
             else{
@@ -236,21 +236,60 @@ class OfferController extends Controller
   /**----------------------
    * seeker confirm that the project is delivered
    *------------------------**/
-    public function confirmDelivery($id)
+    public function confirmDelivery(Request $request)
     {
         
       //check if the user is the provider 
       // and is   and the status of the project is acceptOffer $project->status==1
     //   مفتوح then change the project status to قيد التنفيذ 
+    // $offer= Offer::with('')->find($request->offer_id);   
+    $offer=Offer::with('sal_project_id')->where('project_id',$request->project_id)
+    ->where('id',$request->offer_id)->first();  
+    if($request->project_owner==Auth::user()->id &&$offer->status==3 && $offer->sal_project_id->status==3){
+        $offer->status=5;//done working and seeker confirm
+      
+         if($offer->save()){
+            // return response($offer);
+            return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
+           
+             }
+             else{
+                return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
 
+             }
+
+         }
       
     }
-    public function finishWork($id)
+    public function finishWork(Request $request)
     {
+
+
+
       //check if the user is the provider 
       // and is   and the status of the project is acceptOffer $project->status==1
     //   مفتوح then change the project status to قيد التنفيذ 
+ $data=Offer::with('sal_project_id')->where('project_id',$request->project_id)
+        ->where('id',$request->offer_id)->first();
+    // $data=Offer::where('project_id',$request->project_id)->first();
 
+    //    $project=Offer::where('id',$request->project_id)->first();
+    
+    
+       if($data->sal_project_id->status==2 && $data->status==3){
+        
+        $data->sal_project_id->status=3;
+        // $data->sal_project_id->handled_by= $data->provider_id;
+      
+       //project is in excution
+        if($data->save()&& $data->sal_project_id->save()){
+            // return response($data);
+            return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
+        } 
+        else{
+            return redirect()->back()->with(['success'=>'فشلت العملية']);
+        }
+       }
       
     }
     /**
@@ -293,7 +332,7 @@ class OfferController extends Controller
             
             if($request->hasFile('files')){
                 UserAttachment::where('attach_id',$offer_id)
-                               ->where('attach_type','offer') ->delete();
+                               ->where('attach_type','2') ->delete();
                     if($request->hasFile('files')){
                         foreach($request->file('files') as $file){
                             $Attachments=new UserAttachment;

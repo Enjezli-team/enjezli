@@ -13,7 +13,7 @@
     <div class="container mt-5 details_container">
 
         <div class='title'>
-            <h3>تصميم نظام محاسبي متكامل</h3>
+            <h3>{{$data['title']}}</h3>
         </div>
 
     {{-- <div class="container mt-5"> --}}
@@ -55,7 +55,7 @@
                                     <h4> ملفات توضيحية</h4>
                                         @forelse ($data->sal_project_attach as $attach)
                                             <li>
-                                                    <a href='{{$attach->file_name}}' style='color:black'>{{$attach->file_name}}</a>
+                                                    <a href='{{$attach->file_name}}' style='color:black'>{{$loop->iteration}}.{{$attach->file_type}}</a>
                                             </li>  
                                         @empty
                                             
@@ -282,10 +282,11 @@
                                             @elseif(Auth::user()->id==$data['user_id']&&$offer->status==2 && $data->status==1 )
                                             <form action="{{route('cancelConfirm')}}" method="post">
                                                 @csrf
-                                                <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'>
+
+                                                {{-- <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'> --}}
                                                 <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
                                                 <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
-                                                <input style="display:none" type="text" name="project_status" value='{{$data['status']}}'>
+                                                <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
                                                 <button  style="color:black ;border:none;background:transparent" type='submit '> الغاء الموافقة </button>
                                             </form>
                                           
@@ -299,7 +300,18 @@
                                             <a style="color:black" class="status">قيد التنفيذ </a>
 
                                             {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
-                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==5&&$data->status==3||Auth::user()->id==$data->handled_by)
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==3&&$data->status==3 ||Auth::user()->id==$data->handled_by)
+                                            {{-- <a style="color:black" class="status">تم التسليم  </a>  --}}
+                                            <form action="{{route('confirmDelivery')}}" method="post">
+                                                @csrf
+                                                {{-- <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'> --}}
+                                                <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
+                                                <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
+                                                <button  style="color:black ;border:none;background:transparent" type='submit '> تأكيد الاستلام  </button>
+                                            </form>
+                                            
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==5&&$data->status==3 ||Auth::user()->id==$data->handled_by)
                                             <a style="color:black" class="status">مغلق </a> 
                                             
                                             @endif
@@ -330,15 +342,16 @@
                                                 @elseif($data->status==3 && $offer->status==3)
                                                 <a style="color:black" class="status">تم التسليم  </a> 
                                           @endif --}}
+                                          <div class="desc"> {{$offer->description}}</div>
+                                          @if(Auth::user()->id==$data['user_id'])
+                                          السعر  <span class="desc"> {{$offer->price}}</span> 
+                                          المدة <span class="desc"> {{$offer->duration}}</span>
+  
+                  
+                                          @endif
+                                      </div>
                                         </div>
-                                        <div class="desc"> {{$offer->description}}</div>
-                                        @if(Auth::user()->id==$data['user_id'])
-                                        السعر  <span class="desc"> {{$offer->price}}</span> 
-                                        المدة <span class="desc"> {{$offer->duration}}</span>
-
-                
-                                        @endif
-                                    </div>
+                               
                                 @endforeach
 
 
@@ -380,8 +393,10 @@
                                 حالة المشروع
                                 @if ($data->status == 1)
                                     <span>مفتوح</span>
-                                @else
-                                    مغلق
+                                @elseif($data->status == 2)
+                                    قيد التنفيذ
+                                 @elseif($data->status == 3)
+                                  مغلق
                                 @endif
                             </li>
                             {{-- <li class="d-flex justify-content-between align-items-center">

@@ -96,17 +96,20 @@
                                                 @elseif($offer->sal_project_id->status==2 && $offer->status==3)
                                                 <a style="color:black" class="status">قيد التنفيذ </a> 
                                                 
-                                                {{-- <form action="" method="post"> --}}
-                                                   {{-- {{route('finishWork')}} --}}
-                                                    {{-- @csrf
+                                                 <form action="{{route('finishWork')}}" method="post"> 
+                                                 
+                                                     @csrf
                                                     <input style="display:none" type="text" name="project_id" value='{{$offer->sal_project_id->id}}'>
                                                     <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
 
-                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   أنهيت المشروع  </button>
-                                                </form> --}}
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   أنهاء المشروع  </button>
+                                                </form> 
 
                                                 @elseif($offer->sal_project_id->status==3 && $offer->status==3)
-                                                <a style="color:black" class="status">تم التسليم  </a> 
+                                                {{-- <a style="color:black" class="status">تم التسليم  </a>  --}}
+                                                <a style="color:black" class="status"> قيد المراجعة   </a>
+                                                @elseif($offer->sal_project_id->status==3 && $offer->status==5)
+                                                <a style="color:black" class="status"> تم  الاستلام   </a>
                                                 @elseif($offer->sal_project_id->status==1 && $offer->status==4)
                                                 <a style="color:black" class="status">رفضته</a>
                                           @endif
@@ -128,7 +131,7 @@
                             
                                 {{-- @else
                                    <div> لا توجد عروض</div>  --}}
-                                {{-- @endif --}}
+                                @endif
                             
                                
                                 
