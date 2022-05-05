@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
 //admin
@@ -149,8 +150,10 @@ Route::resource('projects', ProjectController::class);
 |
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
-    Route::resource('users', UserController::class);
-    Route::resource('setting', offersController::class);
+    // Route::resource('users', UserController::class);
+    // Route::resource('setting', offersController::class);
+    
+    Route::get('index', [IndexController::class, 'index'])->name('index');
 });
 
 // Route::resource('projects',ProjectController::class );
