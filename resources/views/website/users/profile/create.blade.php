@@ -166,7 +166,7 @@
 
                             <label class="container-checkbox"> <span class="check_text"> صاحب مشاريع</span>
 
-                                <input type="checkbox" value="seeker" name="role[]" checked="checked">
+                                <input type="checkbox" value="2" name="role[]" checked="checked">
                                 @if ($errors->has('role'))
                                     <small class="text-danger">{{ $errors->first('role') }}</small>
                                 @endif
@@ -177,7 +177,7 @@
                         <div class="col-lg row-md">
                             <label class="container-checkbox"> <span class="check_text"> منجز خدمة </span>
 
-                                <input type="checkbox" value="provider" name="role[]" checked>
+                                <input type="checkbox" value="3" name="role[]" checked>
 
                                 @if ($errors->has('role'))
                                     <small class="text-danger">{{ $errors->first('role') }}</small>

@@ -29,8 +29,8 @@ class ProfileController extends Controller
          $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
         
         // return response($profile);
-        // return view('website.users.profile.index')->with('data' , $profile);
-         return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->with('data' , $profile)->get()]);
+      return view('website.users.profile.index')->with('data' , $profile);
+        //  return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->with('data' , $profile)->get()]);
         //
     }
 
