@@ -38,7 +38,7 @@ php artisan migrate
 
 ## controller
 
-## seeker
+### seeker
 
 ```bash
 php artisan make:controller seeker/NameController --resource
