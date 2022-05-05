@@ -12,18 +12,7 @@
                 </div>
             </div>
             <h2>تسجيل الدخول</h2>
-            @if (session('status'))
-                <div class="text-success">
-                تم الارسال بنجاح يرجى مراجعة ايميلك
-                  
-                </div>
-                @elseif(session('failed'))
-                <div class="text-success">
-                لم يتم الرسال لرجاء اعادة المحاوله
-                   
-                </div>
-                
-            @endif
+         
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
                
@@ -52,12 +41,23 @@
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                 <div class='dan_mesg_po'>{{ $message }}</div>
-                            </span> 
+                           <span class="invalid-feedback" role="alert"> 
                             @enderror 
 
                         <label>كلمة السر </label>
                     </div>
-                   
+                    @if (session('status'))
+                    <div class="text-success">
+                      
+                    </div>
+                    @elseif(session('failed'))
+                    <div class="invalid-feedback" style="color: rgb(247, 84, 84)">
+                        <span class="invalid-feedback" role="alert">
+تاكد من بريدك الالكتروني او كلمة السر                        </span> 
+
+                    </div>
+                    
+                @endif
                 </div>
 
 

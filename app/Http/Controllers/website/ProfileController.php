@@ -185,11 +185,11 @@ class ProfileController extends Controller
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
             'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',           
         ]);
-        if($request->image){
+        if($request->image!=""){
        $imageName = time().'.'.$request->image->extension();  
         $request->image->move(public_path('images'), $imageName);
         }else{
-            $imageName = 'user_avater.png';  
+            $imageName = $request->oldimg; 
         }
         user::where('id',Auth::user()->id)->update(['name'=>$request->name  ,'image'=> $imageName]);
             Profile::where('id',$id)->update([

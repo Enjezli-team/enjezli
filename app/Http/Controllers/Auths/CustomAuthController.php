@@ -156,7 +156,8 @@ class CustomAuthController extends Controller
                 }
 
         }
-        return redirect('/login')->withSuccess(' faild');
+        return redirect('/login')->with("failed", "ادخل البيانات بشكل صحيح   !");
+
 
     }
     public function create(Request $request)

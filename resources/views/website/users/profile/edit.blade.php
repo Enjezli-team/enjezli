@@ -50,6 +50,7 @@
 
                                     </span>
                                 </label>
+                                <input name="oldimg" value="{{ $data->sal_user->image }}" hidden type="text"  />
                                 <input id="file" name="image" value="{{ $data->sal_user->image }}" type="file" onchange="loadFile(event)" />
                                 <img src="{{ asset('images/'.$data->sal_user->image) }}"
                                     id="output" width="200" />
