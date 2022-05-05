@@ -62,6 +62,8 @@ php artisan make:controller client/NameController --resource
 php artisan make:controller web/NameController --resource
 ```
 
+## main roles for team
+
 ## branch's name
 
 `v-1.1/branchName`
