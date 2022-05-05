@@ -19,7 +19,6 @@ class Offer extends Model
         'major',
         'Job_title',
         'description',
-        'user_id',
     ];
 
      //provider
@@ -27,11 +26,6 @@ class Offer extends Model
 
         return $this->belongsTo(User::class,'provider_id');
     }
-//owner
-public function sal_owner_by(){
-
-    return $this->belongsTo(User::class,'user_id');
-}
 //project
 public function sal_project_id(){
 

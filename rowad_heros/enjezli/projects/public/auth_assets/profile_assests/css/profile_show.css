@@ -1,0 +1,200 @@
+.padding {
+    padding: 1vh 2vw;
+}
+
+.m_21 {
+    margin: 21px 1px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 57em;
+    background-image: url(assests/svg/enLogo.svg);
+    background-repeat: no-repeat;
+    background-position: top right;
+    margin: 13%;
+    padding: 40px 2px;
+    border-radius: 17px;
+    gap: 30px;
+}
+
+.personal_info_container {
+    max-width: 52em;
+    border-radius: 17px;
+    background: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
+    padding: 5vh 3vw;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175)!important;
+}
+
+.profile_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.profile_img img {
+    height: inherit;
+    width: inherit;
+}
+
+.personal_basic_info {}
+
+.profile_phone {
+    color: gray;
+    font-size: 14px;
+    padding: 2px 12px;
+}
+
+.personal_information {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info_container {
+    display: grid;
+    gap: 12px;
+}
+
+.desc {
+    height: 134px;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.edit_pro_container {
+    padding: 14px 4px;
+    text-align: center;
+}
+
+.social {
+    display: flex;
+    gap: 7px;
+    font-size: 16px;
+}
+
+.social .face {
+    fill: darkblue;
+}
+
+.social li {
+    list-style-type: none;
+}
+
+
+/***/
+
+
+/* btn */
+
+a {
+    text-decoration: none;
+}
+
+.show_more {
+    font-size: 13px;
+    padding: 7px 21px 7px;
+    outline: 0;
+    border: 1px solid #186d80;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.show_more_1 {
+    padding: 4px 6px;
+}
+
+.show_more:after {
+    content: "";
+    background-color: var(--light_blue);
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+}
+
+.show_more:hover:after {
+    top: 0px;
+    left: 0px;
+}
+
+
+/* myworks */
+
+.d-grid {
+    display: grid;
+    gap: 22px;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vh 1vw;
+}
+
+.project_date {
+    padding: 2px 13px;
+    color: #5e5b5b;
+    ;
+}
+
+.operation {
+    display: flex;
+    gap: 15px;
+}
+
+.hr::before {
+    content: "";
+    width: 76%;
+    background-color: #186d80;
+    display: block;
+    position: relative;
+    height: 1px;
+    top: -9px;
+    background: radial-gradient(#186d80, transparent);
+}
+
+.count_project {
+    height: 35px;
+    width: 35px;
+    background-color: aliceblue;
+    border-radius: 23%;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    position: absolute;
+    top: -26px;
+    left: 23px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgb(207 229 239));
+    backdrop-filter: blur(10px);
+}
+
+.delete:hover,
+.edit:hover,
+.more:hover {
+    transform: scale(1.2);
+    color: rgb(77, 75, 75);
+}
+
+.delete:hover {
+    color: red;
+}
+
+@media screen and (max-width: 800px) {
+    .profile {
+        grid-template-columns: 1fr;
+        gap: 23px;
+    }
+}

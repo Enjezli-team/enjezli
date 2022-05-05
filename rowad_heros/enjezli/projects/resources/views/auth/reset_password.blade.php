@@ -34,31 +34,43 @@
             </div>
             <h2>تغيير كلمة المرور
             </h2>
-            <form method="POST" action="">
-
+            <form method="POST" action="{{ route('update-password') }}">
+                @csrf
+                @if (session('status'))
+                <small class="text-success">
+                    {{ session('status') }}
+                </small>
+            @endif
                 <div class="user-box">
-                    <input id="password" type="password" class="form-control @error('old_password') is-invalid @enderror" name=" old_password" required autocomplete="new-password">
-                    <label>  كلمة السرالقديمة</label>
-                    <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
+                   
+                    <input id="password" type="password"  name=" old_password" class="form-control " required autocomplete="new-password">
 
-                    <!-- @error('old_password')
-                    <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span>
-                @enderror
-                @if (session('error'))
+                    <label>  كلمة السرالقديمة</label>
+                    @if (session('error'))
+                    <small class="text-danger">
+                            {{ session('error') }}
+               
+                    </small>
+                @endif
+                   
+
+                {{-- @if (session('error'))
                 <div class='dan_mesg_po'>{{session('error') }}</div>
-                @endif -->
+                @endif --> --}}
                 </div>
                 <div class="user-box">
-                    <input id="password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new-password">
+                    <input id="password" type="password" class="form-control " name="new_password" required autocomplete="new-password">
                     <label>كلمة السر الجديدة</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
+                    @error('new_password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                    @if ($errors->has('new_password')) <small class="text-danger">{{ $errors->first('new_password') }}</small> @endif 
 
                     <!-- @error('new_password')
                     <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span>
+                    </span> --}}
                 @enderror -->
                 </div>
                 <div class="user-box">

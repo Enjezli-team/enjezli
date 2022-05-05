@@ -10,12 +10,12 @@
                 <img src=" {{ asset('auth_assets/svg/logo.svg')}}" alt="">
             </div>
         </div>
-        <h2></h2>
-        <p>لقد قمنا بارسال رسالة عبر ريدك الالكتروني الرجاء التحقق منها
+        <h2>مرحبا</h2>
+        <p>لقد قمنا بارسال رابط التفعيل الخاص بك عبر بريدك الالكتروني الرجاء التحقق من بريدك الالكتروني والدخول عبر الرابط  .
         </p>
-        <form class="d-inline" method="POST" action="">
-            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">إضغط هنا لاعادة إرسال الطلب مرة
-                اخرى</button>
-        </form>
+        {{-- <form class="d-inline" method="POST" action="">
+             <button type="submit" class="btn btn-link p-0 m-0 align-baseline">إضغط هنا لاعادة إرسال الطلب مرة
+                اخرى</button> 
+        </form> --}}
     </div>
 </div>

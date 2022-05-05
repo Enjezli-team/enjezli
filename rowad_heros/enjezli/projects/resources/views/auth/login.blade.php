@@ -12,48 +12,52 @@
                 </div>
             </div>
             <h2>تسجيل الدخول</h2>
+            @if (session('status'))
+                <div class="text-success">
+                تم الارسال بنجاح يرجى مراجعة ايميلك
+                  
+                </div>
+                @elseif(session('failed'))
+                <div class="text-success">
+                لم يتم الرسال لرجاء اعادة المحاوله
+                   
+                </div>
+                
+            @endif
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
-                 @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+               
+            
+   
 
     
                 <div class="user-box">
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
-
+                       
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                <div class='dan_mesg_po'>{{ $message }}</div>
+                            </span> 
+                            @enderror 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
-                    <!-- @error('email')
-                    <span class="invalid-feedback" role="alert">
-                            <div class='dan_mesg_po ' > * الأيميل خاطئ
-                                
-                          </div>
-
-                            {{-- <div class='dan_mesg_po ' >*{{ $message }}</div> --}}
-                        </span> @enderror -->
+                   
 
                 </div>
                 <div class="user-box">
                     <div class="inputContainer">
 
                         <input type="password" name="password" type="password" class="form-control ">
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                <div class='dan_mesg_po'>{{ $message }}</div>
+                            </span> 
+                            @enderror 
+
                         <label>كلمة السر </label>
                     </div>
-                    <!-- @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>* كلمة المرور خاطئة</div>
-                    </span> {{-- <span class="invalid-feedback" role="alert">
-                            <div class='dan_mesg_po'>{{ $message }}</div>
-                        </span> --}} @enderror -->
+                   
                 </div>
 
 
@@ -69,11 +73,11 @@
             </form>
             <div class="login_links">
                 <div>
-                    <!-- @if (Route::has('password.request')) -->
-                    <a class="btn from-top" href="conf.html">
+                    {{-- @if (Route::has('password.request'))  --}}
+                    <a class="btn from-top" href="{{ route('password.request') }}">
                             نسيت كلمة المرور
                         </a>
-                    <!-- @endif -->
+                     {{-- @endif  --}}
                 </div>
                 <a href="/register" class="btn from-top">إنشاء حساب</a>
             </div>
