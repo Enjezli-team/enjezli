@@ -161,7 +161,7 @@ Route::resource('projects', ProjectController::class);
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
     // Route::resource('users', UserController::class);
     // Route::resource('setting', offersController::class);
     
