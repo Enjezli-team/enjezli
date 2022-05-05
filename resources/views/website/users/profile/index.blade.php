@@ -241,7 +241,7 @@
                     @forelse($data->sal_skills as $s)
                         <div class="flex_between">
                             <div>
-                                <h5 class="project_name">{{ $s->title}}</h5>
+                                <h5 class="project_name">{{ $s->sal_skill_u->title}}</h5>
                                 <h6 class="project_date">{{ $s->created_at }}</h6>
                             </div>
                             <div class="operation">

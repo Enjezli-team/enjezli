@@ -87,7 +87,7 @@ class WorkController extends Controller
                 foreach($request->file('files') as $file){
                     $Attachments=new UserAttachment;
                     $Attachments->attach_id= $works->id;
-                    $Attachments->attach_type='1';
+                    $Attachments->attach_type='3';
                     $fileNme=time().'.'.$file->getClientOriginalExtension();
                     $file->move(public_path('images'), $fileNme);
                     $Attachments->file_name=$fileNme;
@@ -178,21 +178,21 @@ class WorkController extends Controller
      
     
   
-    //    if($request->hasFile('files')){
-    //        UserAttachment::where('attach_id',$id)
-    //                       ->where('attach_type','project') ->delete();
-    //                       foreach($request->file('files') as $file){
-    //                         $Attachments=new UserAttachment;
-    //                         $Attachments->attach_id= $works->id;
-    //                         $Attachments->attach_type='1';
-    //                         $fileNme=time().'.'.$file->getClientOriginalExtension();
-    //                         $file->move(public_path('images'), $fileNme);
-    //                         $Attachments->file_name=$fileNme;
-    //                         $Attachments->file_type=$file->getClientOriginalExtension();
-    //                         $Attachments->user_id= Auth::user()->id;
-    //                         $Attachments->save();
+       if($request->hasFile('files')){
+           UserAttachment::where('attach_id',$id)
+                          ->where('attach_type','3') ->delete();
+                          foreach($request->file('files') as $file){
+                            $Attachments=new UserAttachment;
+                            $Attachments->attach_id= $works->id;
+                            $Attachments->attach_type='3';
+                            $fileNme=time().'.'.$file->getClientOriginalExtension();
+                            $file->move(public_path('images'), $fileNme);
+                            $Attachments->file_name=$fileNme;
+                            $Attachments->file_type=$file->getClientOriginalExtension();
+                            $Attachments->user_id= Auth::user()->id;
+                            $Attachments->save();
         
-    //        }
+           }
 
     return redirect('works')->with(['success'=>'تم تعديل البيانات بنجاح']);
 //    }
@@ -201,7 +201,7 @@ class WorkController extends Controller
  
     return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
 
- 
+}
 }
     /**
      * Remove the specified resource from storage.
