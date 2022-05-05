@@ -221,7 +221,6 @@ public function show($id)//'sal_created_by',
           $project= Project::find($project_id);
           $project->title=$request->title;
           $project->price=$request->price;
-        
           $project->net_price=$request->price;
           $project->duration=$request->duration;
           $project->description=$request->description;

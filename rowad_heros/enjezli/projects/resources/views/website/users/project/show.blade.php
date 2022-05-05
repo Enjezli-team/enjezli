@@ -42,7 +42,7 @@
                                     <h4> ملفات توضيحية</h4>
                                         @forelse ($data->sal_project_attach as $attach)
                                             <li>
-                                                    <a href='http://localhost:8000/public/images/{{$attach->file_name}}' style='color:black'>{{$attach->file_name}}</a>
+                                                    <a href='{{$attach->file_name}}' style='color:black'>{{$attach->file_name}}</a>
                                             </li>  
                                         @empty
                                             
