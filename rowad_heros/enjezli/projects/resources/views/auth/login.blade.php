@@ -34,38 +34,30 @@
                 <div class="user-box">
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
-                        @if ($errors->has('email'))
-                         <small class="text-danger">{{ $errors->first('email') }}</small>
-                          @endif 
-
+                       
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                <div class='dan_mesg_po'>{{ $message }}</div>
+                            </span> 
+                            @enderror 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
-                    <!-- @error('email')
-                    <span class="invalid-feedback" role="alert">
-                            <div class='dan_mesg_po ' > * الأيميل خاطئ
-                                
-                          </div>
-
-                            {{-- <div class='dan_mesg_po ' >*{{ $message }}</div> --}}
-                        </span> @enderror -->
+                   
 
                 </div>
                 <div class="user-box">
                     <div class="inputContainer">
 
                         <input type="password" name="password" type="password" class="form-control ">
-                        @if ($errors->has('password'))
-                         <small class="text-danger">{{ $errors->first('password') }}</small> 
-                         @endif 
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                <div class='dan_mesg_po'>{{ $message }}</div>
+                            </span> 
+                            @enderror 
 
                         <label>كلمة السر </label>
                     </div>
-                    <!-- @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>* كلمة المرور خاطئة</div>
-                    </span> {{-- <span class="invalid-feedback" role="alert">
-                            <div class='dan_mesg_po'>{{ $message }}</div>
-                        </span> --}} @enderror -->
+                   
                 </div>
 
 

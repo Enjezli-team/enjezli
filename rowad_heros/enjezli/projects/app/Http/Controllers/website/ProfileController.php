@@ -7,10 +7,11 @@ use App\Models\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
-use App\Models\RoleUser;
+use App\Models\Roleuser;
 use App\Models\Skill;
-use App\Models\User;
-use App\Models\UserSkill;
+use App\Models\user;
+use App\Models\userSkill;
+use App\Models\UserWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -24,10 +25,12 @@ class ProfileController extends Controller
      * 
      */
     public function index()
-    { $profile = User::with(['sal_works','sal_skills','sal_projects_provider','sal_profile'])->find(Auth::user()->id);
+   {
+         $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+        
         // return response($profile);
-        return view('website.users.profile.index')->with('data' , $profile);
-        // return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
+        // return view('website.users.profile.index')->with('data' , $profile);
+         return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->with('data' , $profile)->get()]);
         //
     }
 
@@ -82,7 +85,7 @@ class ProfileController extends Controller
         }else{
             $imageName = 'user_avater.png';  
         }
-            User::where('id',Auth::user()->id)->update(['image'=>$imageName]);
+            user::where('id',Auth::user()->id)->update(['image'=>$imageName]);
       
        $profile = profile::create([
         'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
@@ -93,7 +96,7 @@ class ProfileController extends Controller
             // return response($request->skills);
             // print_r($request->skills);
          
-            $userSkill=new UserSkill;
+            $userSkill=new userSkill;
             $userSkill->user_id=Auth::user()->id;
             $userSkill->skill_id=$skill;
             $userSkill->save();
@@ -106,7 +109,7 @@ class ProfileController extends Controller
          return redirect('profiles')->with('completed', 'it has been saved!');
         //  if(sizeof($request->skills)>0){
         //     foreach($request->skills as $s){
-        //     UserSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
+        //     userSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
         
         //     }
        
@@ -125,7 +128,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return view('website.users.profile.index',['data'=>User::find($id)]);
+        return view('website.users.profile.index',['data'=>user::find($id)]);
     }
 
     /**
@@ -138,6 +141,10 @@ class ProfileController extends Controller
     {
         //
         $profile=Profile::find($id);
+        // $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+        // return response($profile);
+       
+        // $skills=Skill::All();
         return view('website.users.profile.edit',['data'=>$profile,'skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->get()]);
     
     }
@@ -157,16 +164,16 @@ class ProfileController extends Controller
             'phone'=>['required','digits:14'],
             //'country'=>['required'],
             'major'=>[''],
-            'role'=>['required'],
+           // 'role'=>['required'],
             'tweeter'=>['url'],
             'facebook'=>['url'],
             'github'=>['url'],
             'Job_title'=>[''],
-            'describe'=>['required','min:50 ']
+            'describe'=>['required','min:50']
         ],[
             'phone.required'=>'يرجى ادخال رقم التلفون ',
-            'country.required'=>'يرجى ادخال الدولة ',
-            'role.required'=>'يرجى ادخال نوع الاستخدام ',
+            //'country.required'=>'يرجى ادخال الدولة ',
+           // 'role.required'=>'يرجى ادخال نوع الاستخدام ',
             //'major.required'=>'يرجى ادخال الاسم التخصص',
             //'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required'=>'يرجى ادخال وصف عنك',
@@ -184,24 +191,69 @@ class ProfileController extends Controller
         }else{
             $imageName = 'user_avater.png';  
         }
-            User::where('id',Auth::user()->id)->update([
+        user::where('id',Auth::user()->id)->update(['name'=>$request->name  ,'image'=> $imageName]);
+            Profile::where('id',$id)->update([
                 'phone'=>$request->phone,'gander'=>$request->gander,'birth_date'=>$request->birth_date,
                 'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
-                'Job_title'=>$request->Job_title,'image'=>$imageName,'description'=>$request->describe
-                ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github]);
-                foreach($request->skills as $skill){
-                    // return response($request->skills);
-                    // print_r($request->skills);
-                 
-                    $userSkill=new UserSkill;
-                    $userSkill->user_id=Auth::user()->id;
-                    $userSkill->skill_id=$skill;
-                    $userSkill->save();
-                   
-                 }        
-      
-         return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
-    }
+                'Job_title'=>$request->Job_title
+                ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github,'description'=>$request->describe]);
+                if($request->has('skills')){
+                    userSkill::where('user_id',Auth::user()->id)->delete();
+                      foreach($request->skills as $skill){
+                        $userSkill=new userSkill;
+                        $userSkill->user_id=Auth::user()->id;
+                        $userSkill->skill_id=$skill;
+                        $userSkill->save();
+                      }
+                 }
+            return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');}
+    //        $imageName = time().'.'.$request->image->extension();  
+    //         $request->image->move(public_path('images'), $imageName);
+    //         }else{
+    //             $imageName = 'user_avater.png';  
+    //         }
+    //         user::where('id',Auth::user()->id)->update(['name'=>$request->name,'image'=>$imageName]);}
+    
+//     $profile= Profile::find($id);
+//     $profile->gander=$request->gander;
+//     $profile->phone=$request->phone;
+//     $profile->major=$request->major;
+//     $profile->birth_date=$request->birth_date;
+//     $profile->country=$request->country;
+//     $profile->user_id=Auth::user()->id;
+//     $profile->facebook=$request->facebook;
+//     $profile->Job_title=$request->Job_title;
+//     $profile->github=$request->github;
+//     $profile->tweeter=$request->tweeter;
+//     $profile->description=$request->description;
+//     // $profile->user_id=Auth::user()->id;
+  
+// if($profile->save()){
+
+// if($request->has('skills')){
+//   userSkill::where('user_id',Auth::user()->id)->delete();
+//     foreach($request->skills as $skill){
+//       $userskill=new userskill;
+//       $userskill->user_id=Auth::user()->id;
+//       $userskill->skill_id=$skill;
+//       $userskill->save();
+//     }
+//     return redirect('profiles')->with(['success'=>'تم  تعديل البيانات ']);
+
+// }
+
+
+
+//   return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
+// }
+
+
+
+  
+
+
+
+// }
 
     /**
      * Remove the specified resource from storage.

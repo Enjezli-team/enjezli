@@ -25,8 +25,7 @@
 
                                 </div>
 
-                                <form method="POST" action="/works"
-                                    enctype="multipart/form-data">
+                                <form method="POST" action="/works" enctype="multipart/form-data">
                                     @if (session('status'))
                                     <div class="text-success">
                                     تم الارسال بنجاح يرجى مراجعة ايميلك

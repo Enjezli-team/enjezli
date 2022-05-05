@@ -18,7 +18,21 @@
                     </h2>
                     <div class="logo-container">
 
-                        <div class="login_icon_box">
+                       
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                    <form method="POST" action="{{ route('profiles.update', $data['id']) }}" enctype="multipart/form-data">
+
+                        @csrf
+                        @method('PATCH')
+ <div class="login_icon_box">
                             <!-- <img src="auth_assets/profile_assests/svg/logo.svg" alt=""> -->
                             <div class="profile-pic">
                                 <label class="-label" for="file">
@@ -36,17 +50,12 @@
 
                                     </span>
                                 </label>
-                                <input id="file" type="file" onchange="loadFile(event)" />
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                                <input id="file" name="image" value="{{ $data->sal_user->image }}" type="file" onchange="loadFile(event)" />
+                                <img src="{{ asset('images/'.$data->sal_user->image) }}"
                                     id="output" width="200" />
                             </div>
                         </div>
                     </div>
-
-                    <form method="POST" action="/profiles/{{ $data->sal_user->id }}" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-
                         <div class="row gx-5 ">
                             <div class="col-lg row-md">
                                 <div class="user-box mt-2">
@@ -134,8 +143,8 @@
                                     </small> 
                                 <select name="gander"  class="form-select form-control">
                                     <option selected>{{$data->gander}}</option>               
-                                   <option value="ذكر">ذكر</option>
-                                    <option value="انثى">انثى</option>
+                                   <option value="1">ذكر</option>
+                                    <option value="2">انثى</option>
                                 </select>
                                 </div>
                             </div>
@@ -227,32 +236,37 @@
 
                     <!-- @csrf -->
 
+                   
+
+
+
+
+
                     <div class="row gx-5">
                         <div class="col-lg row-md">
 
                             <label class="container-checkbox"> <span class="check_text"> صاحب مشاريع</span>
 
-                                <input type="checkbox" name="role[]" checked="checked">
-                                <span class="checkmark"></span>
+                                <input type="checkbox" value="seeker" name="role[]" checked="checked">
+                                @if ($errors->has('role'))
+                                    <small class="text-danger">{{ $errors->first('role') }}</small>
+                                @endif
+
                             </label>
                         </div>
 
                         <div class="col-lg row-md">
                             <label class="container-checkbox"> <span class="check_text"> منجز خدمة </span>
 
-                                <input type="checkbox" name="role[]">
-                                <span class="checkmark"></span>
-                            </label>
+                                <input type="checkbox" value="provider" name="role[]" checked>
 
+                                @if ($errors->has('role'))
+                                    <small class="text-danger">{{ $errors->first('role') }}</small>
+                                @endif
+                            </label>
 
                         </div>
                     </div>
-
-
-
-
-
-
                     <div class="row gx-5">
                         <div class="col-lg row-md">
 
@@ -299,11 +313,11 @@
 
                         <label> <b>المهارات</b> </label>
                         <div class="w-100">
-                            <select class="selectpicker w-100" name="skills" multiple aria-label="المهارات "
+                            <select class="selectpicker w-100" name="skills[]" multiple aria-label="المهارات "
                                 data-live-search="true">
                                 @foreach ($skills as $skill)
-                                    <option value="{{ $skill->id }}">{{ $skill->title }}</option>
-                                @endforeach
+                                         <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
+                           @endforeach
                             </select>
                         </div>
 
@@ -313,9 +327,9 @@
                     <div class="user-box mt-2">
 
                         <label> <b>نبذه تعريفية </b> </label>
-                        <textarea id="face" name="description" type="text" class="form-control" rows="11">{{ $data->description }} </textarea>
+                        <textarea id="face" name="describe" type="text" class="form-control" rows="11">{{ $data->description }}</textarea>
                         @if ($errors->has('describe'))
-                            <small class="text-danger">{{ $errors->first('description') }}</small>
+                            <small class="text-danger">{{ $errors->first('describe') }}</small>
                         @endif
 
                         <span class="invalid-feedback" role="alert">

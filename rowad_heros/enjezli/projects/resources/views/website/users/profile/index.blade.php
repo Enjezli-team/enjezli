@@ -4,7 +4,7 @@
 <div class="profile">
     <div class="personal_info_container">
 
-        <div class="profile_img"> <img src="{{ asset('images/'. $data->image) }}" alt=""></div>
+        <div class="profile_img"> <img src="{{ asset('images/'.$data->image) }}" alt=""></div>
         <div class="padding info_container ">
             <div class="personal_basic_info">
                 <div class="profile_name">{{ $data->name }}</div>
@@ -57,7 +57,7 @@
                 <h3> احدث أعمالي </h3>
 
                 <div>
-                    <a href="/my_works/{{ Auth::user()->id }}" class="show_more show_more_1 ">
+                    <a href="/works" class="show_more show_more_1 ">
                         عرض كل الاعمال
 
                     </a>
@@ -74,7 +74,9 @@
                 </div>
 
                 <div class="jobs">
+                   
                     @forelse($data->sal_works as $w)
+                   
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name">{{ $w->title }}</h5>
@@ -94,6 +96,7 @@
                                     </span></a>
                             </div>
                         </div>
+                       
                     @empty
                         <div class="flex_between">
                             <div>
@@ -101,6 +104,7 @@
                             </div>
                         </div>
                     @endforelse
+                  
                 </div>
 
             </div>
@@ -110,8 +114,8 @@
                 <h3>احدث مشاريعي</h3>
 
                 <div>
-                    <button class='show_more show_more_1 '>
-                        عرض كل مشاريعي
+                    <button class='show_more show_more_1 '><a href="/works">
+                        عرض كل مشاريعي</a>
 
 
                     </button>
@@ -161,8 +165,8 @@
                 <h3>العروض </h3>
 
                 <div>
-                    <button class='show_more show_more_1 '>
-                        عرض كل مشاريعي
+                    <button class='show_more show_more_1 '><a href="/offers">
+                        عرض كل مشاريعي</a>
 
 
                     </button>
@@ -186,7 +190,7 @@
                             </div>
                             <div class="operation">
 
-                                <a href="/works/{{ $o->id }}/edit"> <span>
+                                <a href="/offers/{{ $o->id }}/edit"> <span>
                                         <ion-icon class="edit" name="create-outline"></ion-icon>
                                     </span></a>
                                 <a href="/works/{{ $o->id }}"> <span>
@@ -237,7 +241,7 @@
                     @forelse($data->sal_skills as $s)
                         <div class="flex_between">
                             <div>
-                                <h5 class="project_name">{{ $s->title }}</h5>
+                                <h5 class="project_name">{{ $s->title}}</h5>
                                 <h6 class="project_date">{{ $s->created_at }}</h6>
                             </div>
                             <div class="operation">

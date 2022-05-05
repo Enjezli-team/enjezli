@@ -38,12 +38,12 @@
                                     <small class="text-danger">{{ $errors->first('name') }}</small>
                                 @endif 
                 <label> الاسم</label>
-                 @error('name')
+                
+                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                    @error('name')
                 <span class="invalid-feedback" role="alert">
                         <div class='dan_mesg_po'>{{ $message }}</div>
                     </span> @enderror 
-                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                   
                 </span>
 
             </div>
@@ -64,10 +64,11 @@
             </div>
             <div class="user-box">
                 <input id="password" name="password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                <label>كلمة السر</label>
                 @if ($errors->has('password'))
                                     <small class="text-danger">{{ $errors->first('password') }}</small>
                                 @endif 
+                <label>كلمة السر</label>
+               
                 <span style="display:none" id='password-error' class="invalid-feedback dan_mesg_po" role="alert">
                     
                 </span>

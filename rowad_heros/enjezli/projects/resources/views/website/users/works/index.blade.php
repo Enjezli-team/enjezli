@@ -168,7 +168,7 @@
              
                 <div class="container_card">
                     <header class="">
-                        <h2>{{ $item->sal_works->title }}</h2>
+                        <h2>{{ $item->title}}</h2>
                         <div class="flex jbetween">
                             <div>
                                 <div class="flex">
@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="flex">
                                     <span><ion-icon name="time-outline"></ion-icon></span>
-                                    <span class="aut_pub">23/2/2020 11:10 AM</span>
+                                    <span class="aut_pub">{{ $item->created_at}}</span>
 
                                 </div>
 
@@ -203,12 +203,12 @@
                             </div>
                         </div>
                         <div class="desc">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, a animi. Lorem, ipsum dolor.
+                            {{ $item->description}}
                         </div>
 
                         <div>
                             <span>رابط العمل</span>
-                            <span>httpa://gyyhuytyjkio8ujh.com</span>
+                            <span>{{ $item->link}}</span>
                         </div>
                     </header>
 
@@ -217,8 +217,12 @@
                     </div>
                     <div class="liks_shows">
 
-                        <button class="show_more">تعديل</button>
-                        <button class="show_more">حذف</button>
+                        <button class="show_more"><a href="/works/{{ $item->id }}/edit"
+                            class="edit_pro button button-1">تعديل</a></button>
+                            <form class="card-body" action="/works/{{$item->id}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                        <button type="submit" class="show_more">حذف</button></form>
 
                     </div>
 
@@ -226,6 +230,11 @@
               
             </div>
             @empty
+                        <div class="flex_between">
+                            <div>
+                                <h5 class="project_name"> لا يوجد عمل جديد</h5>
+                            </div>
+                        </div>
             @endforelse
 
          

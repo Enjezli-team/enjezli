@@ -32,12 +32,12 @@
                     <input type="email" name="email" id="email" placeholder="">
                     <label> ادخل عنوان بريدك الالكتروني </label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
-
-                    <!-- @error('email')
-                     <div class=" dan_mesg_po" role="alert">
-                        {{ $message }}
-                    </div>
-                    @enderror -->
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                            <div class='dan_mesg_po'>{{ $message }}</div>
+                        </span> 
+                        @enderror 
+                  
                 </div>
 
                 <div class='btn-cont'>
