@@ -32,10 +32,10 @@ php artisan migrate
 
 ---
 
-## pharmacy
+## seeker
 
 ```bash
-php artisan make:controller pharmacy/NameController --resource
+php artisan make:controller seeker/NameController --resource
 ```
 
 ## admin
@@ -128,7 +128,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 ```
 /upload/user
-/upload/pharmacy
+/upload/seeker
 /upload/ads
 /upload/service
 /upload/order
