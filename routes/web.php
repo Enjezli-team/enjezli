@@ -119,11 +119,6 @@ Route::post('/reset-password', function (Request $request) {
 
 //end forgot password routes
 
-/*
-|--------------------------------------------------------------------------
-|  Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::post('login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::post('register', [CustomAuthController::class, 'create'])->name('register.custom'); 
