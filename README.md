@@ -50,7 +50,7 @@ php artisan make:controller seeker/NameController --resource
 php artisan make:controller admin/NameController --resource
 ```
 
-## client
+### client
 
 ```bash
 php artisan make:controller client/NameController --resource
