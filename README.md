@@ -36,6 +36,8 @@ php artisan migrate
 
 ---
 
+## controller
+
 ## seeker
 
 ```bash
