@@ -12,29 +12,29 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- rtl css -->
-  <link rel="stylesheet" href="admin/rtlCSS/custom.css">
+  <link rel="stylesheet" href="rtlCSS/custom.css">
   <!-- rtl style -->
-  <link rel="stylesheet" href="admin/rtlCSS/style.css">
+  <link rel="stylesheet" href="rtlCSS/style.css">
     
-  <link rel="stylesheet" href="admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="admin/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
 
-  <link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="admin/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   
   <!-- summernote -->
-  <link rel="stylesheet" href="admin/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   
 
 
@@ -54,7 +54,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="admin/images/logo.png" alt="logo" width="60" height="90">
+    <img class="animation__shake" src="images/logo.png" alt="logo" width="60" height="90">
   </div>
 
   <!-- Navbar -->
@@ -106,7 +106,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="admin/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -122,7 +122,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="admin/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -138,7 +138,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -209,7 +209,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <div href="./index.html" class="text-center">
-            <img src="admin/images/logo.png" width="50" height="60"/>
+            <img src="images/logo.png" width="50" height="60"/>
             <p>انجزلي </p>
         </div>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -276,7 +276,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
                 
-                <img src="admin/svg/report.svg" />
+                <img src="svg/report.svg" />
               <p>
                 التقارير
               </p>
@@ -287,7 +287,7 @@
           
                 <a href="pages/examples/projects.html" class="nav-link">
                  
-                <img src="admin/svg/chat.svg" />
+                <img src="svg/chat.svg" />
                   <p>الدردشة</p>
                 </a>
           </li>
@@ -346,54 +346,54 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="admin/plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Toastr -->
-<script src="admin/plugins/toastr/toastr.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
 <!-- Ion Slider -->
-<script src="admin/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 <!-- Bootstrap slider -->
-<script src="admin/plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
 <!-- AdminLTE App -->
-<script src="admin/dist/js/adminlte.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="admin/dist/js/demo.js"></script>
+<script src="dist/js/demo.js"></script>
 
 <!-- Select2 -->
-<script src="admin/plugins/select2/js/select2.full.min.js"></script>
+<script src="plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
-<script src="admin/plugins/chart.js/Chart.min.js"></script>
+<script src="plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="admin/plugins/sparklines/sparkline.js"></script>
+<script src="plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="admin/plugins/moment/moment.min.js"></script>
-<script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="admin/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="admin/dist/js/adminlte.js"></script>
+<script src="dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="admin/dist/js/demo.js"></script>
+<script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="admin/dist/js/pages/dashboard.js"></script>
+<script src="dist/js/pages/dashboard.js"></script>
 
 <!-- date-range-picker -->
-<script src="admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
 </body>
 </html>
