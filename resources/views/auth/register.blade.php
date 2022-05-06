@@ -39,12 +39,7 @@
                                 @endif 
                 <label> الاسم</label>
                 
-                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                    @error('name')
-                <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror 
-                </span>
+               
 
             </div>
             <div class="user-box">

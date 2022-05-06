@@ -213,7 +213,8 @@ class WorkController extends Controller
     {
         $old=UserWork::where('id',$id)->value('is_active');
         UserWork::where('id',$id)->update(['is_active'=>($old==1)? 0 :1]);
-        return redirect('works')->with('completed', 'Work has been deleted');
+       // return redirect('works')->with('completed', 'Work has been deleted');
+        return redirect()->back()->with(['error'=>' تم حذف البيانات ']);
 
     }
     public function user_works($user_id)

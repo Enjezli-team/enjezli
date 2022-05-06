@@ -82,11 +82,14 @@ class CustomAuthController extends Controller
         # Validation
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required',
+            'new_password' => 'required|confirmed',
+            'new_password_confirmation'=> 'required',
         //    ' new_password_confirmation'=> 'required|confirmed',
         ],[
             'old_password.required'=>'يرجى ادخال كلمة السر القديمه  ',
             'new_password.required'=>'يرجى ادخال السر الجديده ',
+            'new_password.confirmed' => 'كلمة السر غير مطابقة .',
+
                      
         ]);
 
@@ -102,24 +105,25 @@ class CustomAuthController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "تم تغير كلمة السر بنجاح!");
+        return redirect('/login')->with("status", "تم تغير كلمة السر بنجاح!");
 }
-    public function forgit_check_email (Request $request)
-    {
-        $validatedData = $request->validate([
-            'email' => 'required|email|exists:users',
+    // public function forgit_check_email (Request $request)
+    // {
+    //     $validatedData = $request->validate([
+    //         'email' => 'required|email|exists:users',
            
-        ], [
-            'email.required' => 'يجب ادخال البريد الالكتروني .',
-            'email.required' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-        ]);
-        $user_vertify=User::where('email',$request->email)->value('token');
-        if($user_vertify !=""){
-        return view('auth.changename');
-        }else{
-            return redirect('/forgit_password')->withSuccess('enter email correctly');
-        }
-    }   
+    //     ], [
+    //         'email.required' => 'يجب ادخال البريد الالكتروني .',
+    //         'email.exists:users' => '  البريد الالكتروني غير موجود .',
+    //         'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+    //     ]);
+    //     $user_vertify=User::where('email',$request->email)->value('token');
+    //     if($user_vertify !=""){
+    //     return view('auth.changename');
+    //     }else{
+    //         return redirect('/forgit_password')->withSuccess('enter email correctly');
+    //     }
+    // }   
     public function customLogin(Request $request)
     {
         // $request->validate([
@@ -132,6 +136,8 @@ class CustomAuthController extends Controller
         ], [
             'password.required' => 'يجب ادخال كلمة السر.',
             'email.required' => 'يجب ادخال البريد الالكتروني .',
+            'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+
         ]);
    
         $credentials = $request->only('email','password');
@@ -173,9 +179,11 @@ class CustomAuthController extends Controller
             ' password_confirmation.confirmed' => '   كلمة السر غير مطابقة.',
 
             'password.required' => 'يجب ادخال كلمة السر.',
+            'password_confirmation.required' => 'يجب ادخال كلمة السر.',
+
             'password.confirmed' => 'كلمة السر غير مطابقة .',
             'email.required' => 'يجب ادخال البريد الالكتروني .',
-            'email.required' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+            'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
             'email.unique' => 'هذا البريد موجود  .',
 
            
