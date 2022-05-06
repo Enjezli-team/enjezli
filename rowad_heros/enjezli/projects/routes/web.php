@@ -163,6 +163,7 @@ Route::post('/offer/cancel', [OfferController::class, 'cancelOffer'])->name('can
 Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
 Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
 Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
 
 
 

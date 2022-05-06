@@ -22,7 +22,7 @@
                                 </button>
                                 <div class="select">
                                     <select id="standard-select">
-                                        <option value="">الاحدث</option>
+                                        <option value="">الحدث</option>
                                         <option value="">الاقدم</option>
                                     </select>
                                 </div>
@@ -32,7 +32,9 @@
                                 @foreach ($offers as $offer)
                                   <div class="accordion-body">
                                
-                                  <a href="projects/{{$offer->sal_project_id->id}}/{{$offer->id}}"> <div class="personal_info_container myworks">
+                                  {{-- <a href="projects/{{$offer->sal_project_id->id}}/{{$offer->id}}">  --}}
+                                    <a href="projects/{{$offer->sal_project_id->id}}#offer{{$offer->id}}"> 
+                                    <div class="personal_info_container myworks">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-start">
                                                 <div class="img_con">
@@ -69,18 +71,25 @@
                                             </div>
                                             @if($offer->sal_project_id->status==1 && $offer->status==0)
                                              <a style="color:black" class="status">ألغيته</a>
-                                            
-                                            @elseif($offer->sal_project_id->status==1 && $offer->status==1)
+                                             @elseif($offer->sal_project_id->status==1 && $offer->status==1)
+                                             <a style="color:black" class="status">معلق </a>
+                                             <form action="{{route('cancelOffer')}}" method="post">
+                                                @csrf
+                                                <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء عرض السعر   </button>
+                                            </form> 
+                                            {{-- @elseif($offer->sal_project_id->status==1 && $offer->status==1) --}}
+                                            @elseif($offer->sal_project_id->status==4 && $offer->status==1)
 
-                                                <a style="color:black" class="status">بانتظار الموافقة</a> 
+                                                <a style="color:black" class="status">   مقبول</a> 
                                                 <form action="{{route('cancelOffer')}}" method="post">
                                                     @csrf
                                                     <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
                                                     <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء عرض السعر   </button>
                                                 </form>
                                             
-                                            @elseif($offer->sal_project_id->status==1 && $offer->status==2)
-                                            <a style="color:black" class="status">تمت الموافقة </a> 
+                                            @elseif($offer->sal_project_id->status==4 && $offer->status==2)
+                                            <a style="color:black" class="status">تمت موافقتك </a> 
                                                 <form action="{{route('confirmOffer')}}" method="post">
                                                     @csrf
                                                     <input style="display:none" type="text" name="project_id" value='{{$offer->sal_project_id->id}}'>
@@ -106,9 +115,10 @@
                                                 </form> 
 
                                                 @elseif($offer->sal_project_id->status==3 && $offer->status==3)
+                                          
                                                 {{-- <a style="color:black" class="status">تم التسليم  </a>  --}}
                                                 <a style="color:black" class="status"> قيد المراجعة   </a>
-                                                @elseif($offer->sal_project_id->status==3 && $offer->status==5)
+                                                @elseif($offer->sal_project_id->status==5 && $offer->status==3)
                                                 <a style="color:black" class="status"> تم  الاستلام   </a>
                                                 @elseif($offer->sal_project_id->status==1 && $offer->status==4)
                                                 <a style="color:black" class="status">رفضته</a>
@@ -122,7 +132,8 @@
                 
                                         @endif --}}
                                     </div>
-                                </div></a> 
+                                </div>
+                            </a> 
                                 @endforeach
                                    
                             
