@@ -112,12 +112,12 @@
                                           @endif
                                         </div>
                                        <div class="desc"> {{$offer->description}}</div>
-                                       {{--   @if(Auth::user()->id==$data['user_id'])
+                                         @if(Auth::user()->id==$data['user_id'])
                                         السعر  <span class="desc"> {{$offer->price}}</span> 
                                         المدة <span class="desc"> {{$offer->duration}}</span>
 
                 
-                                        @endif --}}
+                                        @endif
                                     </div>
                                 </div></a> 
                                 @endforeach
@@ -126,9 +126,9 @@
                                  
                                 </div> 
                             
-                                {{-- @else
-                                   <div> لا توجد عروض</div>  --}}
-                                {{-- @endif --}}
+                                @else
+                                   <div> لا توجد عروض</div> 
+                                @endif
                             
                                
                                 
