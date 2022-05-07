@@ -39,4 +39,9 @@ public function sal_user_attach(){
     return $this->belongsTo(User::class,'user_id');
 }
 
+public function getFileNameAttribute($value){
+
+    return url('images/').'/'.$value;
+}
+
 }

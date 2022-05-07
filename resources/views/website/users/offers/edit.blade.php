@@ -34,7 +34,7 @@
                                                 <input id="face" name="duration" type="number" class="form-control" value="{{$data['duration']}}">
                                                 @error('duration')
                                                 <small class="text-danger">{{$message}}*</small> 
-
+                                                @enderror
                                         <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                         </span>
@@ -61,9 +61,7 @@
                                     <div class="user-box mt-2  d-grid gap-3">
 
                                         <label>   تفاصيل العرض    </label>
-                                        <textarea id="face" name="description" type="text" class="form-control" rows="6">
-                                                    {{ $data['description'] }}
-                                                    </textarea>
+                                        <textarea id="face" name="description" type="text" class="form-control" rows="6">{{ $data['description'] }}</textarea>
                                         @error('description')
                                             <small class="text-danger">{{ $message }}*</small>
                                         @enderror

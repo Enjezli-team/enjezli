@@ -25,7 +25,8 @@ class Project extends Model
     ];
     public function sal_offers(){
 
-        return $this->hasMany(Offer::class,'project_id')->where('status','<>','0');
+        return $this->hasMany(Offer::class,'project_id')->where('status','<>','0')
+        ->where('status','<>','4');//canceled
     }
     //users
     public function sal_handel_by(){
