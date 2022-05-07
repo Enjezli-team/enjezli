@@ -54,9 +54,6 @@
                 @endif
                    
 
-                {{-- @if (session('error'))
-                <div class='dan_mesg_po'>{{session('error') }}</div>
-                @endif --> --}}
                 </div>
                 <div class="user-box">
                     <input id="password" type="password" class="form-control " name="new_password" required autocomplete="new-password">
@@ -65,22 +62,14 @@
                     @error('new_password')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
-                    @if ($errors->has('new_password')) <small class="text-danger">{{ $errors->first('new_password') }}</small> @endif 
 
-                    <!-- @error('new_password')
-                    <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> --}}
-                @enderror -->
+                 
                 </div>
                 <div class="user-box">
                     <input type="password" id="password-confirm" type="password" class="form-control" name="new_password_confirmation" required autocomplete="new-password">
                     <label> تاكيد كلمة السر</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
-                    <!-- {{-- @error('new_password')
-                <span style="color:red;font-size:12px"> {{ $message }} </span> 
-              
-               @enderror --}} -->
+                   
                 </div>
 
                 <div class='btn-cont'>

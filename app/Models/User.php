@@ -84,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
     //works
     public function sal_works(){
 
-        return $this->hasMany(UserWork::class,'user_id');
+        return $this->hasMany(UserWork::class,'user_id')->where('is_active',1);
     }
     //attachement
     public function sal_attachments(){

@@ -12,18 +12,7 @@
                 </div>
             </div>
             <h2>تسجيل الدخول</h2>
-            @if (session('status'))
-                <div class="text-success">
-                تم الارسال بنجاح يرجى مراجعة ايميلك
-                  
-                </div>
-                @elseif(session('failed'))
-                <div class="text-success">
-                لم يتم الرسال لرجاء اعادة المحاوله
-                   
-                </div>
-                
-            @endif
+         
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
                
@@ -35,11 +24,9 @@
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
                        
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                                <div class='dan_mesg_po'>{{ $message }}</div>
-                            </span> 
-                            @enderror 
+                        @if ($errors->has('email'))
+                        <small class="text-danger">{{ $errors->first('email') }}</small>
+                         @endif 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
                    
@@ -49,15 +36,24 @@
                     <div class="inputContainer">
 
                         <input type="password" name="password" type="password" class="form-control ">
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                                <div class='dan_mesg_po'>{{ $message }}</div>
-                            </span> 
-                            @enderror 
-
+                    
+                        @if ($errors->has('password'))
+                        <small class="text-danger">{{ $errors->first('password') }}</small>
+                         @endif 
                         <label>كلمة السر </label>
                     </div>
-                   
+                    @if (session('status'))
+                    <div class="text-success">
+                      
+                    </div>
+                    @elseif(session('failed'))
+                    <div class="invalid-feedback" style="color: rgb(247, 84, 84)">
+                        <span class="invalid-feedback" role="alert">
+تاكد من بريدك الالكتروني او كلمة السر                        </span> 
+
+                    </div>
+                    
+                @endif
                 </div>
 
 

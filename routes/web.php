@@ -78,7 +78,11 @@ Route::get('/forgot-password', function () {
 })->name('password.request');
 
 Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
+    $request->validate(['email' => 'required|email|exists:users'], [
+                'email.required' => 'يجب ادخال البريد الالكتروني .',
+                'email.exists' => '  هذا البريد الالكتروني غير موجود .',
+                'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+            ]);
 
     $status = Password::sendResetLink(
         $request->only('email')
@@ -98,9 +102,9 @@ Route::post('/reset-password', function (Request $request) {
         'token' => 'required',
         'email' => 'required|email',
         'password' => 'required|confirmed',
+        'password_confirmation' => 'required',
     ],[
-        'name.required' => 'يجب ادخال الاسم',
-        ' password_confirmation.confirmed' => '   كلمة السر غير مطابقة.',
+           'email.exists:users' => '  البريد الالكتروني غير موجود .',
 
         'password.required' => 'يجب ادخال كلمة السر.',
         'password.confirmed' => 'كلمة السر غير مطابقة .',

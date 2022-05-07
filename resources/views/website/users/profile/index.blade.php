@@ -76,27 +76,31 @@
                 <div class="jobs">
                    
                     @forelse($data->sal_works as $w)
-                   
+                   @if($w->is_active==1)
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name">{{ $w->title }}</h5>
                                 <h6 class="project_date">{{ $w->created_at }}</h6>
                             </div>
                             <div class="operation">
-
-                                <a href="/works/{{ $w->id }}/edit"> <span>
+                           
+                                <a href="/works/{{$w->id }}/edit"> <span>
                                         <ion-icon class="edit" name="create-outline"></ion-icon>
                                     </span></a>
-                                <a href="/works/{{ $w->id }}"> <span>
+                                    <form class="card-body" action="/works/{{$w->id}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                <button style="border: none;  background: none;" type="submit">
+                                     <span>
                                         <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
+                                    </span></button></form>
                                 <a href="/works/{{ $w->id }}"> <span>
                                         <ion-icon class="more" name="ellipsis-vertical-circle-outline">
                                         </ion-icon>
                                     </span></a>
                             </div>
                         </div>
-                       
+                       @endif
                     @empty
                         <div class="flex_between">
                             <div>
@@ -145,9 +149,13 @@
                             <a href="/works/{{ $p->id }}"> <span>
                                     <ion-icon class="delete" name="trash-outline"></ion-icon>
                                 </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
+                                <form class="card-body" action="/works/{{$p->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button style="border: none;  background: none;" type="submit">
+                                        <span>
                                     <ion-icon class="more" name="ellipsis-vertical-circle-outline"></ion-icon>
-                                </span></a>
+                                </span></button></form>
                         </div>
                     </div>
                 @empty
@@ -242,15 +250,17 @@
                         <div class="flex_between">
                             <div>
                                 <h5 class="project_name">{{ $s->sal_skill_u->title}}</h5>
-                                <h6 class="project_date">{{ $s->created_at }}</h6>
+                               
                             </div>
                             <div class="operation">
-
-
-                                <a href="/works/{{ $s->id }}"> <span>
+                                <form class="card-body" action="/profiles/{{$s->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button style="border: none;  background: none;" type="submit">
                                         <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
-
+                                </button></form>
+ 
+                               
                             </div>
                         </div>
                     @empty

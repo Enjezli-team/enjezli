@@ -185,11 +185,11 @@ class ProfileController extends Controller
             'describe.min'=>'يجب ان يكون الوصف اكثر  من 70 حرف', 
             'phone.required'=>' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',           
         ]);
-        if($request->image){
+        if($request->image!=""){
        $imageName = time().'.'.$request->image->extension();  
         $request->image->move(public_path('images'), $imageName);
         }else{
-            $imageName = 'user_avater.png';  
+            $imageName = $request->oldimg; 
         }
         user::where('id',Auth::user()->id)->update(['name'=>$request->name  ,'image'=> $imageName]);
             Profile::where('id',$id)->update([
@@ -197,6 +197,11 @@ class ProfileController extends Controller
                 'country'=>$request->country,'major'=>$request->major,'user_id'=>Auth::user()->id,
                 'Job_title'=>$request->Job_title
                 ,'facebook'=>$request->facebook,'tweeter'=>$request->tweeter,'github'=>$request->github,'description'=>$request->describe]);
+                if($request->has('role')){
+                    Roleuser::where('user_id',Auth::user()->id)->delete();
+                    foreach($request->role as $r){
+                        Auth::user()->attachRole($r);
+                     }  }
                 if($request->has('skills')){
                     userSkill::where('user_id',Auth::user()->id)->delete();
                       foreach($request->skills as $skill){
@@ -205,6 +210,8 @@ class ProfileController extends Controller
                         $userSkill->skill_id=$skill;
                         $userSkill->save();
                       }
+                     
+                     
                  }
             return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');}
     //        $imageName = time().'.'.$request->image->extension();  
@@ -257,12 +264,13 @@ class ProfileController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        userSkill::where('id',$id)->delete();
+        return redirect()->back()->with(['status'=>' تم حذف البيانات ']);
     }
 }

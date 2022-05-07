@@ -48,34 +48,35 @@
                 <input id="token" type="hidden"  name="token" value="{{ $token }}">            
                 <div class="user-box">
                     <input id="email" type="email" class="form-control" name="email" required >
+                    
+                    @if ($errors->has('email'))
+                    <small class="text-danger">{{ $errors->first('email') }}</small>
+                @endif 
                     <label>  ادخل ايميلك</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
                   
-                    @error('email')
-                <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror 
                 </div>
                 <div class="user-box">
                     <input id="password" type="password" class="form-control " name="password" required >
+                    
+                    @if ($errors->has('password'))
+                    <small class="text-danger">{{ $errors->first('password') }}</small>
+                @endif 
                     <label>كلمة السر الجديدة</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
 
-                    @error('password')
-                <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror 
                 </div>
                 <div class="user-box">
                     <input type="password" id="password-confirm" type="password" class="form-control" name="password_confirmation" required >
+                  
+                    @if ($errors->has('password_confirmation'))
+                    <small class="text-danger">{{ $errors->first('password_confirmation') }}</small>
+                @endif 
+
                     <label> تاكيد كلمة السر</label>
                     <!-- هنا ي سلمان تظهر  رسالة الخطا افتح التعليق -->
                    
-                    @error('password_confirmation')
-                <span class="invalid-feedback" role="alert">
-                        <div class='dan_mesg_po'>{{ $message }}</div>
-                    </span> @enderror 
                 </div>
 
                 <div class='btn-cont'>
