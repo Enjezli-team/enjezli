@@ -5,7 +5,55 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_details.css ') }}">
+<style>
+    a{
+      text-decoration: none;  
+    }
+    .note{
+        padding: 5px 8px;
+        /* background-color: #e7f7ee; */
+        font-size: .8rem;
+        /* color:#28b661; */
+        color:var(--dark_blue);
+        /* color:white; */
+        background-color: var(--light_blue);
+        /* background-color:   #ecf1f48f; */
+      
+        /* background-color:#f1f3f5; */
 
+        
+        /* align-self: flex-start; */
+        border-radius: 3px;
+    }
+    .noteSkill{
+        padding: 5px 8px;
+        font-size: .8rem;
+        color:var(--dark_blue);
+        background-color:#ecf1f48f;
+        border-radius: 3px;
+    }
+.status{
+
+
+    padding: 5px 8px;
+        /* background-color: #e7f7ee; */
+        font-size: .8rem;
+        /* color:#28b661; */
+        /* color:var(--dark_blue); */
+      color:#ff9b20;
+      background-color:#fff8ec;
+        /* background-color:#f1f3f5; */
+
+/*         
+        align-self: flex-start; */
+        border-radius: 3px;
+    
+}
+.personal_info_container{
+
+    border-radius:12px;
+}
+</style>
 @extends("website.layouts.master")
 
 @section('content')
@@ -13,7 +61,7 @@
     <div class="container mt-5 details_container">
 
         <div class='title'>
-            <h3>تصميم نظام محاسبي متكامل</h3>
+            <h3>{{$data['title']}}</h3>
         </div>
 
     {{-- <div class="container mt-5"> --}}
@@ -55,7 +103,7 @@
                                     <h4> ملفات توضيحية</h4>
                                         @forelse ($data->sal_project_attach as $attach)
                                             <li>
-                                                    <a href='http://localhost:8000/public/images/{{$attach->file_name}}' style='color:black'>{{$attach->file_name}}</a>
+                                                    <a href='{{$attach->file_name}}' style='color:black'>{{$loop->iteration}}.{{$attach->file_type}}</a>
                                             </li>  
                                         @empty
                                             
@@ -76,8 +124,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
+                                 
                                     @forelse ($data->sal_skills_by as $skill)
-                                        {{ $skill->sal_skill->title }}
+                                        {{-- {{ $skill->sal_skill->title }} --}}
+                                        <span class="note">{{$skill->sal_skill->title}}</span>
                                     @empty
                                         <div> لا توجد مهارات </div>
                                     @endforelse
@@ -209,7 +259,7 @@
                                 data-bs-parent="#accordionExample">
 
                                 @foreach ($data->sal_offers as $offer)
-                                    <div class="accordion-body">
+                                    <div class="accordion-body" id='offer{{$offer->id}}'>
 
                                         <div class="personal_info_container myworks">
                                             <div class="d-flex align-items-center justify-content-between">
@@ -234,7 +284,49 @@
                                                                     <ion-icon name="star" class='gold'></ion-icon>
                                                                     <ion-icon name="star-half-outline"></ion-icon>
                                                                 </div>
-                                                                <span>منذ دقيقة</span>
+                                                                <span>
+                                                                   @php
+                                                                    $currentDate=strtotime(\Carbon\Carbon::now());//'2022-05-5'
+                                                                       $oldDate=strtotime($offer->created_at);
+                                                                       $deference=  $currentDate - $oldDate;
+                                                                    //    echo $deference;
+                                                                        $days=floor($deference/(60*60*24));
+                                                                        $hours=floor($deference/(60*60));
+                                                                        $minutes= floor($deference/(60));
+                                                                        $seconds= floor($deference/(60));
+                                                                        $time='';
+                                                                //         if( ){
+                                                                //         $time=$days. يوم
+                                                                //     }
+                                                                //     elseif( $hours>0){
+                                                                //         $time=$days. ساعة
+                                                                //     }
+                                                                //     elseif( $minutes>0){
+                                                                //         $time= $minutes. دقيقة
+                                                                //     }
+                                                                //     else{
+                                                                //         $time=  $seconds.ثانية
+                                                                //     }
+                                                                   
+                                                                //    echo $time ;
+                                                                     
+                                                                   @endphp
+                                                                    
+                                                                   @if ($days>0)
+                                                                   {{$time}}يوم
+                                                                   @elseif( $hours>0)
+                                                                   منذ  {{$hours }} ساعة
+                                                                
+                                                                   @elseif($minutes>0)
+                                                                   منذ {{$minutes }} دقيقة
+                                                                   @else
+                                                                   منذ {{$seconds}} ثانية
+                                                                   @endif
+                                                                    {{-- {{ time_elapsed_string($offer->created_at,'2013-5-01 00:22:35')}}; --}}
+                                                               
+                                                               </span>
+                                                               
+                                            
                                                             </div>
 
                                                         </header>
@@ -244,53 +336,47 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="select">
-                                                    <select id="standard-select">
-                                                        <option value="">الاحدث</option>
-                                                        <option value="">الاقدم</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                          
-                                        {{-- if the user is the publisher of th e offer and the status of the 
-                                            the offer is in the first status "not accepted by the seeker 
-                                            so that he can edit the offer "--}}
+                                                 {{-- if the user is the publisher of th e offer and the status of the 
+                                                        the offer is in the first status "not accepted by the seeker 
+                                                        so that he can edit the offer " and the project is in the first status "receiving offers"--}}
 
                                             @if (Auth::user()->id==$offer->provider_id && $offer->status==1 && $data->status==1)
                                             <div class="select">
-                                                <a href="{{route('offers.edit',$offer->id)}}" style="color:black"> تعديل</a>
-                                                {{-- <select id="standard-select">
-                                                    
-                                                    <option value="">الاحدث</option>
-                                                    <option value="">الاقدم</option>
-                                                </select> --}}
+                                                <a href="{{route('offers.edit',$offer->id)}}" style="color:black ;text-decoration:none" class="note"> تعديل</a>
+                                              
                                             </div>
                                             {{-- if the user is the publisher of the project let hime 
                                                 accept and reject the accepted once  before the offer last confirmation --}}
 
                                             @elseif(Auth::user()->id==$data['user_id']&& $offer->status==1 && $data->status==1)
+                                            {{-- //&&$data->handled_by==null --}}
                                                 <form action="{{route('acceptOffer')}}" method="post">
                                                     @csrf
-                                                    <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'>
                                                     <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
-                                                    <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
-                                                    <button style="color:black ;border:none;background:transparent" type='submit '> قبول العرض</button>
+                                                    <button style="color:black ;border:none" type='submit ' class="note"> قبول العرض</button>
                                                 </form>
-                                                  {{-- if the user is the publisher of the project let hime 
-                                                accept and reject the accepted once  before the offer last confirmation --}}
+
+                                                  {{-- if the user is the publisher of the project let him
+                                                     accept and reject the accepted once  before the offer last confirmation --}}
                                                 {{-- cancel offer will return the offer to the default status which is 1 --}}
-                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==2 && $data->status==1 )
+                                                {{-- 4 dont accept offers --}}
+
+
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==2 && $data->status==4 )
                                             <form action="{{route('cancelConfirm')}}" method="post">
+                                                
+                                                {{-- $data->status==4  dont accept offers--}}
                                                 @csrf
-                                                <input style="display:none" type="text" name="offer_status" value='{{$offer->status}}'>
+
+                                               
                                                 <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
                                                 <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
-                                                <input style="display:none" type="text" name="project_status" value='{{$data['status']}}'>
-                                                <button  style="color:black ;border:none;background:transparent" type='submit '> الغاء الموافقة </button>
+                                                <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
+                                                <button  style="color:black ;border:none" type='submit 'class="note"> الغاء الموافقة </button>
                                             </form>
                                           
                                             @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
-                                                <a style="color:black" class="status">تم رفضه</a> 
+                                                <a style="color:black;text-decoration:none" class="status ">تم رفضه</a> 
                                             {{-- <a href="" style="color:black"> الغاء  الموافقة</a> --}}
 
                                             {{-- @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
@@ -299,11 +385,27 @@
                                             <a style="color:black" class="status">قيد التنفيذ </a>
 
                                             {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
-                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==5&&$data->status==3||Auth::user()->id==$data->handled_by)
+
+
+
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==3&&$data->status==3 ||Auth::user()->id==$data->handled_by)
+                                            {{-- <a style="color:black" class="status">تم التسليم  </a>  --}}
+                                            <form action="{{route('confirmDelivery')}}" method="post">
+                                                @csrf
+                                                <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
+                                                <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
+                                                <button  style="color:black ;border:none" type='submit ' class="note"> تأكيد الاستلام  </button>
+                                            </form>
+                                            
+                                            @elseif(Auth::user()->id==$data['user_id']&&$offer->status==3&&$data->status==5 ||Auth::user()->id==$data->handled_by)
                                             <a style="color:black" class="status">مغلق </a> 
                                             
                                             @endif
                                             
+                                            </div>
+                                          
+                                     
                                             {{-- @if($data->status==1 && $offer->status== 1 && Auth::user()->id==$offer->provider_id)
 
                                                 <a style="color:black" class="status">بانتظار الموافقة</a> 
@@ -330,15 +432,36 @@
                                                 @elseif($data->status==3 && $offer->status==3)
                                                 <a style="color:black" class="status">تم التسليم  </a> 
                                           @endif --}}
+                                         
+                                          @if(Auth::user()->id==$data['user_id']||Auth::user()->id==$offer->provider_id)
+                                          السعر  <span class="desc">
+                                            {{$offer->price}}
+                                          
+                                         </span> 
+                                          المدة <span class="desc"> {{$offer->duration}}</span>
+                                          <div class="desc"> {{ $offer->description}}</div>
+                                          <ul class="list-unstyled mb-0 list-unstyled job_det attachment_contianer">
+                                            @if (!$offer->sal_offer_attach->isEmpty())
+                                                <h4> ملفات توضيحية</h4>
+                                                    @forelse ($offer->sal_offer_attach as $offer_attach)
+                                                        <li>
+                                                                <a href='{{$offer_attach->file_name}}' style='color:black'>{{$loop->iteration}}.{{$offer_attach->file_type}}</a>
+                                                        </li>  
+                                                    @empty
+                                                        
+                                                    @endforelse
+                                               
+                                
+                                                 
+                                             @endif
+                                             
+                                         </ul>
+                                            @else
+                                            <div class="desc"> {{ Str::substr($offer->description,0, 80)}}...</div>
+                                          @endif
+                                      </div>
                                         </div>
-                                        <div class="desc"> {{$offer->description}}</div>
-                                        @if(Auth::user()->id==$data['user_id'])
-                                        السعر  <span class="desc"> {{$offer->price}}</span> 
-                                        المدة <span class="desc"> {{$offer->duration}}</span>
-
-                
-                                        @endif
-                                    </div>
+                               
                                 @endforeach
 
 
@@ -378,10 +501,20 @@
                         <ul>
                             <li class="d-flex justify-content-between align-items-center  gap-10">
                                 حالة المشروع
-                                @if ($data->status == 1)
-                                    <span>مفتوح</span>
-                                @else
-                                    مغلق
+                               
+                                 @if($data->status ==4)
+                                    لا يتلقى عروض
+                                  
+                                {{-- @elseif($data->status == 2)
+                                    قيد التنفيذ --}}
+                                    
+                                 @elseif($data->status == 5)
+                                  مغلق
+                                  @elseif ($data->status == 1)
+                                
+                                  <span>مفتوح</span>
+                                  @elseif($data->status == 0)
+                                  معلق
                                 @endif
                             </li>
                             {{-- <li class="d-flex justify-content-between align-items-center">
@@ -399,13 +532,15 @@
                                 متوسط العروض <span>{{$offers_avg}}$</span>
                             </li> --}}
                             <li class="d-flex justify-content-between align-items-center">
-                                عدد العروض <span>{{ $offers_count }}</span>
+                                {{-- عدد العروض <span>{{ $offers_count }}</span> --}}
+                                 عدد العروض <span>{{ $data->sal_offers->count() }}</span>
+                                
                             </li>
                         </ul>
                     </div>
                     <div>
 
-
+                        @if ($data->status == 1 || $data->status == 2|| $data->status == 3)
                         <div class="d-grid">
                             <label class="d-flex align-items-baseline gap-2">
                                 <input type="radio" class="option-input radio" name="example"
@@ -423,10 +558,11 @@
                                     name="example"
                                     @if ($data->status == 3) checked
                             @else
+                            {{-- مرحلة المراجعة قبل ما يأكد التسليم من طالب الخدمة --}}
                                  disabled @endif />
                                 مرحلة التسليم </label>
                         </div>
-
+                        @endIf
                     </div>
 
                 </div>

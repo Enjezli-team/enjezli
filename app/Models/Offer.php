@@ -34,6 +34,6 @@ public function sal_project_id(){
 }
  //attachement
  public function sal_offer_attach(){
-    return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',3);
+    return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',2);
 }
 }

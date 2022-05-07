@@ -4,9 +4,6 @@
 @section('content')
     <div class="profile">
 
-
-
-
         <div class="d-flex project_container">
 
             @forelse ($data as $item)
@@ -32,7 +29,7 @@
                                 </div>
 
                                 <div>
-                                    {{ $item['description'] }}
+                                    {{ Str::substr($item->description,0, 80)}}...  
 
 
                                 </div>
@@ -51,34 +48,29 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="" class="">
+
+                                            <li>
+                                                <a href="" class="">
+                                                    <span>:العروض</span>
+                                                    <span> {{$item->sal_offers->count()}}</span>
+                                                </a>
+                                            </li>
+                                            {{-- <a href="" class="">
 
                                                 <span>الحالة </span>
                                                 @if ($item['status'] == 0)
                                                     <span class="text-success text-sm mr-2"> مفتوح </span>
-                                                    {{-- <span class="text-error text-sm mr-2">  بإنتظار الموافقة </span> --}}
+                                                    <span class="text-error text-sm mr-2">  بإنتظار الموافقة </span> 
                                                 @elseif($item['status'] == 2)
                                                     <span class="text-success text-sm mr-2"> مغلق </span>
                                                 @endif
 
 
-                                            </a>
+                                            </a>  --}}
                                         </li>
                                     </ul>
                                 </div>
-                                {{-- <div class="liks_shows">
-
-
-                            <ul>
-                              
-                                {{-- <li>
-                                    <a href="" class="">
-                                        <span>:المقدمين</span>
-                                        <span>10</span>
-                                    </a>
-                                </li> --}}
-                                {{-- </ul>
-                        </div> --}}
+                            
                             </header>
 
                             <div class="hr">

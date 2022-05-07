@@ -21,7 +21,7 @@ class UserWork extends Model
     ];
    //attachement
  public function sal_work_attach(){
-    return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',2);
+    return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',3);
 }
 //user
 public function sal_user(){

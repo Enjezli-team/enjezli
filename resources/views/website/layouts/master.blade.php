@@ -7,7 +7,6 @@
     <title>Enjezle</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
-
 <body>
 
     <div class="hero_section">
@@ -22,10 +21,9 @@
             </div>
             <ul class="nav-links">
                 <li><a href="">بحث عن منجز</a></li>
-                <li><a href="">تصفح المشاريع</a></li>
-                <li><a href="">اضف مشروع</a></li>
-                @auth
-                    
+                <li><a href="{{route('projects.index')}}">تصفح المشاريع</a></li>
+                <li><a href="{{route('projects.create')}}">اضف مشروع</a></li>
+                @auth 
                 <li><a href="{{ route("logout") }}" class="login-button">  تسجيل الخروج</a></button>   
                 @endauth
                 @guest 
