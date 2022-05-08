@@ -1,0 +1,346 @@
+.sidebar header .logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.img_prrofile {
+    height: 94px;
+    width: 94px;
+    overflow: hidden;
+}
+
+.img_prrofile img {
+    height: inherit;
+    width: inherit;
+}
+
+header .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+header .image-text .profession {
+    font-size: 16px;
+    margin-top: -2px;
+    display: block;
+}
+
+.sidebar header .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img {
+    width: 40px;
+    border-radius: 6px;
+}
+
+.home {
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 38px;
+    width: calc(100% - 332px);
+    background-color: transparent;
+    transition: var(--tran-05);
+    background-image: url(../svg/enLogo.svg);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 13rem;
+}
+
+.home .page_title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark_blue);
+    padding: 64px 0px 6px;
+}
+
+.home .page_title .title {
+    height: 42px;
+    background-color: #eff6f7ba;
+    width: 301px;
+    text-align: center;
+}
+
+.sidebar.close~.home {
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 160px);
+}
+
+body.dark .home .text {
+    color: var(--text-color);
+}
+
+.d_position {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/********card container****/
+
+.shadow {
+    border-radius: 0.25rem;
+    box-shadow: 0px 0px 1px #80808061;
+}
+
+.porto_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.porto {
+    max-width: 33rem;
+    background: #ffffff;
+    padding: 22px;
+    position: relative;
+    margin-top: 12px;
+    min-height: 252px;
+    margin-top: 12px;
+}
+
+.img_container {
+    display: grid;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.phone {
+    font-size: 12px;
+    padding-right: 12px;
+    color: #808080ab;
+}
+
+.social {
+    position: absolute;
+    top: 109px;
+    left: -35px;
+    background: white;
+    padding: 12px 2px;
+}
+
+.social ul li {
+    list-style: none;
+    list-style: none;
+    /* background: antiquewhite; */
+    width: 37px;
+    font-size: 28px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.social ul li a .icon {
+    color: #3b3b93;
+}
+
+.social ul li a .bxl-twitter {
+    color: #81d4fa;
+}
+
+.social ul li a .bx:hover {
+    transform: scale(1.2);
+}
+
+.personal_desc .title_desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.personal_desc .title_desc span {
+    max-width: 371px;
+    text-align: center;
+}
+
+.evaluted {
+    text-align: center;
+    padding: 4px;
+}
+
+.desc {
+    padding: 12px 0px;
+    font-size: 14px;
+    color: gray;
+}
+
+.edit {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: var(--beauty);
+    height: 31px;
+    width: 98px;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 0.25rem;
+    cursor: pointer;
+    color: white;
+}
+
+.edit .bx {
+    color: white;
+}
+
+.second_section {
+    width: 27rem;
+    background: #ffffff;
+    padding: 22px;
+    position: relative;
+    margin-top: 12px;
+    min-height: 252px;
+    margin-top: 12px;
+}
+
+.review header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    color: var(--beauty);
+}
+
+.review header a {
+    color: #1c829a;
+    font-weight: 600;
+}
+
+.review .review_body {
+    border-top: 1px solid var(--beauty);
+    margin-top: 23px;
+    padding: 12px;
+    font-size: 14px;
+    position: relative;
+}
+
+.review .review_body .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.review .review_body .row a {
+    color: var(--beauty);
+}
+
+.review .review_body .row .phone {
+    padding: 0px;
+}
+
+.operation_icons {
+    display: flex;
+    max-width: 88px;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.operation_icons a .bx {
+    font-size: 18px;
+    color: var(--beauty);
+}
+
+.operation_icons a .bx:hover {
+    transform: scale(1.5);
+    color: var(--light_blue);
+}
+
+
+/* star rating */
+
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -moz-column-gap: 0.75rem;
+    column-gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+}
+
+.rating__stars {
+    position: relative;
+    display: inline-block;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.rating__stars:before {
+    content: url("data:image/svg+xml,%3Csvg width='116' height='20' viewBox='0 0 116 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.14319 1.42372C9.53185 0.777902 10.4681 0.777901 10.8568 1.42372L13.0731 5.10651C13.2128 5.33853 13.4405 5.504 13.7043 5.56509L17.8918 6.53491C18.6261 6.70498 18.9154 7.59545 18.4213 8.16466L15.6036 11.4106C15.4261 11.6151 15.3391 11.8828 15.3625 12.1526L15.7342 16.4347C15.7994 17.1857 15.0419 17.736 14.3478 17.442L10.3901 15.7653C10.1408 15.6596 9.85924 15.6596 9.60991 15.7653L5.65216 17.442C4.95813 17.736 4.20065 17.1857 4.26582 16.4347L4.63745 12.1526C4.66087 11.8828 4.57387 11.6151 4.39637 11.4106L1.57871 8.16466C1.0846 7.59545 1.37393 6.70498 2.10824 6.53491L6.29567 5.56509C6.55948 5.504 6.78723 5.33853 6.92685 5.10652L9.14319 1.42372Z' fill='%23E3E0E0'/%3E%3Cpath d='M33.1432 1.42372C33.5319 0.777902 34.4681 0.777901 34.8568 1.42372L37.0731 5.10651C37.2128 5.33853 37.4405 5.504 37.7043 5.56509L41.8918 6.53491C42.6261 6.70498 42.9154 7.59545 42.4213 8.16466L39.6036 11.4106C39.4261 11.6151 39.3391 11.8828 39.3625 12.1526L39.7342 16.4347C39.7994 17.1857 39.0419 17.736 38.3478 17.442L34.3901 15.7653C34.1408 15.6596 33.8592 15.6596 33.6099 15.7653L29.6522 17.442C28.9581 17.736 28.2006 17.1857 28.2658 16.4347L28.6375 12.1526C28.6609 11.8828 28.5739 11.6151 28.3964 11.4106L25.5787 8.16466C25.0846 7.59545 25.3739 6.70498 26.1082 6.53491L30.2957 5.56509C30.5595 5.504 30.7872 5.33853 30.9269 5.10652L33.1432 1.42372Z' fill='%23E3E0E0'/%3E%3Cpath d='M57.1432 1.42372C57.5319 0.777902 58.4681 0.777901 58.8568 1.42372L61.0731 5.10651C61.2128 5.33853 61.4405 5.504 61.7043 5.56509L65.8918 6.53491C66.6261 6.70498 66.9154 7.59545 66.4213 8.16466L63.6036 11.4106C63.4261 11.6151 63.3391 11.8828 63.3625 12.1526L63.7342 16.4347C63.7994 17.1857 63.0419 17.736 62.3478 17.442L58.3901 15.7653C58.1408 15.6596 57.8592 15.6596 57.6099 15.7653L53.6522 17.442C52.9581 17.736 52.2006 17.1857 52.2658 16.4347L52.6375 12.1526C52.6609 11.8828 52.5739 11.6151 52.3964 11.4106L49.5787 8.16466C49.0846 7.59545 49.3739 6.70498 50.1082 6.53491L54.2957 5.56509C54.5595 5.504 54.7872 5.33853 54.9269 5.10652L57.1432 1.42372Z' fill='%23E3E0E0'/%3E%3Cpath d='M81.1432 1.42372C81.5319 0.777902 82.4681 0.777901 82.8568 1.42372L85.0731 5.10651C85.2128 5.33853 85.4405 5.504 85.7043 5.56509L89.8918 6.53491C90.6261 6.70498 90.9154 7.59545 90.4213 8.16466L87.6036 11.4106C87.4261 11.6151 87.3391 11.8828 87.3625 12.1526L87.7342 16.4347C87.7994 17.1857 87.0419 17.736 86.3478 17.442L82.3901 15.7653C82.1408 15.6596 81.8592 15.6596 81.6099 15.7653L77.6522 17.442C76.9581 17.736 76.2006 17.1857 76.2658 16.4347L76.6375 12.1526C76.6609 11.8828 76.5739 11.6151 76.3964 11.4106L73.5787 8.16466C73.0846 7.59545 73.3739 6.70498 74.1082 6.53491L78.2957 5.56509C78.5595 5.504 78.7872 5.33853 78.9269 5.10652L81.1432 1.42372Z' fill='%23E3E0E0'/%3E%3Cpath d='M105.143 1.42372C105.532 0.777902 106.468 0.777901 106.857 1.42372L109.073 5.10651C109.213 5.33853 109.441 5.504 109.704 5.56509L113.892 6.53491C114.626 6.70498 114.915 7.59545 114.421 8.16466L111.604 11.4106C111.426 11.6151 111.339 11.8828 111.363 12.1526L111.734 16.4347C111.799 17.1857 111.042 17.736 110.348 17.442L106.39 15.7653C106.141 15.6596 105.859 15.6596 105.61 15.7653L101.652 17.442C100.958 17.736 100.201 17.1857 100.266 16.4347L100.637 12.1526C100.661 11.8828 100.574 11.6151 100.396 11.4106L97.5787 8.16466C97.0846 7.59545 97.3739 6.70498 98.1082 6.53491L102.296 5.56509C102.559 5.504 102.787 5.33853 102.927 5.10652L105.143 1.42372Z' fill='%23E3E1E1'/%3E%3C/svg%3E%0A");
+}
+
+.rating__stars:after {
+    content: url("data:image/svg+xml,%3Csvg width='116' height='20' viewBox='0 0 116 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.14319 1.42372C9.53185 0.777902 10.4681 0.777901 10.8568 1.42372L13.0731 5.10651C13.2128 5.33853 13.4405 5.504 13.7043 5.56509L17.8918 6.53491C18.6261 6.70498 18.9154 7.59545 18.4213 8.16466L15.6036 11.4106C15.4261 11.6151 15.3391 11.8828 15.3625 12.1526L15.7342 16.4347C15.7994 17.1857 15.0419 17.736 14.3478 17.442L10.3901 15.7653C10.1408 15.6596 9.85924 15.6596 9.60991 15.7653L5.65216 17.442C4.95813 17.736 4.20065 17.1857 4.26582 16.4347L4.63745 12.1526C4.66087 11.8828 4.57387 11.6151 4.39637 11.4106L1.57871 8.16466C1.0846 7.59545 1.37393 6.70498 2.10824 6.53491L6.29567 5.56509C6.55948 5.504 6.78723 5.33853 6.92685 5.10652L9.14319 1.42372Z' fill='%23F7C305'/%3E%3Cpath d='M33.1432 1.42372C33.5319 0.777902 34.4681 0.777901 34.8568 1.42372L37.0731 5.10651C37.2128 5.33853 37.4405 5.504 37.7043 5.56509L41.8918 6.53491C42.6261 6.70498 42.9154 7.59545 42.4213 8.16466L39.6036 11.4106C39.4261 11.6151 39.3391 11.8828 39.3625 12.1526L39.7342 16.4347C39.7994 17.1857 39.0419 17.736 38.3478 17.442L34.3901 15.7653C34.1408 15.6596 33.8592 15.6596 33.6099 15.7653L29.6522 17.442C28.9581 17.736 28.2006 17.1857 28.2658 16.4347L28.6375 12.1526C28.6609 11.8828 28.5739 11.6151 28.3964 11.4106L25.5787 8.16466C25.0846 7.59545 25.3739 6.70498 26.1082 6.53491L30.2957 5.56509C30.5595 5.504 30.7872 5.33853 30.9269 5.10652L33.1432 1.42372Z' fill='%23F7C305'/%3E%3Cpath d='M57.1432 1.42372C57.5319 0.777902 58.4681 0.777901 58.8568 1.42372L61.0731 5.10651C61.2128 5.33853 61.4405 5.504 61.7043 5.56509L65.8918 6.53491C66.6261 6.70498 66.9154 7.59545 66.4213 8.16466L63.6036 11.4106C63.4261 11.6151 63.3391 11.8828 63.3625 12.1526L63.7342 16.4347C63.7994 17.1857 63.0419 17.736 62.3478 17.442L58.3901 15.7653C58.1408 15.6596 57.8592 15.6596 57.6099 15.7653L53.6522 17.442C52.9581 17.736 52.2006 17.1857 52.2658 16.4347L52.6375 12.1526C52.6609 11.8828 52.5739 11.6151 52.3964 11.4106L49.5787 8.16466C49.0846 7.59545 49.3739 6.70498 50.1082 6.53491L54.2957 5.56509C54.5595 5.504 54.7872 5.33853 54.9269 5.10652L57.1432 1.42372Z' fill='%23F7C305'/%3E%3Cpath d='M81.1432 1.42372C81.5319 0.777902 82.4681 0.777901 82.8568 1.42372L85.0731 5.10651C85.2128 5.33853 85.4405 5.504 85.7043 5.56509L89.8918 6.53491C90.6261 6.70498 90.9154 7.59545 90.4213 8.16466L87.6036 11.4106C87.4261 11.6151 87.3391 11.8828 87.3625 12.1526L87.7342 16.4347C87.7994 17.1857 87.0419 17.736 86.3478 17.442L82.3901 15.7653C82.1408 15.6596 81.8592 15.6596 81.6099 15.7653L77.6522 17.442C76.9581 17.736 76.2006 17.1857 76.2658 16.4347L76.6375 12.1526C76.6609 11.8828 76.5739 11.6151 76.3964 11.4106L73.5787 8.16466C73.0846 7.59545 73.3739 6.70498 74.1082 6.53491L78.2957 5.56509C78.5595 5.504 78.7872 5.33853 78.9269 5.10652L81.1432 1.42372Z' fill='%23F7C305'/%3E%3Cpath d='M105.143 1.42372C105.532 0.777902 106.468 0.777901 106.857 1.42372L109.073 5.10651C109.213 5.33853 109.441 5.504 109.704 5.56509L113.892 6.53491C114.626 6.70498 114.915 7.59545 114.421 8.16466L111.604 11.4106C111.426 11.6151 111.339 11.8828 111.363 12.1526L111.734 16.4347C111.799 17.1857 111.042 17.736 110.348 17.442L106.39 15.7653C106.141 15.6596 105.859 15.6596 105.61 15.7653L101.652 17.442C100.958 17.736 100.201 17.1857 100.266 16.4347L100.637 12.1526C100.661 11.8828 100.574 11.6151 100.396 11.4106L97.5787 8.16466C97.0846 7.59545 97.3739 6.70498 98.1082 6.53491L102.296 5.56509C102.559 5.504 102.787 5.33853 102.927 5.10652L105.143 1.42372Z' fill='%23F7C305'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% / 5 * var(--rating));
+    overflow: hidden;
+}
+
+.rating__number {
+    display: flex;
+    align-items: center;
+    -moz-column-gap: 0.75rem;
+    column-gap: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn {
+    border: none;
+    font-family: inherit;
+}
+
+.a_none {
+    text-decoration: none;
+}
+
+.my {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.mx {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.my {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.bg-save {
+    background-color: #186D80;
+}
+
+.text-right {
+    text-align: right;
+}
+
+@media (max-width:8000px) {
+    .home {
+        width: calc(100% - 165px);
+    }
+}
+
+
+/**scroll*****/

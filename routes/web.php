@@ -38,7 +38,25 @@ use Illuminate\Support\Str;
 */
 
 /**home page */
-Route::get('/home', [HomeController::class, "index"]);
+Route::get('/home',[HomeController::class,"index"]);
+Route::get('users_dashboard', function () {
+    return view("website.users.user_dashboard.index");
+})->name('user_dashboard');
+Route::get('user_projects', function () {
+    return view("website.users.user_dashboard.myprojects");
+})->name('user_projects');
+Route::get('user_offer', function () {
+    return view("website.users.user_dashboard.myoffers");
+})->name('user_offer');
+Route::get('user_review', function () {
+    return view("website.users.user_dashboard.review");
+})->name('user_review');
+Route::get('user_work', function () {
+    return view("website.users.user_dashboard.user_works");
+})->name('user_work');
+Route::get('work_details', function () {
+    return view("website.users.user_dashboard.work_details");
+})->name('work_details');
 
 /*
 Route::get('/', function () {
@@ -152,7 +170,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::resource('offers',OfferController::class );
     // Route::resource('projects',ProjectController::class );
     Route::resource('works', WorkController::class);
-    Route::get('my_works/{user_id}', [WorkController::class, 'user_works']);
+    Route::get('my_works/{user_id}', [WorkController::class, 'user_works'])->name("my_works");
     Route::resource('projects', ProjectController::class);
     Route::resource('offers', OfferController::class);
     Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');

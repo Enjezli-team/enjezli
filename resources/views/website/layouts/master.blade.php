@@ -7,12 +7,13 @@
     <title>Enjezle</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
+
 <body>
 
     <div class="hero_section">
         <nav>
             <div class="logo">
-                <a href="{{ route("home") }}"> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+                <a href="{{ route('home') }}"> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
             </div>
             <div class="hamburger">
                 <div class="bars1"></div>
@@ -21,21 +22,26 @@
             </div>
             <ul class="nav-links">
                 <li><a href="">بحث عن منجز</a></li>
-                <li><a href="{{route('projects.index')}}">تصفح المشاريع</a></li>
-                <li><a href="{{route('projects.create')}}">اضف مشروع</a></li>
-                @auth 
-                <li><a href="{{ route("logout") }}" class="login-button">  تسجيل الخروج</a></button>   
-                @endauth
-                @guest 
-                <li><a href="{{ route("login") }}">تسجيل دخول</a></li>
-                <li><a href="{{ route("register") }}" class="login-button"> إنشاء حساب</a></button>   
-                @endguest
+                <li><a href="{{ route('projects.index') }}">تصفح المشاريع</a></li>
+                <li><a href="{{ route('projects.create') }}">اضف مشروع</a></li>
+                @auth
+
+                    <li>
+                        <div class=''><a href='{{ route('user_dashboard') }}' class='btn_img'>
+                                <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
+                            </a></div>
+                    @endauth
+                    @guest
+                    <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
+                    <li><a href="{{ route('register') }}" class="login-button"> إنشاء حساب</a></button>
+                    @endguest
                 </li>
             </ul>
+            </ul>
         </nav>
-       
+
     </div>
- <div class="svg-container">
+    <div class="svg-container">
         <div class="svg">
 
             <ion-icon class='social' name="logo-facebook"></ion-icon>
