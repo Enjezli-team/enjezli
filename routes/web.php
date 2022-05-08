@@ -39,9 +39,9 @@ use Illuminate\Support\Str;
 
 /**home page */
 Route::get('/home',[HomeController::class,"index"]);
-Route::get('users_dashboard', function () {
-    return view("website.users.user_dashboard.index");
-})->name('user_dashboard');
+// Route::get('users_dashboard', function () {
+//     return view("website.users.user_dashboard.index");
+// })->name('user_dashboard');
 Route::get('user_projects', function () {
     return view("website.users.user_dashboard.myprojects");
 })->name('user_projects');
@@ -51,13 +51,15 @@ Route::get('user_offer', function () {
 Route::get('user_review', function () {
     return view("website.users.user_dashboard.review");
 })->name('user_review');
-Route::get('user_work', function () {
-    return view("website.users.user_dashboard.user_works");
-})->name('user_work');
-Route::get('work_details', function () {
-    return view("website.users.user_dashboard.work_details");
-})->name('work_details');
-
+// Route::get('user_work', function () {
+//     return view("website.users.user_dashboard.user_works");
+// })->name('user_work');
+// Route::get('work_details', function () {
+//     return view("website.users.user_dashboard.work_details");
+// })->name('work_details');
+ Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
+Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
 Route::get('/', function () {
     return view('welcome');

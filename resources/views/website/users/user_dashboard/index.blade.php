@@ -16,7 +16,7 @@
 
             <div class=' porto shadow'>
                 <div class='edit'>
-                    <a>
+                    <a href="/profiles/{{ $data->id }}/edit">
                         <i class='bx bxs-edit'></i>
                     </a>
 
@@ -24,14 +24,13 @@
 
                 <div class='img_container'>
                     <div class='img_prrofile'>
-                        <img src='{{ asset('img/1.png') }}'>
+                        <img src='{{ asset('images/'.$data->image) }}'>
                     </div>
                     <div class='personal_info_first'>
                         <div class='name'>
-                            ثريا عبدالمجيد
-                        </div>
+                            {{$data->name}}                        </div>
                         <div class='phone'>
-                            <i class='bx bx-mobile'></i> <span> 776427676
+                            <i class='bx bx-mobile'></i> <span>  {{$data->sal_profile->phone }}
                             </span>
                         </div>
                     </div>
@@ -47,9 +46,9 @@
 
                 <div class='social'>
                     <ul>
-                        <li><a><i class='bx bxl-facebook icon'></i></a></li>
-                        <li><a><i class='bx bxl-twitter'></i></a></li>
-                        <li><a><i class='bx bxl-github'></i></a></li>
+                        <li><a href=" {{$data->sal_profile->facebook}}"><i class='bx bxl-facebook icon'></i></a></li>
+                        <li><a href=" {{$data->sal_profile->tweeter }}"><i class='bx bxl-twitter'></i></a></li>
+                        <li><a href=" {{$data->sal_profile->github }}"><i class='bx bxl-github'></i></a></li>
                     </ul>
                 </div>
 
@@ -63,77 +62,7 @@
 
                     </div>
                     <div class='desc'>
-                        مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك. مهندس معماري _مصمم ديكور
-
-                        خبرة 5 سنوات في مجال التصميم والتشطيبات
-
-                        *المهارات التي اقوم العمل عليها
-
-
-
-                        لدي القدرة على فهم افكارك جيداً. يمكنك دائمًا الوثوق بي لإنجاز مشروعك بشكل احترافي.
-
-                        يسعدني تواصلك معي لتنفيذ تصميم مميز وخاص بك.
+                        {{$data->sal_profile->description }}
                     </div>
 
                 </div>
@@ -220,10 +149,12 @@
                         <span><a href='#'>عرض الكل</a></span>
                     </header>
                     <div class='review_body'>
+                        @forelse($data->sal_skills as $s)
                         <div class='row'>
+                           
                             <div>
                                 <i class='bx bxs-graduation'></i>
-                                <span>css
+                                <span>{{ $s->sal_skill_u->title}}
                                 </span>
 
 
@@ -232,52 +163,25 @@
 
 
                             <div class='operation_icons'>
+                                <form class="card-body" action="/profiles/{{$s->id}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
                                 {{-- <a href=''> <i class='bx bx-plus'></i></a>
                                 <a href=''> <i class='bx bx-edit'></i></a> --}}
+                                 <button style="border: none;  background: none;" type="submit">
                                 <a href=''> <i class='bx bx-minus'></i></a>
-
+                            </button></form>
 
                             </div>
                         </div>
-                        <div class='row'>
+                       
+                        @empty
+                        <div class="flex_between">
                             <div>
-                                <i class='bx bxs-graduation'></i>
-                                <span>css
-                                </span>
-
-
-                            </div>
-
-
-
-                            <div class='operation_icons'>
-                                {{-- <a href=''> <i class='bx bx-plus'></i></a>
-                                <a href=''> <i class='bx bx-edit'></i></a> --}}
-                                <a href=''> <i class='bx bx-minus'></i></a>
-
-
+                                <h5 class="project_name"> لا يوجد مهارات جديدة</h5>
                             </div>
                         </div>
-                        <div class='row'>
-                            <div>
-                                <i class='bx bxs-graduation'></i>
-                                <span>css
-                                </span>
-
-
-                            </div>
-
-
-
-                            <div class='operation_icons'>
-                                {{-- <a href=''> <i class='bx bx-plus'></i></a>
-                                <a href=''> <i class='bx bx-edit'></i></a> --}}
-                                <a href=''> <i class='bx bx-minus'></i></a>
-
-
-                            </div>
-                        </div>
-
+                    @endforelse
                     </div>
                 </div>
             </div>
