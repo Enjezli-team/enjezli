@@ -1,283 +1,177 @@
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/header.css') }}">
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/profile_show.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_details.css ')}}">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 ">
+               
 
-<div class="profile">
-    <div class="personal_info_container">
-
-        <div class="profile_img"> <img src="{{ asset('images/'.$data->image) }}" alt=""></div>
-        <div class="padding info_container ">
-            <div class="personal_basic_info">
-                <div class="profile_name">{{ $data->name }}</div>
-                <div class="personal_information">
-                    <div class="profile_phone">{{ $data->sal_profile->phone }}</div>
-                    <ul class="social">
-                        <li>
-                            <a href="{{ $data->sal_profile->facebook }}">
-                                <ion-icon name="logo-facebook"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ $data->sal_profile->tweeter }}">
-                                <ion-icon name="logo-instagram"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ $data->sal_profile->github }}">
-                                <ion-icon name="mail-outline"></ion-icon>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
+               
 
 
-            <div>
+                <div class="accordion mt-3 " id="accordionExample">
+                    <div class="accordion-item">
+                       
+                        @if (!$offers->isEmpty()) 
+                                <h2 class="accordion-header d-flex justify-content-between align-items-center p-3 pt-1 pm-1" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                العروض 
+                            
+                                </button>
+                                <div class="select">
+                                    <select id="standard-select">
+                                        <option value="">الحدث</option>
+                                        <option value="">الاقدم</option>
+                                    </select>
+                                </div>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                             
+                                @foreach ($offers as $offer)
+                                  <div class="accordion-body">
+                               
+                                  {{-- <a href="projects/{{$offer->sal_project_id->id}}/{{$offer->id}}">  --}}
+                                    <a href="projects/{{$offer->sal_project_id->id}}#offer{{$offer->id}}"> 
+                                    <div class="personal_info_container myworks">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-start">
+                                                <div class="img_con">
 
-                <div class="desc" style=" overflow-wrap: break-word;
-                    word-wrap: break-word;
-                     : auto;">{{ $data->sal_profile->description }}</div>
+                                                </div>
+                                                 <div class="container_card">
+                                                    <header class="">
 
-            </div>
+                                                        <div>
+                                                            <h3> {{$offer->sal_project_id->title}}</h3>
+                                                            <span> {{ $offer->sal_project_id->sal_created_by->name}} </span>
+                                                            السعر : <span> {{ $offer->price}} </span>$
+                                                            المدة :  <span> {{ $offer->duration}} </span>أيام
 
-        </div>
+                                                        </div>
+                                                           {{--   <div>
+                                                      <div class="evaluated">
 
-        <div class="edit_pro_container">
-            <button class="show_more " type='submit'> <a href="/profiles/{{ $data->sal_profile->id }}/edit"
-                    class="edit_pro button button-1">تعديل</a></button>
+                                                                <ion-icon name="star" class='gold'></ion-icon>
+                                                                <ion-icon name="star" class='gold'></ion-icon>
+                                                                <ion-icon name="star" class='gold'></ion-icon>
+                                                                <ion-icon name="star" class='gold'></ion-icon>
+                                                                <ion-icon name="star-half-outline"></ion-icon>
+                                                            </div>
+                                                            <span>منذ دقيقة</span>
+                                                        </div>--}}
 
-        </div>
-    </div>
-
-
-
-    <div class="d-grid">
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3> احدث أعمالي </h3>
-
-                <div>
-                    <a href="/works" class="show_more show_more_1 ">
-                        عرض كل الاعمال
-
-                    </a>
+                                                    </header>
 
 
-                </div>
 
-            </header>
-            <div class='p-relative m_21'>
 
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_works->count() }}
-                    </div>
-                </div>
+                                                </div> 
+                                            </div>
+                                            @if($offer->sal_project_id->status==1 && $offer->status==0)
+                                             <a style="color:black" class="status">ملغي</a>
+                                             @elseif($offer->sal_project_id->status==1 && $offer->status==1)
+                                             <a style="color:black" class="status">معلق </a>
+                                             <form action="{{route('cancelOffer')}}" method="post">
+                                                @csrf
+                                                <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء العرض    </button>
+                                            </form> 
+                                            {{-- @elseif($offer->sal_project_id->status==1 && $offer->status==1) --}}
+                                            @elseif($offer->sal_project_id->status==4 && $offer->status==1)
 
-                <div class="jobs">
-                   
-                    @forelse($data->sal_works as $w)
-                   @if($w->is_active==1)
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $w->title }}</h5>
-                                <h6 class="project_date">{{ $w->created_at }}</h6>
-                            </div>
-                            <div class="operation">
+                                                <a style="color:black" class="status">   مقبول</a> 
+                                                <form action="{{route('cancelOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء العرض    </button>
+                                                </form>
+                                            
+                                            @elseif($offer->sal_project_id->status==4 && $offer->status==2)
+                                            <a style="color:black" class="status">تمت موافقتك </a> 
+                                                <form action="{{route('confirmOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="project_id" value='{{$offer->sal_project_id->id}}'>
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   قبول المشروع  </button>
+                                                </form>
+                                                <form action="{{route('cancelOffer')}}" method="post">
+                                                    @csrf
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>    رفض المشروع    </button>
+                                                </form>
+                                                @elseif($offer->sal_project_id->status==2 && $offer->status==3)
+                                                <a style="color:black" class="status">قيد التنفيذ </a> 
+                                                
+                                                 <form action="{{route('finishWork')}}" method="post"> 
+                                                 
+                                                     @csrf
+                                                    <input style="display:none" type="text" name="project_id" value='{{$offer->sal_project_id->id}}'>
+                                                    <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
+
+                                                    <button  style="color:black ;border:none;background:transparent" type='submit '>   تسليم المشروع  </button>
+                                                </form> 
+
+                                                @elseif($offer->sal_project_id->status==3 && $offer->status==3)
+                                          
+                                                {{-- <a style="color:black" class="status">تم التسليم  </a>  --}}
+                                                <a style="color:black" class="status"> قيد التسليم   </a>
+                                                @elseif($offer->sal_project_id->status==5 && $offer->status==3)
+                                                <a style="color:black" class="status"> تم  الاستلام   </a>
+                                                @elseif($offer->sal_project_id->status==1 && $offer->status==4)
+                                                <a style="color:black" class="status">مرفوض</a>
+                                          @endif
+                                        </div>
+                                       <div class="desc"> {{$offer->description}}</div>
+                                       {{--   @if(Auth::user()->id==$data['user_id'])
+                                        السعر  <span class="desc"> {{$offer->price}}</span> 
+                                        المدة <span class="desc"> {{$offer->duration}}</span>
+
+                
+                                        @endif --}}
+                                    </div>
+                                </div>
+                            </a> 
+                                @endforeach
+                                   
+                            
+                                 
+                                </div> 
+                            
+                                {{-- @else
+                                   <div> لا توجد عروض</div>  --}}
+                                @endif
+                            
+                               
+                                
+
                            
-                                <a href="/works/{{$w->id }}/edit"> <span>
-                                        <ion-icon class="edit" name="create-outline"></ion-icon>
-                                    </span></a>
-                                    <form class="card-body" action="/works/{{$w->id}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                <button style="border: none;  background: none;" type="submit">
-                                     <span>
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></button></form>
-                                <a href="/works/{{ $w->id }}"> <span>
-                                        <ion-icon class="more" name="ellipsis-vertical-circle-outline">
-                                        </ion-icon>
-                                    </span></a>
-                            </div>
-                        </div>
-                       @endif
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد عمل جديد</h5>
-                            </div>
-                        </div>
-                    @endforelse
-                  
-                </div>
 
-            </div>
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>احدث مشاريعي</h3>
-
-                <div>
-                    <button class='show_more show_more_1 '><a href="/works">
-                        عرض كل مشاريعي</a>
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative m_21'>
-
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_projects_provider->count() }}</div>
-                </div>
-            </div>
-            <div class="jobs">
-                @forelse($data->sal_projects_provider as $p)
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name">{{ $p->title }}</h5>
-                            <h6 class="project_date">{{ $p->created_at }}</h6>
-                        </div>
-                        <div class="operation">
-
-                            <a href="/works/{{ $p->id }}/edit"> <span>
-                                    <ion-icon class="edit" name="create-outline"></ion-icon>
-                                </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
-                                    <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                </span></a>
-                                <form class="card-body" action="/works/{{$p->id}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button style="border: none;  background: none;" type="submit">
-                                        <span>
-                                    <ion-icon class="more" name="ellipsis-vertical-circle-outline"></ion-icon>
-                                </span></button></form>
-                        </div>
-                    </div>
-                @empty
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name"> لا يوجد مشاريع جديدة</h5>
-                        </div>
-                    </div>
-                @endforelse
-            </div>
-
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>العروض </h3>
-
-                <div>
-                    <button class='show_more show_more_1 '><a href="/offers">
-                        عرض كل مشاريعي</a>
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative m_21'>
-
-                <div class=" hr">
-                    <div class="count_project"> {{ $data->sal_offers->count() }}</div>
-                </div>
-
-                <div class="jobs">
-                    @forelse($data->sal_offers as $o)
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $o->title }}</h5>
-                                <h6 class="project_date">{{ $o->created_at }}</h6>
-                            </div>
-                            <div class="operation">
-
-                                <a href="/offers/{{ $o->id }}/edit"> <span>
-                                        <ion-icon class="edit" name="create-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
-                                        <ion-icon class="more" name="ellipsis-vertical-circle-outline">
-                                        </ion-icon>
-                                    </span></a>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد عروض جديدة</h5>
-                            </div>
-                        </div>
-                    @endforelse
-                </div>
-
-            </div>
-
-
-
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>مهارتي </h3>
-
-                <div>
-                    <button class="show_more show_more_1 ">
-                        عرض مهارتي
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative  m_21'>
-
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_skills->count() }}</div>
-                </div>
-
-                <div class="jobs">
-                    @forelse($data->sal_skills as $s)
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $s->sal_skill_u->title}}</h5>
                                
-                            </div>
-                            <div class="operation">
-                                <form class="card-body" action="/profiles/{{$s->id}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button style="border: none;  background: none;" type="submit">
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                </button></form>
- 
-                               
-                            </div>
-                        </div>
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد مهارات جديدة</h5>
-                            </div>
-                        </div>
-                    @endforelse
+                          
+                    </div>
+
                 </div>
 
+
+
+
+
+
+
+
             </div>
+            <!-- Side -->
+     
+
         </div>
-    </div>
-</div>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

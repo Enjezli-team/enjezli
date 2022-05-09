@@ -100,4 +100,8 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
 
         return $this->hasMany(Notification::class,'sender_id');
     }
+    public function getImageAttribute($value){
+
+        return url('images/').'/'.$value;
+    }
 }
