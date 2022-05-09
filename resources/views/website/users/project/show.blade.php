@@ -68,7 +68,7 @@
         <div class="row">
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->
-                <div class="card-header">  {{Auth::user()->name}}</div>
+                {{-- <div class="card-header">  {{Auth::user()->name}}</div> --}}
                 <div class="card-header"> 
                      {{-- {{Auth::user()->Role}} --}}
                     {{-- @forelse (Auth::user()->Role as $role)

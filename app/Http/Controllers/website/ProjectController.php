@@ -155,7 +155,22 @@ public function show($id)//'sal_created_by',
      
       
         if( $data!=null){
+
+
               $canMakeOffer=0;
+              if(!Auth()->check()){
+                $data=Project::with(['sal_created_by','sal_project_attach',
+                'sal_skills_by.sal_skill',
+                'sal_offers.sal_provider_by.sal_profile','sal_offers.sal_offer_attach'])->where('id',$id)->where('status','<>',0)->first();
+                if($data!=null){
+                  return view('website.users.project.show',compact('data','canMakeOffer'));
+  
+                }
+                else{
+                  return response(['error' => true, 'error-msg' => 'Not found'], 404);
+                }
+              }
+              else{
               $has_offer=Offer::where('project_id',$id)
                           ->where('provider_id',Auth::user()->id)->exists();
             
@@ -175,7 +190,8 @@ public function show($id)//'sal_created_by',
               else{
                 return response(['error' => true, 'error-msg' => 'Not found'], 404);
               }
-              }   
+              } 
+            }
               else{
                 return response(['error' => true, 'error-msg' => 'Not found'], 404);
               }
