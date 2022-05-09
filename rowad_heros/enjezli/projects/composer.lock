@@ -2666,6 +2666,7 @@
         },
         {
             "name": "psy/psysh",
+<<<<<<< Updated upstream:rowad_heros/enjezli/projects/composer.lock
             "version": "v0.11.2",
             "source": {
                 "type": "git",
@@ -2676,6 +2677,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/7f7da640d68b9c9fec819caae7c744a213df6514",
                 "reference": "7f7da640d68b9c9fec819caae7c744a213df6514",
+=======
+            "version": "v0.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/psysh.git",
+                "reference": "05c544b339b112226ad14803e1e5b09a61957454"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/05c544b339b112226ad14803e1e5b09a61957454",
+                "reference": "05c544b339b112226ad14803e1e5b09a61957454",
+>>>>>>> Stashed changes:composer.lock
                 "shasum": ""
             },
             "require": {
@@ -2738,9 +2751,15 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
+<<<<<<< Updated upstream:rowad_heros/enjezli/projects/composer.lock
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.2"
             },
             "time": "2022-02-28T15:28:54+00:00"
+=======
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.4"
+            },
+            "time": "2022-05-06T12:49:14+00:00"
+>>>>>>> Stashed changes:composer.lock
         },
         {
             "name": "ralouphie/getallheaders",

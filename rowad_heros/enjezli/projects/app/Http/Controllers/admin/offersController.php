@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
 class offersController extends Controller
@@ -15,6 +16,9 @@ class offersController extends Controller
     public function index()
     {
         //
+        
+        $offers = Offer::all();
+        return view('Admin.offers.offers', compact('offers','offers'));
     }
 
     /**
@@ -41,10 +45,10 @@ class offersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Offer $offers)
     {
         //
     }
@@ -52,10 +56,10 @@ class offersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Offer $offers)
     {
         //
     }
@@ -64,10 +68,10 @@ class offersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Offer $offers)
     {
         //
     }
@@ -75,10 +79,10 @@ class offersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\offers  $offers
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Offer $offers)
     {
         //
     }
