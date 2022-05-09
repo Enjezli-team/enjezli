@@ -1,0 +1,88 @@
+[2022-05-09 19:53:37] local.ERROR: filemtime(): stat failed for E:\enjezli\enjezli\rowad_heros\enjezli\projects\.env {"exception":"[object] (ErrorException(code: 0): filemtime(): stat failed for E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\.env at E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php:66)
+[stacktrace]
+#0 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'filemtime(): st...', 'E:\\\\enjezli\\\\enje...', 66)
+#1 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ServeCommand.php(66): filemtime('E:\\\\enjezli\\\\enje...')
+#2 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ServeCommand->handle()
+#3 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#5 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#6 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(653): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#7 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(136): Illuminate\\Container\\Container->call(Array)
+#8 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\symfony\\console\\Command\\Command.php(298): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#9 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(121): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#10 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\symfony\\console\\Application.php(1015): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\symfony\\console\\Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ServeCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#12 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(94): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#15 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 {main}
+"} 
+[2022-05-09 19:53:37] local.ERROR: include(E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer/../filp/whoops/src/Whoops/Handler/Handler.php): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): include(E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer/../filp/whoops/src/Whoops/Handler/Handler.php): Failed to open stream: No such file or directory at E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php:571)
+[stacktrace]
+#0 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'include(E:\\\\enje...', 'E:\\\\enjezli\\\\enje...', 571)
+#1 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): include()
+#2 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('E:\\\\enjezli\\\\enje...')
+#3 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Handler.php(17): Composer\\Autoload\\ClassLoader->loadClass('Whoops\\\\Handler\\\\...')
+#4 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): include('E:\\\\enjezli\\\\enje...')
+#5 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('E:\\\\enjezli\\\\enje...')
+#6 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\CollisionServiceProvider.php(58): Composer\\Autoload\\ClassLoader->loadClass('NunoMaduro\\\\Coll...')
+#7 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(873): NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider->NunoMaduro\\Collision\\Adapters\\Laravel\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#8 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build(Object(Closure))
+#9 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(851): Illuminate\\Container\\Container->resolve('NunoMaduro\\\\Coll...', Array, true)
+#10 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('NunoMaduro\\\\Coll...', Array)
+#11 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(836): Illuminate\\Container\\Container->make('NunoMaduro\\\\Coll...', Array)
+#12 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php(65): Illuminate\\Foundation\\Application->make('NunoMaduro\\\\Coll...')
+#13 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(378): NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler->renderForConsole(Object(Symfony\\Component\\Console\\Output\\ConsoleOutput), Object(ErrorException))
+#14 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(133): Illuminate\\Foundation\\Console\\Kernel->renderException(Object(Symfony\\Component\\Console\\Output\\ConsoleOutput), Object(ErrorException))
+#15 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#16 {main}
+"} 
+[2022-05-09 19:53:37] local.ERROR: Uncaught ErrorException: include(E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer/../filp/whoops/src/Whoops/Handler/Handler.php): Failed to open stream: No such file or directory in E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php:571
+Stack trace:
+#0 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php(571): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(E:\\enje...', 'E:\\enjezli\\enje...', 571)
+#1 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php(571): include()
+#2 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('E:\\enjezli\\enje...')
+#3 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\nunomaduro\collision\src\Handler.php(17): Composer\Autoload\ClassLoader->loadClass('Whoops\\Handler\\...')
+#4 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php(571): include('E:\\enjezli\\enje...')
+#5 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('E:\\enjezli\\enje...')
+#6 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\nunomaduro\collision\src\Adapters\Laravel\CollisionServiceProvider.php(58): Composer\Autoload\ClassLoader->loadClass('NunoMaduro\\Coll...')
+#7 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Container\Container.php(873): NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider->NunoMaduro\Collision\Adapters\Laravel\{closure}(Object(Illuminate\Foundation\Application), Array)
+#8 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Container\Container.php(758): Illuminate\Container\Container->build(Object(Closure))
+#9 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(851): Illuminate\Container\Container->resolve('NunoMaduro\\Coll...', Array, true)
+#10 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Container\Container.php(694): Illuminate\Foundation\Application->resolve('NunoMaduro\\Coll...', Array)
+#11 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(836): Illuminate\Container\Container->make('NunoMaduro\\Coll...', Array)
+#12 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\nunomaduro\collision\src\Adapters\Laravel\ExceptionHandler.php(65): Illuminate\Foundation\Application->make('NunoMaduro\\Coll...')
+#13 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(185): NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler->renderForConsole(Object(Symfony\Component\Console\Output\ConsoleOutput), Object(ErrorException))
+#14 E:\enjezli\enjezli\rowad_heros\enjezli\projects\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(171): Illuminate\Foundation\Bootstrap\HandleExceptions->renderForConsole(Object(ErrorException))
+#15 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(ErrorException))
+#16 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: include(E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer/../filp/whoops/src/Whoops/Handler/Handler.php): Failed to open stream: No such file or directory in E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php:571
+Stack trace:
+#0 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'include(E:\\\\enje...', 'E:\\\\enjezli\\\\enje...', 571)
+#1 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): include()
+#2 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('E:\\\\enjezli\\\\enje...')
+#3 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Handler.php(17): Composer\\Autoload\\ClassLoader->loadClass('Whoops\\\\Handler\\\\...')
+#4 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(571): include('E:\\\\enjezli\\\\enje...')
+#5 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('E:\\\\enjezli\\\\enje...')
+#6 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\CollisionServiceProvider.php(58): Composer\\Autoload\\ClassLoader->loadClass('NunoMaduro\\\\Coll...')
+#7 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(873): NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider->NunoMaduro\\Collision\\Adapters\\Laravel\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#8 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(758): Illuminate\\Container\\Container->build(Object(Closure))
+#9 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(851): Illuminate\\Container\\Container->resolve('NunoMaduro\\\\Coll...', Array, true)
+#10 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Foundation\\Application->resolve('NunoMaduro\\\\Coll...', Array)
+#11 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(836): Illuminate\\Container\\Container->make('NunoMaduro\\\\Coll...', Array)
+#12 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\
+unomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php(65): Illuminate\\Foundation\\Application->make('NunoMaduro\\\\Coll...')
+#13 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(185): NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler->renderForConsole(Object(Symfony\\Component\\Console\\Output\\ConsoleOutput), Object(ErrorException))
+#14 E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(171): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->renderForConsole(Object(ErrorException))
+#15 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(ErrorException))
+#16 {main}
+  thrown at E:\\enjezli\\enjezli\owad_heros\\enjezli\\projects\\vendor\\composer\\ClassLoader.php:571)
+[stacktrace]
+#0 {main}
+"} 
