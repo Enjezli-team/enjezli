@@ -117,7 +117,7 @@ class ProfileController extends Controller
         }
        
 
-        return redirect()->route('profiles.show',Auth::user()->id)->with('success', '  تم حفظ البياتات بنجاج');
+        return redirect()->route('profiles')->with('success', '  تم حفظ البياتات بنجاج');
     }
 
     /**
@@ -147,8 +147,8 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        $profile=Profile::find($id);
-        // $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+       $profile=Profile::find($id);
+      // $profile = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
         // return response($profile);
        
         // $skills=Skill::All();
@@ -220,7 +220,7 @@ class ProfileController extends Controller
                      
                      
                  }
-            return redirect('profiles/')->with('completed', 'تم تعديل البياتات بنجاج');}
+            return redirect('profiles')->with('completed', 'تم تعديل البياتات بنجاج');}
     //        $imageName = time().'.'.$request->image->extension();  
     //         $request->image->move(public_path('images'), $imageName);
     //         }else{

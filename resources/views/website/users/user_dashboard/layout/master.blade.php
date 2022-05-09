@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-link">
                     <a class="{{ Route::currentRouteName() === '/user_dashboard' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
-                        href="{{ route('user_dashboard') }}">
+                        href="/profiles">
                         <i class='bx bx-user icon'></i>
 
                         <span class="text nav-text">ملفي الشخصي</span>

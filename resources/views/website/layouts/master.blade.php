@@ -28,7 +28,7 @@
 
                     <li>
                         <div class=''><a href='{{ route('user_dashboard') }}' class='btn_img'>
-                                <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
+                                <div class='img_profile'><img src='{{ asset('images/'.Auth::user()->image) }}'></div>
                             </a></div>
                     @endauth
                     @guest

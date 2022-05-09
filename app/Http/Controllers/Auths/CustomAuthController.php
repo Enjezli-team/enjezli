@@ -148,7 +148,7 @@ class CustomAuthController extends Controller
                 if($profile==''){
             return redirect()->intended('/profiles/create')->withSuccess('Signed in');
                 }else{
-                    return redirect()->intended('profiles/'.Auth::user()->id)->withSuccess('Signed in');
+                    return redirect()->intended('profiles')->withSuccess('Signed in');
                 }
 
             }if(Auth::user()->type==1){
