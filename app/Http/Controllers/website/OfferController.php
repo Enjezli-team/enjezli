@@ -193,7 +193,7 @@ class OfferController extends Controller
                 return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
             } 
             else{
-                return redirect()->back()->with(['success'=>'فشلت العملية']);
+                return redirect()->back()->with(['error'=>'فشلت العملية']);
             }
 
             }
@@ -225,11 +225,12 @@ class OfferController extends Controller
        //project is in excution
         if($data->save()&& $data->sal_project_id->save()){
             // return response($data);
-            // return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
+            return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
         } 
         else{
-            return redirect()->back()->with(['success'=>'فشلت العملية']);
+            return redirect()->back()->with(['error'=>'فشلت العملية']);
         }
+
        }
     //    return response($data->sal_project_id->status);
         //check if the user is the provider in the offer
@@ -264,7 +265,7 @@ class OfferController extends Controller
                 // return response($data);
             } 
             else{
-                return redirect()->back()->with(['success'=>'فشلت العملية']);
+                return redirect()->back()->with(['error'=>'فشلت العملية']);
             }
           
            
@@ -337,7 +338,7 @@ class OfferController extends Controller
             return redirect()->back()->with(['success'=>'تم العملية بنجاح']);
         } 
         else{
-            return redirect()->back()->with(['success'=>'فشلت العملية']);
+            return redirect()->back()->with(['error'=>'فشلت العملية']);
         }
        }
       
@@ -396,9 +397,13 @@ class OfferController extends Controller
                             $Attachments->save();
                             
                         }
-                        return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
-                        return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
+                     
+                       
                     }
+                    return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
+            }
+            else{
+                return redirect()->back()->with(['error'=>'لم يتم تعديل البيانات ']);
             }
           }
     }
