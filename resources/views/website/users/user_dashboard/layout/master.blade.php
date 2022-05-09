@@ -67,14 +67,14 @@
                 
                 <li class="nav-link">
                     <a class="{{ Route::currentRouteName() === '/user_projects' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
-                        href="{{ route('user_projects') }}">
+                        href="{{ route('My_projects') }}">
                         <i class='bx bx-briefcase icon'></i>
                         <span class="text nav-text">مشاريعي</span>
                     </a>
                 </li>
                 <li class="nav-link">
                     <a class="{{ Route::currentRouteName() === '/user_offer' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
-                        href="{{ route('user_offer') }}">
+                        href="{{ route('offers.index') }}">
                         <i class='bx bx-purchase-tag-alt icon'></i>
                         <span class="text nav-text">عروضي</span>
                     </a>

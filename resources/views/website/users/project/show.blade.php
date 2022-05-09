@@ -313,7 +313,7 @@
                                                                    @endphp
                                                                     
                                                                    @if ($days>0)
-                                                                   {{$time}}يوم
+                                                                   {{$days}}يوم
                                                                    @elseif( $hours>0)
                                                                    منذ  {{$hours }} ساعة
                                                                 
@@ -572,7 +572,10 @@
 
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
-                            {{-- <img src="{{$data->sal_created_by->image}}" alt=""> --}}
+                            <img src="
+                            @if($data->sal_created_by->image!=null)
+                            {{$data->sal_created_by->image}}
+                            @endif" alt="">
                         </div>
                         <div class="container_card">
                             <header class="">
