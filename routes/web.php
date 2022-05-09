@@ -136,7 +136,7 @@ Route::post('/reset-password', function (Request $request) {
     ]);
 
 
-    $status = Password::reset(
+ $status = Password::reset(
         $request->only('email', 'password','password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
@@ -168,14 +168,32 @@ Route::prefix('seeker')->group(function () {
 
 
 Route::group(['middleware' => ['auth']], function () {
+
     Route::resource('profiles', ProfileController::class);
-    // Route::resource('offers',OfferController::class );
-    // Route::resource('projects',ProjectController::class );
     Route::resource('works', WorkController::class);
     Route::get('my_works/{user_id}', [WorkController::class, 'user_works'])->name("my_works");
-    Route::resource('projects', ProjectController::class);
-    Route::resource('offers', OfferController::class);
-    Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+   
+  
+
+
+    Route::group(['middleware'=>'role:seeker'],function(){
+        Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
+        Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+
+    });
+    
+    Route::group(['middleware'=>'role:provider'],function(){
+        Route::resource('offers', OfferController::class);
+    });
+
+
+Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+Route::post('/offer/cancel_confirm',[OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
+Route::post( '/offer/cancel',[OfferController::class, 'cancelOffer'])->name('cancelOffer');
+Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
+Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+
 });
 
 Route::resource('projects', ProjectController::class);
@@ -192,31 +210,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('index', [IndexController::class, 'index'])->name('index');
 });
 
-// Route::resource('projects',ProjectController::class );
-Route::resource('offers', OfferController::class);
+
+
 
 Route::get(
     '/change_status/{project_id}/{status}',
     [ProjectController::class, 'changeStatus']
 )->name('change_status');
-
-Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
-
-Route::post(
-    '/offer/cancel_confirm',
-    [OfferController::class, 'cancelConfirm']
-)->name('cancelConfirm');
-
-Route::post(
-    '/offer/cancel',
-    [OfferController::class, 'cancelOffer']
-)->name('cancelOffer');
-
-
-Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
-Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
-Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
-Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
 
 
 
