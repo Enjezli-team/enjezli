@@ -6,8 +6,7 @@
     <section class="home">
         <div class="page_title">
             <div class='title shadow'>
-                اسم المشروع
-
+                {{ $data->title}} 
 
             </div>
         </div>
@@ -15,34 +14,32 @@
 
             <div class=' porto shadow'>
                 <div class='edit'>
-                    <a>
+                    <a href="/works/{{ $data->id}}/edit">
                         <i class='bx bxs-edit'></i>
                     </a>
 
                 </div>
-
+              
                 <div class='img_container'>
+                    @forelse($data->sal_work_attach as $o)
                     <div class='img_prrofile2'>
-                        <img src='{{ asset('images/1651676239.png') }}'>
+                        <img src='{{$o->file_name}}'>
                     </div>
-                  
-                </div>
-             
-                 <div class='img_container'>
-                    <div class='img_prrofile2'>
-                        <img src='{{ asset('images/1651676239.png') }}'>
+                    @empty
+                    <div class="flex_between">
+                        <div>
+                            <h5 class="project_name"> لا يوجد  ملفات</h5>
+                        </div>
                     </div>
-                  
+                @endforelse
                 </div>
-                        <div class='img_container'>
-                    <div class='img_prrofile2'>
-                        <img src='{{ asset('images/1651676239.png') }}'>
-                    </div>
-                  
-                </div>
+            </div>
+           
+                
+               
 
             
-            </div>
+            
 
 
             <div class=''>
@@ -66,8 +63,7 @@
 
                             </div>
                             <div>
-                                ثريا عبدالمجيد
-                            </div>
+                                {{ $data->sal_user->name}}                             </div>
                         </div>
                         <div class='row'>
                             <div>
@@ -78,7 +74,7 @@
 
                             </div>
                             <div>
-                                <span href=''> 2022/2/2 22:2pm</span>
+                                <span href=''> {{ $data->created_at}} </span>
                             </div>
                         </div>
                         <div class='row'>
@@ -90,79 +86,20 @@
 
                             </div>
                             <div>
-                                <span href=''> 2022/2/2 22:2pm</span>
+                                <span href=''> {{ $data->created_at}} </span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class='review shadow second_section'>
                     <header>
-                        <span>المهارات المستخدمة</span>
+                        <span>عن العمل </span>
 
                     </header>
                     <div class='review_body'>
 
                         <div class='row'>
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
-                         ااااااااااا
+                            {{$data->description}}
                     </div>
                 </div>
                 </div>
@@ -173,18 +110,18 @@
                  الرابط
                  </span>
                  <span>
-                 https:gchghsx/ssxh
+                   
                  </span>
 
                 </div>
                     <header>
-                        <span>الوصف</span>
+                        <span></span>
 
                     </header>
                     <div class='review_body'>
 
                         <div class='row'>
-                      
+                            {{$data->link}}
                         </div>
                    
                     </div>

@@ -29,7 +29,7 @@ class ProfileController extends Controller
          $profile = user::with(['sal_works','sal_skills.sal_skill_u','sal_profile'])->find(Auth::user()->id);
         
         // return response($profile);
-      return view('website.users.profile.index')->with('data' , $profile);
+      return view('website.users.user_dashboard.index')->with('data' , $profile);
         //  return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->with('data' , $profile)->get()]);
         //
     }
@@ -128,8 +128,15 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return view('website.users.profile.index',['data'=>user::find($id)]);
+        $profile = user::with(['sal_works','sal_skills.sal_skill_u','sal_profile'])->find($id);
+        
+        // return response($profile);
+      return view('website.users.user_dashboard.show_profile')->with('data' , $profile);
+        //  return view('website.users.profile.index',['skills'=>Skill::all(),'roles'=>Role::where('name','<>','admin')->with('data' , $profile)->get()]);
+        //
     }
+      //  return view('website.users.profile.index',['data'=>user::find($id)]);
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -213,7 +220,7 @@ class ProfileController extends Controller
                      
                      
                  }
-            return redirect('profiles/'.Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');}
+            return redirect('profiles/')->with('completed', 'تم تعديل البياتات بنجاج');}
     //        $imageName = time().'.'.$request->image->extension();  
     //         $request->image->move(public_path('images'), $imageName);
     //         }else{

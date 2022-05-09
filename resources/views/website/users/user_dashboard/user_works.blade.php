@@ -11,13 +11,13 @@
                 <span class='p_relative'>
                     اعمالي
                     <span class='myproject_count'>
-                        9
+                        {{ $data->count() }}
 
                     </span>
 
                 </span>
                 <div class='add edit'>
-                    <a href=''>
+                    <a href='/works/create'>
                         <i class='bx bx-plus'></i>
                     </a>
 
@@ -29,17 +29,24 @@
 
         <div class='porto_container'>
 
-
+            @forelse ($data as $item)
         
-       <div class=' porto shadow'>
+      
+          <div class=' porto shadow'>
                 <div class='edit'>
-                    <a>
+                    <a href="/works/{{ $item->id }}/edit">
                         <i class='bx bxs-edit'></i>
 
                     </a>
-                    <a href=''>
-                        <i class='bx bx-minus'></i>
-                    </a>
+                     <form class="card-body" action="/works/{{$item->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                                     <button type="submit"  style="border: none;  background: none;"  class="show_more"> <a href=''><i class='bx bx-minus'></i>
+                         </a>
+                    </button></form>
+
+                       
+                  
 
 
                 </div>
@@ -61,126 +68,21 @@
                 <div class='title_desc'>
                     <h5><i class='bx bxs-quote-right'></i></h5>
 
-                  <a href=''>  <span>المسمى الوضيفي</span></a>
+                  <a href='/work_details/{{ $item->id}}'>  <span>{{ $item->title}} </span></a>
                     <h5><i class='bx bxs-quote-left'></i></h5>
 
                 </div>
 
 
             </div>
-        </div>  <div class=' porto shadow'>
-                <div class='edit'>
-                    <a>
-                        <i class='bx bxs-edit'></i>
-
-                    </a>
-                    <a href=''>
-                        <i class='bx bx-minus'></i>
-                    </a>
-
-
-                </div>
-
-
-                <div class='img_project'>
-                    <img src='{{ asset('images/1651526505.png') }}'>
-                </div>
-
-
-          
-
-
-
-
-
-            <div class='personal_desc'>
-
-                <div class='title_desc'>
-                    <h5><i class='bx bxs-quote-right'></i></h5>
-
-                  <a href=''>  <span>المسمى الوضيفي</span></a>
-                    <h5><i class='bx bxs-quote-left'></i></h5>
-
-                </div>
-
-
-            </div>
-        </div>  <div class=' porto shadow'>
-                <div class='edit'>
-                    <a>
-                        <i class='bx bxs-edit'></i>
-
-                    </a>
-                    <a href=''>
-                        <i class='bx bx-minus'></i>
-                    </a>
-
-
-                </div>
-
-
-                <div class='img_project'>
-                    <img src='{{ asset('images/1651526505.png') }}'>
-                </div>
-
-
-          
-
-
-
-
-
-            <div class='personal_desc'>
-
-                <div class='title_desc'>
-                    <h5><i class='bx bxs-quote-right'></i></h5>
-
-                  <a href=''>  <span>المسمى الوضيفي</span></a>
-                    <h5><i class='bx bxs-quote-left'></i></h5>
-
-                </div>
-
-
+        </div>  
+        @empty
+        <div class="flex_between">
+            <div>
+                <h5 class="project_name"> لا يوجد عمل جديد</h5>
             </div>
         </div>
-         <div class=' porto shadow'>
-                <div class='edit'>
-                    <a>
-                        <i class='bx bxs-edit'></i>
-
-                    </a>
-                    <a href=''>
-                        <i class='bx bx-minus'></i>
-                    </a>
-
-
-                </div>
-
-
-                <div class='img_project'>
-                    <img src='{{ asset('images/1651526505.png') }}'>
-                </div>
-
-
-          
-
-
-
-
-
-            <div class='personal_desc'>
-
-                <div class='title_desc'>
-                    <h5><i class='bx bxs-quote-right'></i></h5>
-
-                  <a href=''>  <span>المسمى الوضيفي</span></a>
-                    <h5><i class='bx bxs-quote-left'></i></h5>
-
-                </div>
-
-
-            </div>
-        </div>
+@endforelse
 
   </div>
 

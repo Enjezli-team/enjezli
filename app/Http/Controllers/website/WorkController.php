@@ -25,7 +25,7 @@ class WorkController extends Controller
         $works = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
         // return response($data);
        
-         return view('website.users.works.index')->with('data' , $data);
+         return view('website.users.user_dashboard.user_works')->with('data' , $data);
     }
 
     /**
@@ -97,7 +97,7 @@ class WorkController extends Controller
 
                     
                 }
-                return redirect('works')->with(['success'=>' تم اضافة البيانات ']);
+                return redirect('user_work')->with(['success'=>' تم اضافة البيانات ']);
                
             }
              };
@@ -117,7 +117,11 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        //
+        $data=UserWork::with(['sal_user','sal_work_attach'])->where('user_id',Auth::user()->id)->where('is_active',1)->where('id',$id)->first();;
+        $works = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+        // return response($data);
+       
+         return view('website.users.user_dashboard.work_details')->with('data', $data);
     }
 
     /**
@@ -194,7 +198,7 @@ class WorkController extends Controller
         
            }
 
-    return redirect('works')->with(['success'=>'تم تعديل البيانات بنجاح']);
+    return redirect('user_work')->with(['success'=>'تم تعديل البيانات بنجاح']);
 //    }
 
     };
