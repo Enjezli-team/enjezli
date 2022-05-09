@@ -153,11 +153,6 @@ Route::resource('projects',ProjectController::class );
 |--------------------------------------------------------------------------
 |
 */
-<<<<<<< Updated upstream:rowad_heros/enjezli/projects/routes/web.php
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','role:admin'] ], function () {
-     Route::resource('users',UserController::class);
-    Route::resource('setting',offersController::class );
-=======
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
     // Route::resource('users', UserController::class);
     // Route::resource('setting', offersController::class);
@@ -200,7 +195,6 @@ Route::get('/admin/projects_report', [projectController::class, 'report'])->name
 
 
 
->>>>>>> Stashed changes:routes/web.php
 });
 
 // Route::resource('projects',ProjectController::class );
