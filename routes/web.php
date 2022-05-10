@@ -4,18 +4,12 @@ use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
 //admin
-use App\Http\Controllers\admin\offersController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\SkillController;
 
-use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\admin\SectionController;
-use App\Http\Controllers\admin\ProjectsController;
 
-// use App\Http\Controllers\admin\SeekerController;
-// use App\Http\Controllers\admin\UserController;
-// use App\Http\Controllers\admin\ProjectsController;
-// use App\Http\Controllers\admin\ProviderController;
-// use App\Http\Controllers\admin\SkillController;
-// use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\HomeController;
 
 
 //website
@@ -32,7 +26,6 @@ use Illuminate\Support\Str;
 
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +38,7 @@ use Illuminate\Support\Str;
 */
 
 /**home page */
-Route::get('/home',[HomeController::class,"index"]);
+Route::get('/home', [HomeController::class, "index"]);
 // Route::get('users_dashboard', function () {
 //     return view("website.users.user_dashboard.index");
 // })->name('user_dashboard');
@@ -64,7 +57,7 @@ Route::get('user_review', function () {
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
- Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
@@ -106,10 +99,10 @@ Route::get('/forgot-password', function () {
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email|exists:users'], [
-                'email.required' => 'يجب ادخال البريد الالكتروني .',
-                'email.exists' => '  هذا البريد الالكتروني غير موجود .',
-                'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-            ]);
+        'email.required' => 'يجب ادخال البريد الالكتروني .',
+        'email.exists' => '  هذا البريد الالكتروني غير موجود .',
+        'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+    ]);
 
     $status = Password::sendResetLink(
         $request->only('email')
@@ -130,21 +123,21 @@ Route::post('/reset-password', function (Request $request) {
         'email' => 'required|email',
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',
-    ],[
-           'email.exists:users' => '  البريد الالكتروني غير موجود .',
+    ], [
+        'email.exists:users' => '  البريد الالكتروني غير موجود .',
 
         'password.required' => 'يجب ادخال كلمة السر.',
         'password.confirmed' => 'كلمة السر غير مطابقة .',
         'email.required' => 'يجب ادخال البريد الالكتروني .',
         'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-       
 
-       
+
+
     ]);
 
 
     $status = Password::reset(
-        $request->only('email', 'password','password_confirmation', 'token'),
+        $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
@@ -193,48 +186,17 @@ Route::resource('projects', ProjectController::class);
 |
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
-    // Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);
+    Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
+    Route::post('/userSearch',[UserController::class, 'search']);
+    Route::resource('skills', SkillController::class);
+    Route::post('/skillsSearch',[SkillController::class, 'search']);
+    Route::get('/skill_status/{user_id}/{status}',[SkillController::class, 'change_status']);
+
     // Route::resource('setting', offersController::class);
-    
-    // Route::get('index', [IndexController::class, 'index'])->name('index');
-    Route::get('index', [homeController::class, 'home'])->name('admin');
-    Route::get('/admin', [homeController::class, 'home'])->name('admin');
-Route::get('/admin/users', [homeController::class, 'users'])->name('admin_users');
-Route::get('/admin/section', [sectionController::class, 'section'])->name('section');
-Route::get('/admin/skills', [skillsController::class, 'index'])->name('skills');
-Route::get('/admin/projects', [ProjectsController::class, 'index'])->name('Admin_projects');
-Route::get('/admin/comments', [commentsController::class, 'index'])->name('comments');
-Route::get('/admin/offers', [offersController::class, 'index'])->name('offers');
-Route::get('/admin/complaint', [complaintController::class, 'index'])->name('complaint');
-
-
-// section CRUD
-Route::get('/admin/create_section', [sectionController::class, 'create'])->name('create_section');
-Route::post('/admin/add_section', [sectionController::class, 'store'])->name('add_section');
-Route::post('/admin/del_section/{id}', [sectionController::class, 'destroy'])->name('delete_section');
-Route::get('/admin/edit_section/{id}', [sectionController::class, 'edit'])->name('edit_section');
-Route::post('/admin/update_section/{id}', [sectionController::class, 'update'])->name('update_section');
-Route::get('/admin/status-update_section/{id}', [sectionController::class, 'status_update'])->name('status_update');
-
-
-// skills CRUD
-Route::get('/admin/create_skills', [skillsController::class, 'create'])->name('create_skills');
-Route::post('/admin/add_skills', [skillsController::class, 'store'])->name('add_skills');
-Route::post('/admin/del_skills/{id}', [skillsController::class, 'destroy'])->name('delete_skills');
-Route::get('/admin/edit_skills/{id}', [skillsController::class, 'edit'])->name('edit_skills');
-Route::post('/admin/update_skills/{id}', [skillsController::class, 'update'])->name('update_skills');
-Route::get('/admin/status-update_skills/{id}', [skillsController::class, 'status_update'])->name('status_update');
-
-
-// complaint messages
-Route::get('/admin/complaint/messages', [complaintController::class, 'show_message'])->name('complaint_msg');
-
-// project report
-Route::get('/admin/projects_report', [projectController::class, 'report'])->name('project_report');
-
-
-
+    Route::get('index', [IndexController::class, 'index'])->name('index');
 });
+
 
 // Route::resource('projects',ProjectController::class );
 Route::resource('offers', OfferController::class);

@@ -16,7 +16,7 @@ class IndexController extends Controller
     {
 
        return view('admin.pages.Home.index');
-       
+
     }
 
     /**

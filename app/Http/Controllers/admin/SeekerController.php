@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\complaint;
 use Illuminate\Http\Request;
 
-class ComplaintController extends Controller
+class SeekerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,6 @@ class ComplaintController extends Controller
     public function index()
     {
         //
-        $complaint = complaint::all();
-        return view('Admin.complaint.complaint', compact('complaint','complaint'));
-    }
-
-    public function show_message(){
-
-        $complaint = complaint::all();
-        return view('Admin.complaint.complaint_msg', compact('complaint','complaint'));
-  
     }
 
     /**
@@ -51,10 +41,10 @@ class ComplaintController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\complaint  $complaint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(complaint $complaint)
+    public function show($id)
     {
         //
     }
@@ -62,10 +52,10 @@ class ComplaintController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\complaint  $complaint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(complaint $complaint)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +64,10 @@ class ComplaintController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\complaint  $complaint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, complaint $complaint)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +75,10 @@ class ComplaintController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\complaint  $complaint
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(complaint $complaint)
+    public function destroy($id)
     {
         //
     }
