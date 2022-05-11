@@ -4,13 +4,14 @@ use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
 //admin
-use App\Http\Controllers\admin\offersController;
-use App\Http\Controllers\admin\SeekerController;
 use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\ProjectsController;
-use App\Http\Controllers\admin\ProviderController;
 use App\Http\Controllers\admin\SkillController;
+
+
+
 use App\Http\Controllers\HomeController;
+
+
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -22,7 +23,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
 
 
 
@@ -38,7 +38,7 @@ use Illuminate\Support\Str;
 */
 
 /**home page */
-Route::get('/home',[HomeController::class,"index"]);
+Route::get('/home', [HomeController::class, "index"]);
 // Route::get('users_dashboard', function () {
 //     return view("website.users.user_dashboard.index");
 // })->name('user_dashboard');
@@ -57,7 +57,7 @@ Route::get('user_review', function () {
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
- Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
@@ -99,10 +99,10 @@ Route::get('/forgot-password', function () {
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email|exists:users'], [
-                'email.required' => 'يجب ادخال البريد الالكتروني .',
-                'email.exists' => '  هذا البريد الالكتروني غير موجود .',
-                'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-            ]);
+        'email.required' => 'يجب ادخال البريد الالكتروني .',
+        'email.exists' => '  هذا البريد الالكتروني غير موجود .',
+        'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+    ]);
 
     $status = Password::sendResetLink(
         $request->only('email')
@@ -123,21 +123,21 @@ Route::post('/reset-password', function (Request $request) {
         'email' => 'required|email',
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',
-    ],[
-           'email.exists:users' => '  البريد الالكتروني غير موجود .',
+    ], [
+        'email.exists:users' => '  البريد الالكتروني غير موجود .',
 
         'password.required' => 'يجب ادخال كلمة السر.',
         'password.confirmed' => 'كلمة السر غير مطابقة .',
         'email.required' => 'يجب ادخال البريد الالكتروني .',
         'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-       
 
-       
+
+
     ]);
 
 
     $status = Password::reset(
-        $request->only('email', 'password','password_confirmation', 'token'),
+        $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
@@ -186,11 +186,17 @@ Route::resource('projects', ProjectController::class);
 |
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
-    // Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);
+    Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
+    Route::post('/userSearch',[UserController::class, 'search']);
+    Route::resource('skills', SkillController::class);
+    Route::post('/skillsSearch',[SkillController::class, 'search']);
+    Route::get('/skill_status/{user_id}/{status}',[SkillController::class, 'change_status']);
+
     // Route::resource('setting', offersController::class);
-    
     Route::get('index', [IndexController::class, 'index'])->name('index');
 });
+
 
 // Route::resource('projects',ProjectController::class );
 Route::resource('offers', OfferController::class);

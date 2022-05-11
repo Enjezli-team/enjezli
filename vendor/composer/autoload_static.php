@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3
+class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -703,7 +703,6 @@ class ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3
         'Database\\Factories\\ProjectSkillFactory' => __DIR__ . '/../..' . '/database/factories/ProjectSkillFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
-        'Database\\Seeders\\IndexSeeder' => __DIR__ . '/../..' . '/database/seeders/IndexSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
@@ -5739,10 +5738,10 @@ class ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInita67b6ff1bf87733128ca15ee24be0db3::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$classMap;
 
         }, null, ClassLoader::class);
     }

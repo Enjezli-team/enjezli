@@ -14,7 +14,13 @@ class {{ class }} extends Controller
      */
     public function index()
     {
+<<<<<<< Updated upstream:rowad_heros/enjezli/projects/vendor/laravel/framework/src/Illuminate/Routing/Console/stubs/controller.stub
         //
+=======
+
+       return view('admin.users.users');
+       
+>>>>>>> Stashed changes:app/Http/Controllers/admin/IndexController.php
     }
 
     /**

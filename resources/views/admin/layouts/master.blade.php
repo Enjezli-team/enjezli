@@ -1,52 +1,45 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Enjezli | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <!-- rtl css -->
-  <link rel="stylesheet" href="rtlCSS/custom.css">
-  <!-- rtl style -->
-  <link rel="stylesheet" href="rtlCSS/style.css">
-    
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="{{asset('admin/plugins/jqvmap/jqvmap.min.css')}}">
   <!-- Theme style -->
 
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="{{asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  
+  <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
+
+  <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
   <!-- summernote -->
-  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-  
-
-
+  <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
-
-              <!-- CSS -->
-<link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css" integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
-
-<!-- jQuery and JS bundle w/ Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.rtlcss.com/bootstrap/v4.5.3/js/bootstrap.bundle.min.js" integrity="sha384-40ix5a3dj6/qaC7tfz0Yr+p9fqWLzzAXiwxVLt9dw7UjQzGYw6rWRhFAnRapuQyK" crossorigin="anonymous"></script>
-    
+   <!-- rtl css -->
+   <link rel="stylesheet" href="{{asset('admin/rtlCSS/custom.css')}}">
+    <!-- rtl style -->
+    <link rel="stylesheet" href="{{asset('admin/rtlCSS/style.css')}}">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed " dir="rtl">
@@ -54,53 +47,31 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="images/logo.png" alt="logo" width="60" height="90">
+    <img class="animation__shake" src="{{asset('admin/images/logo.png')}}" alt="انجز لي " height="70" width="60">
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px;">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="index3.html" class="nav-link">تقارير</a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav  d-flex justify-content-end"  style="margin-right: 80%;">
       <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
+
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown ">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <span class="badge badge-danger navbar-badge" style="font-size: 58%;">3</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -158,7 +129,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge" style="font-size: 58%;">15</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -181,155 +152,165 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
+
     </ul>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" >
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{{asset('images/logo.png')}}" alt="" class="brand-image  elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">انجزلي</span>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
- 
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        </div>
+      </div>
 
-      <!-- SidebarSearch Form -->
-     
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <div href="./index.html" class="text-center">
-            <img src="images/logo.png" width="50" height="60"/>
-            <p>انجزلي </p>
-        </div>
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-         
-          
-             
-        
 
-          <li class="nav-item menu-open">
-          
-                <a href="./index.html" class="nav-link active">
-                    <i class="bi bi-house"></i>
-                  <p>الرئيسية </p>
-                </a>
-          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="bi bi-wallet"></i>
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-               العروض
-
-              </p>
-            </a>
-         
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="bi bi-kanban"></i>
-              <p>
-                المشاريع
-                <i class="fas fa-angle-left right"></i>
+                المستخدمين
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                    <i class="bi bi-folder-plus"></i>
-                  <p>الجديده </p>
+                <a href="/admin/users" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض الكل</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                    <i class="bi bi-folder-symlink"></i>
-                  <p>قيد التنفيذ </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link"><i class="bi bi-folder-x"></i>
-                  <p>المحذوفة</p>
+                <a href="/admin/users/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>اضافة جديد</p>
                 </a>
               </li>
             </ul>
           </li>
-        
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                    <i class="bi bi-box-arrow-right"></i>
-                  <p>المستخدمين</p>
-                </a>
-              </li>
-       
           <li class="nav-item">
             <a href="#" class="nav-link">
-                
-                <img src="svg/report.svg" />
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                التقارير
+                 المهارات
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-           
-          </li>
-          <li class="nav-item">
-          
-                <a href="pages/examples/projects.html" class="nav-link">
-                 
-                <img src="svg/chat.svg" />
-                  <p>الدردشة</p>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/skills" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض الكل</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/skills/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> اضافة جديد</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
-          
-            <a href="pages/examples/form.html" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>الفورم</p>
+            <a href="/admin/providers" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                المزودين
+              </p>
             </a>
-      </li>
-       
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="bi bi-activity"></i>
+          </li>
 
-              <p class="text">تسجيل الخروج</p>
+          <li class="nav-item">
+            <a href="/admin/seekers" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                طالبي الخدمات
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="/admin/projects" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                 المشاريع
+                <i class="right fas fa-angle-left"></i>
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>مكتملة </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> قيد التنفيذ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> معلق </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/offers" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                احدث العروض
+              </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/admin/complains" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                 الشكاوي
+              </p>
+            </a>
+          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-
-
-
-
-  {{-- Content dashboard --}}
-
-  <div class="content-wrapper" style="    margin-left: 0px;
-  margin-right: 250px;">
-        <main>
-    @yield('side')
-    {{-- here --}}
-  </main>
-
+  <main>
+  <div class="content-wrapper" style="margin-left: 0px;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+                @yield('side')
+                {{-- here --}}
+    </div>
   </div>
-
-
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
+            </main>
+ <!-- /.content-wrapper -->
+ <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
@@ -346,54 +327,62 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{asset('admin/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Toastr -->
-<script src="plugins/toastr/toastr.min.js"></script>
-<!-- Ion Slider -->
-<script src="plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-<!-- Bootstrap slider -->
-<script src="plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-
-<!-- Select2 -->
-<script src="plugins/select2/js/select2.full.min.js"></script>
+<script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="{{asset('admin/plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{asset('admin/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{asset('admin/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{{asset('admin/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
 
-<!-- date-range-picker -->
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+  <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
+<script>
+    $(function () {
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+
+       //Initialize Select2 Elements
+    $('.select2').select2()
+    });
+  </script>
 </body>
 </html>
