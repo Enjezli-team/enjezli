@@ -31,6 +31,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        // echo "hello";
         Validator::validate($request->all(),[
 
             'email' => 'required|email|unique:users',

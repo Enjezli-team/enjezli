@@ -25,6 +25,7 @@ class CreateProjectsTable extends Migration
             $table->date('end_date')->nullable();
  	        $table->date('delivery_date')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('blockByAdmin')->default(0);
             $table->foreignId('handled_by')->nullable();
             $table->foreign('handled_by')->references('id')->on('users')->onDelete('cascade');
 	        $table->foreignId('user_id');

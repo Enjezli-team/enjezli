@@ -256,23 +256,56 @@
 
               </p>
             </a>
+            {{-- حالة المشروع
+            @if ($item->status == 1)
+                <span>مفتوح</span>
+             @elseif($item->status == 0)
+            <span>: معلق </span>
+            @elseif($item->status == 2)
+            <span>قيد التنفيذ </span>
+            @elseif($item->status == 3)
+            <span>تم التسليم</span>
+            @elseif($item->status == 4)
+            <span>لا يتلقى عروض</span>
+            @elseif($item->status == 5)
+            <span>مغلق</span>
+            @endif --}}
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/admin/project_status/{{$status=1}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>مكتملة </p>
+                  <p>مفتوح </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> قيد التنفيذ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="/admin/project_status/{{$status=1-1}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p> معلق </p>
+                </a>
+              </li>
+            
+              <li class="nav-item">
+                <a href="/admin/project_status/{{$status=2}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> قيد التنفيذ  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/project_status/{{$status=3}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> قيد التسليم  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/project_status/{{$status=4}}"class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>لا يتلقى عروض  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/project_status/{{$status=5}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>مغلق</p>
                 </a>
               </li>
             </ul>
@@ -282,6 +315,57 @@
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 احدث العروض
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/offer_status/{{$status=1}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>تم اختيارها </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/offer_status/{{$status=0}}"  class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>  تم الالغاء</p>
+                </a>
+              </li>
+           
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/complains" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                 الشكاوي
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>  لم يتم حلها </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>تم الحل </p>
+                </a>
+              </li>
+           
+           
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/complains" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                 التعليقات
+
               </p>
             </a>
           </li>
@@ -289,7 +373,7 @@
             <a href="/admin/complains" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                 الشكاوي
+                 التقيمات
               </p>
             </a>
           </li>

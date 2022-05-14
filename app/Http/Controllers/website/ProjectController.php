@@ -303,14 +303,14 @@ public function show($id)//'sal_created_by',
             $Attachments->save();
             $noError=2;
         }
-    if($noError>=2){
-      return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
-    }
-    else{
-      return redirect()->back()->with(['success'=>'لم يتم تعديل البيانات بنجاح']);
-      } 
+        if($noError>=2){
+          return redirect()->back()->with(['success'=>'تم تعديل البيانات بنجاح']);
+        }
+        else{
+          return redirect()->back()->with(['success'=>'لم يتم تعديل البيانات بنجاح']);
+          } 
        
-    }
+         }
      };
   
     

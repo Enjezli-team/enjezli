@@ -45,7 +45,7 @@ class SkillController extends Controller
          $u->save();
 
 
-          return redirect('admin/skills')->with('success','Skill successfully created.');;
+          return redirect('admin/skills')->with('success','Skill successfully created.');
 
     }
     public function change_status($SkillId,$blockValue)
@@ -94,7 +94,7 @@ class SkillController extends Controller
         ]);
 
          $u= Skill::where('id',$id)->update(['parent_id'=>$request->parent,'title'=>$request->name,]);
-          return redirect('admin/skills')->with('success','Skill successfully updated.');;
+          return redirect('admin/skills')->with('success','Skill successfully updated.');
 
     }
     public function destroy($id)

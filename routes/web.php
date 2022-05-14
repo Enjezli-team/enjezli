@@ -6,6 +6,8 @@ use App\Http\Controllers\Auths\CustomAuthController;
 //admin
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SkillController;
+use App\Http\Controllers\admin\ProjectsController;
+use App\Http\Controllers\admin\offersController;
 
 
 
@@ -186,15 +188,32 @@ Route::resource('projects', ProjectController::class);
 |
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
+    
+    // Route::resource('setting', offersController::class);
+    Route::get('index', [IndexController::class, 'index'])->name('index');
+    // user
     Route::resource('users', UserController::class);
     Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
     Route::post('/userSearch',[UserController::class, 'search']);
+    // search
     Route::resource('skills', SkillController::class);
     Route::post('/skillsSearch',[SkillController::class, 'search']);
     Route::get('/skill_status/{user_id}/{status}',[SkillController::class, 'change_status']);
+    // projects
+    Route::resource('projects', ProjectsController::class);
+    Route::get('/project_status/{status}',[ProjectsController::class, 'project_upon_status']);
+    Route::get('/project_block/{id}/{blockByAdmin}',[ProjectsController::class, 'blockProByAdmin']);
+    Route::get('/project_activate/{id}/{status}',[ProjectsController::class, 'activatePro']);
+    Route::post('/projectSearch',[ProjectsController::class, 'search']);
+    Route::get('/project_details/{id}',[ProjectsController::class, 'show']);
 
-    // Route::resource('setting', offersController::class);
-    Route::get('index', [IndexController::class, 'index'])->name('index');
+    // offer
+    Route::get('/offer_status/{status}',[offersController::class, 'offer_upon_status']);
+    Route::get('/offer_block/{id}/{status}',[offersController::class, 'blockofferByAdmin']);
+    Route::post('/offerSearch',[offersController::class, 'search']);
+
+
+
 });
 
 
