@@ -136,34 +136,30 @@ class CustomAuthController extends Controller
         ], [
             'password.required' => 'يجب ادخال كلمة السر.',
             'email.required' => 'يجب ادخال البريد الالكتروني .',
-            'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-
         ]);
-   
+
         $credentials = $request->only('email','password');
         $credentials = ['email'=>$request->email,'password'=>$request->password,'status'=>1,'is_blocked'=>0];
         if (Auth::attempt($credentials)) {
-            if(Auth::user()->type==2 && Auth::user()->email_verified_at!=Null){
+            if(Auth::user()->type==2 && Auth::user()->hasRole(['seeker','provider']) && Auth::user()->email_verified_at!=Null){
                 $profile=Profile::where('user_id',Auth::user()->id)->value('id');
                 if($profile==''){
             return redirect()->intended('/profiles/create')->withSuccess('Signed in');
                 }else{
-                    return redirect()->intended('profiles')->withSuccess('Signed in');
+                    return redirect()->intended('profiles/'.Auth::user()->id)->withSuccess('Signed in');
                 }
 
-            }if(Auth::user()->type==1){
+            }if(Auth::user()->type==1 && Auth::user()->hasRole(['Admin'])){
                 //check profile
-               return redirect()->intended('/admin')->withSuccess('Signed in');
+               return redirect()->intended('/admin/index')->withSuccess('Signed in');
                 }else{
                     Session::flush();
-        Auth::logout();
-  
+
         return Redirect('login');
                 }
 
         }
-        return redirect('/login')->with("failed", "ادخل البيانات بشكل صحيح   !");
-
+        return redirect('/login')->withSuccess(' faild');
 
     }
     public function create(Request $request)

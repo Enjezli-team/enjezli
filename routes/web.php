@@ -10,8 +10,7 @@ use App\Http\Controllers\admin\SkillController;
 
 
 use App\Http\Controllers\HomeController;
-
-
+use App\Http\Controllers\NotificationController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -57,7 +56,8 @@ Route::get('user_review', function () {
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
-Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/lesson/create',[NotificationController::class,'hiNotification'])->name('home');
+ Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
@@ -75,8 +75,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/notify', [HomeController::class, 'notify'])->name('notify');
 
-/*
+/* notify
 |--------------------------------------------------------------------------
 | Website Routes
 |--------------------------------------------------------------------------

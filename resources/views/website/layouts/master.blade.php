@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enjezle</title>
+    
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 
@@ -20,7 +21,50 @@
                 <div class="bars2"></div>
                 <div class="bars3"></div>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links" >
+                @auth
+                <li class="dropdown dropdown-notification nav-item  dropdown-notifications">
+                  <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                    <i class="fa fa-bell"> </i>
+                    <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow   notif-count" data-count=" {{ $notifications->count()}}">
+                      {{ $notifications->count()}}
+                    </span>
+                  </a>
+                  <div id="counter_notify"></div>
+                  <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" id="notify_body" aria-labelledby="dropdown">
+                    @forelse ($notifications as $item)
+                    <li class="notification active">
+    
+                      <div class="media">
+                        <div class="media-left">
+                          <div class="media-object">
+                            <h5><a href="readComment/" class="nav-link">
+                                {{ $item->id }}</a></h5>
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <strong class="notification-title" id="messege">
+                            {{ $item->body }}</strong>
+                          <!--p class="notification-desc">Extra description can go here</p-->
+                          <div class="notification-meta">
+                            <small class="timestamp" id="id">
+                              {{ $item->id }}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    @empty
+    
+                    @endforelse
+    
+    
+                  </ul>
+    
+                </li>
+                <div id="id"></div>
+                <div id="message"></div>
+    
+                @endauth
                 <li><a href="">بحث عن منجز</a></li>
                 <li><a href="{{ route('projects.index') }}">تصفح المشاريع</a></li>
                 <li><a href="{{ route('projects.create') }}">اضف مشروع</a></li>
@@ -198,7 +242,7 @@
             </div>
         </footer>
     </div>
-
+   
 
     <script data-optimized="1"
         src="https://multiwebpress.com/wp-content/litespeed/js/5780facee2c85b4f45eda135e587773d.js?ver=7773d"></script>
@@ -207,6 +251,15 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script nomodule src="{{ asset('js/home.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        let user="{{{(Auth::user()) ? Auth::user()->id : 0 }}}";
+        
+    </script>
+    <script src="{{ asset('js/realtime_notification.js') }}" ></script>
+   
 </body>
 
 </html>
