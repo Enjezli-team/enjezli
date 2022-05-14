@@ -1,3 +1,24 @@
+## livewire
+
+```bash
+php artisan make:livewire search
+
+
+
+```
+
+## commands
+
+```bash
+
+# use two commands in two termials sister okay;
+
+php artisan serve
+
+npm run watch
+
+```
+
 # Project and code roles
 
 ## database

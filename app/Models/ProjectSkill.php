@@ -20,4 +20,5 @@ class ProjectSkill extends Model
     public function sal_skill(){
         return $this->belongsTo(Skill::class,'skill_id');
     }
+    
 }

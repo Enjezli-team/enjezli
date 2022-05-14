@@ -71,8 +71,9 @@
         <div>
             إنجز عملك بسهولة وامان
             <button class="button">
-                أضف مشروعك
-                <div class="button__horizontal"></div>
+                <a href="{{ route('createProject') }}" style="text-decoration:none"> أضف مشروعك
+                </a>
+                    <div class="button__horizontal"></div>
                 <div class="button__vertical"></div>
             </button>
         </div>

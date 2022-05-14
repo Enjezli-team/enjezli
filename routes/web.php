@@ -38,7 +38,7 @@ use Illuminate\Support\Str;
 */
 
 /**home page */
-Route::get('/home',[HomeController::class,"index"]);
+Route::get('/home', [HomeController::class, "index"]);
 // Route::get('users_dashboard', function () {
 //     return view("website.users.user_dashboard.index");
 // })->name('user_dashboard');
@@ -57,7 +57,7 @@ Route::get('user_review', function () {
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
- Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
@@ -99,10 +99,10 @@ Route::get('/forgot-password', function () {
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email|exists:users'], [
-                'email.required' => 'يجب ادخال البريد الالكتروني .',
-                'email.exists' => '  هذا البريد الالكتروني غير موجود .',
-                'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-            ]);
+        'email.required' => 'يجب ادخال البريد الالكتروني .',
+        'email.exists' => '  هذا البريد الالكتروني غير موجود .',
+        'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
+    ]);
 
     $status = Password::sendResetLink(
         $request->only('email')
@@ -123,21 +123,21 @@ Route::post('/reset-password', function (Request $request) {
         'email' => 'required|email',
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',
-    ],[
-           'email.exists:users' => '  البريد الالكتروني غير موجود .',
+    ], [
+        'email.exists:users' => '  البريد الالكتروني غير موجود .',
 
         'password.required' => 'يجب ادخال كلمة السر.',
         'password.confirmed' => 'كلمة السر غير مطابقة .',
         'email.required' => 'يجب ادخال البريد الالكتروني .',
         'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-       
 
-       
+
+
     ]);
 
 
- $status = Password::reset(
-        $request->only('email', 'password','password_confirmation', 'token'),
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
             $user->forceFill([
                 'password' => Hash::make($password)
@@ -172,28 +172,27 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('profiles', ProfileController::class);
     Route::resource('works', WorkController::class);
     Route::get('my_works/{user_id}', [WorkController::class, 'user_works'])->name("my_works");
-   
-  
 
 
-    Route::group(['middleware'=>'role:seeker'],function(){
+
+
+    Route::group(['middleware' => 'role:seeker'], function () {
         Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
         Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
-
+        Route::get('projectCreate', [ProjectController::class, 'createProject'])->name('createProject');
     });
-    
-    Route::group(['middleware'=>'role:provider'],function(){
+
+    Route::group(['middleware' => 'role:provider'], function () {
         Route::resource('offers', OfferController::class);
     });
 
 
-Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
-Route::post('/offer/cancel_confirm',[OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
-Route::post( '/offer/cancel',[OfferController::class, 'cancelOffer'])->name('cancelOffer');
-Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
-Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
-Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
-
+    Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+    Route::post('/offer/cancel_confirm', [OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
+    Route::get('/offer/cancel/{id}', [OfferController::class, 'cancelOffer'])->name('cancelOffer');
+    Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+    Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
+    Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
 });
 
 Route::resource('projects', ProjectController::class);
@@ -206,19 +205,22 @@ Route::resource('projects', ProjectController::class);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
     // Route::resource('users', UserController::class);
     // Route::resource('setting', offersController::class);
-    
+
     Route::get('index', [IndexController::class, 'index'])->name('index');
 });
 
 
-
-
+Route::get('/success/{response}', [OfferController::class, 'success']);
+Route::get('/cancel', [OfferController::class, 'cancel']);
+// Route::get('/success/{response}', [ProjectController::class, 'success']);
+// Route::get('/cancel', [ProjectController::class, 'cancel']);
 Route::get(
     '/change_status/{project_id}/{status}',
     [ProjectController::class, 'changeStatus']
 )->name('change_status');
 
-
+Route::post('/search', [ProjectController::class, 'search'])->name('search');
+Route::get('/showTransactions', [OfferController::class, 'showTransactions']);
 
 
 // Route::get('/add_project', [ProjectsController::class, 'create']);

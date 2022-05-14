@@ -1,13 +1,18 @@
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ') }}">
 @extends("website.layouts.master")
 
 @section('content')
     <div class="profile">
+        {{-- <livewire:search /> --}}
 
         <div class="d-flex project_container">
 
+
+
+
             @forelse ($data as $item)
-                <a class='title' href="{{ route('projects.show', $item['id']) }}">
+                <a class='title card' href="{{ route('projects.show', $item['id']) }}">
                     <div class="personal_info_container myworks">
                         <div class="container_card">
                             <header class="">
@@ -29,7 +34,7 @@
                                 </div>
 
                                 <div>
-                                    {{ Str::substr($item->description,0, 80)}}...  
+                                    {{ Str::substr($item->description, 0, 80) }}...
 
 
                                 </div>
@@ -49,28 +54,35 @@
                                         </li>
                                         <li>
 
-                                            <li>
-                                                <a href="" class="">
-                                                    <span>:العروض</span>
-                                                    <span> {{$item->sal_offers->count()}}</span>
-                                                </a>
-                                            </li>
-                                            {{-- <a href="" class="">
+                                        <li>
+                                            <a href="" class="">
+                                                <span>:العروض</span>
+                                                <span> {{ $item->sal_offers->count() }}</span>
+                                            </a>
+                                        </li>
+                                        {{-- {{ $item->sal_skill}} --}}
+                                        <div class='skills ' style=''>
+                                            @foreach ($item->sal_skills_by as $skill)
+                                                {{ $skill->sal_skill->title }}<br>
+                                            @endforeach
+                                        </div>
 
-                                                <span>الحالة </span>
-                                                @if ($item['status'] == 0)
-                                                    <span class="text-success text-sm mr-2"> مفتوح </span>
-                                                    <span class="text-error text-sm mr-2">  بإنتظار الموافقة </span> 
-                                                @elseif($item['status'] == 2)
-                                                    <span class="text-success text-sm mr-2"> مغلق </span>
-                                                @endif
+                                        <a href="" class="">
+
+                                            <span>الحالة </span>
+                                            @if ($item['status'] == 0)
+                                                <span class="text-success text-sm mr-2"> مفتوح </span>
+                                                <span class="text-error text-sm mr-2"> بإنتظار الموافقة </span>
+                                            @elseif($item['status'] == 2)
+                                                <span class="text-success text-sm mr-2"> مغلق </span>
+                                            @endif
 
 
-                                            </a>  --}}
+                                        </a>
                                         </li>
                                     </ul>
                                 </div>
-                            
+
                             </header>
 
                             <div class="hr">
@@ -91,5 +103,23 @@
         </div>
 
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     </div>
+
 @endsection

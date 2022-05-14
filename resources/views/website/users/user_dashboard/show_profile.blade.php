@@ -19,7 +19,7 @@
 
                 <div class='img_container'>
                     <div class='img_prrofile'>
-                        <img src='{{ asset('images/'.$data->image) }}'>
+                        <img src='{{$data->image}}'>
                     </div>
                     <div class='personal_info_first'>
                         <div class='name'>
