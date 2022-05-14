@@ -1,273 +1,81 @@
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/header.css') }}">
-<link rel="stylesheet" href="{{ asset('auth_assets/profile_assests/css/profile_show.css') }}">
+@extends('website.layouts.master')
+@section('content')
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
-<div class="profile">
-    <div class="personal_info_container">
-
-        <div class="profile_img"> <img src="{{ asset('images/'.$data->image) }}" alt=""></div>
-        <div class="padding info_container ">
-            <div class="personal_basic_info">
-                <div class="profile_name">{{ $data->name }}</div>
-                <div class="personal_information">
-                    <div class="profile_phone">{{ $data->sal_profile->phone }}</div>
-                    <ul class="social">
-                        <li>
-                            <a href="{{ $data->sal_profile->facebook }}">
-                                <ion-icon name="logo-facebook"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ $data->sal_profile->tweeter }}">
-                                <ion-icon name="logo-instagram"></ion-icon>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ $data->sal_profile->github }}">
-                                <ion-icon name="mail-outline"></ion-icon>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
-
-            <div>
-
-                <div class="desc" style=" overflow-wrap: break-word;
-                    word-wrap: break-word;
-                     : auto;">{{ $data->sal_profile->description }}</div>
-
-            </div>
-
-        </div>
-
-        <div class="edit_pro_container">
-            <button class="show_more " type='submit'> <a href="/profiles/{{ $data->sal_profile->id }}/edit"
-                    class="edit_pro button button-1">تعديل</a></button>
-
-        </div>
+<link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
+<div class="container-fluid py-4 mt-5">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        <span class="mask bg-gradient-primary opacity-6"></span>
     </div>
+    <div class="row">
+        <div class="col-12 mt-4 ">
+            <div class="card mb-4 ">
+
+                <div class="card-body p-3 " style="background-color: #fff;">
+                    <div class="row ">
+                        @forelse($data as $item)
+                        <div class="card card-body blur shadow-blur mx-4  overflow-hidden col-5 margin-12 mb-3">
+                            <div class="row gx-4">
+                                <div class="col-auto">
+                                    <div class="avatar avatar-xl position-relative">
+                                        <img src={{asset('images/'.$item->user->image)}} alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                                    </div>
+
+                                </div>
+
+                                <div class="col-auto my-auto">
+
+                                    <div class="h-100">
+                                        <h5 class="mb-1">
+                                            {{$item->user->name}}
+                                        </h5>
+                                        <p class="mb-0 font-weight-bold text-sm">
+                                            {{$item->user->sal_profile->Job_title}}
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mb-3">
+                                    <div class="nav-wrapper position-relative end-0">
+                                        {{$item->user->sal_profile->description}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-0 ps-0 pb-0  d-flex align-items-center justify-content-between">
+                                <div>
+                                    <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->facebook}}">
+                                        <i class="fab fa-facebook fa-lg "></i>
+                                    </a>
+                                    <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->tweeter}} ">
+                                        <i class="fab fa-twitter fa-lg "></i>
+                                    </a>
+                                    <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->github}} ">
+                                        <i class="fab fa-instagram fa-lg "></i>
+                                    </a>
 
 
+                                </div>
+                                <div class="ratings col d-flex justify-content-center ">
+                                    @for($i=0 ;$i<=$item->user->ratings ; $i++)
+                                        <i class="fa fa-star rating-color text-primary"></i>
+                                        @endfor
 
-    <div class="d-grid">
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3> احدث أعمالي </h3>
-
-                <div>
-                    <a href="/works" class="show_more show_more_1 ">
-                        عرض كل الاعمال
-
-                    </a>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative m_21'>
-
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_works->count() }}
+                                </div>
+                                <div class="btn-grou  " style="float: left;" role="group" aria-label="Basic outlined example">
+                                    <a href="/providers/{{$item->user->id}}" class="btn btn-sm  btn-outline-primary border-0">عرض المزيد</a>
+                                    <a href="/chat/{{$item->user->id}}" class="btn btn-sm btn-outline-primary border-0"> مراسله</a>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <div class="card card-body blur shadow-blur mx-4  overflow-hidden col-5 margin-12">
+                            <h6 class=" mb-0 "> لا يوجد مزودي خدمات</h6>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
-
-                <div class="jobs">
-                   
-                    @forelse($data->sal_works as $w)
-                   
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $w->title }}</h5>
-                                <h6 class="project_date">{{ $w->created_at }}</h6>
-                            </div>
-                            <div class="operation">
-
-                                <a href="/works/{{ $w->id }}/edit"> <span>
-                                        <ion-icon class="edit" name="create-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $w->id }}"> <span>
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $w->id }}"> <span>
-                                        <ion-icon class="more" name="ellipsis-vertical-circle-outline">
-                                        </ion-icon>
-                                    </span></a>
-                            </div>
-                        </div>
-                       
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد عمل جديد</h5>
-                            </div>
-                        </div>
-                    @endforelse
-                  
-                </div>
-
-            </div>
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>احدث مشاريعي</h3>
-
-                <div>
-                    <button class='show_more show_more_1 '><a href="/works">
-                        عرض كل مشاريعي</a>
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative m_21'>
-
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_projects_provider->count() }}</div>
-                </div>
-            </div>
-            <div class="jobs">
-                @forelse($data->sal_projects_provider as $p)
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name">{{ $p->title }}</h5>
-                            <h6 class="project_date">{{ $p->created_at }}</h6>
-                        </div>
-                        <div class="operation">
-
-                            <a href="/works/{{ $p->id }}/edit"> <span>
-                                    <ion-icon class="edit" name="create-outline"></ion-icon>
-                                </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
-                                    <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                </span></a>
-                            <a href="/works/{{ $p->id }}"> <span>
-                                    <ion-icon class="more" name="ellipsis-vertical-circle-outline"></ion-icon>
-                                </span></a>
-                        </div>
-                    </div>
-                @empty
-                    <div class="flex_between">
-                        <div>
-                            <h5 class="project_name"> لا يوجد مشاريع جديدة</h5>
-                        </div>
-                    </div>
-                @endforelse
-            </div>
-
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>العروض </h3>
-
-                <div>
-                    <button class='show_more show_more_1 '><a href="/offers">
-                        عرض كل مشاريعي</a>
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative m_21'>
-
-                <div class=" hr">
-                    <div class="count_project"> {{ $data->sal_offers->count() }}</div>
-                </div>
-
-                <div class="jobs">
-                    @forelse($data->sal_offers as $o)
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $o->title }}</h5>
-                                <h6 class="project_date">{{ $o->created_at }}</h6>
-                            </div>
-                            <div class="operation">
-
-                                <a href="/offers/{{ $o->id }}/edit"> <span>
-                                        <ion-icon class="edit" name="create-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
-                                <a href="/works/{{ $o->id }}"> <span>
-                                        <ion-icon class="more" name="ellipsis-vertical-circle-outline">
-                                        </ion-icon>
-                                    </span></a>
-                            </div>
-                        </div>
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد عروض جديدة</h5>
-                            </div>
-                        </div>
-                    @endforelse
-                </div>
-
-            </div>
-
-
-
-        </div>
-        <div class="personal_info_container myworks">
-            <header class="flex_between">
-                <h3>مهارتي </h3>
-
-                <div>
-                    <button class="show_more show_more_1 ">
-                        عرض مهارتي
-
-
-                    </button>
-
-
-                </div>
-
-            </header>
-            <div class='p-relative  m_21'>
-
-                <div class="hr">
-                    <div class="count_project"> {{ $data->sal_skills->count() }}</div>
-                </div>
-
-                <div class="jobs">
-                    @forelse($data->sal_skills as $s)
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name">{{ $s->sal_skill_u->title}}</h5>
-                                <h6 class="project_date">{{ $s->created_at }}</h6>
-                            </div>
-                            <div class="operation">
-
-
-                                <a href="/works/{{ $s->id }}"> <span>
-                                        <ion-icon class="delete" name="trash-outline"></ion-icon>
-                                    </span></a>
-
-                            </div>
-                        </div>
-                    @empty
-                        <div class="flex_between">
-                            <div>
-                                <h5 class="project_name"> لا يوجد مهارات جديدة</h5>
-                            </div>
-                        </div>
-                    @endforelse
-                </div>
-
             </div>
         </div>
     </div>
 </div>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
-
-</html>
+@endsection

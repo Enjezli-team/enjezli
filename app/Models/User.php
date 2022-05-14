@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
 
         return $this->hasMany(RoleUser::class,'user_id');
     }
-    
+
 //profile
     public function sal_profile(){
 
@@ -61,6 +61,15 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
     public function sal_projects_seeker(){
 
         return $this->hasMany(Project::class,'user_id');
+    }
+    //projects
+    public function sal_review_to(){
+
+        return $this->hasMany(Review::class,'to_id');
+    }
+    public function sal_review_from(){
+
+        return $this->hasMany(Review::class,'from_id');
     }
     public function sal_projects_provider(){
 
@@ -99,9 +108,5 @@ class User extends Authenticatable implements MustVerifyEmail ,CanResetPassword
     public function sal_notification_from(){
 
         return $this->hasMany(Notification::class,'sender_id');
-    }
-    public function getImageAttribute($value){
-
-        return url('images/').'/'.$value;
     }
 }

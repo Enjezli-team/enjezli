@@ -22,12 +22,12 @@
             </div>
             <ul class="nav-links">
                 <li><a href="">بحث عن منجز</a></li>
-                <li><a href="{{ route('projects.index') }}">تصفح المشاريع</a></li>
+                <li><a href="/progects">تصفح المشاريع</a></li>
                 <li><a href="{{ route('projects.create') }}">اضف مشروع</a></li>
                 @auth
 
                     <li>
-                        <div class=''><a href='{{ route('user_dashboard') }}' class='btn_img'>
+                        <div class=''><a href='/profiles/{{Auth::user()->id}}' class='btn_img'>
                                 <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
                             </a></div>
                     @endauth

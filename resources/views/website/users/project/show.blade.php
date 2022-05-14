@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_details.css ') }}">
 <style>
     a{
-      text-decoration: none;  
+      text-decoration: none;
     }
     .note{
         padding: 5px 8px;
@@ -18,10 +18,10 @@
         /* color:white; */
         background-color: var(--light_blue);
         /* background-color:   #ecf1f48f; */
-      
+
         /* background-color:#f1f3f5; */
 
-        
+
         /* align-self: flex-start; */
         border-radius: 3px;
     }
@@ -44,10 +44,10 @@
       background-color:#fff8ec;
         /* background-color:#f1f3f5; */
 
-/*         
+/*
         align-self: flex-start; */
         border-radius: 3px;
-    
+
 }
 .personal_info_container{
 
@@ -68,17 +68,17 @@
         <div class="row">
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->
-                <div class="card-header">  {{Auth::user()->name}}</div>
-                <div class="card-header"> 
+                {{-- <div class="card-header">  {{Auth::user()->name}}</div> --}}
+                <div class="card-header">
                      {{-- {{Auth::user()->Role}} --}}
                     {{-- @forelse (Auth::user()->Role as $role)
                     {{  $role}}
-                   
+
                 @empty
-                    
+
                 @endforelse  --}}
-                 
-               
+
+
                </div>
                 <div class="card mb-4 personal_info_container myworks">
                     <div class="card-header"> تفاصيل المشروع</div>
@@ -104,15 +104,15 @@
                                         @forelse ($data->sal_project_attach as $attach)
                                             <li>
                                                     <a href='{{$attach->file_name}}' style='color:black'>{{$loop->iteration}}.{{$attach->file_type}}</a>
-                                            </li>  
+                                            </li>
                                         @empty
-                                            
+
                                         @endforelse
-                                   
-                    
-                                     
+
+
+
                                  @endif
-                                 
+
                              </ul>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-unstyled mb-0">
-                                 
+
                                     @forelse ($data->sal_skills_by as $skill)
                                         {{-- {{ $skill->sal_skill->title }} --}}
                                         <span class="note">{{$skill->sal_skill->title}}</span>
@@ -143,7 +143,7 @@
                 </div>
                 <!-- اضافة عرض
                 -->
-              
+
                 @if ($canMakeOffer && $data->status==1)
                 <div class="">
                     <div class=" card p-5  personal_info_container myworks">
@@ -162,7 +162,7 @@
                                                 <div class='dan_mesg_po'> </div>
                                             </span>
                                 <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
+
                                             </span> --}}
 
                             </div>
@@ -182,7 +182,7 @@
                                                 <div class='dan_mesg_po'> </div>
                                             </span>
                                 <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
+
                                             </span> --}}
 
                             </div>
@@ -200,7 +200,7 @@
                                                 <div class='dan_mesg_po'> </div>
                                             </span>
                                 <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-    
+
                                             </span> --}}
 
                             </div>
@@ -234,7 +234,7 @@
                 </div>
                 @endif
 
-               
+
 
 
                 <div class="accordion mt-3 " id="accordionExample">
@@ -307,26 +307,26 @@
                                                                 //     else{
                                                                 //         $time=  $seconds.ثانية
                                                                 //     }
-                                                                   
+
                                                                 //    echo $time ;
-                                                                     
+
                                                                    @endphp
-                                                                    
+
                                                                    @if ($days>0)
                                                                    {{$days}}يوم
                                                                    @elseif( $hours>0)
                                                                    منذ  {{$hours }} ساعة
-                                                                
+
                                                                    @elseif($minutes>0)
                                                                    منذ {{$minutes }} دقيقة
                                                                    @else
                                                                    منذ {{$seconds}} ثانية
                                                                    @endif
                                                                     {{-- {{ time_elapsed_string($offer->created_at,'2013-5-01 00:22:35')}}; --}}
-                                                               
+
                                                                </span>
-                                                               
-                                            
+
+
                                                             </div>
 
                                                         </header>
@@ -336,16 +336,16 @@
 
                                                     </div>
                                                 </div>
-                                                 {{-- if the user is the publisher of th e offer and the status of the 
-                                                        the offer is in the first status "not accepted by the seeker 
+                                                 {{-- if the user is the publisher of th e offer and the status of the
+                                                        the offer is in the first status "not accepted by the seeker
                                                         so that he can edit the offer " and the project is in the first status "receiving offers"--}}
 
                                             @if (Auth::user()->id==$offer->provider_id && $offer->status==1 && $data->status==1)
                                             <div class="select">
                                                 <a href="{{route('offers.edit',$offer->id)}}" style="color:black ;text-decoration:none" class="note"> تعديل</a>
-                                              
+
                                             </div>
-                                            {{-- if the user is the publisher of the project let hime 
+                                            {{-- if the user is the publisher of the project let hime
                                                 accept and reject the accepted once  before the offer last confirmation --}}
 
                                             @elseif(Auth::user()->id==$data['user_id']&& $offer->status==1 && $data->status==1)
@@ -364,19 +364,19 @@
 
                                             @elseif(Auth::user()->id==$data['user_id']&&$offer->status==2 && $data->status==4 )
                                             <form action="{{route('cancelConfirm')}}" method="post">
-                                                
+
                                                 {{-- $data->status==4  dont accept offers--}}
                                                 @csrf
 
-                                               
+
                                                 <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
                                                 <input style="display:none" type="text" name="project_owner" value='{{$data['user_id']}}'>
                                                 <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
                                                 <button  style="color:black ;border:none" type='submit 'class="note"> الغاء الموافقة </button>
                                             </form>
-                                          
+
                                             @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
-                                                <a style="color:black;text-decoration:none" class="status ">تم رفضه</a> 
+                                                <a style="color:black;text-decoration:none" class="status ">تم رفضه</a>
                                             {{-- <a href="" style="color:black"> الغاء  الموافقة</a> --}}
 
                                             {{-- @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
@@ -397,26 +397,26 @@
                                                 <input style="display:none" type="text" name="project_id" value='{{$data['id']}}'>
                                                 <button  style="color:black ;border:none" type='submit ' class="note"> تأكيد الاستلام  </button>
                                             </form>
-                                            
+
                                             @elseif(Auth::user()->id==$data['user_id']&&$offer->status==3&&$data->status==5 ||Auth::user()->id==$data->handled_by)
-                                            <a style="color:black" class="status">مغلق </a> 
-                                            
+                                            <a style="color:black" class="status">مغلق </a>
+
                                             @endif
-                                            
+
                                             </div>
-                                          
-                                     
+
+
                                             {{-- @if($data->status==1 && $offer->status== 1 && Auth::user()->id==$offer->provider_id)
 
-                                                <a style="color:black" class="status">بانتظار الموافقة</a> 
+                                                <a style="color:black" class="status">بانتظار الموافقة</a>
                                                 <form action="{{route('cancelOffer')}}" method="post">
                                                     @csrf
                                                     <input style="display:none" type="text" name="offer_id" value='{{$offer->id}}'>
                                                     <button  style="color:black ;border:none;background:transparent" type='submit '>   إلغاء عرض السعر   </button>
                                                 </form>
-                                            
+
                                             @elseif($data->status==1 && $offer->status==2)
-                                            <a style="color:black" class="status">تمت الموافقة </a> 
+                                            <a style="color:black" class="status">تمت الموافقة </a>
                                                 <form action="{{route('confirmOffer')}}" method="post">
                                                     @csrf
                                                     <input style="display:none" type="text" name="project_id" value='{{$data->id}}'>
@@ -428,16 +428,16 @@
                                                     <button  style="color:black ;border:none;background:transparent" type='submit '>    رفض المشروع    </button>
                                                 </form>
                                                 @elseif($data->status==2 && $offer->status==3)
-                                                <a style="color:black" class="status">قيد التنفيذ </a> 
+                                                <a style="color:black" class="status">قيد التنفيذ </a>
                                                 @elseif($data->status==3 && $offer->status==3)
-                                                <a style="color:black" class="status">تم التسليم  </a> 
+                                                <a style="color:black" class="status">تم التسليم  </a>
                                           @endif --}}
-                                         
+
                                           @if(Auth::user()->id==$data['user_id']||Auth::user()->id==$offer->provider_id)
                                           السعر  <span class="desc">
                                             {{$offer->price}}
-                                          
-                                         </span> 
+
+                                         </span>
                                           المدة <span class="desc"> {{$offer->duration}}</span>
                                           <div class="desc"> {{ $offer->description}}</div>
                                           <ul class="list-unstyled mb-0 list-unstyled job_det attachment_contianer">
@@ -446,22 +446,22 @@
                                                     @forelse ($offer->sal_offer_attach as $offer_attach)
                                                         <li>
                                                                 <a href='{{$offer_attach->file_name}}' style='color:black'>{{$loop->iteration}}.{{$offer_attach->file_type}}</a>
-                                                        </li>  
+                                                        </li>
                                                     @empty
-                                                        
+
                                                     @endforelse
-                                               
-                                
-                                                 
+
+
+
                                              @endif
-                                             
+
                                          </ul>
                                             @else
                                             <div class="desc"> {{ Str::substr($offer->description,0, 80)}}...</div>
                                           @endif
                                       </div>
                                         </div>
-                               
+
                                 @endforeach
 
 
@@ -501,17 +501,17 @@
                         <ul>
                             <li class="d-flex justify-content-between align-items-center  gap-10">
                                 حالة المشروع
-                               
+
                                  @if($data->status ==4)
                                     لا يتلقى عروض
-                                  
+
                                 {{-- @elseif($data->status == 2)
                                     قيد التنفيذ --}}
-                                    
+
                                  @elseif($data->status == 5)
                                   مغلق
                                   @elseif ($data->status == 1)
-                                
+
                                   <span>مفتوح</span>
                                   @elseif($data->status == 0)
                                   معلق
@@ -534,7 +534,7 @@
                             <li class="d-flex justify-content-between align-items-center">
                                 {{-- عدد العروض <span>{{ $offers_count }}</span> --}}
                                  عدد العروض <span>{{ $data->sal_offers->count() }}</span>
-                                
+
                             </li>
                         </ul>
                     </div>
