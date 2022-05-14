@@ -53,12 +53,18 @@ Route::get('user_offer', function () {
 Route::get('user_review', function () {
     return view("website.users.user_dashboard.review");
 })->name('user_review');
+
+Route::get('providers', [ProfileController::class, 'index'])->name('providers');
+Route::get('providers/{id}', [ProfileController::class, 'provider_data'])->name('provider_data');
+Route::get('work_data/{id}', [WorkController::class, 'work_data'])->name('work_data');
 // Route::get('user_work', function () {
 //     return view("website.users.user_dashboard.user_works");
 // })->name('user_work');
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
+Route::get('progects', [ProjectController::class, 'index_without_auth'])->name('progects');
+Route::get('progects/{id}', [ProjectController::class, 'show_without_auth'])->name('progect_data');
 Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
@@ -84,6 +90,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
 |
 */
+/*_____________________________*/
+route::get('dashboard',function(){return view('website.users.dashboard.index');})->name('dashboard');
+route::get('wallet',function(){return view('website.users.wallet.index');})->name('wallet');
+
+Route::get('providers', [ProfileController::class, 'index'])->name('providers');
+Route::get('providers/{id}', [ProfileController::class, 'provider_data'])->name('provider_data');
+Route::get('work_data/{id}', [WorkController::class, 'work_data'])->name('work_data');
+/*_____________________________*/
+
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
 Route::get('/verify_email/{token}', [CustomAuthController::class, 'verify'])->name('verify');

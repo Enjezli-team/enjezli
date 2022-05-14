@@ -1,160 +1,166 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
-    integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
-@extends("website.layouts.master")
-
+@extends('website.layouts.master_dash')
 @section('content')
+<style>
+    /* complete content  */
 
+    .profile-pic {
+        color: transparent;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: all 0.3s ease;
+    }
 
-<div class="loginContainer_2 sign-up-container  up">
+    .profile-pic input {
+        display: none;
+    }
 
-    <div class="container overflow-hidden mt-5 form_con">
-        <div class="row">
-            <div class="col">
-                <div class="mx-auto p-3">
-                    <div class="">
-                        <div class="">
-                            <div class="p-3  shadow-lg rounded-3">
-                                <h2 class="text-center"> إضافة عمل
-                                </h2>
-                                <div class="logo-container">
+    .profile-pic img {
+        position: absolute;
+        object-fit: cover;
+        width: 77px;
+        height: 77px;
+        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+        border-radius: 100px;
+        z-index: 0;
+    }
 
-                                </div>
+    .profile-pic .-label {
+        cursor: pointer;
+        height: 77px;
+        width: 77px;
+    }
 
-                                <form method="POST" action="/works" enctype="multipart/form-data">
-                                    @if (session('status'))
+    .profile-pic:hover .-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 10000;
+        color: #fafafa;
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 100px;
+        margin-bottom: 0;
+    }
+
+    .profile-pic span {
+        display: inline-flex;
+        padding: 0.2em;
+        height: 2em;
+    }
+</style>
+<!-- End Navbar -->
+<div class="container-fluid ">
+<div class="page-header min-height-300 border-radius-xl mt-4" style="min-height: 70px !important;
+border-right: 4px solid #5ab1c5;
+border-radius: 4px;background-color: white;
+padding: 10px 10px;">
+   <h6>معرض الاعمال</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div class="card">
+
+                <div class="card-body pt-4 p-3">
+                    <form method="POST" action="/works" enctype="multipart/form-data">
+
+                        @csrf
+                        <div class="login_icon_box">
+                            <div class="profile-pic">
+                                <label class="-label" for="file">
+                                    <span class="glyphicon glyphicon-camera"></span>
+                                    <span>
+                                        <svg id="edit_1_" data-name="edit (1)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <path id="Path_90" data-name="Path 90" d="M18.656.93,6.464,13.122A4.966,4.966,0,0,0,5,16.657V18a1,1,0,0,0,1,1H7.343a4.966,4.966,0,0,0,3.535-1.464L23.07,5.344a3.125,3.125,0,0,0,0-4.414,3.194,3.194,0,0,0-4.414,0Zm3,3L9.464,16.122A3.02,3.02,0,0,1,7.343,17H7v-.343a3.02,3.02,0,0,1,.878-2.121L20.07,2.344a1.148,1.148,0,0,1,1.586,0,1.123,1.123,0,0,1,0,1.586Z" fill="#fff"></path>
+                                            <path id="Path_91" data-name="Path 91" d="M23,8.979a1,1,0,0,0-1,1V15H18a3,3,0,0,0-3,3v4H5a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2h9.042a1,1,0,1,0,0-2H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H16.343a4.968,4.968,0,0,0,3.536-1.464l2.656-2.658A4.968,4.968,0,0,0,24,16.343V9.979A1,1,0,0,0,23,8.979ZM18.465,21.122a2.975,2.975,0,0,1-1.465.8V18a1,1,0,0,1,1-1h3.925a3.016,3.016,0,0,1-.8,1.464Z" fill="#fff"></path>
+                                        </svg>
+                                    </span>
+                                </label>
+                                <input id="file" name="image" value="" type="file" onchange="loadFile(event)">
+                                <img src={{asset('svg/logo.svg')}} id="output" width="200">
+                            </div>
+                        </div>
+                        <div class="card-header pb-0 px-3">
+                            <h6 class="mb-0 text-primary"> اضافة عمل</h6>
+                        </div>
+                        @if (session('status'))
                                     <div class="text-success">
                                     تم الارسال بنجاح يرجى مراجعة ايميلك
-                                      
+
                                     </div>
                                     @elseif(session('failed'))
                                     <div class="text-success">
                                     لم يتم الرسال لرجاء اعادة المحاوله
-                                       
+
                                     </div>
-                                    
+
                                 @endif
 
                                     @csrf
+                        <div class="row">
+                            <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                <label for="exampleInputEmail1" class="form-label"> اسم العمل  </label>
+                                <input  name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                                    <div class="user-box mt-3">
-                                        <label>عنوان العمل</label>
-                                        <input id="face" name="title" type="text" class="form-control">
-                                        @if ($errors->has('title'))
-                                        <small class="text-danger">{{ $errors->first('title') }}</small>
-                                    @endif
-                                        <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                                @if ($errors->has('title'))
+                                <small id="emailHelp" class="form-text">{{ $errors->first('title') }}</small>
+                                @endif
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
+                                <label for="exampleInputEmail1" class="form-label"> رابط العمل  </label>
+                                <input  name="link" type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                                        </span>
+                                @if ($errors->has('link'))
+                                <small id="emailHelp" class="form-text">{{ $errors->first('link') }}</small>
+                                @endif
+                            </div>
 
-                                    </div>
+                            <div class="mb-3 col-sm-12 col-md-6 col-lg-12">
+                                <label for="exampleInputEmail1" class="form-label"> ملفات توضيحيه  </label>
+                                <input value="" name="files[]" type="file" multiple class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
+                                @if ($errors->has('files'))
+                                <small id="emailHelp" class="form-text">{{ $errors->first('files') }}</small>
+                                @endif
+                            </div>
 
-                                    <div class="user-box mt-3">
-                                        <label>رابط العمل</label>
-                                        <input id="face" name="link" type="url" class="form-control">
-                                        @if ($errors->has('link'))
-                                        <small class="text-danger">{{ $errors->first('link') }}</small>
-                                    @endif
-                                        {{-- <small class="text-danger">سوف تكون مستحقاتك 12.00$ بعد خصم عمولة موقع مستقل</small> --}}
-                                        <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                        </span>
-
-                                    </div>
-
-
-
-                                    <div class="user-box mt-2">
-
-                                        <label> <b> وصف العمل </b> </label>
-                                        <textarea id="face" name="description" type="text" class="form-control" rows="6"></textarea>
-                                        @if ($errors->has('description'))
-                                        <small class="text-danger">{{ $errors->first('description') }}</small>
-                                    @endif
-                                        <span class="invalid-feedback" role="alert">
-                                            <div class='dan_mesg_po'> </div>
-                                        </span>
-                                        <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-
-                                        </span>
-
-                                    </div>
-
-
-
-
-
-
-
-                                    <div class="user-box mt-2">
-
-                                        <div class="input-group custom-file-button">
-                                            <label class="input-group-text" for="inputGroupFile">ملفات توضيحية</label>
-                                            <input type="file" name="files[]" class="form-control" id="inputGroupFile"
-                                                multiple>
-                                        </div>
-
-                                    </div>
-
-
-
-
-                                    <div class='btn-cont'>
-                                        <button class="show_more" type='submit'> حفظ</button>
-                                        <button class="show_more" type=''> الغاء</button>
-                                    </div>
-
-
-
+                            <div class="mb-3 col-sm-12 ">
+                                <label for="exampleInputEmail1" class="form-label">  الوصف </label>
+                                <textarea id="face" name="description" type="text" class="form-control" rows="5"></textarea>
+                                @if ($errors->has('description'))
+                                <small class="text-danger">{{ $errors->first('description') }}</small>
+                                @endif
                             </div>
                         </div>
-
-
-
-
-
-                        </form>
-
-
-                    </div>
-
+                        <div class="col-12  d-flex justify-content-evenly gap-5 " style="float: left;
+right: 70%;" role="group" aria-label="Basic outlined example">
+                            <button type="submit" class="btn btn-outline-primary ">حفظ</button>
+                            <a href="/profiles/{{Auth::user()->id}}" class="btn btn-outline-dark ">الغاء</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
+    </div>
+</div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
-                integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var loadFile = function(event) {
+        var image = document.getElementById("output");
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    $(function() {
+        $('#datepicker').datepicker();
+    });
+    $(document).ready(function() {
+        $('#select').selectpicker();
+    });
+</script>
 
 
-
-
-        <script>
-            var loadFile = function(event) {
-                var image = document.getElementById("output");
-                image.src = URL.createObjectURL(event.target.files[0]);
-            };
-
-            $(function() {
-                $('#datepicker').datepicker();
-            });
-        </script>
 @endsection
