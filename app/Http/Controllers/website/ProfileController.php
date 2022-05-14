@@ -6,6 +6,7 @@ use App\Models\Profile;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotificationController;
 use App\Models\Role;
 use App\Models\Roleuser;
 use App\Models\Skill;
@@ -166,13 +167,13 @@ class ProfileController extends Controller
             'describe.min' => 'يجب ان يكون الوصف اكثر  من 70 حرف',
             'phone.required' => ' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',
         ]);
-        if ($request->image) {
+        if ($request->image!="") {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
         } else {
             $imageName = $request->imageold;
         }
-        user::where('id', Auth::user()->id)->update(['name' => $request->name, 'image' => $imageName]);
+        user::where('id', Auth::user()->id)->update(['name' => $request->name,'image'=>$imageName]);
         Profile::where('id', $id)->update([
             'phone' => $request->phone, 'gander' => $request->gander, 'birth_date' => $request->birth_date,
             'country' => $request->country, 'major' => $request->major, 'user_id' => Auth::user()->id,
@@ -186,6 +187,11 @@ class ProfileController extends Controller
                 $userSkill->skill_id = $skill;
                 $userSkill->save();
             }
+            if(Auth::check()){
+                $data=['receiver_id'=>Auth::user()->id,'sender_id'=>Auth::user()->id,'title'=>'title of notify','is_read'=> 0,'message'=>'لقد قمت بتعديل ملفك الشخصي','link'=> '/home'];
+          
+                NotificationController::hiNotification($data);
+              }
         }
         return redirect('profiles/' . Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
     }

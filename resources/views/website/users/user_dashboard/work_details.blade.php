@@ -23,7 +23,7 @@
                 <div class='img_container'>
                     @forelse($data->sal_work_attach as $o)
                     <div class='img_prrofile2'>
-                        <img src='{{$o->file_name}}'>
+                        <img src='images/{{$o->file_name}}'>
                     </div>
                     @empty
                     <div class="flex_between">

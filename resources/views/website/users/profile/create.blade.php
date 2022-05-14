@@ -111,8 +111,8 @@
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-3">
                                 <label for="exampleInputEmail1" class="form-label"> الدولة </label>
                                 <select name="country" class="form-select form-control">
-                                    <option value="1">اليمن</option>
-                                    <option  value="السعوديه">انثى</option>
+                                    <option value="اليمن">اليمن</option>
+                                    <option  value="السعوديه">السعوديه</option>
                                 </select>
                                 @if ($errors->has('country'))
                                 <small id="emailHelp" class="form-text">{{ $errors->first('country') }}</small>
