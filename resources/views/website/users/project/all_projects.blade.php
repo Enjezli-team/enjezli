@@ -1,5 +1,86 @@
 {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ') }}">
+<style>
+  /****search effect******/
+    
+ 
+    /****search effect******/
+    
+    .search {
+        cursor: pointer;
+            color: #186d80;
+    font-size: 18px;
+    }
+    
+    .search-box {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+    }
+    
+    .input-search {
+        height: 50px;
+        width: 50px;
+        border-style: none;
+        padding: 10px;
+        letter-spacing: 2px;
+        outline: none;
+        border-radius: 25px;
+        transition: all .5s ease-in-out;
+        background-color: transparent;
+        padding-right: 40px;
+    color: #257587;
+    }
+    
+    .input-search::placeholder {
+        color: gray;
+        letter-spacing: 2px;
+    }
+    
+    .btn-search {
+        width: 50px;
+        height: 50px;
+        border-style: none;
+        font-size: 16px;
+        font-weight: bold;
+        outline: none;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        right: 0px;
+        color: black;
+        background-color: transparent;
+        pointer-events: painted;
+    }
+    
+    .btn-search:focus~.input-search {
+        width: 177px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-bottom: 1px solid gray;
+        transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    
+    .input-search:focus {
+        width: 177px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-bottom: 1px solid gray;
+        transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+    
+    @media(min-width:768px) {
+        .input-search:focus {
+            width: 170px;
+        }
+    }
+    .show_more{   background-color: #186d80;
+    color: white;
+    border-radius: 0.25rem;}
+     .show_more:hover{   background-color: white;
+    color:#186d80;
+    }
+</style>
 @extends("website.layouts.master")
 
 @section('content')
@@ -8,20 +89,19 @@
 
 <link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
 
-<style>
- .show_more{   background-color: #186d80;
-    color: white;
-    border-radius: 0.25rem;}
-     .show_more:hover{   background-color: white;
-    color:#186d80;
-    }
-</style>
+
 <div class="container-fluid py-3 mt-5">
 <div class="page-header min-height-300 border-radius-xl  mt-4" style="min-height: 70px !important;
 border-right: 4px solid #5ab1c5;
 border-radius: 4px;background-color: white;
 padding: 10px 10px;">
-   <h6>تصفح المشاريع </h6>
+   <h6> تصفح المشاريع </h6>
+    <div class="search-box">
+        <button class="btn-search">    
+        <ion-icon name="search" class="search"></ion-icon>
+        </button>
+        <input type="text" class="input-search" placeholder=" ابحث عن ....">
+    </div>
     </div>
 <div class="profile mt-2">
     {{-- <livewire:search /> --}}
@@ -30,7 +110,7 @@ padding: 10px 10px;">
 <div class="col-md-4 col-sm-12">
         <a class='title ' href="/progects/{{$item->id}}">
             <div class="personal_info_container myworks" style="width: auto;height:380px">
-                <div class="container_card">
+                <div class="">
                     <div class="">
                         <h2 class="h4">{{ $item['title'] }}</h2>
                         <div>

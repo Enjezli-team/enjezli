@@ -2,15 +2,21 @@
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 <link id="pagestyle" href="<?php echo e(asset('user_dash_assets/css/soft-ui-dashboard.css')); ?>?v=1.0.3" rel="stylesheet" />
-<div class="container-fluid py-4 mt-5">
-    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
-        <span class="mask bg-gradient-primary opacity-6"></span>
+<div class="container-fluid py-4 mt-5 bg-white ">
+    <div class="page-header min-height-150 border-radius-xl mt-4 d-flex justify-content-center" style="background-position-y: 50%;">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class='text-center  text-white ' style='z-index:11'>
+        <h5 class="text-white text-center">
+        تقوم هذه الصفحة بعرض كافة المنجزيين
+        </h5>
+        
+        </div>
     </div>
     <div class="row">
         <div class="col-12 mt-4 ">
             <div class="card mb-4 ">
 
-                <div class="card-body p-3 " style="background-color: #fff;">
+                <div class="card-body p-3 " style="background-color: #cce5ed;">
                     <div class="row ">
                         <?php $__empty_1 = true; $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="card card-body blur shadow-blur mx-4  overflow-hidden col-5 margin-12 mb-3">
@@ -24,7 +30,7 @@
 
                                 <div class="col-auto my-auto">
 
-                                    <div class="h-100">
+                                    <div class="">
                                         <h5 class="mb-1">
                                             <?php echo e($item->user->name); ?>
 
@@ -36,7 +42,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-lg-8 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mb-3">
+                                <div class="col-lg-12 col-md-6 p-3 mb-3">
                                     <div class="nav-wrapper position-relative end-0">
                                         <?php echo e($item->user->sal_profile->description); ?>
 

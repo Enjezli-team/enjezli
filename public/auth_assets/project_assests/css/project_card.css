@@ -12,9 +12,7 @@ a {
     background: white;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
     padding: 5vh 3vw;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.175)!important;
     height: 324px;
 }
 
@@ -139,10 +137,7 @@ a {
     left: 0px;
 }
 
-
-/Responsive Adding Media Queries/
-
-@media screen and (max-width: 800px) {
+/Responsive Adding Media Queries/ @media screen and (max-width: 800px) {
     .profile {
         padding: 13% 0%;
     }

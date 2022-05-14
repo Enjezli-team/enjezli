@@ -1,5 +1,8 @@
 
 <?php $__env->startSection('content'); ?>
+
+
+
     <main class="hero">
         <div class='p-relative'>
             <div class="container_text">

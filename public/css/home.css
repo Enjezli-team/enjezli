@@ -7,6 +7,17 @@
     --primary: #166a7f;
 }
 
+* {
+    padding: 0;
+    margin: 0;
+    color: var(--dark_blue);
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    box-sizing: border-box;
+    transition: all 0.4s;
+}
+
 .p-relative {
     position: relative;
 }
@@ -21,41 +32,6 @@ body {
 }
 
 
-/*__________________ nav^_^ _____________________*/
-
-.hero_section {
-    background-color: var(--light);
-}
-
-body {
-    overflow-x: hidden;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    color: var(--dark_blue);
-    font-weight: 500;
-    font-family: 'Tajawal', sans-serif;
-    direction: rtl;
-    box-sizing: border-box;
-    transition: all 0.4s;
-}
-
-.f-w {
-    font-weight: 600;
-}
-
-.colr-primary {
-    color: var(--beauty);
-}
-
-.d-flex-between {
-    display: flex;
-    justify-content: space-between;
-}
-
-
 /* nav_headerbar section */
 
 .nav_header {
@@ -64,25 +40,26 @@ body {
     position: fixed;
     line-height: 65px;
     text-align: center;
-    background-color: rgba(236, 241, 244, 0.56);
+    background-color: ;
     z-index: 1111;
     z-index: 1111;
     position: fixed;
     top: 0;
-    padding-left: 88px;
+    background: linear-gradient(45deg, var(--primary), transparent);
 }
 
 .nav_header div.logo {
     width: 180px;
     height: 10px;
-    position: relative;
+    position: absolute;
     top: 12px;
 }
 
 .nav_header div.logo a {
     text-decoration: none;
-    color: var(--dark_blue);
+    color: var(--white);
     font-size: 1.8em;
+    text-transform: uppercase;
 }
 
 .nav_header div.logo a:hover {
@@ -91,7 +68,7 @@ body {
 
 .nav_header div.main_list {
     height: 65px;
-    padding-left: 19px;
+    float: left;
 }
 
 .nav_header div.main_list ul {
@@ -99,21 +76,22 @@ body {
     height: 65px;
     display: flex;
     list-style: none;
-    gap: 13px;
 }
 
 .nav_header div.main_list ul li {
+    width: 120px;
     height: 65px;
-    display: grid;
+    text-align: center;
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .nav_header div.main_list ul li a {
     text-decoration: none;
+    color: var(--white);
     line-height: 65px;
-    color: var(--dark_blue);
-    transition: all 350ms ease-in-out 0s;
-    font-family: -webkit-body;
+    text-transform: uppercase;
 }
 
 .nav_header div.main_list ul li a:hover {
@@ -200,7 +178,7 @@ body {
 @media screen and (min-width: 768px) and (max-width: 1024px) {}
 
 @media screen and (max-width:768px) {
-    .container {
+    .containe {
         margin: 0;
     }
     .nav_header div.logo {
@@ -208,17 +186,16 @@ body {
     }
     .nav_header div.main_list {
         width: 100%;
-        margin-top: 65px;
         height: 0px;
         overflow: hidden;
     }
     .nav_header div.show_list {
-        height: 200px;
+        height: 1000%;
     }
     .nav_header div.main_list ul {
         flex-direction: column;
         width: 100%;
-        height: 200px;
+        height: 1000%;
         top: 80px;
         left: 0;
         left: 0;
@@ -226,7 +203,7 @@ body {
     .nav_header div.main_list ul li {
         width: 100%;
         height: 40px;
-        background-color: rgba(0, 0, 255, 0.8);
+        background-color: var(--primary);
     }
     .nav_header div.main_list ul li a {
         text-align: center;

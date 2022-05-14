@@ -2,7 +2,7 @@
 <?php $__env->startSection('content'); ?>
 <!-- End Navbar -->
 
-   <div class="container-fluid py-4">
+   <div class="container-fluid py-4 mt-5">
             <div class="row">
                  <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4">
                     <div class="card">
