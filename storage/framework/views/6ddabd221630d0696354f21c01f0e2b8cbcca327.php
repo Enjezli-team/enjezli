@@ -1,24 +1,16 @@
    
 
 <?php $__env->startSection('content'); ?>
-   <div class=" container-fluid pb-5">
+   <div class=" container-fluid pb-5 mt-5">
         <div class="col-12 mb-4">
             <div class="card bg-transparent shadow-xl">
                 <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
                     <span class="mask bg-gradient-dark"></span>
                     <div class="card-body position-relative z-index-1 ">
-                        <i class="fas fa-wifi text-white p-2"></i>
                         <h3 class="text-white mt-4 mb-1 pb-2 text-center">المجموع</h3>
                         <h5 class="text-white  text-center">500$</h5>
 
-                        <div class="col-4 tcard">
-
-                            <div class="me-auto w-20 d-flex align-items-center gap-3 justify-content-end">
-                                <img class=" mt-2" src="<?php echo e(asset('master.svg')); ?>" alt="logo" style="width: 100%">>
-                                <img class="mt-2" src="<?php echo e(asset('svg/visa.svg')); ?>" alt="logo" style="width: 100%">
-                                <img class=" mt-2" src="<?php echo e(asset('svg/paypal-seeklogo.com.svg')); ?>" alt="logo" style="width: 100%">
-                            </div>
-                        </div>
+ 
                     </div>
                 </div>
             </div>

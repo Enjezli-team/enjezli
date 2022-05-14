@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <!-- End Navbar -->
-<div class="container-fluid  ">
+<div class="container-fluid mt-5 ">
     <div class="page-header min-height-300 border-radius-xl mt-4 text-center text-white d-flex justify-content-center" style="">
                     <span class="mask bg-gradient-dark" ></span>
                     <div class='text-center' style='z-index:12'>

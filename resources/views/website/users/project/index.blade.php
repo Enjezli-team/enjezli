@@ -97,7 +97,7 @@ padding: 10px 10px;">
                     </div>
                     <div class="liks_shows">
                         <a href="{{ route('projects.show', $item['id']) }}"><button class="show_more">
-                                التقديم</button></a>
+                              n  التقديم</button></a>
                     </div>
                 </div>
             </div>

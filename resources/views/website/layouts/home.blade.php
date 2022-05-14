@@ -1,5 +1,8 @@
 @extends("website.layouts.master")
 @section('content')
+
+
+
     <main class="hero">
         <div class='p-relative'>
             <div class="container_text">

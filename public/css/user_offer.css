@@ -86,7 +86,6 @@ body.dark .home .text {
 }
 
 .porto {
-    width: 45rem;
     background: #ffffff;
     padding: 22px;
     position: relative;
@@ -112,7 +111,6 @@ body.dark .home .text {
 
 .phone {
     font-size: 12px;
-    padding-right: 12px;
     color: #808080ab;
 }
 
