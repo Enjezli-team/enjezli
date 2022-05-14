@@ -7,6 +7,7 @@
         <link rel="icon" type="image/png" href="{{asset('svg/logo.svg')}}">
 
     <title>Enjezle</title>
+    
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 
@@ -207,7 +208,7 @@
             </div>
         </footer>
     </div>
-
+   
 
     <script data-optimized="1"
         src="https://multiwebpress.com/wp-content/litespeed/js/5780facee2c85b4f45eda135e587773d.js?ver=7773d"></script>

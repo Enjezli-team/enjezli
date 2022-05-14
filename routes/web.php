@@ -12,8 +12,7 @@ use App\Http\Controllers\admin\offersController;
 
 
 use App\Http\Controllers\HomeController;
-
-
+use App\Http\Controllers\NotificationController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -66,6 +65,8 @@ Route::get('work_data/{id}', [WorkController::class, 'work_data'])->name('work_d
 Route::get('progects', [ProjectController::class, 'index_without_auth'])->name('progects');
 Route::get('progects/{id}', [ProjectController::class, 'show_without_auth'])->name('progect_data');
 Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/lesson/create',[NotificationController::class,'hiNotification'])->name('home');
+ Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
 /*
@@ -83,8 +84,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/notify', [HomeController::class, 'notify'])->name('notify');
 
-/*
+/* notify
 |--------------------------------------------------------------------------
 | Website Routes
 |--------------------------------------------------------------------------
