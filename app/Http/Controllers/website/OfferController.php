@@ -298,7 +298,7 @@ class OfferController extends Controller
                         // $order =  Order::where("sender_id", Auth::user()->id);
 
                     } else {
-                        return response(['error' => true, 'offer-msg' => 'offer has been cancel'], 404);
+                        return response(['error' => true, 'payment-msg' => ' خطأ بالاتصال ببوابة الدفع'], 404);
                     }
                 }
             } else {
@@ -334,7 +334,7 @@ class OfferController extends Controller
             Auth::user()->balanceInt;
             // Auth::user()->deposit($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'ايداع', 'projcet_id' => $offer->project_id, 'projcet_title' => $offer->sal_project_id->title, 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price]);
 
-            Auth::user()->deposit($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_project_id->sal_created_by->name, 'type' => 'ايداع', 'projcet_id' => $offer->project_id, 'projcet_title' => '-', 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price]);
+            Auth::user()->deposit($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_project_id->sal_created_by->name, 'type' => 'ايداع', 'projcet_id' => $offer->project_id, 'project_title' => '-', 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id]);
             return view('website.users.offers.success');
             // return redirect()->route('')->with(['success' => 'تم تعديل البيانات بنجاح']);
         } else {
@@ -382,10 +382,10 @@ class OfferController extends Controller
      *     last confirmation and start work
      *------------------------**/
 
-    public function confirmOffer(Request $request)
+    public function confirmOffer($offer_id, $project_id)
     {
-        $data = Offer::with('sal_project_id')->where('project_id', $request->project_id)
-            ->where('id', $request->offer_id)->first();
+        $data = Offer::with('sal_project_id')->where('project_id', $project_id)
+            ->where('id', $offer_id)->first();
 
         if ($data->sal_project_id->status == 4) { //if the project accepted an offer
 

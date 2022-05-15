@@ -59,7 +59,7 @@
     }
 
 </style>
-@extends("website.layouts.master")
+@extends('website.layouts.master')
 
 @section('content')
     <div class="container mt-5 details_container">
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <!-- اضافة عرض
-                                                                                    -->
+                                                                                                    -->
 
                 @if ($canMakeOffer && $data->status == 1)
                     <div class="">
@@ -393,7 +393,7 @@
                                                         {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
                                                     @elseif((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 3) || Auth::user()->id == $data->handled_by)
                                                         {{-- <a style="color:black" class="status">تم التسليم  </a> --}}
-                                                        <form action="{{ route('confirmDelivery') }}" method="post">
+                                                        {{-- <form action="{{ route('confirmDelivery') }}" method="post">
                                                             @csrf
                                                             <input style="display:none" type="text" name="offer_id"
                                                                 value='{{ $offer->id }}'>
@@ -403,7 +403,54 @@
                                                                 value='{{ $data['id'] }}'>
                                                             <button style="color:black ;border:none" type='submit '
                                                                 class="note"> تأكيد الاستلام </button>
-                                                        </form>
+                                                        </form> --}}
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeliver{{ $offer->id }}">
+                                                            تأكيد الاستلام
+                                                        </button>
+
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="confirmDeliver{{ $offer->id }}"
+                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            تأكيد الاستلام </h5>
+                                                                        <button type="button" class="btn-close "
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+
+                                                                    <div class="modal-body">
+                                                                        هل أنت متأكد من استلام المشروع ؟
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-success"
+                                                                            data-bs-dismiss="modal">Cancel</button>
+                                                                        <form action="{{ route('confirmDelivery') }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <input style="display:none" type="text"
+                                                                                name="offer_id"
+                                                                                value='{{ $offer->id }}'>
+                                                                            <input style="display:none" type="text"
+                                                                                name="project_owner"
+                                                                                value='{{ $data['user_id'] }}'>
+                                                                            <input style="display:none" type="text"
+                                                                                name="project_id"
+                                                                                value='{{ $data['id'] }}'>
+                                                                            <button style="color:black ;border:none"
+                                                                                type='submit ' class="note"> تأكيد
+                                                                                الاستلام </button>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @elseif ((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 5) || Auth::user()->id == $data->handled_by)
                                                         <a style="color:black" class="status">مغلق </a>
                                                     @endif
@@ -577,7 +624,7 @@
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
                             <img src="
-                                                                                                @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
+                                                                                                                @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
                                 alt="">
                         </div>
                         <div class="container_card">
