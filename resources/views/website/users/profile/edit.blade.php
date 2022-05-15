@@ -141,10 +141,10 @@
                             </div>
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
                                 <label for="exampleInputEmail1" class="form-label"> حساب Facebook </label>
-                                <input value="{{ $data->Facebook }}" name="Facebook" type="فثءف" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input value="{{$data->facebook}}" name="facebook" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                                @if ($errors->has('Facebook'))
-                                <small id="emailHelp" class="form-text">{{ $errors->first('Facebook') }}</small>
+                                @if ($errors->has('facebook'))
+                                <small id="emailHelp" class="form-text">{{ $errors->first('facebook') }}</small>
                                 @endif
                             </div>
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4">

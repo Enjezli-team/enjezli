@@ -60,7 +60,7 @@ class ProfileController extends Controller
         Validator::validate($request->all(), [
 
             // 'image'=>['mimes:jpg,png,jpeg','size:512'],
-            'phone' => ['required', 'regex:/^(009677)[0-9]{8}$/'],
+            'phone' => ['required', 'digits:14'],
             'country' => ['required'],
             'major' => [''],
             'role' => ['required'],
@@ -71,6 +71,8 @@ class ProfileController extends Controller
             'describe' => ['required', 'min:50 ']
         ], [
             'phone.required' => 'يرجى ادخال رقم التلفون ',
+            'phone.digits' => 'يرجى ادخال رقم التلفون ',
+
             'country.required' => 'يرجى ادخال الدولة ',
             'role.required' => 'يرجى ادخال نوع الاستخدام ',
             //'major.required'=>'يرجى ادخال الاسم التخصص',
