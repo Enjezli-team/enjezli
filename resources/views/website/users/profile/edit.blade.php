@@ -74,9 +74,10 @@
                                         </svg>
                                     </span>
                                 </label>
-                                <input id="" name="imageold" value="" type="text" value="{{$data->sal_user->image}}">
+                                <input id="" name="imageold"  hidden type="text" value="{{$data->sal_user->image}}">
                                 <input id="file" name="image" value="" type="file" onchange="loadFile(event)">
                                 <img src={{asset('images/'.$data->sal_user->image)}} id="output" width="200">
+                              
                             </div>
                         </div>
                         <div class="card-header pb-0 px-3">
@@ -128,8 +129,8 @@
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
                                 <label for="exampleInputEmail1" class="form-label"> الدولة </label>
                                 <select name="country" class="form-select form-control">
-                                    <option {{($data->country=='اليمن') ? 'selected' : ''}} value="1">اليمن</option>
-                                    <option {{($data->country=='السعوديه') ? 'selected' : ''}} value="السعوديه">انثى</option>
+                                    <option {{($data->country=='اليمن') ? 'selected' : ''}} value="اليمن">اليمن</option>
+                                    <option {{($data->country=='السعوديه') ? 'selected' : ''}} value="السعوديه">السعوديه</option>
                                 </select>
                                 @if ($errors->has('country'))
                                 <small id="emailHelp" class="form-text">{{ $errors->first('country') }}</small>
@@ -140,10 +141,10 @@
                             </div>
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
                                 <label for="exampleInputEmail1" class="form-label"> حساب Facebook </label>
-                                <input value="{{ $data->Facebook }}" name="Facebook" type="فثءف" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input value="{{$data->facebook}}" name="facebook" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                                @if ($errors->has('Facebook'))
-                                <small id="emailHelp" class="form-text">{{ $errors->first('Facebook') }}</small>
+                                @if ($errors->has('facebook'))
+                                <small id="emailHelp" class="form-text">{{ $errors->first('facebook') }}</small>
                                 @endif
                             </div>
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
