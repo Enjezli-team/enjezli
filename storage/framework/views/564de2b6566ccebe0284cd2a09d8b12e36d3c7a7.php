@@ -399,7 +399,7 @@
                 </div>
 
                 <div class="input-container textarea">
-                    <textarea name="message" class="input"></textarea>
+                    <textarea name="message" class="input"></textarea>`
                     <label for="">الرسالة</label>
                     <span>الرسالة</span>
                 </div>

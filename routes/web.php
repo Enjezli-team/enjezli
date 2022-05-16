@@ -45,6 +45,9 @@ use Illuminate\Support\Str;
 Route::get('/home', [HomeController::class, "index"]);
 //contact page
 Route::get('/contact',function(){ return view("website.layouts.pages.contact");})->name("contact");
+//priv
+Route::get('/priv',function(){ return view("website.layouts.pages.priv");})->name("oriv");
+
 
 // Route::get('users_dashboard', function () {
 //     return view("website.users.user_dashboard.index");

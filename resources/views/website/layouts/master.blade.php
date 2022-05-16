@@ -88,7 +88,7 @@
                         <li><a href="">شروط الاستخدام
 
                             </a></li>
-                        <li><a href=""> بيان الخصوصية
+                        <li><a href="priv" target='_blank'> بيان الخصوصية
 
 
                             </a></li>
