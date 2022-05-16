@@ -261,9 +261,44 @@ Route::post(
 )->name('cancelOffer');
 
 
-Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+    // Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+    // Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
+    // Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+
+;
+
+/**----------------------
+ *    new
+ *------------------------**/
+
+
+
+Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+Route::post('/offer/cancel_confirm', [OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
+Route::get('/offer/cancel/{id}', [OfferController::class, 'cancelOffer'])->name('cancelOffer');
+// Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+Route::get('/offer/confirm/{offer_id}/{project_id}', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+
+
 Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
 Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
 
 

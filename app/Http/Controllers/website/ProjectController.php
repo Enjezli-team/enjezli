@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\website;
 
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\NotificationController;
 use App\Models\Project;
 use App\Models\Offer;
 use App\Models\Skill;
@@ -259,6 +260,11 @@ class ProjectController extends Controller
           $noError = 2;
         }
         if ($noError >= 1) {
+          if (Auth::check()) {
+            $data = ['receiver_id' => 10, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم اضافة مشروع جديد ', 'link' => '/home'];
+
+            NotificationController::hiNotification($data);
+          }
           return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
         } else {
           return redirect('/My_projects')->with(['success' => ' فشلت  الاضافة ']);
