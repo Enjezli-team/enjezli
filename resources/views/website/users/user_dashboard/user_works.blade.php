@@ -53,7 +53,7 @@
 
 
                 <div class='img_project'>
-                    <img src='{{ asset('images/1651526505.png') }}'>
+                    <img src='{{ asset('images/'.$data->image) }}'>
                 </div>
 
 

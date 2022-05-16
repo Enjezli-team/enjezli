@@ -215,7 +215,7 @@
                                 </form>
                                 <div class="position-relative ">
                                     <a class="d-block shadow-xl border-radius-xl ">
-                                        <img src={{asset("images/".$work->file)}} alt="img-blur-shadow " class="img-fluid shadow border-radius-xl ">
+                                        <img src="{{asset("images/".$work->file)}}" alt="img-blur-shadow " class="img-fluid shadow border-radius-xl ">
                                     </a>
                                 </div>
 

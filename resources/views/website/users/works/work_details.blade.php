@@ -32,7 +32,7 @@ padding: 10px 10px;">
                         <div class="col-lg-4 me-auto ms-0 text-center">
                             <div class="bg-gradient-primary border-radius-lg min-height-200">
                                 <div class="position-relative pt-5 pb-4">
-                                    <img class="max-width-500 w-100 position-relative z-index-2" src={{asset('images/'.$data->file)}}>
+                                    <img class="max-width-500 w-100 position-relative z-index-2" src={{asset('images/'.$data->file_name)}}>
                                 </div>
                             </div>
                         </div>

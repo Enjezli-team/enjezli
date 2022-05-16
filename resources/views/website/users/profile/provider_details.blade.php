@@ -186,7 +186,7 @@
                                 <div class="card-body px-1 pb-0 ">
                                     <a href="/work_data/{{$work->id}} ">
                                         <h5>
-                                            {{$work-> 	title}} </p>
+                                            {{$work->title}} </p>
                                         </h5>
                                     </a>
                                     <p class="mb-4 text-sm ">
