@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '08a4fb9bcc4db568c581cd46b1795e04a75d9baa',
+        'reference' => '083f58994065e244ede14475f9ad03193833ffe6',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -17,15 +17,6 @@
             'install_path' => __DIR__ . '/../asm89/stack-cors',
             'aliases' => array(),
             'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
-            'dev_requirement' => false,
-        ),
-        'bavix/laravel-wallet' => array(
-            'pretty_version' => '7.3.3',
-            'version' => '7.3.3.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../bavix/laravel-wallet',
-            'aliases' => array(),
-            'reference' => '094ef2534dd6c77046f80f8ea82d6a0b03d62b59',
             'dev_requirement' => false,
         ),
         'brick/math' => array(
@@ -454,7 +445,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '08a4fb9bcc4db568c581cd46b1795e04a75d9baa',
+            'reference' => '083f58994065e244ede14475f9ad03193833ffe6',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
