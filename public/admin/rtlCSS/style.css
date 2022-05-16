@@ -1,6 +1,11 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css");
+
 .main-sidebar, .sidebar-dark-primary{
-  background-color: #023047;
-  color:#fff;
+    background-color: #186D80;
+    border-radius: 26px;
+    margin: 10px;
+    color: #fff;
+    height: 97vh;
 }
 .sidebar .nav-link p,.sidebar .nav-link i,.user-panel .info a{
 color: #fff;
@@ -27,6 +32,7 @@ border: 1px solid #D2AC3C;
 background-color: #fff;
 border: 2px solid #D2AC3C;
 }
+
 .me1_btn i:hover {
 color: #D2AC3C;
 }
@@ -37,10 +43,10 @@ color: #D2AC3C;
 color: #2A3C68;
 }
 .nav-link:hover p {
-color: #D2AC3C;
+color: #8ECAE6;
 }
 .nav-link:hover i {
-color: #D2AC3C;
+color: #8ECAE6;
 }
 .avatar-pic {
 width: 150px;
@@ -84,7 +90,7 @@ color: #ffba00;
 
 }
 .small-box{
-background-color: #ffba00  !important;
+background-color: #8ECAE6  !important;
 border-bottom: 2px solid #35404d;
 
 }
@@ -150,6 +156,22 @@ height: 2.8rem; }
 height: 3.7rem; }
 .file-field.big-2 .file-path-wrapper .file-path {
 height: 3.5rem; }
+
+
+
+/* my code */
+.logo_d{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.user-panel {
+  border-bottom: 1px solid #fff !important;
+}
+
+
+/* end my code */
 /************************************MEDIA QUERY START*******************************************/
 
 @media (max-width:250.98px) {

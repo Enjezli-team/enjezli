@@ -65,7 +65,9 @@
                                             @forelse($data as $item)
                                             <tr class="odd">
                                             <td>{{$item->id}}</td>
-                                            <td>{{$item->image}}</td>
+                                            <td>
+                                                <img src="{{$item->image}}" alt="Product Image" class="img-size-50">
+                                            </td>
                                             <td>{{$item->name}}</td>
                                             <td>{{$item->email}}</td>
                                             <td>

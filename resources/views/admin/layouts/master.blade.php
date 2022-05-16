@@ -4,12 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Enjezli | Dashboard</title>
+  <title>لوحة التحكم</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
+  {{-- bootstrap --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -47,7 +49,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('admin/images/logo.png')}}" alt="انجز لي " height="70" width="60">
+    <img class="animation__shake" src="{{asset('/admin/images/logo.png')}}" alt="انجز لي " height="70" width="60">
   </div>
 
   <!-- Navbar -->
@@ -58,7 +60,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">تقارير</a>
+        {{-- <a href="index3.html" class="nav-link">تقارير</a> --}}
       </li>
     </ul>
 
@@ -158,12 +160,20 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4" >
+  <aside class="main-sidebar  sidebar-dark-primary elevation-4" >
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{asset('images/logo.png')}}" alt="" class="brand-image  elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">انجزلي</span>
-    </a>
+
+    <div  class=" logo_d mt-2 mx-auto d-block">
+      <img src="images/logo.png" alt="" class="mx-auto d-block img-responsive fit-image " width="50px" height="50px">
+    </div>
+
+    {{-- <div class="container">
+      <div class="col-md-4 px-0">
+          <img src="images/logo.png" class="img-fluid ">
+      </div>
+  </div> --}}
+    
+    <p class="text-center brand-text font-weight-light">انجزلي</p>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -182,9 +192,17 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item">
+          <li class="nav-item ">
+            <a href="/admin/index" class="nav-link">
+              <i class="bi bi-house-fill"></i>
+              <p>
+                الرئيسية
+              </p>
+            </a>
+          </li>
+          <li class="nav-item ">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-people-fill"></i>
               <p>
                 المستخدمين
                 <i class="right fas fa-angle-left"></i>
@@ -193,13 +211,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/users" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-person"></i>
                   <p>عرض الكل</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/users/create" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-person-plus"></i>
                   <p>اضافة جديد</p>
                 </a>
               </li>
@@ -207,7 +225,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-award-fill"></i>
               <p>
                  المهارات
                 <i class="right fas fa-angle-left"></i>
@@ -216,95 +234,84 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/skills" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-shield-check"></i>
                   <p>عرض الكل</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/skills/create" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-shield-plus"></i>
                   <p> اضافة جديد</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="/admin/providers" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+            <a href="/admin/user_status/{{$type=2}}" class="nav-link">
+              <i class="bi bi-person-check-fill"></i>
               <p>
-                المزودين
+                منجزي الخدمات 
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="/admin/seekers" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <a href="/admin/user_status/{{$type=3}}" class="nav-link">
+
+                <i class="bi bi-person-lines-fill"></i>
               <p>
                 طالبي الخدمات
               </p>
+              
             </a>
 
           </li>
 
           <li class="nav-item">
             <a href="/admin/projects" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-folder-fill"></i>
               <p>
                  المشاريع
                 <i class="right fas fa-angle-left"></i>
 
               </p>
             </a>
-            {{-- حالة المشروع
-            @if ($item->status == 1)
-                <span>مفتوح</span>
-             @elseif($item->status == 0)
-            <span>: معلق </span>
-            @elseif($item->status == 2)
-            <span>قيد التنفيذ </span>
-            @elseif($item->status == 3)
-            <span>تم التسليم</span>
-            @elseif($item->status == 4)
-            <span>لا يتلقى عروض</span>
-            @elseif($item->status == 5)
-            <span>مغلق</span>
-            @endif --}}
+         
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=1}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-folder2-open"></i>
                   <p>مفتوح </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=1-1}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-folder-minus"></i>
                   <p> معلق </p>
                 </a>
               </li>
             
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=2}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-folder-symlink"></i>
                   <p> قيد التنفيذ  </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=3}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-folder-check"></i>
                   <p> قيد التسليم  </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=4}}"class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-file-break"></i>
                   <p>لا يتلقى عروض  </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/project_status/{{$status=5}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-folder-x"></i>
                   <p>مغلق</p>
                 </a>
               </li>
@@ -312,7 +319,7 @@
           </li>
           <li class="nav-item">
             <a href="/admin/offers" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-file-earmark-easel-fill"></i>
               <p>
                 احدث العروض
                 <i class="right fas fa-angle-left"></i>
@@ -321,13 +328,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/admin/offer_status/{{$status=1}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-file-earmark-check"></i>
                   <p>تم اختيارها </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/admin/offer_status/{{$status=0}}"  class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-file-earmark-excel"></i>
                   <p>  تم الالغاء</p>
                 </a>
               </li>
@@ -336,7 +343,7 @@
           </li>
           <li class="nav-item">
             <a href="/admin/complains" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-send-exclamation-fill"></i>
               <p>
                  الشكاوي
                 <i class="right fas fa-angle-left"></i>
@@ -345,14 +352,14 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-send-x"></i>
                   <p>  لم يتم حلها </p>
                 </a>
               </li>
 
               <li class="nav-item">
                 <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="bi bi-send-check"></i>
                   <p>تم الحل </p>
                 </a>
               </li>
@@ -362,7 +369,7 @@
           </li>
           <li class="nav-item">
             <a href="/admin/complains" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-chat-right-dots-fill"></i>
               <p>
                  التعليقات
 
@@ -371,7 +378,7 @@
           </li>
           <li class="nav-item">
             <a href="/admin/complains" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="bi bi-star-fill"></i>
               <p>
                  التقيمات
               </p>
@@ -468,5 +475,7 @@
     $('.select2').select2()
     });
   </script>
+
+
 </body>
 </html>

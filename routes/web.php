@@ -195,6 +195,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('users', UserController::class);
     Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
     Route::post('/userSearch',[UserController::class, 'search']);
+    // Route::get('/usertype/{type}',[UserController::class, 'usertype']);
+    Route::get('/user_status/{type}',[UserController::class, 'user_upon_status']);
+
+
     // search
     Route::resource('skills', SkillController::class);
     Route::post('/skillsSearch',[SkillController::class, 'search']);
