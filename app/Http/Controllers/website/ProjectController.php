@@ -27,7 +27,7 @@ class ProjectController extends Controller
     $data = Project::with(['sal_created_by', 'sal_skills_by.sal_skill'])->where('status', 1)->get();
     return view('website.users.project.index', compact('data'));
   }
-/** */
+  /** */
 
   public function index_without_auth()
   {
@@ -82,8 +82,6 @@ class ProjectController extends Controller
     } else {
       return response(['error' => true, 'error-msg' => 'Not found'], 404);
     }
-
-
   }
   public function testApi()
   {
@@ -185,7 +183,6 @@ class ProjectController extends Controller
 
   public function createProject()
   {
-
     $data = Skill::All();
     return view('website.users.project.createProject', compact('data'));
   }
@@ -262,9 +259,9 @@ class ProjectController extends Controller
           $noError = 2;
         }
         if ($noError >= 1) {
-          return redirect()->back()->with(['success' => '  تمت الاضافة بنجاح']);
+          return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
         } else {
-          return redirect()->back()->with(['success' => ' فشلت  الاضافة ']);
+          return redirect('/My_projects')->with(['success' => ' فشلت  الاضافة ']);
         }
       }
     };
@@ -452,9 +449,9 @@ class ProjectController extends Controller
           $noError = 2;
         }
         if ($noError >= 2) {
-          return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
+          return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
         } else {
-          return redirect()->back()->with(['success' => 'لم يتم تعديل البيانات بنجاح']);
+          return redirect('/My_projects')->with(['success' => ' فشلت  الاضافة ']);
         }
       }
     };

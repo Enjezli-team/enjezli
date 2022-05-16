@@ -24,14 +24,13 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.pages.Projects.index',['data'=>Project::where('status',0)->get(),compact('user')]);
 
+        return view('admin.pages.Projects.index', ['data' => Project::where('status', 0)->get(), compact('user')]);
     }
 
     public function project_upon_status($status)
-    {   
-        return view('admin.pages.Projects.index',['data'=>Project::where('status',$status)->get()]);
+    {
+        return view('admin.pages.Projects.index', ['data' => Project::where('status', $status)->get()]);
     }
 
     /**
@@ -40,10 +39,9 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+
     public function create()
     {
-
     }
 
     /**
@@ -53,9 +51,8 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-   {
-
-   }
+    {
+    }
 
     /**
      * Display the specified resource.
@@ -65,49 +62,47 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        
-        $data = Project::with(['sal_offers','sal_handel_by','sal_created_by','sal_skills_by','sal_project_attach'])->find($id);
-      
 
-      return view('admin.pages.Projects.show')->with('data' , $data);
+        $data = Project::with(['sal_offers', 'sal_handel_by', 'sal_created_by', 'sal_skills_by', 'sal_project_attach'])->find($id);
+
+
+        return view('admin.pages.Projects.show')->with('data', $data);
     }
 
     public function search(Request $request)
     {
-        Validator::validate($request->all(),[
+        Validator::validate($request->all(), [
 
             'value' => 'required',
 
-         ],[
+        ], [
             'value.required' => 'يجب ادخال قيمه للبحث بشكل صحيح كأسم او رقم او ايميل   .',
-         ]);
-            $search=Project::query()
+        ]);
+        $search = Project::query()
             ->orWhere('title', 'LIKE', "%{$request->value}%")
             ->orWhere('description', 'LIKE', "%{$request->value}%")
             ->orWhere('id', 'LIKE', "%{$request->value}%")
             ->get();
-            return view('admin.pages.Projects.index',['data'=>$search]);
-
+        return view('admin.pages.Projects.index', ['data' => $search]);
     }
 
 
-    public function blockProByAdmin($proId,$blockValue)
+    public function blockProByAdmin($proId, $blockValue)
     {
-        $user = Project::where('id',$proId)->update(['blockByAdmin'=>$blockValue]);
-         // redirect
-         return back()->with('success','project data successfully updated.');
-
+        $user = Project::where('id', $proId)->update(['blockByAdmin' => $blockValue]);
+        // redirect
+        return back()->with('success', 'project data successfully updated.');
     }
 
-    public function activatePro($proId,$status){
+    public function activatePro($proId, $status)
+    {
 
-        
-        $user = Project::where('id',$proId)->update(['status'=>$status]);
-         // redirect
-         return back()->with('success','offer data successfully updated.');
 
+        $user = Project::where('id', $proId)->update(['status' => $status]);
+        // redirect
+        return back()->with('success', 'offer data successfully updated.');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -129,9 +124,8 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $project_id)
-   {
-
-   }
+    {
+    }
     /**
      * Remove the specified resource from storage.
      *

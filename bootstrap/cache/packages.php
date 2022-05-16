@@ -1,4 +1,11 @@
 <?php return array (
+  'bavix/laravel-wallet' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Bavix\\Wallet\\WalletServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
