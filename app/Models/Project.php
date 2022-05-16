@@ -21,7 +21,7 @@ class Project extends Model
         'status',
         'handled_by',
         'user_id',
-       
+
     ];
     public function sal_offers(){
 
@@ -30,8 +30,6 @@ class Project extends Model
     }
     //users
     public function sal_handel_by(){
-       
-        
         return $this->belongsTo(User::class,'handled_by');
     }
     public function sal_created_by(){
@@ -46,5 +44,10 @@ class Project extends Model
      //attachement
      public function sal_project_attach(){
         return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',1);
+    }
+    //review
+    public function sal_review(){
+
+        return $this->hasOne(Review::class,'type_id');
     }
 }

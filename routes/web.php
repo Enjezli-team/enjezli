@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
 //admin
+
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ProjectsController;
@@ -12,13 +13,14 @@ use App\Http\Controllers\admin\offersController;
 
 
 use App\Http\Controllers\HomeController;
-
-
+use App\Http\Controllers\NotificationController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
 use App\Http\Controllers\website\ProjectController;
 use App\Http\Controllers\website\OfferController;
+use App\Http\Controllers\website\WalletController;
+
 use App\Http\Controllers\website\ProfileController;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -53,12 +55,20 @@ Route::get('user_offer', function () {
 Route::get('user_review', function () {
     return view("website.users.user_dashboard.review");
 })->name('user_review');
+
+Route::get('providers', [ProfileController::class, 'index'])->name('providers');
+Route::get('providers/{id}', [ProfileController::class, 'provider_data'])->name('provider_data');
+Route::get('work_data/{id}', [WorkController::class, 'work_data'])->name('work_data');
 // Route::get('user_work', function () {
 //     return view("website.users.user_dashboard.user_works");
 // })->name('user_work');
 // Route::get('work_details', function () {
 //     return view("website.users.user_dashboard.work_details");
 // })->name('work_details');
+Route::get('progects', [ProjectController::class, 'index_without_auth'])->name('progects');
+Route::get('progects/{id}', [ProjectController::class, 'show_without_auth'])->name('progect_data');
+Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
+Route::get('/lesson/create', [NotificationController::class, 'hiNotification'])->name('home');
 Route::get('/users_dashbord', [ProfileController::class, 'index'])->name('user_dashboard');
 Route::get('/user_work', [WorkController::class, 'index'])->name('user_work');
 Route::get('/work_details/{id}', [WorkController::class, 'show'])->name('work_details');
@@ -77,13 +87,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/notify', [HomeController::class, 'notify'])->name('notify');
 
-/*
+/* notify
 |--------------------------------------------------------------------------
 | Website Routes
 |--------------------------------------------------------------------------
 |
 */
+/*_____________________________*/
+route::get('dashboard', function () {
+    return view('website.users.dashboard.index');
+})->name('dashboard');
+route::get('wallet', function () {
+    return view('website.users.wallet.index');
+})->name('wallet');
+
+Route::get('providers', [ProfileController::class, 'index'])->name('providers');
+Route::get('providers/{id}', [ProfileController::class, 'provider_data'])->name('provider_data');
+Route::get('work_data/{id}', [WorkController::class, 'work_data'])->name('work_data');
+/*_____________________________*/
+
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'registration'])->name('register');
 Route::get('/verify_email/{token}', [CustomAuthController::class, 'verify'])->name('verify');
@@ -165,6 +189,8 @@ Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 
 
 Route::prefix('seeker')->group(function () {
+
+
     //   Route::resource('profile',ProfileController::class );
 });
 
@@ -188,7 +214,7 @@ Route::resource('projects', ProjectController::class);
 |
 */
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
-    
+
     // Route::resource('setting', offersController::class);
     Route::get('index', [IndexController::class, 'index'])->name('index');
     // user
@@ -199,25 +225,23 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/user_status/{type}',[UserController::class, 'user_upon_status']);
 
 
-    // search
+    
+        // search
     Route::resource('skills', SkillController::class);
-    Route::post('/skillsSearch',[SkillController::class, 'search']);
-    Route::get('/skill_status/{user_id}/{status}',[SkillController::class, 'change_status']);
+    Route::post('/skillsSearch', [SkillController::class, 'search']);
+    Route::get('/skill_status/{user_id}/{status}', [SkillController::class, 'change_status']);
     // projects
-    Route::resource('projects', ProjectsController::class);
-    Route::get('/project_status/{status}',[ProjectsController::class, 'project_upon_status']);
-    Route::get('/project_block/{id}/{blockByAdmin}',[ProjectsController::class, 'blockProByAdmin']);
-    Route::get('/project_activate/{id}/{status}',[ProjectsController::class, 'activatePro']);
-    Route::post('/projectSearch',[ProjectsController::class, 'search']);
-    Route::get('/project_details/{id}',[ProjectsController::class, 'show']);
+    // Route::resource('projects', ProjectsController::class);
+    Route::get('/project_status/{status}', [ProjectsController::class, 'project_upon_status']);
+    Route::get('/project_block/{id}/{blockByAdmin}', [ProjectsController::class, 'blockProByAdmin']);
+    Route::get('/project_activate/{id}/{status}', [ProjectsController::class, 'activatePro']);
+    Route::post('/projectSearch', [ProjectsController::class, 'search']);
+    Route::get('/project_details/{id}', [ProjectsController::class, 'show']);
 
     // offer
-    Route::get('/offer_status/{status}',[offersController::class, 'offer_upon_status']);
-    Route::get('/offer_block/{id}/{status}',[offersController::class, 'blockofferByAdmin']);
-    Route::post('/offerSearch',[offersController::class, 'search']);
-
-
-
+    Route::get('/offer_status/{status}', [offersController::class, 'offer_upon_status']);
+    Route::get('/offer_block/{id}/{status}', [offersController::class, 'blockofferByAdmin']);
+    Route::post('/offerSearch', [offersController::class, 'search']);
 });
 
 
@@ -242,10 +266,65 @@ Route::post(
 )->name('cancelOffer');
 
 
-Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+    // Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+    // Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
+    // Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+
+;
+
+/**----------------------
+ *    new
+ *------------------------**/
+
+
+
+Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+Route::post('/offer/cancel_confirm', [OfferController::class, 'cancelConfirm'])->name('cancelConfirm');
+Route::get('/offer/cancel/{id}', [OfferController::class, 'cancelOffer'])->name('cancelOffer');
+// Route::post('/offer/confirm', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+Route::get('/offer/confirm/{offer_id}/{project_id}', [OfferController::class, 'confirmOffer'])->name('confirmOffer');
+
+
 Route::post('/finish', [OfferController::class, 'finishWork'])->name('finishWork');
 Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->name('confirmDelivery');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
+
+
+
+
+Route::group(['middleware' => 'role:seeker'], function () {
+    Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
+    Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
+    Route::get('projectCreate', [ProjectController::class, 'createProject'])->name('createProject');
+});
+Route::group(['middleware' => 'role:provider'], function () {
+    Route::resource('offers', OfferController::class);
+});
+
+Route::resource('projects', ProjectController::class);
+Route::get('testApi', [ProjectController::class, 'testApi']);
+Route::get('/success/{response}', [OfferController::class, 'success']);
+Route::get('/cancel', [OfferController::class, 'cancel']);
+Route::post('/search', [ProjectController::class, 'search'])->name('search');
+Route::get('/transactions', [WalletController::class, 'showTransactions'])->name('transactions');
+Route::get('/transactions/{id}', [WalletController::class, 'showUserTransactions']);
 
 
 

@@ -4,30 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="{{asset('svg/logo.svg')}}">
+
     <title>Enjezle</title>
+    
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 
 <body>
-
-    <div class="hero_section">
-        <nav>
+    <nav class="nav_header">
+        <div class="containe">
+          <div>
             <div class="logo">
-                <a href="{{ route('home') }}"> <img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+                <a href="/"><img src="{{ asset('svg/logo.svg') }}" alt=""></a>
             </div>
-            <div class="hamburger">
-                <div class="bars1"></div>
-                <div class="bars2"></div>
-                <div class="bars3"></div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="">بحث عن منجز</a></li>
-                <li><a href="{{ route('projects.index') }}">تصفح المشاريع</a></li>
+          </div>
+            <div class="main_list" id="mainListDiv">
+             <ul class="nav-links">
+                <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
+                <li><a href="/progects">تصفح المشاريع</a></li>
                 <li><a href="{{ route('projects.create') }}">اضف مشروع</a></li>
+                
                 @auth
 
                     <li>
-                        <div class=''><a href='{{ route('user_dashboard') }}' class='btn_img'>
+                        <div class=''><a href='/profiles/{{Auth::user()->id}}' class='btn_img'>
                                 <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
                             </a></div>
                     @endauth
@@ -37,10 +38,19 @@
                     @endguest
                 </li>
             </ul>
-            </ul>
-        </nav>
+            </div>
+            <div class="media_button">
+                <button class="main_media_button" id="mediaButton">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
 
-    </div>
+
     <div class="svg-container">
         <div class="svg">
 
@@ -198,7 +208,7 @@
             </div>
         </footer>
     </div>
-
+   
 
     <script data-optimized="1"
         src="https://multiwebpress.com/wp-content/litespeed/js/5780facee2c85b4f45eda135e587773d.js?ver=7773d"></script>
@@ -206,7 +216,18 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script nomodule src="{{ asset('js/home.js') }}"></script>
+    <script src="{{asset('js/home.js')}}">
+    var mainListDiv = document.getElementById("mainListDiv"),
+    mediaButton = document.getElementById("mediaButton");
+
+mediaButton.onclick = function() {
+
+    "use strict";
+
+    mainListDiv.classList.toggle("show_list");
+    mediaButton.classList.toggle("active");
+
+};</script>
 </body>
 
 </html>

@@ -107,7 +107,6 @@
 
 .shape {
     border-radius: 17px!important;
-    box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%)!important;
 }
 
 @media (min-width:400px) and (max-width:900px) {

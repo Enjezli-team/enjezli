@@ -1,4 +1,3 @@
-
 <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
 <!--<title>Dashboard Sidebar Menu</title>-->
@@ -36,7 +35,7 @@
                 </li>
                 <li class="nav-link">
                     <a class="{{ Route::currentRouteName() === '/user_dashboard' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
-                        href="{{ route('user_dashboard') }}">
+                        href="/profiles">
                         <i class='bx bx-user icon'></i>
 
                         <span class="text nav-text">ملفي الشخصي</span>
@@ -64,7 +63,7 @@
                     </a>
                 </li>
 
-                
+
                 <li class="nav-link">
                     <a class="{{ Route::currentRouteName() === '/user_projects' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
                         href="{{ route('My_projects') }}">
@@ -80,12 +79,12 @@
                     </a>
                 </li>
                 <li>
-                <a class="{{ Route::currentRouteName() === '/user_dashboard' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
-                    href="{{ route('user_dashboard') }}">
+                    <a class="{{ Route::currentRouteName() === '/user_dashboard' ? 'activee  flex flex-align-center justify' : ' nav__menu  flex flex-align-center justify' }}"
+                        href="{{ route('user_dashboard') }}">
 
-                       <i class='bx bx-wallet icon'></i>
-                    <span class="text nav-text">المحفظة</span>
-                </a>
+                        <i class='bx bx-wallet icon'></i>
+                        <span class="text nav-text">المحفظة</span>
+                    </a>
                 </li>
 
             </ul>
@@ -118,7 +117,7 @@
 </nav>
 
 <main>
-    @yield("content")</main>
+    @yield('content')</main>
 
 <script>
     const body = document.querySelector('body'),
@@ -148,3 +147,5 @@
         }
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

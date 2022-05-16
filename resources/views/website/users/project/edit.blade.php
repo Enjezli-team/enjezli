@@ -142,7 +142,7 @@
 
 
 
-                                            <div class='btn-cont'>
+                                            <div class='col-12  d-flex justify-content-evenly gap-5'>
                                                 <button class="show_more" type='submit'> حفظ</button>
                                                 <button class="show_more" type=''> الغاء</button>
                                             </div>

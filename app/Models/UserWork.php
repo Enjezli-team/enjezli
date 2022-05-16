@@ -16,8 +16,8 @@ class UserWork extends Model
         'link',
         'is_active',
         'user_id',
-        
-      
+
+
     ];
    //attachement
  public function sal_work_attach(){
@@ -26,6 +26,6 @@ class UserWork extends Model
 //user
 public function sal_user(){
 
-    return $this->belongsTo(User::class,'user_id');
+    return $this->belongsTo(User::class,'user_id')->where('is_active',1);
 }
 }

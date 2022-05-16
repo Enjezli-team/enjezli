@@ -15,4 +15,16 @@ class Review extends Model
         'from_id',
         'to_id',
     ];
+    public function sal_to_user(){
+
+        return $this->belongsTo(User::class,'to_id');
+    }
+    public function sal_from_user(){
+
+        return $this->belongsTo(User::class,'from_id');
+    }
+    public function sal_project(){
+
+        return $this->belongsTo(Project::class,'type_id');
+    }
 }

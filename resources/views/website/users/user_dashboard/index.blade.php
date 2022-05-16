@@ -16,7 +16,7 @@
 
             <div class=' porto shadow'>
                 <div class='edit'>
-                    <a href="/profiles/{{ $data->id }}/edit">
+                    <a href="/profiles/{{ $data->sal_profile->id }}/edit">
                         <i class='bx bxs-edit'></i>
                     </a>
 
@@ -57,7 +57,7 @@
                     <div class='title_desc'>
                         <h5><i class='bx bxs-quote-right'></i></h5>
 
-                        <span>المسمى الوضيفي</span>
+                        <span>{{  $data->sal_profile->Job_title}} </span>
                         <h5><i class='bx bxs-quote-left'></i></h5>
 
                     </div>
