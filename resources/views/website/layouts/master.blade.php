@@ -82,7 +82,7 @@
                         <li><a href=""> الأسئلة الشائعة
 
                             </a></li>
-                        <li><a href="">ضمان حقوقك
+                        <li><a href="contact" target='_blank'> تواصل بنا
 
                             </a></li>
                         <li><a href="">شروط الاستخدام
