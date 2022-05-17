@@ -38,7 +38,18 @@
                                 @enderror
                             </div>
                         </div>
-
+                        @if (session('status'))
+                        <div class="text-success">
+                          
+                        </div>
+                        @elseif(session('error'))
+                        <div class="invalid-feedback" style="color: rgb(247, 84, 84)">
+                            <span class="invalid-feedback" role="alert">
+    تاكد من بريدك الالكتروني او كلمة السر </span> 
+    
+                        </div>
+                        
+                    @endif
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">

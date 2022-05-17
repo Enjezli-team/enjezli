@@ -72,17 +72,12 @@ class ProfileController extends Controller
         ], [
             'phone.required' => 'يرجى ادخال رقم التلفون ',
             'phone.digits' => 'يرجى ادخال رقم التلفون ',
-
             'country.required' => 'يرجى ادخال الدولة ',
             'role.required' => 'يرجى ادخال نوع الاستخدام ',
-            //'major.required'=>'يرجى ادخال الاسم التخصص',
-            //'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required' => 'يرجى ادخال وصف عنك',
             'tweeter.url' => 'يرجى ادخال عنوان حساب تويتر بشكل صحيح ',
             'facebook.url' => 'يرجى ادخال عنوان حساب فيسبوك بشكل صحيح ',
             'github.url' => 'يرجى ادخال عنوان حساب جيت هب بشكل صحيح ',
-            // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
-            // 'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min' => 'يجب ان يكون الوصف اكثر  من 70 حرف',
             'phone.required' => ' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',
         ]);

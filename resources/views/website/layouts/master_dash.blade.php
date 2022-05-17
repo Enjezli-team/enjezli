@@ -32,6 +32,7 @@
     <link href="{{asset('user_dash_assets/css/nucleo-svg.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
+
 </head>
 
 <body class="g-sidenav-show rtl bg-gray-100">
@@ -226,7 +227,7 @@
                         <ul class="dropdown-menu  px-2 py-3 me-sm-n4" id="notify_body" aria-labelledby="dropdownMenuButton">
                             @forelse ($notifications as $item)
                             <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="{{ $item->link }}">
+                                <a class="dropdown-item border-radius-md" href="{{$item->link}}">
                                     <div class="d-flex py-1">
                                         <div class="my-auto">
                                             <img src="{{asset('images/'.Auth::user()->image )}}" class="avatar avatar-sm  ms-3 ">
@@ -237,7 +238,7 @@
                                             </h6>
                                             <p class="text-xs text-secondary mb-0 ms-auto">
                                                 <i class="fa fa-clock me-1" aria-hidden="true"></i>
-                                                {{ $item->created_at }}                                            </p>
+                                                {{ $item->created_at }}   s                                         </p>
                                         </div>
                                     </div>
                                 </a>
