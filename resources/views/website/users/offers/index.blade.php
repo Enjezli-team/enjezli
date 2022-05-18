@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ') }}">
+<link rel="stylesheet" href="{{ asset('css/model.css ') }}">
+
+
 <style>
     /****search effect******/
 
@@ -255,7 +258,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
@@ -296,7 +299,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a
                                                     href="/offer/confirm/{{ $offer->id }}/{{ $offer->sal_project_id->id }}">
@@ -327,7 +330,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
@@ -409,7 +412,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
                                                 <form action="{{ route('finishWork') }}" method="post">
 
                                                     @csrf

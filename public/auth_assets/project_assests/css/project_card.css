@@ -10,8 +10,6 @@ a {
     width: 22em;
     border-radius: 17px;
     background: white;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     padding: 5vh 0vw;
     height: 324px;
 }

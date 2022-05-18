@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/project_card.css ')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/model.css ')); ?>">
+
+
 <style>
     /****search effect******/
 
@@ -247,7 +250,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a href="<?php echo e(route('cancelOffer', $offer->id)); ?>"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
@@ -280,7 +283,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a
                                                     href="/offer/confirm/<?php echo e($offer->id); ?>/<?php echo e($offer->sal_project_id->id); ?>">
@@ -311,7 +314,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
 
                                                 <a href="<?php echo e(route('cancelOffer', $offer->id)); ?>"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
@@ -350,7 +353,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                    data-bs-dismiss="modal">إلغاء</button>
                                                 <form action="<?php echo e(route('finishWork')); ?>" method="post">
 
                                                     <?php echo csrf_field(); ?>
