@@ -297,13 +297,7 @@ Route::post('/acceptDelivery', [OfferController::class, 'confirmDelivery'])->nam
 
 
 
-
-
 Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
-
-
-
-
 Route::group(['middleware' => 'role:seeker'], function () {
     Route::get('/My_projects', [ProjectController::class, 'My_projects'])->name('My_projects');
     Route::get('/change_status/{project_id}/{status}', [ProjectController::class, 'changeStatus'])->name('change_status');
@@ -321,6 +315,10 @@ Route::post('/search', [ProjectController::class, 'search'])->name('search');
 Route::get('/transactions', [WalletController::class, 'showTransactions'])->name('transactions');
 Route::get('/transactions/{id}', [WalletController::class, 'showUserTransactions']);
 
+Route::get('/reject/{id}', [OfferController::class, 'loadRejectForm'])->name('reject');
+Route::post('rejectDelivery', [OfferController::class, 'rejectDelivery'])->name('rejectDelivery');
+Route::get('/loadComplainForm/{id}', [OfferController::class, 'loadComplainForm'])->name('ComplainForm');
+Route::post('Complain', [OfferController::class, 'Complain'])->name('Complain');
 
 
 

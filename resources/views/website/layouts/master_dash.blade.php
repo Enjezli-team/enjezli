@@ -107,7 +107,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/profiles/{{ Auth::user()->id }}">
+                    <a class="nav-link " href="{{route('My_projects')}}">
                         <div
                             class="icon icon-shape icon-sm  border-radius-md bg-white text-center ms-2 d-flex align-items-center justify-content-center">
                             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"

@@ -6,7 +6,12 @@
     <link rel="stylesheet" href="{{ asset('css/user_dashboard.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/user_offer.css') }}">
+    <style>
+        .btn-close {
+            margin: 0 !important;
+        }
 
+    </style>
     <section class="home">
         <div class="page_title">
             <div class='title shadow'>
@@ -61,10 +66,11 @@
                                                 هل أنت متأكد من الغاء العرض ؟
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <a style='background-color:transparent'> <button type="button"
+                                                        class="btn btn-success" data-bs-dismiss="modal">Cancel</button></a>
 
-                                                <a href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
+                                                <a style='background-color:transparent'
+                                                    href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
                                             </div>
                                         </div>
@@ -102,10 +108,10 @@
                                                 هل أنت متأكد من قبول المشروع ؟
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <a style='background-color:transparent'> <button type="button"
+                                                        class="btn btn-success" data-bs-dismiss="modal">Cancel</button></a>
 
-                                                <a
+                                                <a style='background-color:transparent'
                                                     href="/offer/confirm/{{ $offer->id }}/{{ $offer->sal_project_id->id }}">
                                                     <button type="button" class="btn btn-danger"> تأكيد</button></a>
                                             </div>
@@ -133,10 +139,11 @@
                                                 هل أنت متأكد من رفض المشروع ؟
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success"
-                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <a style='background-color:transparent'> <button type="button"
+                                                        class="btn btn-success" data-bs-dismiss="modal">Cancel</button></a>
 
-                                                <a href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
+                                                <a style='background-color:transparent'
+                                                    href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
                                             </div>
                                         </div>
@@ -225,8 +232,8 @@
                                                     <input style="display:none" type="text" name="offer_id"
                                                         value='{{ $offer->id }}'>
 
-                                                    <button style="color:black ;border:none;background:transparent"
-                                                        type='button ' class="btn btn-danger"> تسليم
+                                                    <button style="color:white ;border:none;" type='button '
+                                                        class="btn btn-danger"> تسليم
                                                         المشروع </button>
                                                     {{-- <a href="{{ route('cancelOffer', $offer->id) }}"> <button
                                                             type="button" class="btn btn-danger"> تأكيد</button></a> --}}
@@ -234,10 +241,16 @@
                                         </div>
                                     </div>
                                 </div>
+                            @elseif($offer->sal_project_id->status == 6 && $offer->status == 3)
+                                <a href="{{ route('ComplainForm', $offer->id) }}">
+                                    <button style="color:white ;border:none" class="btn btn-primary" type='submit '
+                                        class="note"> شكوى </button>
+                                </a>
                             @endif
 
                         </div>
-                        <a href="projects/{{ $offer->sal_project_id->id }}#offer{{ $offer->id }}">
+                        <a href="projects/{{ $offer->sal_project_id->id }}#offer{{ $offer->id }}"
+                            id='offer{{ $offer->id }}'>
 
                             <div class='img_container'>
                                 <div class='img_project'>
@@ -293,8 +306,12 @@
                                             <a style="color:black" class="status"> قيد التسليم </a>
                                         @elseif($offer->sal_project_id->status == 5 && $offer->status == 3)
                                             <a style="color:black" class="status"> تم الاستلام </a>
+                                        @elseif($offer->sal_project_id->status == 6 && $offer->status == 3)
+                                            <a style="color:black" class="status">رفض استلامه</a>
+                                        @elseif($offer->sal_project_id->status == 7 && $offer->status == 3)
+                                            <a style="color:black" class="status"> رفُعت شكوى</a>
                                         @elseif($offer->sal_project_id->status == 1 && $offer->status == 4)
-                                            <a style="color:black" class="status">مرفوض</a>
+                                            <a style="color:black" class="status">ملغي</a>
                                         @endif
 
 

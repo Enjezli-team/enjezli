@@ -1,4 +1,5 @@
-{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ') }}">
 <style>
     /****search effect******/
@@ -96,16 +97,17 @@
 
 
     <div class="container-fluid py-3 mt-5">
-        <div class="page-header min-height-300 border-radius-xl  mt-4" style="min-height: 70px !important;
-                                                                border-right: 4px solid #5ab1c5;
-                                                                border-radius: 4px;background-color: white;
-                                                                padding: 10px 10px;">
+        <div class="page-header min-height-300 border-radius-xl  mt-4"
+            style="min-height: 70px !important;
+                                                                                                                                                                                    border-right: 4px solid #5ab1c5;
+                                                                                                                                                                                    border-radius: 4px;background-color: white;
+                                                                                                                                                                                    padding: 10px 10px;">
             <h6> تصفح المشاريع </h6>
             <div class="search-box">
                 <button class="btn-search">
                     <ion-icon name="search" class="search"></ion-icon>
                 </button>
-                <input type="text" class="input-search search" placeholder=" ابحث عن ....">
+                <input type="text" class="input-search search search-input" placeholder=" ابحث عن ....">
             </div>
         </div>
         <div class="profile mt-2">
@@ -113,7 +115,7 @@
 
             <div class=" row">
                 @forelse ($data as $item)
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-12 cards_contianer ">
                         <a class='title ' href="{{ route('projects.show', $item['id']) }}">
                             <div class="personal_info_container myworks" style="width: auto;height:380px">
                                 <div class="container_card">
@@ -162,13 +164,13 @@
                                                         <span> {{ $item->sal_offers->count() }}</span>
                                                     </a>
                                                 </li>
-                                                {{-- {{ $item->sal_skill}}
-                                <div class='skills ' style=''>
-                                    @foreach ($item->sal_skills_by as $skill)
-                                    {{ $skill->sal_skill->title }}<br>
-                                    @endforeach
-                                </div> --}}
-                                                <a href="" class="">
+                                                {{-- {{ $item->sal_skill }} --}}
+                                                {{-- <div class='skills ' style=''>
+                                                    @foreach ($item->sal_skills_by as $skill)
+                                                        {{ $skill->sal_skill->title }}<br>
+                                                    @endforeach
+                                                </div> --}}
+                                                {{-- <a href="" class="">
 
                                                     <span>الحالة </span>
                                                     @if ($item['status'] == 0)
@@ -179,7 +181,7 @@
                                                     @endif
 
 
-                                                </a>
+                                                </a> --}}
                                                 </li>
                                             </ul>
                                         </div>
@@ -197,6 +199,8 @@
                         </a>
                     </div>
                 @empty
+                    <div style="text-align:center;color:white ; font-weight: bold;font-size:2rem;margin-top:100px;"> لا توجد
+                        مشاريع</div>
                 @endforelse
 
 
@@ -205,8 +209,10 @@
             </div>
 
         </div>
-        <nav aria-label="Page navigation example">
+        {{-- <nav aria-label="Page navigation example">
+
             <ul class="pagination justify-cont-center">
+             {!! $data->links() !!} 
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
@@ -221,7 +227,7 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+        </nav> --}}
     </div>
     </div>
 @endsection
