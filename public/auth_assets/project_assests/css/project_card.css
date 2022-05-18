@@ -12,7 +12,7 @@ a {
     background: white;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 5vh 3vw;
+    padding: 5vh 0vw;
     height: 324px;
 }
 
@@ -73,19 +73,18 @@ a {
 
 .hr::before {
     content: "";
-    width: 287px;
+    width: 99%;
     background-color: #186d80;
     display: block;
     position: relative;
     height: 1px;
-    top: 13px;
     background: radial-gradient(#186d80, transparent);
 }
 
 .liks_shows {
-    margin-top: 33px;
+    margin-top: 13px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     padding-bottom: 23px;
     align-items: center;
 }
@@ -137,7 +136,10 @@ a {
     left: 0px;
 }
 
-/Responsive Adding Media Queries/ @media screen and (max-width: 800px) {
+
+/*Responsive Adding Media Queries*/
+
+@media screen and (max-width: 800px) {
     .profile {
         padding: 13% 0%;
     }
