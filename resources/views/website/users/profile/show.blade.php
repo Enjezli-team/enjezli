@@ -1,9 +1,24 @@
 @extends('website.layouts.master_dash')
 @section('content')
 <!-- End Navbar -->
+@if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session()->get('success') }}
+    
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @elseif(session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session()->get('error') }}
+    
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                 @endif
 <div class="container-fluid mt-5 ">
     <div class="page-header min-height-300 border-radius-xl mt-4 text-center text-white d-flex justify-content-center" style="">
                     <span class="mask bg-gradient-dark" ></span>
+                    
+
                     <div class='text-center' style='z-index:12'>
                     <h3 class='text-white'>عرض الملف الشخصي</h3>
                                         <p>     , تعرض هذه الصفحة معلومات الملف الشخصي

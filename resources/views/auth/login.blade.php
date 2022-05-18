@@ -12,6 +12,7 @@
                 </div>
             </div>
             <h2>تسجيل الدخول</h2>
+       
          
             <form method="POST" action="{{ route('login.custom') }}">
                  @csrf 
@@ -23,10 +24,9 @@
                 <div class="user-box">
                     <div class="inputContainer">
                         <input id="email" name="email" class="form-control">
-                       
                         @if ($errors->has('email'))
-                        <small class="text-danger">{{ $errors->first('email') }}</small>
-                         @endif 
+                 <small class="text-danger" style="color: rgb(247, 84, 84)">{{ $errors->first('email') }}</small>
+                  @endif 
                         <label>عنوان البريد الالكتروني</label>
                     </div>
                    
@@ -38,25 +38,26 @@
                         <input type="password" name="password" type="password" class="form-control ">
                     
                         @if ($errors->has('password'))
-                        <small class="text-danger">{{ $errors->first('password') }}</small>
+                        <small class="text-light" style="color: rgb(247, 84, 84);">{{ $errors->first('password') }}</small>
                          @endif 
                         <label>كلمة السر </label>
                     </div>
+                   
                     @if (session('status'))
                     <div class="text-success">
                       
                     </div>
-                    @elseif(session('failed'))
+                    @elseif(session('error'))
                     <div class="invalid-feedback" style="color: rgb(247, 84, 84)">
                         <span class="invalid-feedback" role="alert">
-تاكد من بريدك الالكتروني او كلمة السر                        </span> 
-
+                            {{ session('error') }} </span> 
+        
                     </div>
+                    
                     
                 @endif
                 </div>
-
-
+                
                 <div class='btn-cont'>
                     <button class='btn' href='#' type="submit">
                         تسجيل
