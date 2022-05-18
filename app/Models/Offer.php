@@ -21,19 +21,25 @@ class Offer extends Model
         'description',
     ];
 
-     //provider
-     public function sal_provider_by(){
+    //provider
+    public function sal_provider_by()
+    {
 
-        return $this->belongsTo(User::class,'provider_id');
+        return $this->belongsTo(User::class, 'provider_id');
     }
-//project
-public function sal_project_id(){
+    //project
+    public function sal_project_id()
+    {
 
-    return $this->belongsTo(Project::class,'project_id');
-    
-}
- //attachement
- public function sal_offer_attach(){
-    return $this->hasMany(UserAttachment::class,'attach_id')->where('attach_type',2);
-}
+        return $this->belongsTo(Project::class, 'project_id');
+    }
+    //attachement
+    public function sal_offer_attach()
+    {
+        return $this->hasMany(UserAttachment::class, 'attach_id')->where('attach_type', 2);
+    }
+    public function sal_complain()
+    {
+        return $this->hasOne(Complain::class, 'offer_id');
+    }
 }

@@ -4,40 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="{{asset('svg/logo.svg')}}">
+    <link rel="icon" type="image/png" href="{{ asset('svg/logo.svg') }}">
 
     <title>Enjezle</title>
-    
+
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
     <nav class="nav_header">
         <div class="containe">
-          <div>
-            <div class="logo">
-                <a href="/"><img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+            <div>
+                <div class="logo">
+                    <a href="/"><img src="{{ asset('svg/logo.svg') }}" alt=""></a>
+                </div>
             </div>
-          </div>
             <div class="main_list" id="mainListDiv">
-             <ul class="nav-links">
-                <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
-                <li><a href="/progects">تصفح المشاريع</a></li>
-                <li><a href="{{ route('projects.create') }}">اضف مشروع</a></li>
-                
-                @auth
+                <ul class="nav-links">
+                    <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
+                    <li><a href="/projects">تصفح المشاريع</a></li>
+                    <li><a href="{{ route('createProject') }}">اضف مشروع</a></li>
 
-                    <li>
-                        <div class=''><a href='/profiles/{{Auth::user()->id}}' class='btn_img'>
-                                <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
-                            </a></div>
-                    @endauth
-                    @guest
-                    <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
-                    <li><a href="{{ route('register') }}" class="login-button"> إنشاء حساب</a></button>
-                    @endguest
-                </li>
-            </ul>
+                    @auth
+
+                        <li>
+                            <div class=''><a href='/profiles/{{ Auth::user()->id }}' class='btn_img'>
+                                    <div class='img_profile'><img src='{{ asset('img/1.png') }}'></div>
+                                </a></div>
+                        @endauth
+                        @guest
+                        <li><a href="{{ route('login') }}">تسجيل دخول</a></li>
+                        <li><a href="{{ route('register') }}" class="login-button"> إنشاء حساب</a></button>
+                        @endguest
+                    </li>
+                </ul>
             </div>
             <div class="media_button">
                 <button class="main_media_button" id="mediaButton">
@@ -48,7 +49,7 @@
             </div>
         </div>
     </nav>
-    
+
 
 
     <div class="svg-container">
@@ -208,7 +209,7 @@
             </div>
         </footer>
     </div>
-   
+
 
     <script data-optimized="1"
         src="https://multiwebpress.com/wp-content/litespeed/js/5780facee2c85b4f45eda135e587773d.js?ver=7773d"></script>
@@ -216,18 +217,17 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="{{asset('js/home.js')}}">
-    var mainListDiv = document.getElementById("mainListDiv"),
-    mediaButton = document.getElementById("mediaButton");
+    <script src="{{ asset('js/home.js') }}">
+        var mainListDiv = document.getElementById("mainListDiv"),
+            mediaButton = document.getElementById("mediaButton");
 
-mediaButton.onclick = function() {
+        mediaButton.onclick = function() {
 
-    "use strict";
+            "use strict";
 
-    mainListDiv.classList.toggle("show_list");
-    mediaButton.classList.toggle("active");
+            mainListDiv.classList.toggle("show_list");
+            mediaButton.classList.toggle("active");
 
-};</script>
-</body>
-
-</html>
+        };
+    </script>
+    <script src="{{ asset('js/search.js') }}"></script>
