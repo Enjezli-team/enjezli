@@ -26,7 +26,7 @@ class OfferController extends Controller
     public function index()
     {
 
-        $offers = Offer::with(['sal_project_id'])->where('provider_id', Auth::user()->id)->get();
+        $offers = Offer::with(['sal_project_id.sal_created_by'])->where('provider_id', Auth::user()->id)->get();
         return view('website.users.offers.index', compact('offers'));
     }
 
@@ -55,8 +55,8 @@ class OfferController extends Controller
 
         Validator::validate($request->all(), [
 
-            'price' => ['required', 'numeric'],
-            'duration' => ['required', 'numeric'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required', 'numeric', 'gt:0'],
             'description' =>  array(
                 'required',
             ),
@@ -66,7 +66,9 @@ class OfferController extends Controller
 
             'price.required' => 'يجب ادخال السعر ',
             'price.numeric' => 'يجب ادخال رقم ',
+            'price.gt' => 'يجب ادخال قيمة موجبة   ',
             'duration.required' => 'يجب ادخال المدة ',
+            'duration.gt' => 'يجب ادخال قيمة موجبة   ',
             'duration.numeric' => 'يجب ادخال رقم ',
             'description.required' => 'يجب أدخال تفاصيل العرض  ',
             // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
@@ -327,17 +329,16 @@ class OfferController extends Controller
     {
         $info = base64_decode($response);
         $result = json_decode($info, true);
-        // echo $info;
-        // echo $result['customer_account_info']['order_reference_id'];
-        //update
-        // $order = Order::where('id', $result['customer_account_info']['order_reference_id'])->first();
+        // return  $result;
 
-        // $last_inserted_order = Order::latest()->first();
-        $order = Order::where('id', $result['order_reference_id'])->first();
-        echo $order->id;
-        // $order = Order::where('id', $last_inserted_order->id)->first();
+
+
+
+        $order = Order::where('id', $result['order_reference'])->first();
+
+
         $order->status = 1;
-        // $order->invoice_id =$result['customer_account_info']['invoice_referance'] ;
+
         $offer = Offer::with(['sal_project_id', 'sal_provider_by'])->where('id', $order->offer_id)->first();
         $offer->status = 2;
         $offer->sal_project_id->status = 4;
@@ -703,8 +704,8 @@ class OfferController extends Controller
     {
         Validator::validate($request->all(), [
 
-            'price' => ['required', 'numeric'],
-            'duration' => ['required', 'numeric'],
+            'price' => ['required', 'numeric', 'gt:0'],
+            'duration' => ['required', 'numeric', 'gt:0'],
             'description' =>  array(
                 'required',
             ),
@@ -715,6 +716,9 @@ class OfferController extends Controller
             'price.required' => 'يجب ادخال السعر ',
             'price.numeric' => 'يجب ادخال رقم ',
             'duration.required' => 'يجب ادخال المدة ',
+            'price.gt' => 'يجب ادخال قيمة موجبة ',
+            'duration.gt' => 'يجب ادخال المدة ',
+            'duration.gt' => 'يجب ادخال قيمة موجبة ',
             'duration.numeric' => 'يجب ادخال رقم ',
             'description.required' => 'يجب أدخال وصف المشروع ',
             // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',

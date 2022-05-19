@@ -47,9 +47,10 @@
                         <p class="text-muted mb-0">{{ $item->provider_complain }}</p>
                     </td>
                     <td>
-                        <a href='' class="text-muted mb-0">شات</a>
-                        <a href="{{ route('loadsolutionForm', $item->id) }}" class="text-muted mb-0">حل النزاع</a>
-
+                        @if ($item->provider_complain)
+                            <a href='' class="text-muted mb-0">شات</a>
+                            <a href="{{ route('loadsolutionForm', $item->id) }}" class="text-muted mb-0">حل النزاع</a>
+                        @endif
 
                     </td>
                     <td>
