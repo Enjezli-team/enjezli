@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\website;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\NotificationController;
 use App\Models\Project;
 use App\Models\Offer;
@@ -12,7 +13,8 @@ use App\Models\UserAttachment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\UserSkill;
+use Exception;
 use App\Models\user;
 
 
@@ -25,6 +27,7 @@ class ProjectController extends Controller
    */
   public function index()
   {
+    // $data = Project::with(['sal_created_by', 'sal_skills_by.sal_skill'])->where('status', 1)->paginate(2);
     $data = Project::with(['sal_created_by', 'sal_skills_by.sal_skill'])->where('status', 1)->get();
     return view('website.users.project.index', compact('data'));
   }
@@ -177,11 +180,6 @@ class ProjectController extends Controller
    */
 
 
-
-  public function create()
-  {
-  }
-
   public function createProject()
   {
     $data = Skill::All();
@@ -236,16 +234,12 @@ class ProjectController extends Controller
     if ($project->save()) {
 
       foreach ($request->skills as $skill) {
-        // return response($request->skills);
-        // print_r($request->skills);
-
         $ProjectSkill = new ProjectSkill;
         $ProjectSkill->project_id = $project->id;
         $ProjectSkill->skill_id = $skill;
         $ProjectSkill->save();
         $noError = 1;
       }
-
       if ($request->hasFile('files')) {
         foreach ($request->file('files') as $file) {
           $Attachments = new UserAttachment;
@@ -259,16 +253,19 @@ class ProjectController extends Controller
           $Attachments->save();
           $noError = 2;
         }
-        if ($noError >= 1) {
-          if (Auth::check()) {
-            $data = ['receiver_id' => 10, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم اضافة مشروع جديد ', 'link' => '/home'];
+      }
 
-            NotificationController::hiNotification($data);
-          }
-          return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
-        } else {
-          return redirect('/My_projects')->with(['success' => ' فشلت  الاضافة ']);
+      if ($noError >= 1) {
+        $userSkills = UserSkill::whereIn('skill_id', $request->skills)->groupBy('user_id')->get(['user_id']);
+        foreach ($userSkills as $userSkill) {
+
+          $data = ['receiver_id' => $userSkill->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم اضافة مشروع جديد ', 'link' => '/home'];
+          NotificationController::hiNotification($data);
         }
+
+        return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
+      } else {
+        return redirect('/My_projects')->with(['error' => ' فشلت  الاضافة ']);
       }
     };
   }
@@ -281,21 +278,14 @@ class ProjectController extends Controller
    */
 
 
-  public function show($id) //'sal_created_by',
+  public function show($id)
   {
-
-
-
-    $data = Project::with([
-      'sal_created_by', 'sal_project_attach',
-      'sal_skills_by.sal_skill',
-      'sal_offers.sal_provider_by.sal_profile', 'sal_offers.sal_offer_attach'
-    ])->where('id', $id)->first();
-
-
-    if ($data != null) {
-
-
+    try {
+      $data = Project::with([
+        'sal_created_by', 'sal_project_attach',
+        'sal_skills_by.sal_skill',
+        'sal_offers.sal_provider_by.sal_profile', 'sal_offers.sal_offer_attach'
+      ])->where('id', $id)->first();
       $canMakeOffer = 0;
       if (!Auth()->check()) {
         $data = Project::with([
@@ -303,16 +293,10 @@ class ProjectController extends Controller
           'sal_skills_by.sal_skill',
           'sal_offers.sal_provider_by.sal_profile', 'sal_offers.sal_offer_attach'
         ])->where('id', $id)->where('status', '<>', 0)->first();
-        if ($data != null) {
-          return view('website.users.project.show', compact('data', 'canMakeOffer'));
-        } else {
-          return response(['error' => true, 'error-msg' => 'Not found'], 404);
-        }
+        return view('website.users.project.show', compact('data', 'canMakeOffer'));
       } else {
         $has_offer = Offer::where('project_id', $id)
           ->where('provider_id', Auth::user()->id)->exists();
-
-
         if (Auth::user()->hasRole('provider') && Auth::user()->id != $data->user_id &&  $has_offer != 1) {
           $canMakeOffer = 1;
         }
@@ -323,15 +307,13 @@ class ProjectController extends Controller
             'sal_offers.sal_provider_by.sal_profile', 'sal_offers.sal_offer_attach'
           ])->where('id', $id)->where('status', '<>', 0)->first();
         }
-        if ($data != null) {
-          return view('website.users.project.show', compact('data', 'canMakeOffer'));
-        } else {
-          return response(['error' => true, 'error-msg' => 'Not found'], 404);
-        }
+
+        return view('website.users.project.show', compact('data', 'canMakeOffer'));
       }
-    } else {
-      return response(['error' => true, 'error-msg' => 'Not found'], 404);
+    } catch (Exception $e) {
+      abort(404);
     }
+
 
     // $offers_count=Project::with('sal_offers')->count();
     // $offers_count=Offer::where('project_id',$id)
@@ -354,28 +336,20 @@ class ProjectController extends Controller
    */
   public function edit($project_id)
   {
-    $data = Project::with(['sal_offers'])->where('id', $project_id)->first();
-    // if( $data->user_id==Auth()->user()->id && $data->sal_offers->count()==0){
-    if ($data != null) {
-      if ($data->user_id == Auth()->user()->id && $data->status == 1 || $data->status == 0) {
 
+    try {
+      $data = Project::with(['sal_offers'])->where('id', $project_id)->first();
+      if ($data->user_id == Auth()->user()->id && $data->status == 1 || $data->status == 0) {
         $skills = Skill::All();
         return view('website.users.project.edit', compact('data', 'skills'));
       } else {
-        return response(['error' => true, 'error-msg' => 'Not found'], 404);
+        abort(404);
       }
-    } else {
-      return response(['error' => true, 'error-msg' => 'Not found'], 404);
+    } catch (Exception $e) {
+      abort(404);
     }
   }
-  // public function edit($project_id)
-  // {
-  //     $data=Project::where('id',$project_id)->first();
-  //     if( $data->user_id==Auth()->user()->id){
-  //     $skills=Skill::All();
-  //     return view('website.users.project.edit',compact('data','skills'));
-  //     }
-  // }
+
 
   /**
    * Update the specified resource in storage.
@@ -417,69 +391,63 @@ class ProjectController extends Controller
       'skills.required' => 'يجب أدخال اختيار مهارات للمشروع  '
 
     ]);
+    try {
+      $project = Project::find($project_id);
+      $project->title = $request->title;
+      $project->price = $request->price;
+      $project->net_price = $request->price;
+      $project->duration = $request->duration;
+      $project->description = $request->description;
+      // $project->user_id=Auth::user()->id;
+      $noError = 0;
+      if ($project->save()) {
 
-    $project = Project::find($project_id);
-    $project->title = $request->title;
-    $project->price = $request->price;
-    $project->net_price = $request->price;
-    $project->duration = $request->duration;
-    $project->description = $request->description;
-    // $project->user_id=Auth::user()->id;
-    $noError = 0;
-    if ($project->save()) {
-
-      if ($request->has('skills')) {
-        ProjectSkill::where('project_id', $project_id)->delete();
-        foreach ($request->skills as $skill) {
-          $ProjectSkill = new ProjectSkill;
-          $ProjectSkill->project_id = $project->id;
-          $ProjectSkill->skill_id = $skill;
-          $ProjectSkill->save();
-          $noError = 1;
+        if ($request->has('skills')) {
+          ProjectSkill::where('project_id', $project_id)->delete();
+          foreach ($request->skills as $skill) {
+            $ProjectSkill = new ProjectSkill;
+            $ProjectSkill->project_id = $project->id;
+            $ProjectSkill->skill_id = $skill;
+            $ProjectSkill->save();
+            $noError = 1;
+          }
         }
-      }
 
-      if ($request->hasFile('files')) {
-        UserAttachment::where('attach_id', $project_id)
-          ->where('attach_type', '1')->delete();
-        foreach ($request->file('files') as $file) {
-          $Attachments = new UserAttachment;
-          $Attachments->attach_id = $project->id;
-          $Attachments->attach_type = '1';
-          $fileNme = time() . '.' . $file->getClientOriginalExtension();
-          $file->move(public_path('images'), $fileNme);
-          $Attachments->file_name = $fileNme;
-          $Attachments->file_type = $file->getClientOriginalExtension();
-          $Attachments->user_id = $project->user_id;
-          $Attachments->save();
-          $noError = 2;
+        if ($request->hasFile('files')) {
+          UserAttachment::where('attach_id', $project_id)
+            ->where('attach_type', '1')->delete();
+          foreach ($request->file('files') as $file) {
+            $Attachments = new UserAttachment;
+            $Attachments->attach_id = $project->id;
+            $Attachments->attach_type = '1';
+            $fileNme = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileNme);
+            $Attachments->file_name = $fileNme;
+            $Attachments->file_type = $file->getClientOriginalExtension();
+            $Attachments->user_id = $project->user_id;
+            $Attachments->save();
+            $noError = 2;
+          }
         }
-        if ($noError >= 2) {
-          return redirect('/My_projects')->with(['success' => '  تمت الاضافة بنجاح']);
+        if ($noError >= 1) {
+          return redirect('/My_projects')->with(['success' => '  تمت التعديل بنجاح']);
         } else {
-          return redirect('/My_projects')->with(['success' => ' فشلت  الاضافة ']);
+          return redirect('/My_projects')->with(['success' => ' فشل التعديل ']);
         }
-      }
-    };
+      };
+    } catch (Exception $e) {
+      abort(404);
+    }
   }
-  /**----------------------
-   *    SECTION HEADER
-   *------------------------**/
+
 
   public function search(Request $request)
   {
-    // $projects=Project::with(['sal_created_by','sal_skills_by.sal_skill'])->where('status',1)->where('title','LIKE','%'.$request->search."%")->get();
-    //   $projects = Project::with('sal_created_by','sal_skills_by.sal_skill')
-    //  ->whereHas('sal_skills_by.sal_skill', function (Builder $query,$searchKey) {
-    //  $query->where('title', 'LIKE','%'.$searchKey."%");
-    //  })
-    //  ->get();
     $projects = Project::with('sal_created_by', 'sal_skills_by.sal_skill', 'sal_offers')->whereRelation("sal_skills_by.sal_skill", 'title', 'LIKE', '%' . $request->search . "%")->get();
     $data = "";
-
-    // print_r($data);
     return response(['data' =>  $projects]);
   }
+
   /**----------------------
    * change status of project
    *------------------------**/
@@ -487,14 +455,14 @@ class ProjectController extends Controller
   {
 
     $project = Project::find($project_id);
-    if ($project != null) {
+    try {
       $project->status = $status;
       if ($project->save()) {
         return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
       }
       return redirect()->back()->with(['error' => 'لم يتم تعديل البيانات ']);
-    } else {
-      return response(['error' => true, 'error-msg' => 'Not found'], 404);
+    } catch (Exception $e) {
+      abort(404);
     }
   }
   /**
