@@ -50,26 +50,29 @@
                                             {{$item->user->name}}
                                         </h5>
                                         <p class="mb-0 font-weight-bold text-sm">
-                                            {{$item->user->sal_profile->Job_title}}
+                                            {{($item->user->sal_profile !=null)? $item->user->sal_profile->Job_title : " "}}
+                                            
 
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12  p-3 mb-3">
                                     <div class="nav-wrapper position-relative end-0">
-                                        {{$item->user->sal_profile->description}}
+                                        {{($item->user->sal_profile !=null)? $item->user->sal_profile->description : " "}}
+                                       
                                     </div>
                                 </div>
                             </div>
                             <div class=" mo_footer border-0 ps-0 pb-0   ">
                                 <div>
-                                    <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->facebook}}">
+                                    <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href="{{($item->user->sal_profile !=null)? $item->user->sal_profile->facebook : " "}}
+                                        ">
                                         <i class="fab fa-facebook fa-lg "></i>
                                     </a>
-                                    <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->tweeter}} ">
+                                    <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0 " href="{{($item->user->sal_profile !=null)? $item->user->sal_profile->tweeter : " "}}">
                                         <i class="fab fa-twitter fa-lg "></i>
                                     </a>
-                                    <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->github}} ">
+                                    <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0 " href="{{($item->user->sal_profile !=null)? $item->user->sal_profile->github : " "}}">
                                         <i class="fab fa-instagram fa-lg "></i>
                                     </a>
 
