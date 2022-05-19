@@ -31,20 +31,18 @@ class ComplainController extends Controller
 
         Validator::validate($request->all(), [
 
-            'percentage' => ['required', 'numeric'],
+            'percentage' => ['required', 'numeric', 'gt:0'],
             'solution' =>  array(
                 'required',
+                // '  regex:^[1-9][0-9]+|not_in:0'
                 // 'regex:/^[a-zA-Z\s]+$/u'
             ),
-
-
-
         ], [
 
             'percentage.required' => 'يجب ادخال النسبة ',
             'percentage.numeric' => 'يجب ادخال قيمة رقمية موجب ',
             'solution.required' => 'يجب ادخال توصيف الحل  ',
-            // 'percentage.regex' => 'يجب ادخال قيمة موجبة   ',
+            'percentage.gt' => 'يجب ادخال قيمة موجبة   ',
 
         ]);
 
@@ -52,6 +50,7 @@ class ComplainController extends Controller
 
         $complain->solution = $request->solution;
         $complain->percentage = $request->percentage;
+        // \Carbon\Carbon::now();
         $complain->is_solved = 1;
         $Admin = User::whereRoleIs('Admin')->first();
         $seeker = User::where('id', $complain->sal_offer->sal_project_id->sal_created_by->id)->first();
@@ -89,19 +88,19 @@ class ComplainController extends Controller
             $project_id = $complain->sal_offer->project_id;
             if (Auth::check()) {
                 $notify_seeker = [
-                    'receiver_id' => $seeker->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution ", 'link' => "/projects/$project_id#offer$offer_id"
+                    'receiver_id' => $seeker->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution ", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id"
                 ];
 
                 NotificationController::hiNotification($notify_seeker);
                 $notify_provider = [
-                    'receiver_id' => $provider->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution", 'link' => "/projects/$project_id#offer$offer_id "
+                    'receiver_id' => $provider->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id "
                 ];
 
                 NotificationController::hiNotification($notify_provider);
             }
 
-            // return redirect()-back()->with();
-
+            return redirect()->back()->with(['success' => 'تم العملية بنجاح']);
         }
+        return redirect()->back()->with(['error' => 'فشلت العملية']);
     }
 }
