@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/project_card.css ') }}">
-<link rel="stylesheet" href="{{ asset('css/model.css ') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/project_assests/css/project_card.css ')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('css/model.css ')); ?>">
 
 
 <style>
@@ -94,8 +94,8 @@
     }
 
 </style>
-@extends('website.layouts.master_dash')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <!-- End Navbar -->
     <div class="container-fluid mt-5 ">
         <div class="page-header min-height-300 border-radius-xl mt-4 text-center text-white d-flex justify-content-center"
@@ -104,7 +104,8 @@
             <div class='text-center' style='z-index:12'>
                 <h3 class='text-white'>
                  عرض العروض
-                 [                        {{ $offers->count() }}
+                 [                        <?php echo e($offers->count()); ?>
+
 ]
                  </h3>
                 <p>
@@ -116,16 +117,16 @@
     </div>
     <div class="container-fluid pb-4">
         <div class="row">
-  @if (!$offers->isEmpty())
-            @foreach ($offers as $offer)
+  <?php if(!$offers->isEmpty()): ?>
+            <?php $__currentLoopData = $offers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $offer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-12 col-xl-4 mt-3 ">
                 <div class="card h-100 ">
                       <div class="">
-                        <a href="projects/{{ $offer->sal_project_id->id }}#offer{{ $offer->id }}">
+                        <a href="projects/<?php echo e($offer->sal_project_id->id); ?>#offer<?php echo e($offer->id); ?>">
                             <div class="personal_info_container myworks" style="width: auto;height:415px">
                                 <div class="container_card">
                                     <div class="">
-                                        <h2 class="h4">{{ $offer->sal_project_id->title }}</h2>
+                                        <h2 class="h4"><?php echo e($offer->sal_project_id->title); ?></h2>
                                         <div class='mt-3 mb-3'>
                                             <div class="flex  align-items-baseline gap-2">
                                                 <span>
@@ -143,7 +144,8 @@
                                         </div>
 
                                         <div>
-                                          {{ Str::substr($offer->description, 0, 50) }}
+                                          <?php echo e(Str::substr($offer->description, 0, 50)); ?>
+
                                          ...معرفة المزيد 
 
 
@@ -154,7 +156,7 @@
                                             <div>
                                                <li>
                                                     <a href="">
-                                                        <span  class="price">    {{ $offer->price }}$</span>
+                                                        <span  class="price">    <?php echo e($offer->price); ?>$</span>
                                                     </a>
                                                 </li>
                                             </div>
@@ -164,7 +166,7 @@
                                                     <a href="" class="w-50">
                                                         <span> الفترة</span>
                                                         :
-                                                        <span>   {{ $offer->duration }}يوم</span>
+                                                        <span>   <?php echo e($offer->duration); ?>يوم</span>
                                                     </a>
                                                 </li>
                                              
@@ -172,50 +174,45 @@
                                            
                                               </div>
                                         </div>
-                                                {{-- {{ $item->sal_skill}}
-                                <div class='skills ' style=''>
-                                    @foreach ($item->sal_skills_by as $skill)
-                                    {{ $skill->sal_skill->title }}<br>
-                                    @endforeach
-                                </div> --}}
+                                                
                                                 <li class='d-flex gap-2'>
                                                     <a href="" class="status">
                                                     الحالة:
                                                     
-                                              @if ($offer->sal_project_id->status == 1 && $offer->status == 0)
+                                              <?php if($offer->sal_project_id->status == 1 && $offer->status == 0): ?>
                                             <a style="    color: #3a416f;
     background: #fce4ec;
     padding: 1px 12px;" class="status">ملغي</a>
-                                        @elseif($offer->sal_project_id->status == 1 && $offer->status == 1)
+                                        <?php elseif($offer->sal_project_id->status == 1 && $offer->status == 1): ?>
                                             <a style="    color: #3a416f;
     background: #c9e1e9;
     padding: 1px 12px;" class="status">بانتظار الموافقة </a>
-                                        @elseif($offer->sal_project_id->status == 4 && $offer->status == 1)
+                                        <?php elseif($offer->sal_project_id->status == 4 && $offer->status == 1): ?>
                                             <a style="    color: #3a416f;
     background: #a5d6a7;
     padding: 1px 12px;" class="status"> مقبول</a>
-                                        @elseif($offer->sal_project_id->status == 4 && $offer->status == 2)
+                                        <?php elseif($offer->sal_project_id->status == 4 && $offer->status == 2): ?>
                                             <a style="    color: #3a416f;
     background: #a5d6a7;
     padding: 1px 12px;" class="status">تمت موافقتك </a>
-                                        @elseif($offer->sal_project_id->status == 2 && $offer->status == 3)
+                                        <?php elseif($offer->sal_project_id->status == 2 && $offer->status == 3): ?>
                                             <a style="    color: #3a416f;
     background: #4fc3f796;
     padding: 1px 12px;" class="status">قيد التنفيذ </a>
-                                        @elseif($offer->sal_project_id->status == 3 && $offer->status == 3)
-                                            {{-- <a style="color:black" class="status">تم التسليم  </a> --}}
+                                        <?php elseif($offer->sal_project_id->status == 3 && $offer->status == 3): ?>
+                                            
                                             <a style="    color: #3a416f;
     background: #4fc3f796;
     padding: 1px 12px;" class="status"> قيد التسليم </a>
-                                        @elseif($offer->sal_project_id->status == 5 && $offer->status == 3)
+                                        <?php elseif($offer->sal_project_id->status == 5 && $offer->status == 3): ?>
                                             <a style="    color: #3a416f;
     background: #a5d6a7;
     padding: 1px 12px;" class="status"> تم الاستلام </a>
-                                        @elseif($offer->sal_project_id->status == 1 && $offer->status == 4)
+                                        <?php elseif($offer->sal_project_id->status == 1 && $offer->status == 4): ?>
                                             <a style="    color: #3a416f;
     background: #fce4ec;
     padding: 1px 12px;" class="status">مرفوض</a>
-                                        @endif
+                                        <?php endif; ?>
 
 
                                                     </a>
@@ -231,19 +228,14 @@
                                     </div>
                                     <div class="liks_shows">
 
-                                            @if ($offer->sal_project_id->status == 1 && $offer->status == 0)
-                            @elseif($offer->sal_project_id->status == 1 && $offer->status == 1)
-                                {{-- <form action="{{ route('cancelOffer', $offer->id) }}" method="post">
-                                    @csrf
-                                    <input style="display:none" type="text" name="offer_id" value='{{ $offer->id }}'>
-                                    <button style="color:black ;border:none;background:transparent" type='submit '> إلغاء
-                                        العرض </button>
-                                </form> --}}
+                                            <?php if($offer->sal_project_id->status == 1 && $offer->status == 0): ?>
+                            <?php elseif($offer->sal_project_id->status == 1 && $offer->status == 1): ?>
+                                
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#cancel{{ $offer->id }}">
+                                    data-bs-target="#cancel<?php echo e($offer->id); ?>">
                                     الغاء العرض
                                 </button>
-                                <div class="modal fade" id="cancel{{ $offer->id }}" tabindex="-1"
+                                <div class="modal fade" id="cancel<?php echo e($offer->id); ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -260,32 +252,23 @@
                                                 <button type="button" class="btn btn-success"
                                                     data-bs-dismiss="modal">إلغاء</button>
 
-                                                <a style='background-color:transparent'
-                                                    href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
+                                                <a href="<?php echo e(route('cancelOffer', $offer->id)); ?>"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- @elseif($offer->sal_project_id->status==1 && $offer->status==1) --}}
-                            @elseif($offer->sal_project_id->status == 4 && $offer->status == 2)
-                                {{-- <form action="{{ route('confirmOffer') }}" method="post">
-                                    @csrf
-                                    <input style="display:none" type="text" name="project_id"
-                                        value='{{ $offer->sal_project_id->id }}'>
-                                    <input style="display:none" type="text" name="offer_id" value='{{ $offer->id }}'>
-
-                                    <button style="color:black ;border:none;background:transparent" type='submit '> قبول
-                                        المشروع </button>
-                                </form> --}}
+                                
+                            <?php elseif($offer->sal_project_id->status == 4 && $offer->status == 2): ?>
+                                
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#accept{{ $offer->id }}">
+                                    data-bs-target="#accept<?php echo e($offer->id); ?>">
                                     قبول
                                 </button>
 
                                 <!-- Modal -->
 
-                                <div class="modal fade" id="accept{{ $offer->id }}" tabindex="-1"
+                                <div class="modal fade" id="accept<?php echo e($offer->id); ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -302,21 +285,21 @@
                                                 <button type="button" class="btn btn-success"
                                                     data-bs-dismiss="modal">إلغاء</button>
 
-                                                <a style='background-color:transparent'
-                                                    href="/offer/confirm/{{ $offer->id }}/{{ $offer->sal_project_id->id }}">
+                                                <a
+                                                    href="/offer/confirm/<?php echo e($offer->id); ?>/<?php echo e($offer->sal_project_id->id); ?>">
                                                     <button type="button" class="btn btn-danger"> تأكيد</button></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#reject{{ $offer->id }}">
+                                    data-bs-target="#reject<?php echo e($offer->id); ?>">
                                     رفض
                                 </button>
 
                                 <!-- Modal -->
 
-                                <div class="modal fade" id="reject{{ $offer->id }}" tabindex="-1"
+                                <div class="modal fade" id="reject<?php echo e($offer->id); ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -333,8 +316,7 @@
                                                 <button type="button" class="btn btn-success"
                                                     data-bs-dismiss="modal">إلغاء</button>
 
-                                                <a style='background-color:transparent'
-                                                    href="{{ route('cancelOffer', $offer->id) }}"> <button type="button"
+                                                <a href="<?php echo e(route('cancelOffer', $offer->id)); ?>"> <button type="button"
                                                         class="btn btn-danger"> تأكيد</button></a>
                                             </div>
                                         </div>
@@ -342,63 +324,20 @@
                                 </div>
 
 
-                                {{-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <a href="{{ route('cancelOffer', $offer->id) }}"><button type="button"
-                                                        class="btn btn-primary">تأكيد</button></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                            @elseif($offer->sal_project_id->status == 4 && $offer->status == 2)
-                                {{-- <form action="{{ route('confirmOffer') }}" method="post">
-                                    @csrf
-                                    <input style="display:none" type="text" name="project_id"
-                                        value='{{ $offer->sal_project_id->id }}'>
-                                    <input style="display:none" type="text" name="offer_id" value='{{ $offer->id }}'>
-
-                                    <button style="color:black ;border:none;background:transparent" type='submit '> قبول
-                                        المشروع </button>
-                                </form> --}}
-                                {{-- <form action="{{ route('cancelOffer') }}" method="post">
-                                    @csrf
-                                    <input style="display:none" type="text" name="offer_id" value='{{ $offer->id }}'>
-                                    <button style="color:black ;border:none;background:transparent" type='submit '> رفض
-                                        المشروع </button>
-                                </form> --}}
-                            @elseif($offer->sal_project_id->status == 2 && $offer->status == 3)
-                                {{-- <form action="{{ route('finishWork') }}" method="post">
-
-                                    @csrf
-                                    <input style="display:none" type="text" name="project_id"
-                                        value='{{ $offer->sal_project_id->id }}'>
-                                    <input style="display:none" type="text" name="offer_id" value='{{ $offer->id }}'>
-
-                                    <button style="color:black ;border:none;background:transparent" type='submit '> تسليم
-                                        المشروع </button>
-                                </form> --}}
+                                
+                            <?php elseif($offer->sal_project_id->status == 4 && $offer->status == 2): ?>
+                                
+                                
+                            <?php elseif($offer->sal_project_id->status == 2 && $offer->status == 3): ?>
+                                
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#deliver{{ $offer->id }}">
+                                    data-bs-target="#deliver<?php echo e($offer->id); ?>">
                                     تسليم
                                 </button>
 
                                 <!-- Modal -->
 
-                                <div class="modal fade" id="deliver{{ $offer->id }}" tabindex="-1"
+                                <div class="modal fade" id="deliver<?php echo e($offer->id); ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -415,110 +354,37 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-success"
                                                     data-bs-dismiss="modal">إلغاء</button>
-                                                <form action="{{ route('finishWork') }}" method="post">
+                                                <form action="<?php echo e(route('finishWork')); ?>" method="post">
 
-                                                    @csrf
+                                                    <?php echo csrf_field(); ?>
                                                     <input style="display:none" type="text" name="project_id"
-                                                        value='{{ $offer->sal_project_id->id }}'>
+                                                        value='<?php echo e($offer->sal_project_id->id); ?>'>
                                                     <input style="display:none" type="text" name="offer_id"
-                                                        value='{{ $offer->id }}'>
+                                                        value='<?php echo e($offer->id); ?>'>
 
-                                                    <button style="color:white ;border:none;" type='button '
-                                                        class="btn btn-danger"> تسليم
+                                                    <button style="color:black ;border:none;background:transparent"
+                                                        type='button ' class="btn btn-danger"> تسليم
                                                         المشروع </button>
-                                                    {{-- <a href="{{ route('cancelOffer', $offer->id) }}"> <button
-                                                            type="button" class="btn btn-danger"> تأكيد</button></a> --}}
+                                                    
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @elseif($offer->sal_project_id->status == 6 && $offer->status == 3)
-                                <a href="{{ route('ComplainForm', $offer->id) }}">
-                                    <button style="color:white ;border:none" class="btn btn-primary" type='submit '
-                                        class="note"> شكوى </button>
-                                </a>
-                            @endif
+                            <?php endif; ?>
 
-                        </div>
-                        <a href="projects/{{ $offer->sal_project_id->id }}#offer{{ $offer->id }}"
-                            id='offer{{ $offer->id }}'>
+  
 
   
                                         
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-                            <div class='personal_desc'>
-
-                                <div class='title_desc'>
-                                    <h5><i class='bx bxs-quote-right'></i></h5>
-
-                                    <span> {{ $offer->sal_project_id->title }}</span>
-                                    <h5><i class='bx bxs-quote-left'></i></h5>
-
-                                </div>
-                                <div class='desc'>
-                                    {{ Str::substr($offer->description, 0, 80) }}...
-                                </div>
-                                <div class='details'>
-                                    <div>
-                                        السعر
-                                        <span>
-                                            {{ $offer->price }}
-                                        </span>
-                                        $
-
-                                    </div>
-
-                                    <div>
-                                        الحالة
-                                        @if ($offer->sal_project_id->status == 1 && $offer->status == 0)
-                                            <a style="color:black" class="status">ملغي</a>
-                                        @elseif($offer->sal_project_id->status == 1 && $offer->status == 1)
-                                            <a style="color:black" class="status">بانتظار الموافقة </a>
-                                        @elseif($offer->sal_project_id->status == 4 && $offer->status == 1)
-                                            <a style="color:black" class="status"> مقبول</a>
-                                        @elseif($offer->sal_project_id->status == 4 && $offer->status == 2)
-                                            <a style="color:black" class="status">تمت موافقتك </a>
-                                        @elseif($offer->sal_project_id->status == 2 && $offer->status == 3)
-                                            <a style="color:black" class="status">قيد التنفيذ </a>
-                                        @elseif($offer->sal_project_id->status == 3 && $offer->status == 3)
-                                            {{-- <a style="color:black" class="status">تم التسليم  </a> --}}
-                                            <a style="color:black" class="status"> قيد التسليم </a>
-                                        @elseif($offer->sal_project_id->status == 5 && $offer->status == 3)
-                                            <a style="color:black" class="status"> تم الاستلام </a>
-                                        @elseif($offer->sal_project_id->status == 6 && $offer->status == 3)
-                                            <a style="color:black" class="status">رفض استلامه</a>
-                                        @elseif($offer->sal_project_id->status == 7 && $offer->status == 3)
-                                            <a style="color:black" class="status"> رفُعت شكوى</a>
-                                        @elseif($offer->sal_project_id->status == 1 && $offer->status == 4)
-                                            <a style="color:black" class="status">ملغي</a>
-                                        @endif
-
-
-
-                                    </div>
-                                    <div>
-                                        المدة
-                                        <span>
-                                            {{ $offer->duration }}
-                                        </span>
-                                        ايام
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                        </a>
                     </div>
                 </div>
             </div>
-      @endforeach
-        @endif
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php endif; ?>
 
         </div>
 
@@ -526,4 +392,6 @@
 
     </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layouts.master_dash', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\Road\v2\Enjezli-new\resources\views/website/users/offers/index.blade.php ENDPATH**/ ?>

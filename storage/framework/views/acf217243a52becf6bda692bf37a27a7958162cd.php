@@ -4,11 +4,11 @@
     integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
+<link rel="stylesheet" href="<?php echo e(asset('auth_assets/offer_assests/css/style.css ')); ?>">
 
-@extends('website.layouts.master_dash')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
     <div class="loginContainer_2 sign-up-container ">
 
         <div class="container overflow-hidden  mt-5 form_con">
@@ -24,18 +24,25 @@
 
                                     </div>
 
-                                    <form method="POST" action="{{ route('offers.update', $data['id']) }}"
+                                    <form method="POST" action="<?php echo e(route('offers.update', $data['id'])); ?>"
                                         enctype="multipart/form-data">
 
-                                        @csrf
-                                        @method('PATCH')
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('PATCH'); ?>
                                         <div class="user-box mt-3">
                                             <label><b> مدة التسليم </b>(أيام) </label>
                                             <input id="face" name="duration" type="number" class="form-control"
-                                                value="{{ $data['duration'] }}" min='1'>
-                                            @error('duration')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
+                                                value="<?php echo e($data['duration']); ?>" min='1'>
+                                            <?php $__errorArgs = ['duration'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                             </span>
@@ -46,11 +53,18 @@
                                         <div class="user-box mt-3  d-grid gap-3">
                                             <label> سعر العرض ($)</label>
                                             <input id="face" name="price" type="text" class="form-control"
-                                                value="{{ $data['price'] }}">
-                                            {{-- <small class="text-danger">سوف تكون مستحقاتك 12.00$ بعد خصم عمولة موقع مستقل</small> --}}
-                                            @error('price')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
+                                                value="<?php echo e($data['price']); ?>">
+                                            
+                                            <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                             <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
                                             </span>
@@ -63,10 +77,17 @@
 
                                             <label> تفاصيل العرض </label>
                                             <textarea id="face" name="description" type="text" class="form-control"
-                                                rows="6">{{ $data['description'] }}</textarea>
-                                            @error('description')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
+                                                rows="6"><?php echo e($data['description']); ?></textarea>
+                                            <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <small class="text-danger"><?php echo e($message); ?>*</small>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                                             <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
 
@@ -144,4 +165,6 @@
             $('#datepicker').datepicker();
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layouts.master_dash', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\Road\v2\Enjezli-new\resources\views/website/users/offers/edit.blade.php ENDPATH**/ ?>
