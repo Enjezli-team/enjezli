@@ -42,7 +42,7 @@ use Illuminate\Support\Str;
 */
 /** chats start */
 Route::get('chats',[ChatController::class,'chats'])->name('chats');
-Route::get('chats/{user}',[ChatController::class,'chats_with'])->name('chats_with');
+Route::get('chats/{user}/{pro_id}',[ChatController::class,'chats_with'])->name('chats_with');
 Route::get('chatSend',[ChatController::class,'save']);
 /**chats end  */
 /**home page */

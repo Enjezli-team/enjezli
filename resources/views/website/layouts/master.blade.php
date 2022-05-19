@@ -40,6 +40,8 @@
                         <li><a href="{{ route('register') }}" class="login-button"> إنشاء حساب</a></button>
                         @endguest
                     </li>
+                    @endauth
+
                 </ul>
             </div>
             <div class="media_button">
