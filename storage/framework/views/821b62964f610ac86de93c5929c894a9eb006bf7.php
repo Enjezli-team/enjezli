@@ -1,10 +1,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-@extends('website.users.user_dashboard.layout.master')
-@section('content')
-    <link rel="stylesheet" href="{{ asset('css/user_dashboard.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/user_project.css') }}">
+<?php $__env->startSection('content'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/user_dashboard.css')); ?>">
+
+    <link rel="stylesheet" href="<?php echo e(asset('css/user_project.css')); ?>">
 
     <section class="home">
         <div class="page_title">
@@ -13,12 +13,13 @@
                 <span class='p_relative'>
                    vv مشاريعي
                     <span class='myproject_count'>
-                        {{ $data->count() }}
+                        <?php echo e($data->count()); ?>
+
 
                     </span>
 
                 </span>
-                <a href='{{ route('createProject') }}'>
+                <a href='<?php echo e(route('createProject')); ?>'>
                     <div class='add edit'>
 
                         <i class='bx bx-plus'></i>
@@ -29,19 +30,21 @@
             </div>
 
         </div>
-        @if (session()->has('success'))
+        <?php if(session()->has('success')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session()->get('success') }}
+                <?php echo e(session()->get('success')); ?>
+
 
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @elseif(session()->has('error'))
+        <?php elseif(session()->has('error')): ?>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session()->get('error') }}
+                <?php echo e(session()->get('error')); ?>
+
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif
-        @forelse ($data as $item)
+        <?php endif; ?>
+        <?php $__empty_1 = true; $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
             <div class='porto_container'>
 
@@ -49,14 +52,14 @@
                 <div class=' porto shadow'>
 
                     <div class='edit'>
-                        @if ($item->status == 0 || $item->status == 1)
-                            <a href="{{ route('projects.edit', $item->id) }}">
+                        <?php if($item->status == 0 || $item->status == 1): ?>
+                            <a href="<?php echo e(route('projects.edit', $item->id)); ?>">
                                 <i class='bx bxs-edit'></i>
                             </a>
-                        @else
-                        @endif
+                        <?php else: ?>
+                        <?php endif; ?>
                     </div>
-                    <a href="projects/{{ $item->id }}">
+                    <a href="projects/<?php echo e($item->id); ?>">
                         <div class='img_container'>
                             <div class='img_project'>
                             </div>
@@ -67,7 +70,8 @@
                                 </div>
                                 <div class='offer'>
                                     العروض
-                                    <span class='time'> {{ $item->sal_offers->count() }}
+                                    <span class='time'> <?php echo e($item->sal_offers->count()); ?>
+
                                     </span>
                                 </div>
                             </div>
@@ -81,12 +85,12 @@
                             <div class='title_desc'>
                                 <h5><i class='bx bxs-quote-right'></i></h5>
 
-                                <span>{{ $item->title }} </span>
+                                <span><?php echo e($item->title); ?> </span>
                                 <h5><i class='bx bxs-quote-left'></i></h5>
 
                             </div>
                             <div class='desc'>
-                                {{ Str::substr($item->description, 0, 80) }}...
+                                <?php echo e(Str::substr($item->description, 0, 80)); ?>...
 
 
 
@@ -97,33 +101,35 @@
                                 <div>
                                     السعر
                                     <span>
-                                        {{ $item->price }}
+                                        <?php echo e($item->price); ?>
+
                                     </span>
                                     $
 
                                 </div>
                                 <div>
                                     الحالة
-                                    @if ($item->status == 1)
+                                    <?php if($item->status == 1): ?>
                                         <span>مفتوح</span>
-                                    @elseif($item->status == 0)
+                                    <?php elseif($item->status == 0): ?>
                                         <span>: معلق </span>
-                                    @elseif($item->status == 2)
+                                    <?php elseif($item->status == 2): ?>
                                         <span>قيد التنفيذ </span>
-                                    @elseif($item->status == 3)
+                                    <?php elseif($item->status == 3): ?>
                                         <span>تم التسليم</span>
-                                    @elseif($item->status == 4)
+                                    <?php elseif($item->status == 4): ?>
                                         <span>لا يتلقى عروض</span>
-                                    @elseif($item->status == 5)
+                                    <?php elseif($item->status == 5): ?>
                                         <span>مغلق</span>
-                                    @endif
+                                    <?php endif; ?>
 
 
                                 </div>
                                 <div>
                                     المدة
                                     <span>
-                                        {{ $item->duration }}
+                                        <?php echo e($item->duration); ?>
+
                                     </span>
                                     ايام
                                 </div>
@@ -137,9 +143,11 @@
 
                 <div>
 
-        @endforeach
-        {{-- @endif --}}
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        
         </div>
 
 
     </section>
+
+<?php echo $__env->make('website.users.user_dashboard.layout.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\Road\v2\Enjezli-new\resources\views/website/users/project/projects_d.blade.php ENDPATH**/ ?>
