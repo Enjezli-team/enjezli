@@ -64,6 +64,46 @@
 @section('content')
     <div class="container mt-5 details_container">
 
+
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form"> See Modal with Form </button>
+
+
+
+        <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="text-right cross"> <i class="fa fa-times mr-2"></i> </div>
+                    <div class="card-body text-center"> <img src=" https://i.imgur.com/d2dKtI7.png" height="100" width="100">
+                        <div class="comment-box text-center">
+                            <h4>Add a comment</h4>
+                            <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label
+                                    for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label
+                                    for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label
+                                    for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                    for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label
+                                    for="1">☆</label> </div>
+                            <div class="comment-area">
+                                <textarea class="form-control" placeholder="what is your view?" rows="4"></textarea>
+                            </div>
+
+                            <div class="text-center mt-4"> <button class="btn btn-success send px-5">Send message <i
+                                        class="fa fa-long-arrow-right ml-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
         <div class='title'>
             <h3>{{ $data['title'] }}</h3>
         </div>
@@ -143,7 +183,7 @@
                     </div>
                 </div>
                 <!-- اضافة عرض
-                                                                                                                                                                                                                                    -->
+                                                                                                                                                                                                                                                                                                                                                                                                -->
 
                 @if ($canMakeOffer && $data->status == 1)
                     <div class="">
@@ -237,7 +277,47 @@
                         </div>
                     </div>
                 @endif
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rate">
+                    تقييم
+                </button>
+                <div class="modal fade" id="rate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">الغاء عرض
+                                </h5>
+                                <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
 
+                            <div class="modal-body">
+                                <div class=" text-center">
+
+                                    <div class="rating "> <input type="radio" name="rating" value="5" id="5"><label
+                                            for="5">☆</label>
+                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input
+                                            type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input
+                                            type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input
+                                            type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                    </div>
+
+                                </div>
+                                <div>أضف تعليق</div>
+                                <div class="comment-area">
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a style='background-color:transparent'> <button type="button" class="btn btn-success"
+                                        data-bs-dismiss="modal">Cancel</button></a>
+
+                                <a style='background-color:transparent' href="">
+                                    <button type="button" class="btn btn-danger">
+                                        تأكيد</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -343,6 +423,9 @@
                                                 {{-- if the user is the publisher of th e offer and the status of the 
                                                         the offer is in the first status "not accepted by the seeker 
                                                         so that he can edit the offer " and the project is in the first status "receiving offers" --}}
+
+
+
                                                 @if (Auth()->check())
                                                     @if (Auth::user()->id == $offer->provider_id && $offer->status == 1 && $data->status == 1)
                                                         <div class="select">
@@ -387,28 +470,11 @@
                                                         <a style="color:black;text-decoration:none"
                                                             class="status ">تم
                                                             رفضه</a>
-                                                        {{-- <a href="" style="color:black"> الغاء  الموافقة</a> --}}
-
-                                                        {{-- @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
-                                            <a style="color:black">ملغي</a> --}}
-                                                    @elseif((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 2) || Auth::user()->id == $data->handled_by)
+                                                    @elseif($offer->status == 3 && $data->status == 2 && (Auth::user()->id == $data['user_id'] || Auth::user()->id == $data->handled_by))
                                                         <a style="color:black" class="status">قيد التنفيذ </a>
 
                                                         {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
                                                     @elseif(Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 3)
-                                                        {{-- || Auth::user()->id == $data->handled_by --}}
-                                                        {{-- <a style="color:black" class="status">تم التسليم  </a> --}}
-                                                        {{-- <form action="{{ route('confirmDelivery') }}" method="post">
-                                                            @csrf
-                                                            <input style="display:none" type="text" name="offer_id"
-                                                                value='{{ $offer->id }}'>
-                                                            <input style="display:none" type="text" name="project_owner"
-                                                                value='{{ $data['user_id'] }}'>
-                                                            <input style="display:none" type="text" name="project_id"
-                                                                value='{{ $data['id'] }}'>
-                                                            <button style="color:black ;border:none" type='submit '
-                                                                class="note"> تأكيد الاستلام </button>
-                                                        </form> --}}
                                                         <a href="{{ route('reject', $offer->id) }}">
                                                             <button style="color:white ;border:none" class="btn btn-primary"
                                                                 type='submit ' class="note"> رفض الاستلام</button>
@@ -452,7 +518,8 @@
                                                                                 name="project_id"
                                                                                 value='{{ $data['id'] }}'>
                                                                             <button style="color:black ;border:none"
-                                                                                type='submit ' class="note"> تأكيد
+                                                                                type='submit ' class="note">
+                                                                                تأكيد
                                                                                 الاستلام </button>
                                                                         </form>
 
@@ -460,11 +527,11 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @elseif (Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 6)
-                                                        <a style="color:black" class="status">رفضت استلامه </a>
-                                                    @elseif(Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 7)
+                                                    @elseif ($offer->status == 3 && $data->status == 6 && (Auth::user()->id == $data['user_id'] || Auth::user()->hasRole('admin')))
+                                                        <a style="color:black" class="status">رفض الاستلام </a>
+                                                    @elseif($offer->status == 3 && $data->status == 7 && (Auth::user()->id == $data['user_id'] || Auth::user()->hasRole('admin')))
                                                         <a style="color:black" class="status"> رفعت شكوى </a>
-                                                    @elseif ((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 5) || Auth::user()->id == $data->handled_by)
+                                                    @elseif ($offer->status == 3 && $data->status == 5 && (Auth::user()->id == $data['user_id'] || Auth::user()->id == $data->handled_by))
                                                         <a style="color:black" class="status">مغلق </a>
                                                     @endif
                                                 @endif
@@ -637,7 +704,7 @@
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
                             <img src="
-                                                                                                                                                                                                                                                @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
+                                                                                                                                                                                                                                                                                                                                                                                                            @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
                                 alt="">
                         </div>
                         <div class="container_card">

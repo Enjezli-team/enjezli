@@ -50,12 +50,12 @@
                     {{-- <p class="text-muted mb-0"> {{ $amount }}</p> --}}
                 </td>
                 <td>
-                    @phpa
-                                                $amount = $item->amount;
-                                                if ($item->amount < 0) {
-                                                    $amount = $item->amount * -1;
-                                                }
-                                        @endphp ?>
+                    @php
+                        $amount = $item->amount;
+                        if ($item->amount < 0) {
+                            $amount = $item->amount * -1;
+                        }
+                    @endphp ?>
                     <p class="text-muted mb-0"> {{ $amount }}</p>
                 </td>
 

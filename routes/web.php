@@ -4,7 +4,7 @@ use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
 //admin
-
+use App\Http\Controllers\admin\ComplainController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ProjectsController;
@@ -319,6 +319,11 @@ Route::get('/reject/{id}', [OfferController::class, 'loadRejectForm'])->name('re
 Route::post('rejectDelivery', [OfferController::class, 'rejectDelivery'])->name('rejectDelivery');
 Route::get('/loadComplainForm/{id}', [OfferController::class, 'loadComplainForm'])->name('ComplainForm');
 Route::post('Complain', [OfferController::class, 'Complain'])->name('Complain');
+Route::get('/Complains/unsolved', [ComplainController::class, 'loadUnsolved']);
+Route::get('/conflict/solve/{id}', [ComplainController::class, 'loadsolutionForm'])->name('loadsolutionForm');
+Route::post('/solveConflict', [ComplainController::class, 'solveConflict'])->name('solveConflict');
+
+
 
 
 

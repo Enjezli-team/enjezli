@@ -220,7 +220,6 @@ class OfferController extends Controller
 
 
                 return $result;
-
                 // echo $result['invoice']['invoice_referance'];
                 // $result = json_decode($response, true);
                 // echo $result['invoice']['invoice_referance'];
@@ -327,22 +326,23 @@ class OfferController extends Controller
 
     {
         $info = base64_decode($response);
-        $result = json_encode($info, true);
+        $result = json_decode($info, true);
         // echo $info;
         // echo $result['customer_account_info']['order_reference_id'];
         //update
         // $order = Order::where('id', $result['customer_account_info']['order_reference_id'])->first();
 
-        $last_inserted_order = Order::latest()->first();
-        echo $last_inserted_order->id;
-        $order = Order::where('id', $last_inserted_order->id)->first();
+        // $last_inserted_order = Order::latest()->first();
+        $order = Order::where('id', $result['order_reference_id'])->first();
+        echo $order->id;
+        // $order = Order::where('id', $last_inserted_order->id)->first();
         $order->status = 1;
         // $order->invoice_id =$result['customer_account_info']['invoice_referance'] ;
         $offer = Offer::with(['sal_project_id', 'sal_provider_by'])->where('id', $order->offer_id)->first();
         $offer->status = 2;
         $offer->sal_project_id->status = 4;
         if ($offer->save() && $offer->sal_project_id->save() && $order->save()) {
-            $Admin = User::whereRoleIs('Admin')->first();
+            // $Admin = User::whereRoleIs('Admin')->first();
             Auth::user()->balanceInt;
             // Auth::user()->deposit($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'ايداع', 'projcet_id' => $offer->project_id, 'projcet_title' => $offer->sal_project_id->title, 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price]);
 
@@ -626,7 +626,6 @@ class OfferController extends Controller
         ]);
         $offer = Offer::with('sal_project_id')->where('id', $request->offer_id)->first();
         $complain =  Complain::where('offer_id', $request->offer_id)->first();
-
         $complain->provider_complain = $request->complain_txt;
         $offer->sal_project_id->status = 7; //has complain
         if ($complain->save() && $offer->sal_project_id->save()) {

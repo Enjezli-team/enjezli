@@ -12,6 +12,6 @@ class Complain extends Model
 
     public function sal_offer()
     {
-        return $this->belongsTo(Offer::class, 'id');
+        return $this->belongsTo(Offer::class, 'offer_id');
     }
 }
