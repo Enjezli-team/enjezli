@@ -63,7 +63,14 @@
                                             @forelse($data as $item)
                                             <tr class="odd">
                                             <td>{{$item->id}}</td>
-                                            <td><img src="images/{{$item->file}}" /></td>
+                                            <td>
+                                                @foreach ($item->sal_project_attach as $s )
+
+                                                @if ($loop->first)
+                                                <img src="{{$s->file_name}}" alt="Product Image" class="img-size-50">
+                                                  @endif
+                                                @endforeach
+                                            </td>
                                             <td>{{$item->title}}</td>
                                             <td>{{$item->sal_created_by->name}}</td>
                                             <td>{{$item->description}}</td>

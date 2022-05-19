@@ -4,6 +4,19 @@
 <link rel="stylesheet" href="{{ asset('css/user_porto.css') }}">
 
     <section class="home">
+        @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session()->get('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session()->get('error') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="page_title">
             <div class='title shadow'>
                 معلومات الملف الشخصي

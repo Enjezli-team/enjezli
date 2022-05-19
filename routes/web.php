@@ -47,6 +47,12 @@ Route::get('chatSend',[ChatController::class,'save']);
 /**chats end  */
 /**home page */
 Route::get('/home', [HomeController::class, "index"]);
+//contact page
+Route::get('/contact',function(){ return view("website.layouts.pages.contact");})->name("contact");
+//priv
+Route::get('/priv',function(){ return view("website.layouts.pages.priv");})->name("oriv");
+
+
 // Route::get('users_dashboard', function () {
 //     return view("website.users.user_dashboard.index");
 // })->name('user_dashboard');
@@ -223,9 +229,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('index', [IndexController::class, 'index'])->name('index');
     // user
     Route::resource('users', UserController::class);
-    Route::get('/user_block/{user_id}/{blockValue}', [UserController::class, 'blockUser']);
-    Route::post('/userSearch', [UserController::class, 'search']);
-    // search
+    Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
+    Route::post('/userSearch',[UserController::class, 'search']);
+    // Route::get('/usertype/{type}',[UserController::class, 'usertype']);
+    Route::get('/user_status/{type}',[UserController::class, 'user_upon_status']);
+
+
+    
+        // search
     Route::resource('skills', SkillController::class);
     Route::post('/skillsSearch', [SkillController::class, 'search']);
     Route::get('/skill_status/{user_id}/{status}', [SkillController::class, 'change_status']);

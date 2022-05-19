@@ -83,13 +83,13 @@
                         <li><a href=""> الأسئلة الشائعة
 
                             </a></li>
-                        <li><a href="">ضمان حقوقك
+                        <li><a href="contact" target='_blank'> تواصل بنا
 
                             </a></li>
                         <li><a href="">شروط الاستخدام
 
                             </a></li>
-                        <li><a href=""> بيان الخصوصية
+                        <li><a href="priv" target='_blank'> بيان الخصوصية
 
 
                             </a></li>
