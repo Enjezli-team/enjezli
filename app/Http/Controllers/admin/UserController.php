@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+
 class UserController extends Controller
 {
     /**
@@ -22,6 +23,20 @@ class UserController extends Controller
     {
         return view('admin.pages.Users.index',['data'=>User::where('type',1)->get()]);
     }
+
+    public function user_upon_status($type)
+    {   
+        return view('admin.pages.Users.index',['data'=>User::where('type',$type)->get()]);
+    }
+
+    // public function provider()
+    // {
+    //     return view('admin.pages.Users.provider',['data'=>User::where('type',2)->get()]);
+    // }
+    // public function seeker()
+    // {
+    //     return view('admin.pages.Users.seeker',['data'=>User::where('type',3)->get()]);
+    // }
 
     public function create()
     {

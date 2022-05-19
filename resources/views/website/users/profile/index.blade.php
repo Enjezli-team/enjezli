@@ -1,7 +1,21 @@
 @extends('website.layouts.master')
 @section('content')
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<style>
+.mo_footer{    display: flex ;
+    align-items: center;
+    justify-items: space-between;
+    gap: 15px;}
 
+    
+@media  (max-width: 800px) {
+.mo_footer{    display: grid !important;
+    align-items: center !important;
+    justify-items: center;
+    gap: 15px;}
+
+    }
+</style>
 <link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
 <div class="container-fluid py-4 mt-5 bg-white ">
     <div class="page-header min-height-150 border-radius-xl mt-4 d-flex justify-content-center" style="background-position-y: 50%;">
@@ -41,13 +55,13 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-6 p-3 mb-3">
+                                <div class="col-lg-12  p-3 mb-3">
                                     <div class="nav-wrapper position-relative end-0">
                                         {{$item->user->sal_profile->description}}
                                     </div>
                                 </div>
                             </div>
-                            <div class="border-0 ps-0 pb-0  d-flex align-items-center justify-content-between">
+                            <div class=" mo_footer border-0 ps-0 pb-0   ">
                                 <div>
                                     <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href=" {{$item->user->sal_profile->facebook}}">
                                         <i class="fab fa-facebook fa-lg "></i>

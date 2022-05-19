@@ -21,10 +21,12 @@
                 </div>
             </div>
             <div class="main_list" id="mainListDiv">
-                <ul class="nav-links">
-                    <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
-                    <li><a href="/projects">تصفح المشاريع</a></li>
-                    <li><a href="{{ route('createProject') }}">اضف مشروع</a></li>
+             <ul class="nav-links">
+                <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
+                <li><a href="/progects">تصفح المشاريع</a></li>
+                <li><a href="/projectCreate">اضف مشروع</a></li>
+                
+                @auth
 
                     @auth
 
@@ -38,6 +40,8 @@
                         <li><a href="{{ route('register') }}" class="login-button"> إنشاء حساب</a></button>
                         @endguest
                     </li>
+                    @endauth
+
                 </ul>
             </div>
             <div class="media_button">
@@ -83,13 +87,13 @@
                         <li><a href=""> الأسئلة الشائعة
 
                             </a></li>
-                        <li><a href="">ضمان حقوقك
+                        <li><a href="contact" target='_blank'> تواصل بنا
 
                             </a></li>
                         <li><a href="">شروط الاستخدام
 
                             </a></li>
-                        <li><a href=""> بيان الخصوصية
+                        <li><a href="priv" target='_blank'> بيان الخصوصية
 
 
                             </a></li>

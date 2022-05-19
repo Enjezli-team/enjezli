@@ -105,7 +105,7 @@ class CustomAuthController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return redirect('/login')->with("status", "تم تغير كلمة السر بنجاح!");
+        return redirect('/login')->with("success", "تم تغير كلمة السر بنجاح!");
 }
     // public function forgit_check_email (Request $request)
     // {
@@ -144,22 +144,23 @@ class CustomAuthController extends Controller
             if(Auth::user()->type==2 && Auth::user()->hasRole(['seeker','provider']) && Auth::user()->email_verified_at!=Null){
                 $profile=Profile::where('user_id',Auth::user()->id)->value('id');
                 if($profile==''){
-            return redirect()->intended('/profiles/create')->withSuccess('Signed in');
+            return redirect()->intended('/profiles/create')->with('success',"يرجى اكمال ملفك الشخصي");
                 }else{
-                    return redirect()->intended('profiles/'.Auth::user()->id)->withSuccess('Signed in');
+                    return redirect()->intended('profiles/'.Auth::user()->id)->with('success'," مرحبا بك");
                 }
 
             }if(Auth::user()->type==1 && Auth::user()->hasRole(['Admin'])){
                 //check profile
-               return redirect()->intended('/admin/index')->withSuccess('Signed in');
+               return redirect()->intended('/admin/index')->withSuccess('success',"تاكد من كلمة السر او بريدك الالكتروني");
                 }else{
                     Session::flush();
+        Auth::logout();
 
-        return Redirect('login');
+        return Redirect('login')->with('error',"تاكد من كلمة السر او بريدك الالكتروني");
                 }
 
         }
-        return redirect('/login')->withSuccess(' faild');
+        return redirect('/login')->with('error',"تاكد من كلمة السر او بريدك الالكتروني");
 
     }
     public function create(Request $request)

@@ -5,12 +5,12 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 <link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
-@extends("website.layouts.master")
+@extends("website.layouts.master_dash")
 
 @section('content')
 
 
-<div class="loginContainer_2 sign-up-container up">
+<div class="loginContainer_2 sign-up-container">
 
     <div class="container overflow-hidden  mt-5 form_con">
         <div class="row">
@@ -32,7 +32,7 @@
 
                                     <div class="user-box mt-3 d-grid gap-3">
                                         <label>    مدة التسليم    (أيام) </label>
-                                        <input id="face" name="duration" type="number" class="form-control">
+                                        <input id="face" name="duration" type="number" class="form-control" min='1'>
 
                                         <span class="invalid-feedback" role="alert">
                                             <div class='dan_mesg_po'> </div>
@@ -92,10 +92,12 @@
 
 
 
-                                    <div class='btn-cont'>
-                                        <button class="show_more" type='submit'> حفظ</button>
-                                        <button class="show_more" type=''> الغاء</button>
-                                    </div>
+                           
+                                                  <div class="col-12  d-flex justify-content-evenly gap-5 mt-3" role="group" aria-label="Basic outlined example">
+                            <button type="submit" class="btn btn-outline-primary ">حفظ</button>
+                            <a href="/"  class="btn btn-outline-dark ">الغاء</a>
+                        </div>
+
 
 
 

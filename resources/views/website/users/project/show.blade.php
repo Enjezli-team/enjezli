@@ -106,6 +106,7 @@
                             <div class="">
                                 <ul class="list-unstyled mb-0 list-unstyled job_det">
                                     {{ $data['description'] }}
+                                    {{ $data->id }}
 
                                     {{-- <li>البحث عن مصمم بلغة الفلاتر وقاعة بيانات فاير بيس</li>
                                     <li>الموقع يدعم اللغتين</li>
@@ -353,7 +354,7 @@
 
                                                     </div>
                                                 </div>
-
+                                                
 
                                                 {{-- if the user is the publisher of th e offer and the status of the 
                                                         the offer is in the first status "not accepted by the seeker 
@@ -379,8 +380,10 @@
                                                                 value='{{ $offer->id }}'>
                                                             <button style="color:black ;border:none" type='submit '
                                                                 class="note"> قبول العرض</button>
+                                                             
                                                         </form>
-
+                                                        <a href="{{route('chats_with',[$offer->id,$data->id ])}}"><button style="color:black ;border:none" type='submit '
+                                                            class="note">  دردشة</button></a>
                                                         {{-- if the user is the publisher of the project let him
                                                      accept and reject the accepted once  before the offer last confirmation --}}
                                                         {{-- cancel offer will return the offer to the default status which is 1 --}}

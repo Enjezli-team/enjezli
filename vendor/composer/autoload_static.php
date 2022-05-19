@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
+class ComposerStaticInit4f287bc18568a014b61df4dd94316c59
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -198,8 +198,8 @@ class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Whoops\\' => 
         array (
@@ -351,8 +351,8 @@ class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -606,6 +606,7 @@ class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
         'App\\Mail\\welcomeEmail' => __DIR__ . '/../..' . '/app/Mail/welcomeEmail.php',
         'App\\Mail\\welcomeEmailAdmin' => __DIR__ . '/../..' . '/app/Mail/welcomeEmailAdmin.php',
         'App\\Models\\Chat' => __DIR__ . '/../..' . '/app/Models/Chat.php',
+        'App\\Models\\Complain' => __DIR__ . '/../..' . '/app/Models/Complain.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Offer' => __DIR__ . '/../..' . '/app/Models/Offer.php',
         'App\\Models\\OfferHistory' => __DIR__ . '/../..' . '/app/Models/OfferHistory.php',
@@ -6227,10 +6228,10 @@ class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9e3c164d04a990f80d940d675ebf1990::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4f287bc18568a014b61df4dd94316c59::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4f287bc18568a014b61df4dd94316c59::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4f287bc18568a014b61df4dd94316c59::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4f287bc18568a014b61df4dd94316c59::$classMap;
 
         }, null, ClassLoader::class);
     }

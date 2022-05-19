@@ -788,6 +788,9 @@ footer .svg:hover {
 }
 
 @media screen and (max-width: 800px) {
+    .footer_content {
+        padding-right: 2px;
+    }
     .svg-container {
         width: 38px;
         display: flex;
