@@ -143,32 +143,27 @@
 
                                         </div>
                                         <div class="liks_shows">
-                                            <ul class="d-grid w-100 gap-1">
-                                        <div class='d-flex w-100 justify-content-between'>
+                                            <ul class="d-grid w-100 gap-1" style=''>
+                                        <div class='d-flex w-100 justify-content-between' style='flex-direction: row-reverse;'>
                                             <div>
                                                <li>
-                                                    <a href="">
                                                         <span  class="price"><?php echo e($item['price']); ?>$</span>
-                                                    </a>
                                                 </li>
                                             </div>
                                               
                                               <div>
                                                 <li>
-                                                    <a href="" class="w-50">
                                                         <span> الفترة</span>
                                                         :
                                                         <span><?php echo e($item['duration']); ?>يوم</span>
-                                                    </a>
+                                              
                                                 </li>
                                              
 
                                                 <li>
-                                                    <a href="" class="">
                                                         <span>العروض</span>
                                                         :
                                                         <span> <?php echo e($item->sal_offers->count()); ?></span>
-                                                    </a>
                                                 </li>
                                               </div>
                                         </div>
