@@ -40,6 +40,7 @@ return array(
     'App\\Mail\\welcomeEmail' => $baseDir . '/app/Mail/welcomeEmail.php',
     'App\\Mail\\welcomeEmailAdmin' => $baseDir . '/app/Mail/welcomeEmailAdmin.php',
     'App\\Models\\Chat' => $baseDir . '/app/Models/Chat.php',
+    'App\\Models\\Complain' => $baseDir . '/app/Models/Complain.php',
     'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Offer' => $baseDir . '/app/Models/Offer.php',
     'App\\Models\\OfferHistory' => $baseDir . '/app/Models/OfferHistory.php',

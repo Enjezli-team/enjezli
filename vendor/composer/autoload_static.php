@@ -606,6 +606,7 @@ class ComposerStaticInit9e3c164d04a990f80d940d675ebf1990
         'App\\Mail\\welcomeEmail' => __DIR__ . '/../..' . '/app/Mail/welcomeEmail.php',
         'App\\Mail\\welcomeEmailAdmin' => __DIR__ . '/../..' . '/app/Mail/welcomeEmailAdmin.php',
         'App\\Models\\Chat' => __DIR__ . '/../..' . '/app/Models/Chat.php',
+        'App\\Models\\Complain' => __DIR__ . '/../..' . '/app/Models/Complain.php',
         'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Offer' => __DIR__ . '/../..' . '/app/Models/Offer.php',
         'App\\Models\\OfferHistory' => __DIR__ . '/../..' . '/app/Models/OfferHistory.php',

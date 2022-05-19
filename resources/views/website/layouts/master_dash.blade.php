@@ -288,7 +288,7 @@
                         <ul class="dropdown-menu  px-2 py-3 me-sm-n4" id="notify_body" aria-labelledby="dropdownMenuButton">
                             @forelse ($notifications as $item)
                             <li class="mb-2">
-                                <a class="dropdown-item border-radius-md" href="{{ $item->link }}">
+                                <a class="dropdown-item border-radius-md" href="{{$item->link}}">
                                     <div class="d-flex py-1">
                                         <div class="my-auto">
                                             <img src="{{asset('images/'.Auth::user()->image )}}" class="avatar avatar-sm  ms-3 ">
