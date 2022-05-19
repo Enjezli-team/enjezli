@@ -23,7 +23,7 @@
              <ul class="nav-links">
                 <li><a href="<?php echo e(route('providers')); ?>">بحث عن منجز</a></li>
                 <li><a href="/progects">تصفح المشاريع</a></li>
-                <li><a href="<?php echo e(route('projects.create')); ?>">اضف مشروع</a></li>
+                <li><a href="/projectCreate">اضف مشروع</a></li>
                 
                 <?php if(auth()->guard()->check()): ?>
 
