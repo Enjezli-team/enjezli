@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\admin\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auths\CustomAuthController;
@@ -40,7 +40,11 @@ use Illuminate\Support\Str;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/** chats start */
+Route::get('chats',[ChatController::class,'chats'])->name('chats');
+Route::get('chats/{user}',[ChatController::class,'chats_with'])->name('chats_with');
+Route::get('chatSend',[ChatController::class,'save']);
+/**chats end  */
 /**home page */
 Route::get('/home', [HomeController::class, "index"]);
 //contact page

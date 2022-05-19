@@ -4,6 +4,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enjezli | Dashboard</title>
+  <link href="{{ asset('user_dash_assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ asset('user_dash_assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ asset('user_dash_assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ asset('user_dash_assets/css/soft-ui-dashboard.css') }}?v=1.0.3" rel="stylesheet" />
   <title>لوحة التحكم</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -128,7 +136,7 @@
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge" style="font-size: 58%;">15</span>
@@ -153,7 +161,38 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li> --}}
+       <li class="nav-item dropdown ps-2 d-flex align-items-center">
+        <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-bell cursor-pointer" aria-hidden="true"></i>
+            <span class="badge badge-pill badge-default badge-danger text-dark badge-default badge-up badge-glow   notif-count" data-count=" {{ $notifications->count()}}">
+                {{ $notifications->count()}}
+              </span>
+        </a>
+        <ul class="dropdown-menu  px-2 py-3 me-sm-n4" id="notify_body" aria-labelledby="dropdownMenuButton">
+            @forelse ($notifications as $item)
+            <li class="mb-2">
+                <a class="dropdown-item border-radius-md" href="{{$item->body}}">
+                    <div class="d-flex py-1">
+                        <div class="my-auto">
+                            <img src="{{asset('images/'.Auth::user()->image )}}" class="avatar avatar-sm  ms-3 ">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <h6 class="text-sm font-weight-normal mb-1">
+                                <span class="font-weight-bold"> {{ $item->message }} </span> {{Auth::user()->name }}
+                            </h6>
+                            <p class="text-xs text-secondary mb-0 ms-auto">
+                                <i class="fa fa-clock me-1" aria-hidden="true"></i>
+                                {{ $item->created_at }}                                            </p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            @empty
+            @endforelse
+        </ul>
+    </li>
 
     </ul>
   </nav>
@@ -475,6 +514,26 @@
     $('.select2').select2()
     });
   </script>
+  <script src={{ asset('user_dash_assets/js/core/popper.min.js') }}></script>
+  <script src={{ asset('user_dash_assets/js/core/bootstrap.min.js') }}></script>
+  <script src={{ asset('user_dash_assets/js/plugins/perfect-scrollbar.min.js') }}></script>
+  <script src={{ asset('user_dash_assets/js/plugins/smooth-scrollbar.min.js') }}></script>
+  <script src={{ asset('user_dash_assets/js/plugins/fullcalendar.min.js') }}></script>
+  <script src={{ asset('user_dash_assets/js/plugins/chartjs.min.js') }}></script>
+
+  <script src={{ asset('user_dash_assets/js/plugins/choices.min.js') }}></script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        let user="{{{(Auth::user()) ? Auth::user()->id : 0 }}}";
+        let src="{{asset('images/'.Auth::user()->image )}}";
+        let user_name=  "{{Auth::user()->name }}";
+    </script>
+    <script src="{{ asset('js/realtime_notification.js') }}" ></script>
 
 
 </body>

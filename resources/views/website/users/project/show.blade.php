@@ -378,7 +378,7 @@
 
                                                     </div>
                                                 </div>
-
+                                                
 
                                                 {{-- if the user is the publisher of th e offer and the status of the 
                                                         the offer is in the first status "not accepted by the seeker 
@@ -404,6 +404,8 @@
                                                                 value='{{ $offer->id }}'>
                                                             <button style="color:black ;border:none" type='submit '
                                                                 class="note"> قبول العرض</button>
+                                                                <a href=""><button style="color:black ;border:none" type='submit '
+                                                                class="note">  دردشة</button></a>
                                                         </form>
 
                                                         {{-- if the user is the publisher of the project let him
