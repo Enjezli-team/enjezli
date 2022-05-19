@@ -65,7 +65,7 @@
     <div class="container mt-5 details_container">
 
 
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form"> See Modal with Form </button>
+
 
 
 
@@ -183,7 +183,7 @@
                     </div>
                 </div>
                 <!-- اضافة عرض
-                                                                                                                                                                                                                                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                                                                                                                                                                        -->
 
                 @if ($canMakeOffer && $data->status == 1)
                     <div class="">
@@ -277,47 +277,7 @@
                         </div>
                     </div>
                 @endif
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rate">
-                    تقييم
-                </button>
-                <div class="modal fade" id="rate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">الغاء عرض
-                                </h5>
-                                <button type="button" class="btn-close " data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
 
-                            <div class="modal-body">
-                                <div class=" text-center">
-
-                                    <div class="rating "> <input type="radio" name="rating" value="5" id="5"><label
-                                            for="5">☆</label>
-                                        <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input
-                                            type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input
-                                            type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input
-                                            type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-                                    </div>
-
-                                </div>
-                                <div>أضف تعليق</div>
-                                <div class="comment-area">
-                                    <textarea class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <a style='background-color:transparent'> <button type="button" class="btn btn-success"
-                                        data-bs-dismiss="modal">Cancel</button></a>
-
-                                <a style='background-color:transparent' href="">
-                                    <button type="button" class="btn btn-danger">
-                                        تأكيد</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -704,7 +664,7 @@
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
                             <img src="
-                                                                                                                                                                                                                                                                                                                                                                                                            @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
+                                                                                                                                                                                                                                                                                                                                                                                                                    @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
                                 alt="">
                         </div>
                         <div class="container_card">
