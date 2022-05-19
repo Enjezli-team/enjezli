@@ -22,7 +22,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::with(['sal_project_id'])->where('provider_id', Auth::user()->id)->get();
+        $offers = Offer::with(['sal_project_id.sal_created_by'])->where('provider_id', Auth::user()->id)->get();
         return view('website.users.offers.index', compact('offers'));
     }
 
