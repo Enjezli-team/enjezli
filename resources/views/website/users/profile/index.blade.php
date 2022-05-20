@@ -57,7 +57,9 @@
                                 </div>
                                 <div class="col-lg-12  p-3 mb-3">
                                     <div class="nav-wrapper position-relative end-0">
-                                        {{$item->user->sal_profile->description}}
+                                        {{ Str::substr($item->user->sal_profile->description, 0, 50) }}
+                                            ....
+
                                     </div>
                                 </div>
                             </div>

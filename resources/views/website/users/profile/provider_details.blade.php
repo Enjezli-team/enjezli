@@ -1,13 +1,30 @@
 @extends('website.layouts.master')
 @section('content')
+<style>
+.card_cust{height: 401px;
+    overflow-x: auto;}
+    .fa-star{color:gold;}
+    .evaluate{
+            width: 124px;
+    background: #639fae;
+    padding: 3px 19px;
+    border-radius: 0.25rem;
+    color: white;
+    translate:.8s;
+    }
+     .evaluate:hover{
+background:white;    border:1px solid  #639fae;
+    color:#639fae;
+    }
+</style>
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 <link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
 
 
 <div class="container-fluid py-4 mt-5">
-    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
-        <span class="mask bg-gradient-primary opacity-6"></span>
+    <div class="page-header min-height-100 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        
     </div>
     <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
         <div class="row gx-4">
@@ -30,8 +47,8 @@
                 <div class="nav-wrapper position-relative end-0">
                     <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                         <li class="nav-item">
-                            <a href="">
-                                <span class="ms-1">تقييم</span>
+                            <a href="" class=evaluate>
+                                تقييم
                             </a>
                         </li>
 
@@ -59,6 +76,7 @@
                 </div>
             </div>
         </div>
+       <div class='d-flex justify-content-between'>
         <div class="border-0 ps-0 pb-0 ">
 
             <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href="  {{$data->sal_profile->facebook}}">
@@ -71,16 +89,24 @@
                 <i class="fab fa-instagram fa-lg "></i>
             </a>
         </div>
+        <div>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+       </div>
     </div>
 </div>
 <div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-12 col-xl-4 ">
+    <div class="row ">
+        <div class="col-12 col-xl-4 mb-3 ">
             <div class="card h-100 ">
                 <div class="card-header pb-0 p-3 d-flex align-items-center justify-content-between ">
                     <h6 class="mb-0 ">المهارات</h6>
                 </div>
-                <div class="card-body p-3 ">
+                <div class="card-body p-3 card_cust ">
                     <ul class="list-group ">
 
                         @forelse($data->sal_skills as $skill)
@@ -98,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-xl-4">
+        <div class="col-12 col-xl-4 mb-3">
             <div class="card h-100">
                 <div class="card-header pb-0 p-3">
                     <div class="row">
@@ -110,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body p-3 p">
+                <div class="card-body p-3 p card_cust">
                     <p class="text-sm ">
                         وصف
                     </p>
@@ -129,13 +155,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-xl-4 ">
-            <div class="card h-100 " style="max-height: 100%;
-    overflow-y: scroll;">
+        <div class="col-12 col-xl-4  mb-3">
+            <div class="card h-100 " style="">
                 <div class="card-header pb-0 p-3 d-flex align-items-center justify-content-between ">
                     <h6 class="mb-0 ">المراجعات {{$data->sal_review_to->count()}} </h6>
                 </div>
-                <div class="card-body p-3 ">
+                <div class="card-body p-3 card_cust ">
                     <ul class="list-group ">
 
                         @forelse($data->sal_review_to as $review)
@@ -165,7 +190,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mt-4 ">
+        <div class="col-12 mt-4 mb-3 ">
             <div class="card mb-4 ">
                 <div class="card-header pb-0 p-3 ">
                     <h6 class="mb-1 ">معرض الاعمال</h6>
