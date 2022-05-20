@@ -17,12 +17,11 @@ class ChatController extends Controller
 
 
     }
-    public function chats_with($user){
+    public function chats_with($user,$pro_id){
         $chats=chat::where([['sender_id',Auth::user()->id],['receiver_id',$user]])
                             ->orWhere([['sender_id',$user],['receiver_id',Auth::user()->id]])
                             ->with(['receiver_chat','sender_chat'])->get();
-  
-        return view('chats')->with(['chat'=>$chats,'user'=>$user]);
+        return view('website.users.project.chats')->with(['chat'=>$chats,'user'=>$user,'project_id'=>$pro_id]);
 
 
     }
@@ -36,10 +35,13 @@ class ChatController extends Controller
     public function save(Request $request){
         $data=['message'=>$request->message,
         'sender_id'=>Auth::user()->id,
+        
         'receiver_id'=>$request->receiver_id];
         $dataa=$data['message'];
         $chats = chat::create([
             'message'=>$request->message,
+            'type'=>0,
+            'type_id'=>$request->id,
             'sender_id'=>Auth::user()->id,
             'receiver_id'=>$request->receiver_id,
         ]);

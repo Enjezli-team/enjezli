@@ -201,8 +201,8 @@ class ProjectController extends Controller
 
         // 'regex:/^[a-zA-Z\s]+$/u'
       ),
-      'price' => ['required', 'numeric'],
-      'duration' => ['required', 'numeric'],
+      'price' => ['required', 'numeric', 'gt:0'],
+      'duration' => ['required', 'numeric', 'gt:0'],
       'description' =>  array(
         'required',
         // 'regex:/(^([a-zA-Z\s]+)(\d+)?[.،:؛]?$)/u'
@@ -215,7 +215,9 @@ class ProjectController extends Controller
       'title.min' => 'لا يزيد  عن 50 حرف',
       // 'title.regex'=>'يجب أن يحتوي  على حروف فقط ',
       'price.required' => 'يجب ادخال السعر ',
-      'price.numeric' => 'يجب ادخال قيمةر قمية ',
+      'price.numeric' => 'يجب ادخال قيمة رقمية ',
+      'price.gt' => 'يجب ادخال قيمة موجبة ',
+      'duration.gt' => 'يجب ادخال قيمة موجبة ',
       'duration.required' => 'يجب ادخال المدة ',
       'duration.numeric' => 'يجب ادخال رقم ',
       'description.required' => 'يجب أدخال وصف المشروع ',
@@ -369,8 +371,8 @@ class ProjectController extends Controller
         'max:50',
         // 'regex:/^[a-zA-Z\s]+$/u'
       ),
-      'price' => ['required', 'numeric'],
-      'duration' => ['required', 'numeric'],
+      'price' => ['required', 'numeric', 'gt:0'],
+      'duration' => ['required', 'numeric', 'gt:0'],
       'description' =>  array(
         'required',
         // 'regex:/(^([a-zA-Z\s]+)(\d+)?[.،:؛]?$)/u'
@@ -386,7 +388,10 @@ class ProjectController extends Controller
       'price.numeric' => 'يجب ادخال رقم ',
       'duration.required' => 'يجب ادخال المدة ',
       'duration.numeric' => 'يجب ادخال رقم ',
+      'price.gt' => 'يجب ادخال قيمة موجبة ',
+      'duration.gt' => 'يجب ادخال قيمة موجبة ',
       'description.required' => 'يجب أدخال وصف المشروع ',
+
       // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
       'skills.required' => 'يجب أدخال اختيار مهارات للمشروع  '
 

@@ -28,7 +28,7 @@ class ProjectsController extends Controller
         return view('admin.pages.Projects.index', ['data' => Project::where('status', 0)->get(), compact('user')]);
     }
 
-    public function project_upon_status($status=1)
+    public function project_upon_status($status)
     {
         return view('admin.pages.Projects.index', ['data' => Project::where('status', $status)->get()]);
     }

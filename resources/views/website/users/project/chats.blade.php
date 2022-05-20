@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('website.layouts.master')
+
 @section('content')
 <script>
   var current_user={{ Auth::user()->id }}
@@ -484,7 +485,7 @@
                                     <div class="form-group mt-3 mb-0">
                                         <textarea class="form-control" rows="3" id="chatMassage" placeholder="Type your message here..."></textarea>
                                     </div>
-                                    <button type="button" class="send_btn" onclick="send()">إرسال</button>
+                                  <button type="button" class="send_btn" onclick="send({{$project_id}})">إرسال</button>
                                 
                             </div>
                         </div>
@@ -524,13 +525,13 @@ var output = d.getFullYear() + '/' +
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-    function send()
+    function send(id)
     {
         var receiver=$('#receiver_sal').text();
         var message=$('#chatMassage').val();
         $.ajax('/chatSend', 
 {
-  data:{'receiver_id':receiver,'message':message},
+  data:{'receiver_id':receiver,'message':message,'id':id},
   success: function (data,status,xhr) {   // success callback function
     $('#chatMassage').val('');
 
@@ -545,22 +546,23 @@ var output = d.getFullYear() + '/' +
      var channel = pusher.subscribe('chat');
   var user="{{(Auth::user())?Auth::user()->id:0}}";
   channel.bind('chat', function(data) {
+      alert(1);
       var n_body = $("#chat_body");
       user_name=""
       user_image=""
-  if(current_user==data.sender_id){
-      var html=' <div class="chat-hour">'+output+'<span class="fa fa-check-circle"></span></div>'+
-      '<div class="chat-text">'+data.message+'</div>'+
-     ' <div class="chat-avatar">'+
-        '<img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"><div class="chat-name">'+data.sender_name+'</div> </div> </li>';
+        if(current_user==data.sender_id){
+            var html=' <div class="chat-hour">'+output+'<span class="fa fa-check-circle"></span></div>'+
+            '<div class="chat-text">'+data.message+'</div>'+
+            ' <div class="chat-avatar">'+
+            '<img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"><div class="chat-name">'+data.sender_name+'</div> </div> </li>';
                     }
  
-                    else if(current_user==data.receiver_id){
-      var html =' <li class="chat-right"><div class="chat-hour">'+output+' <span class="fa fa-check-circle"></span></div>'+
-                    ' <div class="chat-text">'+data.message+'</div> <span style="display: " id="receiver">{{ $data->sender_chat->id}}</span> <div class="chat-avatar">'+
+        else if(current_user==data.receiver_id){
+                var html =' <li class="chat-right"><div class="chat-hour">'+output+' <span class="fa fa-check-circle"></span></div>'+
+                    ' <div class="chat-text">'+data.message+'</div> <span style="display: " id="receiver">data->sender_chat->id</span> <div class="chat-avatar">'+
                          ' <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">'+
                          ' <div class="chat-name">'+data.sender_name+'</div> </div> </li>';
-     }
+        }
     n_body.append(html);
     $('#chatMassage').val('');
     

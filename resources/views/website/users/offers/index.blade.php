@@ -443,8 +443,16 @@
                         <a href="projects/{{ $offer->sal_project_id->id }}#offer{{ $offer->id }}"
                             id='offer{{ $offer->id }}'>
 
-  
-                                        
+
+                            <div class='img_container'>
+                                <div class='img_project'>
+                                </div>
+                                <div class='personal_info_first'>
+                                    <div class='phone'>
+                                        <i class='bx bx-time'></i> <span class='time'> 22/2/2 22:22pm
+                                            {{ $offer->sal_project_id->sal_created_by->name }}
+                                        </span>
+
                                     </div>
                                 </div>
                             </div>

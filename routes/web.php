@@ -42,7 +42,7 @@ use Illuminate\Support\Str;
 */
 /** chats start */
 Route::get('chats',[ChatController::class,'chats'])->name('chats');
-Route::get('chats/{user}',[ChatController::class,'chats_with'])->name('chats_with');
+Route::get('chats/{user}/{pro_id}',[ChatController::class,'chats_with'])->name('chats_with');
 Route::get('chatSend',[ChatController::class,'save']);
 /**chats end  */
 /**home page */
@@ -242,7 +242,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/skill_status/{user_id}/{status}', [SkillController::class, 'change_status']);
     // projects
     // Route::resource('projects', ProjectsController::class);
-    Route::get('/project_status/{status}', [ProjectsController::class, 'project_upon_status']);
+    Route::get('/project_status/{status?}', [ProjectsController::class, 'project_upon_status']);
     Route::get('/project_block/{id}/{blockByAdmin}', [ProjectsController::class, 'blockProByAdmin']);
     Route::get('/project_activate/{id}/{status}', [ProjectsController::class, 'activatePro']);
     Route::post('/projectSearch', [ProjectsController::class, 'search']);
