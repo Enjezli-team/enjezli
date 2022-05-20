@@ -92,7 +92,7 @@
         font-size: 33px;
         color: #186d80;
     }
-
+.flex1{flex:1 1 auto;}
 </style>
 
 <?php $__env->startSection('content'); ?>
@@ -132,13 +132,13 @@
                                                 <span>
                                                     <ion-icon name="person-outline"></ion-icon>
                                                 </span>
-                                                <h5></h5>
+                                                <h6><?php echo e($offer->sal_project_id->sal_created_by->name); ?></h6>
                                             </div>
                                             <div class="flex gap-2">
                                                 <span>
-                                                    <ion-icon name="time-outline"></ion-icon>
+                                                    
                                                 </span>
-                                                <span class="aut_pub"></span>
+                                                <span class="aut_pub"> </span>
 
                                             </div>
                                         </div>
@@ -155,19 +155,15 @@
                                         <div class='d-flex w-100 justify-content-between align-items-center'>
                                             <div>
                                                <li>
-                                                    <a href="">
                                                         <span  class="price">    <?php echo e($offer->price); ?>$</span>
-                                                    </a>
                                                 </li>
                                             </div>
                                               
                                               <div>
                                                 <li>
-                                                    <a href="" class="w-50">
                                                         <span> الفترة</span>
                                                         :
                                                         <span>   <?php echo e($offer->duration); ?>يوم</span>
-                                                    </a>
                                                 </li>
                                              
 
@@ -177,7 +173,6 @@
                                                 
                                                 <li class='d-flex gap-2'>
                                                     <a href="" class="status">
-                                                    الحالة:
                                                     
                                               <?php if($offer->sal_project_id->status == 1 && $offer->status == 0): ?>
                                             <a style="    color: #3a416f;
@@ -226,15 +221,20 @@
 
                                     <div class="hr">
                                     </div>
-                                    <div class="liks_shows">
+                                    <div class="liks_shows d-flex gap-3" >
+                                      <button type="button" class="btn btn-primary flex1" >
+
+                                              تفاصيل 
+                                      </button>
 
                                             <?php if($offer->sal_project_id->status == 1 && $offer->status == 0): ?>
                             <?php elseif($offer->sal_project_id->status == 1 && $offer->status == 1): ?>
                                 
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary flex1" data-bs-toggle="modal"
                                     data-bs-target="#cancel<?php echo e($offer->id); ?>">
                                     الغاء العرض
                                 </button>
+                                   
                                 <div class="modal fade" id="cancel<?php echo e($offer->id); ?>" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -392,6 +392,8 @@
 
     </div>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('website.layouts.master_dash', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\Road\v2\Enjezli-new\resources\views/website/users/offers/index.blade.php ENDPATH**/ ?>
