@@ -15,6 +15,7 @@
     gap: 15px;}
 
     }
+    .fa-star{color:gold;}
 </style>
 <link id="pagestyle" href="<?php echo e(asset('user_dash_assets/css/soft-ui-dashboard.css')); ?>?v=1.0.3" rel="stylesheet" />
 <div class="container-fluid py-4 mt-5 bg-white ">
@@ -82,7 +83,8 @@
                                 </div>
                                 <div class="ratings col d-flex justify-content-center ">
                                     <?php for($i=0 ;$i<=$item->user->ratings ; $i++): ?>
-                                        <i class="fa fa-star rating-color text-primary"></i>
+                                        <i class="fa fa-star rating-color "></i>
+
                                         <?php endfor; ?>
 
                                 </div>
