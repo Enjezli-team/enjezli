@@ -198,8 +198,8 @@ class ComposerStaticInit4f287bc18568a014b61df4dd94316c59
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -351,8 +351,8 @@ class ComposerStaticInit4f287bc18568a014b61df4dd94316c59
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -576,12 +576,13 @@ class ComposerStaticInit4f287bc18568a014b61df4dd94316c59
         'App\\Events\\NewEvent' => __DIR__ . '/../..' . '/app/Events/NewEvent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auths\\CustomAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auths/CustomAuthController.php',
+        'App\\Http\\Controllers\\ChatController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChatController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\ProjectSkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProjectSkillController.php',
+        'App\\Http\\Controllers\\admin\\ComplainController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ComplainController.php',
         'App\\Http\\Controllers\\admin\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/IndexController.php',
-        'App\\Http\\Controllers\\admin\\ProjectsController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ProjectsController.php',
         'App\\Http\\Controllers\\admin\\ProviderController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/ProviderController.php',
         'App\\Http\\Controllers\\admin\\SeekerController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/SeekerController.php',
         'App\\Http\\Controllers\\admin\\SkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/SkillController.php',

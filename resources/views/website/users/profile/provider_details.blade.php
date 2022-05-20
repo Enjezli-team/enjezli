@@ -6,8 +6,8 @@
 
 
 <div class="container-fluid py-4 mt-5">
-    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
-        <span class="mask bg-gradient-primary opacity-6"></span>
+    <div class="page-header min-height-100 border-radius-xl mt-4" style="background-image: url('user_dash_assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+        
     </div>
     <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
         <div class="row gx-4">
@@ -74,8 +74,8 @@
     </div>
 </div>
 <div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-12 col-xl-4 ">
+    <div class="row ">
+        <div class="col-12 col-xl-4 mb-3 ">
             <div class="card h-100 ">
                 <div class="card-header pb-0 p-3 d-flex align-items-center justify-content-between ">
                     <h6 class="mb-0 ">المهارات</h6>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-xl-4">
+        <div class="col-12 col-xl-4 mb-3">
             <div class="card h-100">
                 <div class="card-header pb-0 p-3">
                     <div class="row">
@@ -129,7 +129,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-xl-4 ">
+        <div class="col-12 col-xl-4  mb-3">
             <div class="card h-100 " style="max-height: 100%;
     overflow-y: scroll;">
                 <div class="card-header pb-0 p-3 d-flex align-items-center justify-content-between ">
@@ -165,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mt-4 ">
+        <div class="col-12 mt-4 mb-3 ">
             <div class="card mb-4 ">
                 <div class="card-header pb-0 p-3 ">
                     <h6 class="mb-1 ">معرض الاعمال</h6>
