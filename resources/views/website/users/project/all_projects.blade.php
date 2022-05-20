@@ -117,7 +117,7 @@
                 @forelse ($data as $item)
                     <div class="col-md-4 col-sm-12">
                         <a class='title ' href="{{ route('projects.show', $item['id']) }}">
-                            <div class="personal_info_container myworks" style="width: auto;height:415px">
+                            <div class="personal_info_container myworks" style="width: auto;height:411px">
                                 <div class="container_card">
                                     <div class="">
                                         <h2 class="h4">{{ $item['title'] }}</h2>
