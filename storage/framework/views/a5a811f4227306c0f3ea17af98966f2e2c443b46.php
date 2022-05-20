@@ -1,5 +1,5 @@
-@extends('website.layouts.master')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <style>
 .card_cust{height: 401px;
     overflow-x: auto;}
@@ -19,7 +19,7 @@ background:white;    border:1px solid  #639fae;
 </style>
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
-<link id="pagestyle" href="{{asset('user_dash_assets/css/soft-ui-dashboard.css')}}?v=1.0.3" rel="stylesheet" />
+<link id="pagestyle" href="<?php echo e(asset('user_dash_assets/css/soft-ui-dashboard.css')); ?>?v=1.0.3" rel="stylesheet" />
 
 
 <div class="container-fluid py-4 mt-5">
@@ -30,16 +30,18 @@ background:white;    border:1px solid  #639fae;
         <div class="row gx-4">
             <div class="col-auto">
                 <div class=" avatar-xl position-relative">
-                    <img src={{asset("images/".$data->image)}} alt="profile_image" class="w-50 border-radius-lg shadow-sm">
+                    <img src=<?php echo e(asset("images/".$data->image)); ?> alt="profile_image" class="w-50 border-radius-lg shadow-sm">
                 </div>
             </div>
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1">
-                        {{$data->name}}
+                        <?php echo e($data->name); ?>
+
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
-                        {{$data->sal_profile->Job_title}}
+                        <?php echo e($data->sal_profile->Job_title); ?>
+
                     </p>
                 </div>
             </div>
@@ -79,13 +81,13 @@ background:white;    border:1px solid  #639fae;
        <div class='d-flex justify-content-between'>
         <div class="border-0 ps-0 pb-0 ">
 
-            <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href="  {{$data->sal_profile->facebook}}">
+            <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0 " href="  <?php echo e($data->sal_profile->facebook); ?>">
                 <i class="fab fa-facebook fa-lg "></i>
             </a>
-            <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0 " href="  {{$data->sal_profile->tweeter}}">
+            <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0 " href="  <?php echo e($data->sal_profile->tweeter); ?>">
                 <i class="fab fa-twitter fa-lg "></i>
             </a>
-            <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0 " href="  {{$data->sal_profile->github}}">
+            <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0 " href="  <?php echo e($data->sal_profile->github); ?>">
                 <i class="fab fa-instagram fa-lg "></i>
             </a>
         </div>
@@ -109,17 +111,17 @@ background:white;    border:1px solid  #639fae;
                 <div class="card-body p-3 card_cust ">
                     <ul class="list-group ">
 
-                        @forelse($data->sal_skills as $skill)
+                        <?php $__empty_1 = true; $__currentLoopData = $data->sal_skills; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skill): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <li class="list-group-item border-0 d-flex  justify-content-between align-items-center mb-1">
-                            <h6 class="mb-0 text-sm ">{{$skill->sal_skill_u->title}}</h6>
+                            <h6 class="mb-0 text-sm "><?php echo e($skill->sal_skill_u->title); ?></h6>
 
                         </li>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <li class="list-group-item border-0 d-flex  justify-content-between align-items-center mb-2 ">
                             <h6 class="mb-0 text-sm ">لا يوجد</h6>
 
                         </li>
-                        @endforelse
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -142,14 +144,15 @@ background:white;    border:1px solid  #639fae;
                     </p>
                     <p class="text-sm ">
 
-                        {{$data->sal_profile->description}}
+                        <?php echo e($data->sal_profile->description); ?>
+
                     </p>
                     <hr class="horizontal gray-light my-4 ">
                     <ul class="list-group ">
-                        <li class="list-group-item border-0 ps-0 pt-0 text-sm "><strong class="text-dark ">الاسم:</strong> &nbsp;{{$data->name}}</li>
-                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الجوال:</strong> &nbsp; {{$data->sal_profile->phone}}</li>
-                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الايميل:</strong> &nbsp; {{$data->email}}</li>
-                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الدولة:</strong> &nbsp; {{$data->sal_profile->country}}</li>
+                        <li class="list-group-item border-0 ps-0 pt-0 text-sm "><strong class="text-dark ">الاسم:</strong> &nbsp;<?php echo e($data->name); ?></li>
+                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الجوال:</strong> &nbsp; <?php echo e($data->sal_profile->phone); ?></li>
+                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الايميل:</strong> &nbsp; <?php echo e($data->email); ?></li>
+                        <li class="list-group-item border-0 ps-0 text-sm "><strong class="text-dark ">الدولة:</strong> &nbsp; <?php echo e($data->sal_profile->country); ?></li>
 
                     </ul>
                 </div>
@@ -158,34 +161,34 @@ background:white;    border:1px solid  #639fae;
         <div class="col-12 col-xl-4  mb-3">
             <div class="card h-100 " style="">
                 <div class="card-header pb-0 p-3 d-flex align-items-center justify-content-between ">
-                    <h6 class="mb-0 ">المراجعات {{$data->sal_review_to->count()}} </h6>
+                    <h6 class="mb-0 ">المراجعات <?php echo e($data->sal_review_to->count()); ?> </h6>
                 </div>
                 <div class="card-body p-3 card_cust ">
                     <ul class="list-group ">
 
-                        @forelse($data->sal_review_to as $review)
+                        <?php $__empty_1 = true; $__currentLoopData = $data->sal_review_to; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 ">
                             <div class="d-flex align-items-start flex-column justify-content-center ">
                                 <div class="avatar mr-1 mb-1 ">
-                                    <img src={{asset("images/".$review->sal_project->sal_created_by->image)}} alt="kal " class="border-radius-lg shadow ">
+                                    <img src=<?php echo e(asset("images/".$review->sal_project->sal_created_by->image)); ?> alt="kal " class="border-radius-lg shadow ">
                                 </div>
                                 <div class="ratings col d-flex">
-                                    @for($i=0 ;$i<=$review->rate ; $i++)
+                                    <?php for($i=0 ;$i<=$review->rate ; $i++): ?>
                                         <i class="fa fa-star rating-color text-primary"></i>
-                                        @endfor
+                                        <?php endfor; ?>
 
                                 </div>
-                                <h6 class="mb-0 text-sm ">{{$review->sal_project->sal_created_by->name}}</h6>
-                                <p class="mb-0 text-xs ">{{$review->created_at}}</p>
-                                <p class="mb-0 text-xs " style="    word-wrap: break-word;">{{$review->comment}}</p>
+                                <h6 class="mb-0 text-sm "><?php echo e($review->sal_project->sal_created_by->name); ?></h6>
+                                <p class="mb-0 text-xs "><?php echo e($review->created_at); ?></p>
+                                <p class="mb-0 text-xs " style="    word-wrap: break-word;"><?php echo e($review->comment); ?></p>
                             </div>
                         </li>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2 ">
                             <h6 class="mb-0 text-sm ">لا يوجد</h6>
 
                         </li>
-                        @endforelse
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -198,37 +201,40 @@ background:white;    border:1px solid  #639fae;
                 <div class="card-body p-3 ">
                     <div class="row ">
 
-                        @forelse($data->sal_works as $work)
+                        <?php $__empty_1 = true; $__currentLoopData = $data->sal_works; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $work): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 ">
                             <div class="card card-blog card-plain ">
 
                                 <div class="position-relative ">
                                     <a class="d-block shadow-xl border-radius-xl ">
-                                        <img src={{asset("images/".$work->file)}} alt="img-blur-shadow " class="img-fluid shadow border-radius-xl ">
+                                        <img src=<?php echo e(asset("images/".$work->file)); ?> alt="img-blur-shadow " class="img-fluid shadow border-radius-xl ">
                                     </a>
                                 </div>
 
                                 <div class="card-body px-1 pb-0 ">
-                                    <a href="/work_data/{{$work->id}} ">
+                                    <a href="/work_data/<?php echo e($work->id); ?> ">
                                         <h5>
-                                            {{$work->title}} </p>
+                                            <?php echo e($work->title); ?> </p>
                                         </h5>
                                     </a>
                                     <p class="mb-4 text-sm ">
-                                        {{$work->description}}
+                                        <?php echo e($work->description); ?>
+
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="col-xl-3 col-md-6 mb-xl-0 mb-4 ">
                             <h6 class="mb-0 text-sm ">لا يوجد</h6>
                         </div>
-                        @endforelse
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('website.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\DELL\Desktop\Road\v3\Enjezli-new\resources\views/website/users/profile/provider_details.blade.php ENDPATH**/ ?>
