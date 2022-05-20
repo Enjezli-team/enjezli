@@ -57,15 +57,11 @@
 
         border-radius: 12px;
     }
-        body{background:#cce5ed;}
-.accordion-collapse{    background: rgba(204, 229, 237, 0.46);}
 
 </style>
-@extends('website.layouts.master') 
+@extends('website.layouts.master')
 
 @section('content')
-
-
     <div class="container mt-5 details_container">
 
 
@@ -81,23 +77,28 @@
 
 
 
-   <div class="page-header min-height-300 border-radius-xl  mt-1 mb-3 d-flex justify-content-center align-items-center " style="min-height: 70px !important;
-                                                                    border-right: 4px solid #5ab1c5;
-                                                                    border-radius: 4px;background-color: white;
-                                                                    padding: 10px 10px;
-                                                                    ">
-            <h6 class='text-center'> {{ $data['title'] }} </h6>
-         
-        </div>
 
- 
+
+        <div class='title'>
+            <h3>{{ $data['title'] }}</h3>
+        </div>
 
         {{-- <div class="container mt-5"> --}}
         <div class="row">
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->
                 {{-- <div class="card-header">  {{Auth::user()->name}}</div> --}}
-            
+                <div class="card-header">
+                    {{-- {{Auth::user()->Role}} --}}
+                    {{-- @forelse (Auth::user()->Role as $role)
+                    {{  $role}}
+                   
+                @empty
+                    
+                @endforelse --}}
+
+
+                </div>
                 <div class="card mb-4 personal_info_container myworks">
                     <div class="card-header"> تفاصيل المشروع</div>
                     <div class="card-body">
@@ -267,7 +268,12 @@
                                     العروض المقدمة
 
                                 </button>
-                            
+                                <div class="select">
+                                    <select id="standard-select">
+                                        <option value="">الاحدث</option>
+                                        <option value="">الاقدم</option>
+                                    </select>
+                                </div>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
@@ -376,7 +382,7 @@
                                                                 class="note"> قبول العرض</button>
                                                              
                                                         </form>
-                                                        <a href="{{route('chats_with',[$offer->id,$data->id ])}}"><button style="color:black ;border:none" type='submit '
+                                                        <a href="{{route('chats_with',[$offer->provider_id,$data->id ])}}"><button style="color:black ;border:none" type='submit '
                                                             class="note">  دردشة</button></a>
                                                         {{-- if the user is the publisher of the project let him
                                                      accept and reject the accepted once  before the offer last confirmation --}}
@@ -531,7 +537,6 @@
 
 
                             </div>
-                            
 
                             {{-- @else
                                    <div> لا توجد عروض</div> --}}

@@ -3,15 +3,6 @@
 <!-- Main content -->
 
 
-                      
-    
-
-  
- 
-
-
-
-
 <div class="flex flex-col mx-16  ">
 
     <!-- This is an example component -->
@@ -53,7 +44,7 @@
 
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div
-            class="mostly-customized-scrollbar overflow-y-scroll h-[64vh] align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            class="mostly-customized-scrollbar overflow-y-auto h-[67vh] align-middle inline-block min-w-full  overflow-hidden sm:rounded-lg border-b border-gray-200">
             <table class="min-w-full text-right" style="direction: rtl;" >
                   
                     <thead>
@@ -108,7 +99,7 @@
             {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
             <div class="text-sm leading-5 text-gray-500">
                 @forelse($item->user_roles_user as $role)
-                <span class="">{{$role->role->name}}</span>
+                <span class="">{{$role->role->display_name}}</span>
                 @empty
                 لم يتم التحديد
                 @endforelse
@@ -161,12 +152,12 @@
                             </svg>
                             </a>
                         </div>
-                        <div class="w-4 mr-2 transform hover:text-red-600 hover:bg-red-50 hover:rounded  hover:scale-110">
+                        {{-- <div class="w-4 mr-2 transform hover:text-red-600 hover:bg-red-50 hover:rounded  hover:scale-110">
                          
                             <button type="submit" class=""> 
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                             </button>
-                        </div>
+                        </div> --}}
                     </div>
                  </form>
 
@@ -176,8 +167,8 @@
             </td>
         </tr>
         @empty
-        <tr class="odd">
-            <td>لا توجد بيانات
+        <tr class="">
+            <td class="">لا توجد بيانات
             </td>
         </tr>
 @endforelse

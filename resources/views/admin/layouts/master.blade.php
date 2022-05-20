@@ -321,8 +321,8 @@
                 </a>
 
                 
-                <a class="{{ Route::currentRouteName() === 'admin/users'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ url('admin/users') }}">
+                <a class="{{ Route::currentRouteName() === 'admin/user_status/3'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                    href="{{ url('admin/user_status/3') }}">
 
                     <span class="mx-3">المنجزين</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="23.992" viewBox="0 0 22.5 23.992">
@@ -335,8 +335,8 @@
                 </a>
 
                 
-                <a class="{{ Route::currentRouteName() === 'admin/users'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href="{{ url('admin/users') }}">
+                <a class="{{ Route::currentRouteName() === 'admin/user_status/2'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                    href="{{ url('admin/user_status/2') }}">
 
                     <span class="mx-3">طالبي الخدمات</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="23.992" viewBox="0 0 22.5 23.992">

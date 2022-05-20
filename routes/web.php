@@ -43,6 +43,9 @@ use Illuminate\Support\Str;
 /** chats start */
 Route::get('chats',[ChatController::class,'chats'])->name('chats');
 Route::get('chats/{user}/{pro_id}',[ChatController::class,'chats_with'])->name('chats_with');
+Route::get('chats_complaint/{pro_id}',[ChatController::class,'chats_complaint'])->name('chats_complaint');
+Route::get('chats_problem/{pro_id}',[ChatController::class,'chats_problem'])->name('chats_problem');
+Route::get('chats_solve/{pro_id}',[ChatController::class,'chats_solve'])->name('chats_solve');
 Route::get('chatSend',[ChatController::class,'save']);
 /**chats end  */
 /**home page */
@@ -232,7 +235,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
     Route::post('/userSearch',[UserController::class, 'search']);
     // Route::get('/usertype/{type}',[UserController::class, 'usertype']);
-    Route::get('/user_status/{type}',[UserController::class, 'user_upon_status']);
+    
+    Route::get('/user_status/{type?}',[UserController::class, 'user_upon_status']);
 
 
     
@@ -242,7 +246,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/skill_status/{user_id}/{status}', [SkillController::class, 'change_status']);
     // projects
     // Route::resource('projects', ProjectsController::class);
-    Route::get('/project_status/{status?}', [ProjectsController::class, 'project_upon_status']);
+    Route::get('/project_status/{status}', [ProjectsController::class, 'project_upon_status']);
     Route::get('/project_block/{id}/{blockByAdmin}', [ProjectsController::class, 'blockProByAdmin']);
     Route::get('/project_activate/{id}/{status}', [ProjectsController::class, 'activatePro']);
     Route::post('/projectSearch', [ProjectsController::class, 'search']);

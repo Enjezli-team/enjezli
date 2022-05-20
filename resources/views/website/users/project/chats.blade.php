@@ -453,23 +453,28 @@
                             <div class="selected-user">
                                 <!-- <span>To: <span class="name">Emily Russell</span></span> -->
                             </div>
-                            <div class="chat-container">
+                            @if($type==0)
+                             <a href="{{route('chats_complaint',$project_id)}}"><button style="color:black ;border:none" type='submit '
+                                                            class="note">  شكوى </button></a>
+                            @endif
+                                                            <div class="chat-container">
                                 <ul class="chat-box chatContainerScroll" id="chat_body">
                                     @foreach($chat as $data)
-                                    @if(Auth::user()->id==$data->sender_chat->id)
+                                
+                                    @if(Auth::user()->id==$data->sender_id)
                                     <li class="chat-left">
                                         <div class="chat-avatar">
                                             <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
-                                            <div class="chat-name">{{$data->sender_chat->name}}</div>
+                                            @if($data->sender_chat)<div class="chat-name">{{$data->sender_chat->name}}</div>@endif
                                         </div>
                                         <div class="chat-text">  {{$data->message}}</div>
                                         <div class="chat-hour">{{$data->created_at}}<span class="fa fa-check-circle"></span></div>
+                                        <span style="display: none" id="receiver">{{ $data->receiver_chat->id}}</span>
                                     </li>
                                     @else
                                     <li class="chat-right">
                                         <div class="chat-hour">{{$data->created_at}} <span class="fa fa-check-circle"></span></div>
                                         <div class="chat-text">  {{$data->message}}</div>
-                                        <span style="display: " id="receiver">{{ $data->sender_chat->id}}</span>
                                         <div class="chat-avatar">
                                         
 
@@ -479,14 +484,14 @@
                                     </li>
                                     @endif
                                     @endforeach
-                                    <span style="display:" id="receiver_sal">{{$user}}</span>
+                                    <span style="display:none" id="receiver_sal">{{$user}}</span>
                                 </ul>
-                               
+                                @if($type==0)
                                     <div class="form-group mt-3 mb-0">
                                         <textarea class="form-control" rows="3" id="chatMassage" placeholder="Type your message here..."></textarea>
                                     </div>
                                   <button type="button" class="send_btn" onclick="send({{$project_id}})">إرسال</button>
-                                
+                                @endif
                             </div>
                         </div>
                         
@@ -546,23 +551,29 @@ var output = d.getFullYear() + '/' +
      var channel = pusher.subscribe('chat');
   var user="{{(Auth::user())?Auth::user()->id:0}}";
   channel.bind('chat', function(data) {
-      alert(1);
+      
       var n_body = $("#chat_body");
       user_name=""
       user_image=""
-        if(current_user==data.sender_id){
-            var html=' <div class="chat-hour">'+output+'<span class="fa fa-check-circle"></span></div>'+
+        if(current_user==data.sender_id ){
+                                       
+                                          
+                                         
+            var html='<li class="chat-left">'+
+            '  <div class="chat-avatar">'+
+            '<img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"><div class="chat-name">'+data.sender_name+'</div> '+
             '<div class="chat-text">'+data.message+'</div>'+
-            ' <div class="chat-avatar">'+
-            '<img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin"><div class="chat-name">'+data.sender_name+'</div> </div> </li>';
+            '<div class="chat-hour">'+output+'<span class="fa fa-check-circle"></span></div>'+
+            '</div> </li>';
                     }
  
         else if(current_user==data.receiver_id){
-                var html =' <li class="chat-right"><div class="chat-hour">'+output+' <span class="fa fa-check-circle"></span></div>'+
-                    ' <div class="chat-text">'+data.message+'</div> <span style="display: " id="receiver">data->sender_chat->id</span> <div class="chat-avatar">'+
+                var html =' <li class="chat-right">'+
+                    ' <div class="chat-text">'+data.message+'</div> <div class="chat-avatar">'+
                          ' <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">'+
-                         ' <div class="chat-name">'+data.sender_name+'</div> </div> </li>';
+                         ' <div class="chat-name">'+data.sender_name+'</div><div class="chat-hour">'+output+' <span class="fa fa-check-circle"></span></div> </div> </li>';
         }
+        
     n_body.append(html);
     $('#chatMassage').val('');
     

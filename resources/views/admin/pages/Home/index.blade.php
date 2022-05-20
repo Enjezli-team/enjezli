@@ -130,7 +130,7 @@
 		<div class="relative px-4 py-4 bg-white shadow-lg sm:rounded-3xl sm:p-16">
 			<div class="max-w-md mx-auto">
 				<div>
-					<h1 class="text-lg font-semibold">ارسل اشعار لجميع المستخدمين </h1>
+					<h1 class="text-lg font-semibold text-right">ارسل اشعار لجميع المستخدمين </h1>
 				</div>
 				<div class="divide-y divide-gray-200">
 					<div class="py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">

@@ -92,7 +92,7 @@
         font-size: 33px;
         color: #186d80;
     }
-.flex1{flex:1 1 auto;}
+
 </style>
 @extends('website.layouts.master_dash')
 @section('content')
@@ -131,13 +131,13 @@
                                                 <span>
                                                     <ion-icon name="person-outline"></ion-icon>
                                                 </span>
-                                                <h6>{{ $offer->sal_project_id->sal_created_by->name}}</h6>
+                                                <h5></h5>
                                             </div>
                                             <div class="flex gap-2">
                                                 <span>
-                                                    {{-- <ion-icon name="time-outline"></ion-icon> --}}
+                                                    <ion-icon name="time-outline"></ion-icon>
                                                 </span>
-                                                <span class="aut_pub"> </span>
+                                                <span class="aut_pub"></span>
 
                                             </div>
                                         </div>
@@ -148,20 +148,27 @@
 
 
                                         </div>
+                                        <a href="{{route('chats_with',[$offer->sal_project_id->user_id,$offer->project_id ])}}"><button style="color:black ;border:none" type='submit '
+                                            class="note">  دردشة</button></a>
+                                        
                                         <div class="liks_shows">
                                             <ul class="d-grid w-100 gap-1 pe-0" >
                                         <div class='d-flex w-100 justify-content-between align-items-center'>
                                             <div>
                                                <li>
+                                                    <a href="">
                                                         <span  class="price">    {{ $offer->price }}$</span>
+                                                    </a>
                                                 </li>
                                             </div>
                                               
                                               <div>
                                                 <li>
+                                                    <a href="" class="w-50">
                                                         <span> الفترة</span>
                                                         :
                                                         <span>   {{ $offer->duration }}يوم</span>
+                                                    </a>
                                                 </li>
                                              
 
@@ -176,6 +183,7 @@
                                 </div> --}}
                                                 <li class='d-flex gap-2'>
                                                     <a href="" class="status">
+                                                    الحالة:
                                                     
                                               @if ($offer->sal_project_id->status == 1 && $offer->status == 0)
                                             <a style="    color: #3a416f;
@@ -224,11 +232,7 @@
 
                                     <div class="hr">
                                     </div>
-                                    <div class="liks_shows d-flex gap-3" >
-                                      <button type="button" class="btn btn-primary flex1" >
-
-                                              تفاصيل 
-                                      </button>
+                                    <div class="liks_shows">
 
                                             @if ($offer->sal_project_id->status == 1 && $offer->status == 0)
                             @elseif($offer->sal_project_id->status == 1 && $offer->status == 1)
@@ -238,11 +242,10 @@
                                     <button style="color:black ;border:none;background:transparent" type='submit '> إلغاء
                                         العرض </button>
                                 </form> --}}
-                                <button type="button" class="btn btn-primary flex1" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#cancel{{ $offer->id }}">
                                     الغاء العرض
                                 </button>
-                                   
                                 <div class="modal fade" id="cancel{{ $offer->id }}" tabindex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -534,6 +537,4 @@
 
     </div>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 @endsection

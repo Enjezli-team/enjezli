@@ -24,7 +24,7 @@ class UserController extends Controller
         return view('admin.pages.Users.index',['data'=>User::where('type',1)->get()]);
     }
 
-    public function user_upon_status($type)
+    public function user_upon_status($type=2)
     {   
         return view('admin.pages.Users.index',['data'=>User::where('type',$type)->get()]);
     }
