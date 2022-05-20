@@ -5,9 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
 use App\Models\Project;
+use App\Models\Skill;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -22,6 +24,8 @@ class IndexController extends Controller
     
         $openpro = Project::all()->where('status',1);
         $executepro = Project::all()->where('status',2);
+        $admin = User::find(Auth::user()->id);
+        $skill=Skill::all()->where('status',1);
 
         $dayAgo = 3 ;// where here there is your calculation for now How many days
         $dayToCheck = Carbon::now()->subDays($dayAgo);
@@ -35,7 +39,7 @@ class IndexController extends Controller
       
         $seeker = User::all()->where('status',1);
         $provider = User::all()->where('type',3);
-        return view('admin.pages.Home.index', compact('openpro','executepro', 'seeker','provider','lastoffer','lastPro'));
+        return view('admin.pages.Home.index', compact('admin','openpro','executepro', 'seeker','provider','lastoffer','lastPro','skill'));
 
 
     }

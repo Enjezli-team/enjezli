@@ -1,215 +1,152 @@
 @extends('admin.layouts.master')
 @section('side')
 
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">التقارير</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
+    
+
+
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+      <div class="container mx-auto px-6 py-8">
+      <div class="grid pb-10  mt-4 ">
+          <!-- Start Content-->
           
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{$openpro->count()}} </h3>
-
-                <p>المشاريع الجديدة</p>
-              </div>
-              <div class="icon">
-                <i class="ion bi bi-folder2-open"></i>
-              </div>
-              <a href="/admin/project_status/{{$status=1}}" class="small-box-footer">مزيد من التفاصيل <i class="fas fa-arrow-circle-left"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                  
-                <h3>{{$executepro->count()}} </h3>
-              
-
-                <p>المشاريع قيد التنفيذ</p>
-              </div>
-              <div class="icon">
-                <i class="ion bi bi-folder-symlink"></i>
-              </div>
-              <a href="/admin/project_status/{{$status=2}}" class="small-box-footer">مزيد من التفاصيل  <i class="fas fa-arrow-circle-left"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{$seeker->count()}}</h3>
-
-                <p>طالبي الخدمات</p>
-              </div>
-              <div class="icon">
-                
-                <i class="ion bi bi-person-lines-fill"></i>
-              </div>
-              <a href="/admin/user_status/{{$type=3}}" class="small-box-footer">مزيد من التفاصيل   <i class="fas fa-arrow-circle-left"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{$provider->count()}}</h3>
-
-                <p>منجزي الخدمات</p>
-              </div>
-              <div class="icon">
-                <i class="ion bi bi-person-check-fill"></i>
-              </div>
-              <a href="/admin/user_status/{{$type=3}}" class="small-box-footer">مزيد من التفاصيل   <i class="fas fa-arrow-circle-left"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-
-            <!-- TABLE: LATEST ORDERS -->
-            <div class="card">
-              <div class="card-header border-transparent">
-                <h3 class="card-title">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </h3>
-
-                <div class="card-tools">
-                  اخر العروض المقبولة
-                 
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 mt-3">
+              <div class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+              style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');">
+                <div class="absolute inset-0 bg-[#8ECAE6] bg-opacity-75 transition duration-300 ease-in-out"></div>
+                  <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-center  justify-center">
+                  <div>
+                    <div class="text-white text-lg flex space-x-2 items-center text-center  justify-center">
+                     
+                      <p>المشاريع الجديدة</p>
+                    </div>
+                    <h3 class="text-white text-3xl m-2 font-bold">
+                      {{$openpro->count()}}
+                    </h3>
+                     <a class="bg-sky-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] " href={{ url('admin/project_status') }}>
+                       مزيد من التفاصيل
+                     </a>
+                  </div>
                 </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
-                    <thead>
-                    <tr>
-                      <th>الرقم </th>
-                      <th>اسم المشروع</th>
-                      <th>الحالة</th>
-                      <th>اسم المنجز</th>
-                      <th>السعر </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                      @foreach ($lastoffer as $offer )
+            </div>
+              
+               <div class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');">
+                  <div class="absolute inset-0 bg-[#186D80] bg-opacity-75 transition duration-300 ease-in-out"></div>
+                    <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-center  justify-center">
+                    <div>
+                      <div class="text-white text-lg flex space-x-2 items-center text-center  justify-center">
                         
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">{{$offer->id}}</a></td>
-                      <td>{{$offer->sal_project_id->title}}</td>
-                      <td><span class="badge badge-success">تم اختيارها</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{$offer->sal_provider_by->name}}</div>
-                      </td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{$offer->price}}</div>
-                      </td>
-                    </tr>
-                    
-                    @endforeach
-              
-                
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.table-responsive -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <a href="/admin/offer_status/{{$status=1}}" class="btn btn-sm btn-info float-right">جميع العروض</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-            <!-- /.card -->
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title"> 
-                  
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> </h3>
-
-
-                <div class="card-tools">
-                  اخر المشاريع
-                  
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
-                  @foreach ($lastPro as $pro)
-                  <li class="item">
-                    <div class="product-img">
-                      @foreach ($pro->sal_project_attach as $s )
-
-                      @if ($loop->first)
-                      <img src="{{$s->file_name}}" alt="Product Image" class="img-size-50">
-                        @endif
-                      @endforeach
+                        <p> المشاريع قيد التنفيذ</p>
+                      </div>
+                      <h3 class="text-white text-3xl m-2 font-bold">
+                        {{$executepro->count()}}
+                      </h3>
+                      <a  href={{ url('admin/project_status/2') }} class="bg-emerald-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] ">
+                        مزيد من التفاصيل
+                      </a>
                     </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">{{$pro->title}}
-                        <span class="badge badge-warning float-right">{{$pro->price}}</span></a>
-                      <span class="product-description">
-                        {{$pro->description}}
-                      </span>
+                  </div>
+              </div>
+               <div class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');">
+                  <div class="absolute inset-0 bg-[#8ECAE6] bg-opacity-75 transition duration-300 ease-in-out"></div>
+                  <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-center  justify-center">
+                    <div>
+                      <div class="text-white text-lg  items-center ">
+                        
+                        <p>طالبي الخدمات</p>
+                      </div>
+                      <h3 class="text-white text-3xl m-2 font-bold">
+                        {{$seeker->count()}}
+                      </h3>
+                      <a href="/admin/user_status/{{$type=3}}" class="bg-sky-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] ">
+                        مزيد من التفاصيل
+                      </a>
                     </div>
-                  </li>
-                  @endforeach
-                 
-                </ul>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer text-center">
-                <a href="/admin/project_status/{{$status=1}}" class="uppercase">جميع المشاريع</a>
-              </div>
-              <!-- /.card-footer -->
+                  </div>
+              </div>        
+              <div class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+              style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');">
+                <div class="absolute inset-0 bg-[#2B899E] bg-opacity-75 transition duration-300 ease-in-out"></div>
+                <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-center  justify-center">
+                  <div>
+                    <div class="text-white text-lg  items-center ">
+                     
+                      <p> منجزي الخدمات</p>
+                    </div>
+                    <h3 class="text-white text-3xl m-2 font-bold">
+                   
+                      {{$provider->count()}}
+                    </h3>
+                    <a href="/admin/user_status/{{$type=3}}"  class="bg-emerald-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] ">
+                      مزيد من التفاصيل
+                    </a>
+                  </div>
+                </div>
+            </div>  
             </div>
-            <!-- /.card -->
-          </section>
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+            
+          <!-- End Content-->
+      </div>
+    </div>
+  </main>
+
+
+
+ 
+<!-- component -->
+<div class=" py-6 flex justify-between lg:flex-row   sm:py-12">
+<div class="relative relative sm:w-full mx-12 ">
+  <div class="bg-[#186D80] bg-opacity-75 shadow mt-6  rounded-lg p-6">
+    <h3 class="text-gray-600 text-lg text-center font-semibold mb-4 text-white">المهارات</h3>
+    <ul class="flex items-center justify-center space-x-2">
+        <!-- Story #1 -->
+        @foreach ($skill as $myskill )
+          
+        <li class="flex flex-col items-center space-y-2">
+            <!-- Ring -->
+            <a class="block bg-white p-1 rounded-full" href="#">
+                <div class="h-16 w-16 text-lg font-bold rounded-full shadow flex items-center bg-[#8ECAE6] text-white  justify-center" >
+                  <p class="hidden">  {{mb_internal_encoding("UTF-8");}} </p>
+                  <p>{{mb_substr($myskill->title, 0, 1)}}</p>
+                </div>
+            </a>
+            <!-- Username -->
+            <span class="text-xs text-gray-500 text-white">
+                {{$myskill->title}}
+            </span>
+        </li>
+
+        @endforeach
+  
+    </ul>
+</div>
+</div>
+  
+  <div class="relative relative sm:w-full mx-12 ">
+		<div
+			class="absolute inset-0 bg-gradient-to-r from-[#8ECAE6] to-[#186D80] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+		</div>
+		<div class="relative px-4 py-4 bg-white shadow-lg sm:rounded-3xl sm:p-16">
+			<div class="max-w-md mx-auto">
+				<div>
+					<h1 class="text-lg font-semibold">ارسل اشعار لجميع المستخدمين </h1>
+				</div>
+				<div class="divide-y divide-gray-200">
+					<div class="py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+					
+						<div class="relative">
+							<textarea autocomplete="off" id="" name="noti" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" height="4" ></textarea>
+						</div>
+						<div class="relative">
+							<button class="bg-[#186D80] text-white rounded-md px-2 py-1">ارسال</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  
+</div>
 
 @endsection
