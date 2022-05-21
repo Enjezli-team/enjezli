@@ -427,7 +427,7 @@
                 <div x-show="open" class="mt-2 space-y-2 px-7 text-right" role="menu" arial-label="Pages">
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                  <a class="{{ Route::currentRouteName() === '/admin/project_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/project_status') }}>
+                  <a class="{{ Route::currentRouteName() === '/admin/project_status/1'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/project_status/1') }}>
 
                   <div class="mx-2">مفتوح</div>
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
