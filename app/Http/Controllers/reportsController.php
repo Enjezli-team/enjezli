@@ -46,17 +46,18 @@ class reportsController extends Controller
             $provider_project ->where('status', $request->project_status);    
         $seeker_project ->where('status', $request->project_status);
         }
-        if ($request->has('neer')) {
+        if ($request->has('neer')) { 
             $provider_project->whereBetween('created_at', 
-            [Carbon::now()->subDays(60), Carbon::now()]);  
+            [Carbon::now()->subYear(), Carbon::now()]);  
             $seeker_project->whereBetween('created_at', 
-            [Carbon::now()->subDays(60), Carbon::now()]);     
+            [Carbon::now()->subYear(), Carbon::now()]);     
         }
         if ($request->has('last')) {
             $provider_project->whereBetween('created_at', 
-            [Carbon::now()->subDays(1000), Carbon::now()->subDays(60)]);   
+            [Carbon::now()->subDays(1000), Carbon::now()->subDays(60)]); 
             $seeker_project->whereBetween('created_at', 
-            [Carbon::now()->subDays(1000), Carbon::now()->subDays(60)]);     
+            [Carbon::now()->subDays(1000), Carbon::now()->subDays(60)]);   
+             
         }
     $result_seeker= $seeker_project ->get();
     $result_provider= $provider_project ->get();
