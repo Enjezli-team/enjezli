@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\website;
 
 use App\Models\Offer;
+use App\Models\Review;
 use App\Models\Complain;
 use App\Models\Order;
 use App\Models\Project;
@@ -25,22 +26,11 @@ class OfferController extends Controller
      */
     public function index()
     {
+
         $offers = Offer::with(['sal_project_id.sal_created_by'])->where('provider_id', Auth::user()->id)->get();
         return view('website.users.offers.index', compact('offers'));
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-
-
-    //     return view('website.users.offers.create');
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -70,7 +60,6 @@ class OfferController extends Controller
             'duration.gt' => 'يجب ادخال قيمة موجبة   ',
             'duration.numeric' => 'يجب ادخال رقم ',
             'description.required' => 'يجب أدخال تفاصيل العرض  ',
-            // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
 
         ]);
         $model = new Offer;
@@ -79,12 +68,10 @@ class OfferController extends Controller
         $website_precentage = $model->price / 10;
         $model->net_price = $model->price - $website_precentage;
         $project_id = $request->project_id;
-        // $model->net_price=$request->price;
         $model->duration = $request->duration;
         $model->provider_id = Auth::User()->id; //Auth_id
         $model->project_id = $project_id;
         $model->status = 1;
-        // if($request->input('description')){
         $model->description = $request->description;
         // }
         if ($model->save()) {
@@ -119,16 +106,7 @@ class OfferController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -155,6 +133,7 @@ class OfferController extends Controller
 
     public function doPayment($offer_id, $project_id, $project_name, $price, $provider_id)
     {
+
         $Admin = User::whereRoleIs('Admin')->first();
 
         $order = new Order();
@@ -210,7 +189,6 @@ class OfferController extends Controller
 
             $response = curl_exec($curl);
             $err = curl_error($curl);
-
             curl_close($curl);
             $result = json_decode($response, true);
             if (isset($result['status']) && $result['status'] == true) {
@@ -221,17 +199,6 @@ class OfferController extends Controller
 
 
                 return $result;
-                // echo $result['invoice']['invoice_referance'];
-                // $result = json_decode($response, true);
-                // echo $result['invoice']['invoice_referance'];
-                // return $result['invoice']['invoice_referance'];
-                // $order = Order::find($result['order_reference']);
-                // $order->status = 1;
-                // $order->invoice_id = $result['invoice_referance'];
-                //print_r(json_decode($response,true));
-                //  $result= json_decode($response,true);
-                //  echo $result['message'];
-
             } else if ($err) {
                 echo " Error #:" . $err;
                 return   $result;
@@ -241,11 +208,6 @@ class OfferController extends Controller
         } else {
             echo 'database error';
         }
-
-        // return json_encode($data);
-
-
-
     }
 
 
@@ -269,12 +231,12 @@ class OfferController extends Controller
                     $order_sum = 0;
                 }
 
-
                 $net_balance = Auth::user()->balance - $order_sum;
                 /**======================
-                 *    if the balance biger and not used of any current order
+                 *    if the balance bigger and not used of any current order
                  * create order with active 
                  *========================**/
+
                 if ($net_balance >= $offer->price) {
                     // $order->invoice_id =$result['customer_account_info']['invoice_referance'] ;
 
@@ -290,7 +252,7 @@ class OfferController extends Controller
                     $offer->sal_project_id->status = 4;
                     if ($offer->save() && $offer->sal_project_id->save() && $order->save()) {
                         if (Auth::check()) {
-                            $data = ['receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم  قبول عرضك على مشروع', 'link' => "/projects/$offer->project_id->id#offer$offer->id"];
+                            $data = ['receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم  قبول عرضك على مشروع', 'body' => "/projects/$offer->project_id->id#offer$offer->id", 'link' => "/projects/$offer->project_id->id#offer$offer->id"];
 
                             NotificationController::hiNotification($data);
                         }
@@ -328,16 +290,8 @@ class OfferController extends Controller
     {
         $info = base64_decode($response);
         $result = json_decode($info, true);
-        // return  $result;
-
-
-
-
         $order = Order::where('id', $result['order_reference'])->first();
-
-
         $order->status = 1;
-
         $offer = Offer::with(['sal_project_id', 'sal_provider_by'])->where('id', $order->offer_id)->first();
         $offer->status = 2;
         $offer->sal_project_id->status = 4;
@@ -348,7 +302,7 @@ class OfferController extends Controller
 
             Auth::user()->deposit($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_project_id->sal_created_by->name, 'type' => 'ايداع', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'قيد الانتظار']);
             if (Auth::check()) {
-                $data = ['receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم قبول عرضك على مشروع ', 'link' => "/projects/$offer->project_id->id#offer$offer->id"];
+                $data = ['receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم قبول عرضك على مشروع ', 'body' => "/projects/$offer->project_id->id#offer$offer->id", 'link' => "/projects/$offer->project_id->id#offer$offer->id"];
 
                 NotificationController::hiNotification($data);
             }
@@ -397,7 +351,9 @@ class OfferController extends Controller
                     // $project_owner=User::where('id',  $model->project_id)->first();
                     // $offer->sal_project_id->title
                     $notification = [
-                        'receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  الغاءالموافقة على  عرضك على مشروع ", 'link' => "/projects/$offer->project_id#offer$offer->id"
+                        'receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  الغاءالموافقة على  عرضك على مشروع ",
+                        'body' => "/projects/$offer->project_id#offer$offer->id",
+                        'link' => "/projects/$offer->project_id#offer$offer->id"
                     ];
 
                     NotificationController::hiNotification($notification);
@@ -436,7 +392,9 @@ class OfferController extends Controller
                         // $project_owner=User::where('id',  $model->project_id)->first();
                         $notification = [
                             // $data->sal_project_id->title
-                            'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  قبول مشروع ", 'link' => "/projects/$data->project_id->id#offer$data->id"
+                            'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  قبول مشروع ",
+                            'body' => "/projects/$data->project_id->id#offer$data->id",
+                            'link' => "/projects/$data->project_id->id#offer$data->id"
                         ];
 
                         NotificationController::hiNotification($notification);
@@ -470,7 +428,9 @@ class OfferController extends Controller
                 // $data->sal_project_id->title
                 // $project_owner=User::where('id',  $model->project_id)->first();
                 $notification = [
-                    'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  الغاءالعرض على  مشروع ", 'link' => "/projects/$data->project_id->id#offer$data->id"
+                    'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  الغاءالعرض على  مشروع ",
+                    'body' => "/projects/$data->project_id->id#offer$data->id",
+                    'link' => "/projects/$data->project_id->id#offer$data->id"
                 ];
 
                 NotificationController::hiNotification($notification);
@@ -487,40 +447,58 @@ class OfferController extends Controller
      *   and is   and the project status is acceptOffer $project->status==1
      *   مفتوح then change the project status to قيد التنفيذ 
      *------------------------**/
+    /**
+     * seeker confirm that the project is delivered
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
 
     public function confirmDelivery(Request $request)
     {
+        try {
 
-        // $offer= Offer::with('')->find($request->offer_id); 
 
-        $offer = Offer::with('sal_project_id', 'sal_provider_by')->where('project_id', $request->project_id)
-            ->where('id', $request->offer_id)->first();
+            $offer = Offer::with('sal_project_id', 'sal_provider_by')->where('project_id', $request->project_id)
+                ->where('id', $request->offer_id)->first();
 
-        if ($request->project_owner == Auth::user()->id && $offer->status == 3 && $offer->sal_project_id->status == 3) {
-            //done working and seeker confirm
-            $offer->sal_project_id->status = 5; //close project
-            $order = Order::where('offer_id', $offer->id)->where('status', 1)->first();
-            $Admin_percentage = $offer->price - $offer->net_price;
-            $provider_percentage = $offer->net_price;
-            $seeker = User::find($offer->sal_project_id->user_id);
-            $Admin = User::whereRoleIs('Admin')->first();
-            $provider = User::find($offer->provider_id);
-            $seeker->balanceInt;
-            $Admin->balanceInt;
-            $provider->balanceInt;
-            $seeker->withdraw($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'سحب', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
-            $Admin->deposit($Admin_percentage, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $Admin->name, 'type' => 'ايداع', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$Admin_percentage, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
-            $provider->deposit($provider_percentage,  ['sender' => $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'ايداع', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$provider_percentage, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
+            if ($request->project_owner == Auth::user()->id && $offer->status == 3 && $offer->sal_project_id->status == 3) {
 
-            // $offer->status=5;
+                $review = new Review();
+                $review->rate = $request->rating;
+                if ($request->input('comment')) {
+                    $review->comment = $request->comment;
+                }
+                $review->type = 'project';
+                $review->type_id = $offer->sal_project_id->id;
+                $review->from_id =  Auth::user()->id;
+                $review->to_id = $offer->provider_id; //done working and seeker confirm
 
-            $order->status = 2; //تم استلام المشروع
-            if ($offer->sal_project_id->save() && $order->save()) {
-                // return response($offer);
-                return redirect()->back()->with(['success' => 'تم تعديل البيانات بنجاح']);
-            } else {
-                return redirect()->back()->with(['error' => 'لم يتم تعديل البيانات ']);
+                $offer->sal_project_id->status = 5; //close project
+                $order = Order::where('offer_id', $offer->id)->where('status', 1)->first();
+                $Admin_percentage = $offer->price - $offer->net_price;
+                $provider_percentage = $offer->net_price;
+                $seeker = User::find($offer->sal_project_id->user_id);
+                $order->status = 2; //تم استلام المشروع
+                if ($review->save()) {
+                    if ($offer->sal_project_id->save() && $order->save() && $review->save()) {
+                        $Admin = User::whereRoleIs('Admin')->first();
+                        $provider = User::find($offer->provider_id);
+                        $seeker->balanceInt;
+                        $Admin->balanceInt;
+                        $provider->balanceInt;
+                        $seeker->withdraw($offer->price, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'سحب', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$offer->price, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
+                        $Admin->deposit($Admin_percentage, ['sender' =>   $offer->sal_project_id->sal_created_by->name, 'receiver' => $Admin->name, 'type' => 'ايداع', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$Admin_percentage, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
+                        $provider->deposit($provider_percentage,  ['sender' => $offer->sal_project_id->sal_created_by->name, 'receiver' => $offer->sal_provider_by->name, 'type' => 'ايداع', 'project_id' => $offer->project_id, 'project_title' => $offer->sal_project_id->title, 'amount' => (string)$provider_percentage, 'total_price' => (string)$offer->price, 'invoice_id' => $order->invoice_id, 'order_id' => $order->id, 'order_status' => 'تم الاستلام']);
+
+                        return redirect()->back()->with(['success' => 'تمت العملية  بنجاح']);
+                    }
+                } else {
+                    return redirect()->back()->with(['error' => 'فشلت العملية  ']);
+                }
             }
+        } catch (Exception $e) {
+            abort(404);
         }
     }
 
@@ -572,14 +550,19 @@ class OfferController extends Controller
             $Admin = User::whereRoleIs('Admin')->first();
             if (Auth::check()) {
                 $notify_Admin = [
-                    'receiver_id' => $Admin->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " رفض استلام مشروع ", 'link' => "/complains/$offer->id->id#complain$complain->id"
+                    'receiver_id' => $Admin->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " رفض استلام مشروع ",
+                    'body' => "/complains/$offer->id->id#complain$complain->id",
+                    'link' => "/complains/$offer->id->id#complain$complain->id"
+
                 ];
 
                 NotificationController::hiNotification($notify_Admin);
             }
 
             $notify_provider = [
-                'receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم رفض استلام مشروع    ", 'link' => "/offers/#offer{{ $offer->id }}"
+                'receiver_id' => $offer->provider_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم رفض استلام مشروع    ",
+                'body' => "/offers/#offer{{ $offer->id }}",
+                'link' => "/offers/#offer{{ $offer->id }}"
             ];
 
             NotificationController::hiNotification($notify_provider);
@@ -588,6 +571,8 @@ class OfferController extends Controller
             return redirect("/projects/ $project_id")->with(['error' => 'فشلت العملية']);
         }
     }
+
+
     /**
      * Show the form for complain about  specific resource.
      *
@@ -608,14 +593,13 @@ class OfferController extends Controller
         }
     }
 
+
     /**
      * complain about  specific project rejection delivery 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
 
     public function Complain(Request $request)
     {
@@ -632,7 +616,9 @@ class OfferController extends Controller
             $Admin = User::whereRoleIs('Admin')->first();
             if (Auth::check()) {
                 $notify_Admin = [
-                    'receiver_id' => $Admin->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم تقديم شكوى ", 'link' => "/complains/$offer->id->id#complain$complain->id"
+                    'receiver_id' => $Admin->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم تقديم شكوى ",
+                    'body' => "/complains/$offer->id->id#complain$complain->id",
+                    'link' => "/complains/$offer->id->id#complain$complain->id"
                 ];
 
                 NotificationController::hiNotification($notify_Admin);
@@ -640,7 +626,9 @@ class OfferController extends Controller
             $project_id = $offer->sal_project_id->id;
 
             $notify_seeker = [
-                'receiver_id' => $offer->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم تقديم شكوى", 'link' => "/projects/$project_id#offer{{ $offer->id }}"
+                'receiver_id' => $offer->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم تقديم شكوى",
+                'body' => "/projects/$project_id#offer{{ $offer->id }}",
+                'link' => "/projects/$project_id#offer{{ $offer->id }}"
             ];
 
             NotificationController::hiNotification($notify_seeker);
@@ -681,7 +669,9 @@ class OfferController extends Controller
                     // $project_owner=User::where('id',  $model->project_id)->first();
                     // $data->sal_project_id->title
                     $notification = [
-                        'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  تسليم مشروع ", 'link' => "/projects/$data->project_id->id#offer$data->id"
+                        'receiver_id' => $data->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " تم  تسليم مشروع ",
+                        'body' => "/projects/$data->project_id->id#offer$data->id",
+                        'link' => "/projects/$data->project_id->id#offer$data->id"
                     ];
 
                     NotificationController::hiNotification($notification);
@@ -752,8 +742,12 @@ class OfferController extends Controller
             }
             if (Auth::check()) {
                 // $project_owner=User::where('id',  $model->project_id)->first();
-                $data = ['receiver_id' => $model->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم  تعديل  عرض 
-                 ', 'link' => "/projects/$model->project_id->id#offer$model->id"];
+                $data = [
+                    'receiver_id' => $model->sal_project_id->user_id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => '   تم  تعديل  عرض ',
+                    'body' => "/projects/$model->project_id->id#offer$model->id",
+                    'link' => "/projects/$model->project_id->id#offer$model->id"
+
+                ];
 
                 NotificationController::hiNotification($data);
             }

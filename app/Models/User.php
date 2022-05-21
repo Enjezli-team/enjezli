@@ -128,7 +128,12 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword,
     public function roles()
     {
         return $this
-            ->belongsToMany(Role::class)
-        ;
+            ->belongsToMany(Role::class);
+    }
+    
+    public function getImageAttribute($value)
+    {
+
+        return url('images/') . '/' . $value;
     }
 }

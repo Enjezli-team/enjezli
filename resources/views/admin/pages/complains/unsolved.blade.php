@@ -14,51 +14,78 @@
             <th>نص الشكوى </th>
             <th>الاجراء</th>
             <th>التاريخ</th>
+            <th>التفاصيل</th>
         </tr>
     </thead>
     <tbody>
         @forelse ($data as $item)
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#cancel{{ $item->id }}">
-                حل النزاع
-            </button>
-            <a href="projects/{{ $item->sal_offer->sal_project_id->id }}#offer{{ $item->offer_id }}">
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <p class="text-muted mb-0">
-                                    {{ $item->sal_offer->sal_project_id->title }}
-                                </p>
-                            </div>
+            <tr>
+
+
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="ms-3">
+                            <p class="text-muted mb-0">
+                                {{ $item->sal_offer->sal_project_id->title }}
+                            </p>
                         </div>
-                    </td>
-                    <td>
-                        {{ $item->sal_offer->sal_project_id->sal_created_by->name }}
+                    </div>
 
-                    </td>
-                    <td>
-                        {{ $item->seeker_reason }}
-                    </td>
-                    <td>
-                        <p class="text-muted mb-0"> {{ $item->sal_offer->sal_provider_by->name }}</p>
-                    </td>
-                    <td>
-                        <p class="text-muted mb-0">{{ $item->provider_complain }}</p>
-                    </td>
-                    <td>
-                        @if ($item->provider_complain)
-                            <a href='' class="text-muted mb-0">شات</a>
-                            <a href="{{ route('loadsolutionForm', $item->id) }}" class="text-muted mb-0">حل النزاع</a>
-                        @endif
+                </td>
+                <td>
+                    {{ $item->sal_offer->sal_project_id->sal_created_by->name }}
 
-                    </td>
-                    <td>
-                        <p class="text-muted mb-0">{{ $item->created_at }}</p>
-                    </td>
+                </td>
+                <td>
+                    {{ $item->seeker_reason }}
+                </td>
+                <td>
+                    <p class="text-muted mb-0"> {{ $item->sal_offer->sal_provider_by->name }}</p>
+                </td>
+                <td>
+                    <p class="text-muted mb-0">{{ $item->provider_complain }}</p>
+                </td>
+                <td>
+                    @if ($item->provider_complain)
+                        <a href='' class="text-muted mb-0">شات</a>
+                        <a href="{{ route('loadsolutionForm', $item->id) }}" class="text-muted mb-0">حل النزاع</a>
+                    @endif
 
-                </tr>
-            </a>
+                </td>
+                <td>
+                    <p class="text-muted mb-0">{{ $item->created_at }}</p>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#cancel{{ $item->id }}">
+                        تقرير
+                    </button>
+
+                    <a href="/projects/{{ $item->sal_offer->sal_project_id->id }}#offer{{ $item->offer_id }}">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#cancel{{ $item->id }}">
+                            تفاصيل المشروع
+                        </button></a>
+                    </a>
+                </td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="modal fade" id="cancel {{ $item->id }}" tabindex="-1"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
