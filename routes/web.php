@@ -256,6 +256,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/offer_status/{status}', [offersController::class, 'offer_upon_status']);
     Route::get('/offer_block/{id}/{status}', [offersController::class, 'blockofferByAdmin']);
     Route::post('/offerSearch', [offersController::class, 'search']);
+
+
+    // complain
+    
+Route::get('/Complains/unsolved', [ComplainController::class, 'loadUnsolved']); //unsoved issoved=0  شكوى
+Route::get('/Complains/solved', [ComplainController::class, 'loadsolved']); //unsoved issoved=0  شكوى
+Route::get('/conflict/solve/{id}', [ComplainController::class, 'loadsolutionForm'])->name('loadsolutionForm');  //issolved=1 قد حلت
+Route::post('/solveConflict', [ComplainController::class, 'solveConflict'])->name('solveConflict');  
+Route::post('/solveSearch', [ComplainController::class, 'search']);
+Route::post('/unsolveSearch', [ComplainController::class, 'searchunsolved']);
+Route::get('/complain_details/{id}', [ComplainController::class, 'show']);
+Route::get('/complain_chat/{id}', [ComplainController::class, 'chat']);
+
+
 });
 
 
@@ -338,9 +352,6 @@ Route::get('/reject/{id}', [OfferController::class, 'loadRejectForm'])->name('re
 Route::post('rejectDelivery', [OfferController::class, 'rejectDelivery'])->name('rejectDelivery');
 Route::get('/loadComplainForm/{id}', [OfferController::class, 'loadComplainForm'])->name('ComplainForm');
 Route::post('Complain', [OfferController::class, 'Complain'])->name('Complain');
-Route::get('/Complains/unsolved', [ComplainController::class, 'loadUnsolved']);
-Route::get('/conflict/solve/{id}', [ComplainController::class, 'loadsolutionForm'])->name('loadsolutionForm');
-Route::post('/solveConflict', [ComplainController::class, 'solveConflict'])->name('solveConflict');
 
 
 

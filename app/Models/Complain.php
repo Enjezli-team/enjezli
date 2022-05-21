@@ -14,4 +14,5 @@ class Complain extends Model
     {
         return $this->belongsTo(Offer::class, 'offer_id');
     }
+    
 }

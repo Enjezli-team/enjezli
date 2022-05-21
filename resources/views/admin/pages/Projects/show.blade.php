@@ -10,70 +10,8 @@
     <div class="">
      
       <div class="flex flex-col sm:flex-row ">
-        <div class="sm:w-1/3 text-center">
-        
-
-        
-            <div class="m-2">
-              <div class="component flex max-w-lg ">
-                <div class="w-full rounded bg-white relative p-8">
-                  <div class="flex justify-between">
-                    <div class="flex">
-                      <div class="text-yellow-400 flex items-center"><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z"></path>
-                      </svg><span class="text-xl font-bold ml-2">4.7</span></div>
-                  </div>
-                      <div class="ml-4">
-                        <div class="font-bold">  {{$data->sal_handel_by->name}}</div>
-                        <div class="mt-1 text-xs text-gray-500">  {{$data->sal_handel_by->email}}</div>
-                      </div>
-                      <div>
-                        <img class="h-12 w-12 rounded-full bg-cover" src="images/{{$data->sal_handel_by->image}}" />
-                         </div>
-                    
-                    </div>
-                  
-                  <div class="my-6 border-b"></div>
-                  <div class="text-sm">  
-                    @forelse($data->sal_offers as $s)
-                    {{$s->description}}
-                        @empty
-                        <div class="flex_between">
-                            <div>
-                                <h6 class="project_name"> لا يوجد  وصف </h6>
-                            </div>
-                        </div>
-                        @endforelse  
-                  </div>
-
-                        
-                  @forelse($data->sal_offers as $s)
-                  <div type="button" class="btn btn-default btn-sm"><i class="fas fa-clock"></i> (أيام)  {{$s->duration}}</div>
-                      @empty
-                      <div class="flex_between">
-                          <div>
-                              <h5 class="project_name"> لا يوجد  وقت </h5>
-                          </div>
-                      </div>
-                      @endforelse
-
-                      @forelse($data->sal_offers as $s)
-                      <div type="button" class="btn btn-default btn-sm"><i class="fas fa-dollar-sign"></i> (دولار) {{$s->price}} </div>
-                          @empty
-                          <div class="flex_between">
-                              <div>
-                                  <h5 class="project_name"> لا يوجد  سعر </h5>
-                              </div>
-                          </div>
-                          @endforelse
-
-                </div>
-              </div>
-            </div>
-
-
-        </div>
-        <div class="sm:w-2/3 sm:pl-8 sm:py-1 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+   
+        <div class="sm:w-full sm:pl-8 sm:py-1 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
          <div class=" flex items-start mt-1 justify-center bg-gray-200">
 
   <div class="bg-white w-full p-8 rounded"> 

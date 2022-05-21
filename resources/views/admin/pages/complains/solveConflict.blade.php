@@ -1,110 +1,132 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
-    integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-<link rel="stylesheet" href="{{ asset('auth_assets/offer_assests/css/style.css ') }}">
-@extends('website.layouts.master')
-
-@section('content')
-    <div class="loginContainer_2 sign-up-container up">
-
-        <div class="container overflow-hidden  mt-5 form_con">
-            <div class="row">
-                <div class="col">
-                    <div class="mx-auto p-3">
-                        <div class="">
-                            <div class="">
-                                <div class="p-3  shadow-lg rounded-3">
-                                    <h2 class="text-center">حل النزاع
-                                    </h2>
-                                    <div class="logo-container">
-
-                                    </div>
-
-                                    <form method="POST" action="{{ route('solveConflict') }}"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="user-box mt-2 d-grid gap-3">
-                                            <input type="text" style='display:none' name='conflict_id'
-                                                value="{{ $conflict_id }}">
-                                            <label> الخصم مقابل المشروع </label>
-                                            <div class="w-100">
-                                                <select class="selectpicker w-100" name="percentage" aria-label="الخصم "
-                                                    data-live-search="true">
-                                                    <option value="100">قبول المشروع المسلم</option>
-                                                    <option value="0">رفض المشروع المسلم</option>
-
-                                                </select>
-                                                {{-- <input id="face" name="percentage" type="text" class="form-control"
-                                                    min='0' max='100'>
-                                                @error('percentage')
-                                                    <small class="text-danger">{{ $message }}*</small>
-                                                @enderror --}}
-                                                <label> توصيف الحل </label>
-                                                <input id="face" name="solution" type="text" class="form-control"
-                                                    rows="6">
-                                                @error('solution')
-                                                    <small class="text-danger">{{ $message }}*</small>
-                                                @enderror
-                                                </span>سيتم اشعار طالب الخدمة و مقدم الخدمة بالحل</span>
-                                                <span class="invalid-feedback" role="alert">
-                                                    <div class='dan_mesg_po'> </div>
-                                                </span>
-                                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                    @error('seeker_reason')
-                                                        <small class="text-danger">{{ $message }}*</small>
-                                                    @enderror
-                                                </span>
-
-                                            </div>
-
-                                            <div class='btn-cont'>
-                                                <button class="show_more" type='submit'> حفظ</button>
-                                                <button class="show_more" type=''> الغاء</button>
-                                            </div>
-
-
-
-                                        </div>
-                                </div>
 
 
 
 
 
-                                </form>
 
 
-                            </div>
+@extends('admin.layouts.master')
+@section('side')
 
+
+
+
+
+
+
+<body class="antialiased sans-serif bg-gray-200">
+	<div x-data="app()" x-cloak>
+		<div class="max-w-3xl mx-auto px-4 py-10 m-16">
+
+		
+
+			<div class="w-full rounded bg-gray-100 p-4">	
+				<!-- Top Navigation -->
+				<div class="">
+					<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+						<div class="flex-1">
+							<div x-show="step === 1">
+								<div class="text-lg font-bold text-right text-gray-700 leading-tight py-4">حل النزاع  </div>
+							</div>
+							
+					
+						</div>
+					</div>
+				</div>
+				<!-- /Top Navigation -->
+
+				<!-- Step Content -->
+				<div class="">	
+					<div>
+						<div class="mb-5 text-center">
+                            
+                        <form method="POST" action="{{ route('solveConflict') }}">
+                            @csrf
+    
+						
+						
+							
+
+						<div class="mb-5 text-right">
+							<label for="firstname" class="font-bold mb-1 text-gray-700 block"> الخصم مقابل المشروع</label>
+							<input type="text"
+                            name='conflict_id'
+                            value="{{ $conflict_id }}"
+								class="w-full px-4 py-3 text-right rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+							>
+                                @if ($errors->has('name'))
+                                <small class="text-sm text-red-700">{{ $errors->first('conflict_id') }}</small>
+                            @endif   
+						</div>
+
+                        
+						<div class="mb-5 text-right">
+
+                        <select class="w-full text-right rounded p-2" name="percentage" aria-label="الخصم "
+                        data-live-search="true">
+                        <option value="100">قبول المشروع المسلم</option>
+                        <option value="0">رفض المشروع المسلم</option>
+
+                    </select>
                         </div>
-                    </div>
-                </div>
+
+						<div class="mb-5 text-right">
+
+
+							<label for="email" class="font-bold mb-1 text-gray-700 block">توصيف الحل</label>
+							<input type="text"
+                            name="solution"
+								class="w-full px-4 py-3 text-right rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+							>
+                                @if ($errors->has('solution'))
+                                <small class="text-sm text-red-700">{{ $errors->first('solution') }}</small>
+                            @endif   
+						</div>
+
+
+                        
+                       
+                        	<!-- Bottom Navigation -->	
+		<div class="">
+			<div class="max-w-3xl mx-auto">
+				<div class="flex justify-between">
+					<div class="text-right">
+						<button
+                        type="submit"
+							class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-[#186D80] hover:bg-[#186D80] font-medium" 
+						>حفظ</button>
+					</div>
+
+					<div class=" text-right">
+                        
+						<a href="/admin/users"
+							class="w-32 focus:outline-none border border-transparent py-2 my-2  px-12 rounded-lg shadow-sm text-center text-white bg-[#8ECAE6] hover:bg-[#186D80] font-medium" 
+						>تراجع</a>
+
+				
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- / Bottom Navigation https://placehold.co/300x300/e2e8f0/cccccc -->	
+
+                    </form>
+
+					</div>
+				
+				</div>
+				<!-- / Step Content -->
+			</div>
+		</div>
+
+	
+	</div>
+
+</body>
+
+@endsection
+
+                
 
 
 
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-                                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-                                crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
-                                integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
-                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
-
-                <script>
-                    var loadFile = function(event) {
-                        var image = document.getElementById("output");
-                        image.src = URL.createObjectURL(event.target.files[0]);
-                    };
-
-                    $(function() {
-                        $('#datepicker').datepicker();
-                    });
-                </script>
-            @endsection

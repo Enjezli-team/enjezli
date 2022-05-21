@@ -9,6 +9,8 @@ use App\Models\Complain;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\NotificationController;
+use App\Models\Offer;
+use App\Models\Project;
 use App\Models\User;
 use Exception;
 
@@ -28,6 +30,60 @@ class ComplainController extends Controller
 
         return view('admin.pages.complains.unsolved', compact('data'));
     }
+
+    public function loadsolved()
+    {
+        $data =  Complain::with(['sal_offer.sal_project_id.sal_created_by', 'sal_offer.sal_provider_by'])->where('is_solved', 1)->get();
+        // return response($data);
+
+        return view('admin.pages.complains.solved', compact('data'));
+    }
+
+    public function search(Request $request)
+    {
+        Validator::validate($request->all(), [
+
+            'value' => 'required',
+
+        ], [
+            'value.required' => 'يجب ادخال قيمه للبحث بشكل صحيح كأسم او رقم او    .',
+        ]);
+        $search = Complain::query()
+            ->orWhere('seeker_reason', 'LIKE', "%{$request->value}%")
+            ->orWhere('provider_complain', 'LIKE', "%{$request->value}%")
+            ->orWhere('solution', 'LIKE', "%{$request->value}%")
+            ->get();
+        return view('admin.pages.complains.solved', ['data' => $search]);
+    }
+
+    public function searchunsolved(Request $request)
+    {
+        Validator::validate($request->all(), [
+
+            'value' => 'required',
+
+        ], [
+            'value.required' => 'يجب ادخال قيمه للبحث بشكل صحيح كأسم او رقم او    .',
+        ]);
+        $search = Complain::query()
+            ->orWhere('seeker_reason', 'LIKE', "%{$request->value}%")
+            ->orWhere('provider_complain', 'LIKE', "%{$request->value}%")
+            ->orWhere('solution', 'LIKE', "%{$request->value}%")
+            ->get();
+        return view('admin.pages.complains.unsolved', ['data' => $search]);
+    }
+
+
+
+    public function show($id)
+    {
+
+        $data =  Complain::with(['sal_offer.sal_project_id.sal_created_by', 'sal_offer.sal_provider_by'])->where('id', $id)->get();
+       
+
+        return view('admin.pages.complains.show')->with('data', $data);
+    }
+
 
 
 

@@ -560,19 +560,75 @@
 
             </a>  --}}
 
-                {{-- <a class="{{ Route::currentRouteName() === 'complaint'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
-                    href={{ route('complaint') }}>
+            <div x-data="{ isActive: true, open: open }">
+                <!-- active classes 'bg-blue-100 dark:bg-blue-600' -->
+                <a
+                class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
+                  @click="$event.preventDefault(); open = !open"
+                
+                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  role="button"
+                  aria-haspopup="true"
+                  :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                >
+                
+                  
 
-                    <span class="mx-3">الشكوى </span>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="23.981" height="15.94" viewBox="0 0 23.981 15.94">
-                        <path id="engine-warning"
-                            d="M12,20a8.009,8.009,0,0,1-8-8C4.376,1.412,19.626,1.415,20,12a8.009,8.009,0,0,1-8,8ZM12,6c-7.929.252-7.928,11.749,0,12C19.929,17.748,19.928,6.251,12,6Zm1,2H11v5h2Zm0,6H11v2h2Zm11-2a12.026,12.026,0,0,0-2.743-7.637L19.714,5.637a10.052,10.052,0,0,1,0,12.726l1.543,1.274A12.026,12.026,0,0,0,24,12ZM4.286,18.363a10.052,10.052,0,0,1,0-12.726L2.744,4.363a12.065,12.065,0,0,0,0,15.274Z"
-                            transform="translate(-0.019 -4.06)" fill="#8ecae6" />
+                  <span aria-hidden="true" class="mr-auto">
+                    <!-- active class 'rotate-180' -->
+                    <svg
+                      class="w-4 h-4 transition-transform transform"
+                      :class="{ 'rotate-180': open }"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
+                  </span>
+
+                  
+                  <span class="mx-3">الشكوى  </span>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="23.981" height="15.94" viewBox="0 0 23.981 15.94">
+                    <path id="engine-warning"
+                        d="M12,20a8.009,8.009,0,0,1-8-8C4.376,1.412,19.626,1.415,20,12a8.009,8.009,0,0,1-8,8ZM12,6c-7.929.252-7.928,11.749,0,12C19.929,17.748,19.928,6.251,12,6Zm1,2H11v5h2Zm0,6H11v2h2Zm11-2a12.026,12.026,0,0,0-2.743-7.637L19.714,5.637a10.052,10.052,0,0,1,0,12.726l1.543,1.274A12.026,12.026,0,0,0,24,12ZM4.286,18.363a10.052,10.052,0,0,1,0-12.726L2.744,4.363a12.065,12.065,0,0,0,0,15.274Z"
+                        transform="translate(-0.019 -4.06)" fill="#8ecae6" />
+                </svg>
+
+                </a>
+                <div x-show="open" class="mt-2 space-y-2 px-7 text-right" role="menu" arial-label="Pages">
+                  <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                  <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                  <a class="{{ Route::currentRouteName() === 'admin/Complains/unsolved'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/Complains/unsolved') }}>
+
+                  <div class="mx-2">غير محلولة </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <g id="Group_60" data-name="Group 60" transform="translate(0 0)">
+                      <path id="Path_110" data-name="Path 110" d="M22.707,22.707a1,1,0,0,1-1.414,0l-1.414-1.414-1.415,1.414a1,1,0,1,1-1.439-1.389l.025-.025,1.414-1.414L17.05,18.464a1,1,0,1,1,1.389-1.439l.025.025,1.415,1.414,1.414-1.414a1,1,0,0,1,1.439,1.389l-.025.025-1.414,1.415,1.414,1.414a1,1,0,0,1,.008,1.411A.007.007,0,0,1,22.707,22.707Z" fill="#8ecae6"/>
+                      <path id="Path_111" data-name="Path 111" d="M14.035,20.015a5.968,5.968,0,0,1,9.524-4.8,12,12,0,1,0-8.35,8.351A5.951,5.951,0,0,1,14.035,20.015ZM13,12.022a1,1,0,0,1-.294.708L9.7,15.736a1,1,0,0,1-1.416-1.417L11,11.607V7.013a1,1,0,1,1,2,0Z" fill="#8ecae6"/>
+                    </g>
+                  </svg>
+                   </a>
+                  <a class="{{ Route::currentRouteName() === 'admin/Complains/solved'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/Complains/solved') }}>
+
+                    <div class="mx-2">تم حلها  </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <g id="Group_59" data-name="Group 59" transform="translate(0 0)">
+                          <path id="Path_108" data-name="Path 108" d="M18.951,23h-.033a1.872,1.872,0,0,1-1.344-.6l-1.918-1.881a1,1,0,0,1,.022-1.414l0,0a1,1,0,0,1,1.41.024l1.861,1.823,3.341-3.341a1,1,0,0,1,1.414,1.414l-3.421,3.421A1.87,1.87,0,0,1,18.951,23Z" fill="#8ecae6"/>
+                          <path id="Path_109" data-name="Path 109" d="M14.035,20.015a5.968,5.968,0,0,1,9.524-4.8,12,12,0,1,0-8.35,8.351A5.951,5.951,0,0,1,14.035,20.015ZM13,12.022a1,1,0,0,1-.294.708L9.7,15.736a1,1,0,0,1-1.416-1.417L11,11.607V7.013a1,1,0,1,1,2,0Z" fill="#8ecae6"/>
+                        </g>
+                      </svg>
+                         </a>
+              
+               
+
+              
+                </div>
+              </div>
 
 
-                </a> --}}
 
 
                 <a class="{{ Route::currentRouteName() === '/logout'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
