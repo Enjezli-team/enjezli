@@ -118,6 +118,8 @@
                 <div class="mb-3">
                     <form action="/reports" method="POST">
                           @csrf
+                          <div class="container row">
+                            <div class="col-4">
                     <select class="form-select form-select-lg  mb-3" name="project_status">
                        
                      
@@ -131,13 +133,25 @@
                         <option value="7">علية شكوى</option>
                         <option value="8">حل النزاع </option>
                         <option value="9">مغلق</option>
-                       
-
                     </select>
-                    <button type="submit" class="btn btn-outline-primary ">بحث</button>
-
-                    </form>
-                </div>
+                        <label for="sl" class="form-label">اختيار</label>
+                    </div> <div class="col-4">
+                     
+                    
+                      <input class="form-check-input" type="checkbox" id="check1" name="neer"  >
+                      <label class="form-check-label"> الاحدث</label>
+                      <input class="form-check-input" type="checkbox" id="check2" name="last" >
+                      <label class="form-check-label"> الاقدم</label>
+                      
+          
+              
+              </div>
+              <div class="col-4">
+              <button type="submit" class="btn btn-outline-primary ">بحث</button></div>
+                    </div>
+              </form>
+             
+          </div>
 
               
                 <div class="card-body px-0 pt-0 pb-2">

@@ -56,7 +56,7 @@
                 <div class="card bg-transparent shadow-xl">
                     <div class="overflow-hidden position-relative border-radius-xl"
                         style="background-image: url('../assets/img/curved-images/curved14.jpg');">
-                        <span class="mask bg-gradient-dark"></span><a href="item_reports">
+                        <span class="mask bg-gradient-dark"></span><a href="/offer_reports">
                         <div class="card-body position-relative z-index-1 ">
                             <h5 class="text-white mt-4 mb-1 pb-2 text-center">عروضي</h5>
                             <h5 class="text-white  text-center">
@@ -113,28 +113,41 @@
                 <div class="card-header pb-0">
                   <h6 class="row w-100 col-12 ">عروضي</h6>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 row">
                     <form action="/offer_reports" method="POST">
                           @csrf
-                    <select class="form-select form-select-lg  mb-3" name="offer_status">
+                          <div class="container row">
+                          <div class="col-4">
+                    <select class="form-select form-select-lg  mb-3" id="sl" name="offer_status">
                        
                      
-                        <option value="0">معلق</option>
-                        <option value="1">مفتوح </option>
-                        <option value="2">قيد التنفيذ</option>
-                        <option value="3">قيد التسليم</option>
-                        <option value="4">لا يتلقى عروض</option>
-                        <option value="5">منتهي</option>
-                        <option value="6">مرفوض</option>
-                        <option value="7">علية شكوى</option>
-                        <option value="8">حل النزاع </option>
-                        <option value="9">مغلق</option>
+                        <option value="1">مقبول   </option>
+                        <option value="1">تمت الموافقه  </option>
+                        <option value="2">قيد التسليم</option>
+                        <option value="3">تم الاستلام</option>
+                        <option value="4">مرفوض</option>
+                        <option value="0">ملغي</option>
+                       
                        
 
                     </select>
-                    <button type="submit" class="btn btn-outline-primary ">بحث</button>
-
+                    <label for="sl" class="form-label">اختيار</label>
+                          </div> <div class="col-4">
+                           
+                          
+                            <input class="form-check-input" type="checkbox" id="check1" name="neer"  >
+                            <label class="form-check-label"> الاحدث</label>
+                            <input class="form-check-input" type="checkbox" id="check2" name="last" >
+                            <label class="form-check-label"> الاقدم</label>
+                            
+                
+                    
+                    </div>
+                    <div class="col-4">
+                    <button type="submit" class="btn btn-outline-primary ">بحث</button></div>
+                          </div>
                     </form>
+                   
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
