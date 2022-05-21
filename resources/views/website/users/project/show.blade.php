@@ -32,6 +32,8 @@
         font-size: .8rem;
         color: var(--dark_blue);
         background-color: #ecf1f48f;
+
+
         border-radius: 3px;
     }
 
@@ -58,6 +60,57 @@
         border-radius: 12px;
     }
 
+    body {
+        background: #cce5ed;
+    }
+
+    .accordion-collapse {
+        background: rgba(204, 229, 237, 0.46);
+    }
+
+    .rating {
+        display: inline-flex;
+        margin-top: -10px;
+        flex-direction: row-reverse;
+
+
+    }
+
+    .rating>input {
+        display: none
+    }
+
+    .rating>label {
+        position: relative;
+        width: 28px;
+        font-size: 35px;
+        color: #ffc107;
+        cursor: pointer;
+    }
+
+    .rating>label::before {
+        content: "\2605";
+        position: absolute;
+        opacity: 0
+    }
+
+    .rating>label:hover:before,
+    .rating>label:hover~label:before {
+        opacity: 1 !important
+    }
+
+    .rating>input:checked~label:before {
+        opacity: 1
+    }
+
+    .rating:hover>input:checked~label:before {
+        opacity: 0.4
+    }
+
+    .btn-close {
+        margin: 0 !important;
+    }
+
 </style>
 @extends('website.layouts.master')
 
@@ -65,22 +118,14 @@
     <div class="container mt-5 details_container">
 
 
+        <div class="page-header min-height-300 border-radius-xl  mt-1 mb-3 d-flex justify-content-center align-items-center "
+            style="min-height: 70px !important;
+                                                                                                                                                                    border-right: 4px solid #5ab1c5;
+                                                                                                                                                                    border-radius: 4px;background-color: white;
+                                                                                                                                                       padding: 10px 10px;
+                                                                                                                                                                    ">
+            <h6 class='text-center'> {{ $data['title'] }} </h6>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class='title'>
-            <h3>{{ $data['title'] }}</h3>
         </div>
 
         {{-- <div class="container mt-5"> --}}
@@ -88,17 +133,6 @@
             <div class="col-lg-8 ">
                 <!-- تفاصيل المشروع -->
                 {{-- <div class="card-header">  {{Auth::user()->name}}</div> --}}
-                <div class="card-header">
-                    {{-- {{Auth::user()->Role}} --}}
-                    {{-- @forelse (Auth::user()->Role as $role)
-                    {{  $role}}
-                   
-                @empty
-                    
-                @endforelse --}}
-
-
-                </div>
                 <div class="card mb-4 personal_info_container myworks">
                     <div class="card-header"> تفاصيل المشروع</div>
                     <div class="card-body">
@@ -106,18 +140,9 @@
                             <div class="">
                                 <ul class="list-unstyled mb-0 list-unstyled job_det">
                                     {{ $data['description'] }}
-                                    {{ $data->id }}
 
-                                    {{-- <li>البحث عن مصمم بلغة الفلاتر وقاعة بيانات فاير بيس</li>
-                                    <li>الموقع يدعم اللغتين</li>
-                                    <li>امكانية الدفع عبر الموقع</li>
-                                    <li>البحث عن مصمم بلغة الفلاتر وقاعة بيانات فاير بيس</li>
-                                    <li>الموقع يدعم اللغتين</li>
-                                    <li>امكانية الدفع عبر الموقع</li> --}}
                                 </ul>
                             </div>
-                            {{-- <div class="text-start"> <button class="show_more "> تنزيل الوصف</button>
-                            </div> --}}
                             <ul class="list-unstyled mb-0 list-unstyled job_det attachment_contianer">
                                 @if (!$data->sal_project_attach->isEmpty())
                                     <h4> ملفات توضيحية</h4>
@@ -144,7 +169,7 @@
 
                                     @forelse ($data->sal_skills_by as $skill)
                                         {{-- {{ $skill->sal_skill->title }} --}}
-                                        <span class="note">{{ $skill->sal_skill->title }}</span>
+                                        <span class="noteSkill">{{ $skill->sal_skill->title }}</span>
                                     @empty
                                         <div> لا توجد مهارات </div>
                                     @endforelse
@@ -159,7 +184,7 @@
                     </div>
                 </div>
                 <!-- اضافة عرض
-                                                                                                                                                                                                                                                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
 
                 @if ($canMakeOffer && $data->status == 1)
                     <div class="">
@@ -268,12 +293,6 @@
                                     العروض المقدمة
 
                                 </button>
-                                <div class="select">
-                                    <select id="standard-select">
-                                        <option value="">الاحدث</option>
-                                        <option value="">الاقدم</option>
-                                    </select>
-                                </div>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#accordionExample">
@@ -298,11 +317,19 @@
                                                             <div>
                                                                 <div class="evaluated">
 
-                                                                    <ion-icon name="star" class='gold'></ion-icon>
-                                                                    <ion-icon name="star" class='gold'></ion-icon>
-                                                                    <ion-icon name="star" class='gold'></ion-icon>
-                                                                    <ion-icon name="star" class='gold'></ion-icon>
-                                                                    <ion-icon name="star-half-outline"></ion-icon>
+                                                                    @for ($i = 0; $i < 5; $i++)
+                                                                        @if (floor($offer->sal_provider_by->sal_review_to->avg('rate')) - $i >= 1)
+                                                                            {{-- Full Start --}}
+                                                                            <i class="fas fa-star text-warning"> </i>
+                                                                        @elseif ($offer->sal_provider_by->sal_review_to->avg('rate') - $i > 0)
+                                                                            {{-- Half Start --}}
+                                                                            <i class="fas fa-star-half-alt text-warning">
+                                                                            </i>
+                                                                        @else
+                                                                            {{-- Empty Start --}}
+                                                                            <i class="far fa-star text-warning"> </i>
+                                                                        @endif
+                                                                    @endfor
                                                                 </div>
                                                                 <span>
                                                                     @php
@@ -354,7 +381,7 @@
 
                                                     </div>
                                                 </div>
-                                                
+
 
                                                 {{-- if the user is the publisher of th e offer and the status of the 
                                                         the offer is in the first status "not accepted by the seeker 
@@ -380,7 +407,7 @@
                                                                 value='{{ $offer->id }}'>
                                                             <button style="color:black ;border:none" type='submit '
                                                                 class="note"> قبول العرض</button>
-                                                             
+
                                                         </form>
                                                         <a href="{{route('chats_with',[$offer->provider_id,$data->id ])}}"><button style="color:black ;border:none" type='submit '
                                                             class="note">  دردشة</button></a>
@@ -424,28 +451,50 @@
 
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="confirmDeliver{{ $offer->id }}"
-                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                            aria-hidden="true">
-                                                            <div class="modal-dialog">
+                                                            aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+                                                            tabindex="-1">
+                                                            <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            تأكيد الاستلام </h5>
-                                                                        <button type="button" class="btn-close "
+                                                                        <h3 class="modal-title"
+                                                                            id="exampleModalToggleLabel">التقييم </h3>
+                                                                        <button type="button" class="btn-close"
                                                                             data-bs-dismiss="modal"
                                                                             aria-label="Close"></button>
                                                                     </div>
-
                                                                     <div class="modal-body">
-                                                                        هل أنت متأكد من استلام المشروع ؟
-
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-success"
-                                                                            data-bs-dismiss="modal">Cancel</button>
                                                                         <form action="{{ route('confirmDelivery') }}"
                                                                             method="post">
                                                                             @csrf
+
+                                                                            <div class=" text-center">
+
+                                                                                <div class="rating "> <input
+                                                                                        type="radio" name="rating" value="5"
+                                                                                        id="5"><label for="5">☆</label>
+                                                                                    <input type="radio" name="rating"
+                                                                                        value="4" id="4"><label
+                                                                                        for="4">☆</label> <input
+                                                                                        type="radio" name="rating" value="3"
+                                                                                        id="3"><label for="3">☆</label>
+                                                                                    <input type="radio" name="rating"
+                                                                                        value="2" id="2"><label
+                                                                                        for="2">☆</label> <input
+                                                                                        type="radio" name="rating" value="1"
+                                                                                        id="1" checked><label
+                                                                                        for="1">☆</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            @error('rating')
+                                                                                <small
+                                                                                    class="text-danger">{{ $message }}*</small>
+                                                                            @enderror
+                                                                            <label>أضف تعليق</label>
+                                                                            <div class="comment-area col-12">
+                                                                                <textarea class="form-control" name='comment'></textarea>
+                                                                            </div>
+
+
                                                                             <input style="display:none" type="text"
                                                                                 name="offer_id"
                                                                                 value='{{ $offer->id }}'>
@@ -455,13 +504,23 @@
                                                                             <input style="display:none" type="text"
                                                                                 name="project_id"
                                                                                 value='{{ $data['id'] }}'>
-                                                                            <button style="color:black ;border:none"
-                                                                                type='submit ' class="note">
-                                                                                تأكيد
-                                                                                الاستلام </button>
+                                                                            <div class="modal-footer">
+                                                                                <a style='background-color:transparent'>
+                                                                                    <button type="button"
+                                                                                        class="btn btn-success"
+                                                                                        data-bs-dismiss="modal">إلغاء</button></a>
+
+                                                                                <a style='background-color:transparent'
+                                                                                    href="">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-danger">
+                                                                                        تأكيد</button></a>
+                                                                            </div>
+
                                                                         </form>
 
                                                                     </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -537,6 +596,10 @@
 
 
                             </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> rating
 
                             {{-- @else
                                    <div> لا توجد عروض</div> --}}
@@ -642,7 +705,7 @@
                     <div class="d-flex align-items-flex-start">
                         <div class="img_con">
                             <img src="
-                                                                                                                                                                                                                                                                                                                                                                                                                            @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @if ($data->sal_created_by->image != null) {{ $data->sal_created_by->image }} @endif"
                                 alt="">
                         </div>
                         <div class="container_card">
