@@ -386,9 +386,6 @@
                                                 {{-- if the user is the publisher of th e offer and the status of the 
                                                         the offer is in the first status "not accepted by the seeker 
                                                         so that he can edit the offer " and the project is in the first status "receiving offers" --}}
-
-
-
                                                 @if (Auth()->check())
                                                     @if (Auth::user()->id == $offer->provider_id && $offer->status == 1 && $data->status == 1)
                                                         <div class="select">
@@ -435,11 +432,28 @@
                                                         <a style="color:black;text-decoration:none"
                                                             class="status ">تم
                                                             رفضه</a>
-                                                    @elseif($offer->status == 3 && $data->status == 2 && (Auth::user()->id == $data['user_id'] || Auth::user()->id == $data->handled_by))
+                                                        {{-- <a href="" style="color:black"> الغاء  الموافقة</a> --}}
+
+                                                        {{-- @elseif(Auth::user()->id==$data['user_id']&&$offer->status==4)
+                                            <a style="color:black">ملغي</a> --}}
+                                                    @elseif((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 2) || Auth::user()->id == $data->handled_by)
                                                         <a style="color:black" class="status">قيد التنفيذ </a>
 
                                                         {{-- if the seeker receives the work so that the project is delivered closed and the offer is closed --}}
                                                     @elseif(Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 3)
+                                                        {{-- || Auth::user()->id == $data->handled_by --}}
+                                                        {{-- <a style="color:black" class="status">تم التسليم  </a> --}}
+                                                        {{-- <form action="{{ route('confirmDelivery') }}" method="post">
+                                                            @csrf
+                                                            <input style="display:none" type="text" name="offer_id"
+                                                                value='{{ $offer->id }}'>
+                                                            <input style="display:none" type="text" name="project_owner"
+                                                                value='{{ $data['user_id'] }}'>
+                                                            <input style="display:none" type="text" name="project_id"
+                                                                value='{{ $data['id'] }}'>
+                                                            <button style="color:black ;border:none" type='submit '
+                                                                class="note"> تأكيد الاستلام </button>
+                                                        </form> --}}
                                                         <a href="{{ route('reject', $offer->id) }}">
                                                             <button style="color:white ;border:none" class="btn btn-primary"
                                                                 type='submit ' class="note"> رفض الاستلام</button>
@@ -524,11 +538,11 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @elseif ($offer->status == 3 && $data->status == 6 && (Auth::user()->id == $data['user_id'] || Auth::user()->hasRole('admin')))
-                                                        <a style="color:black" class="status">رفض الاستلام </a>
-                                                    @elseif($offer->status == 3 && $data->status == 7 && (Auth::user()->id == $data['user_id'] || Auth::user()->hasRole('admin')))
+                                                    @elseif (Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 6)
+                                                        <a style="color:black" class="status">رفضت استلامه </a>
+                                                    @elseif(Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 7)
                                                         <a style="color:black" class="status"> رفعت شكوى </a>
-                                                    @elseif ($offer->status == 3 && $data->status == 5 && (Auth::user()->id == $data['user_id'] || Auth::user()->id == $data->handled_by))
+                                                    @elseif ((Auth::user()->id == $data['user_id'] && $offer->status == 3 && $data->status == 5) || Auth::user()->id == $data->handled_by)
                                                         <a style="color:black" class="status">مغلق </a>
                                                     @endif
                                                 @endif
