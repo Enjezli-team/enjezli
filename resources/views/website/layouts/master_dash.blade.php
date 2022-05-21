@@ -31,9 +31,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{ asset('user_dash_assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-
     <link id="pagestyle" href="{{ asset('user_dash_assets/css/soft-ui-dashboard.css') }}?v=1.0.3" rel="stylesheet" />
-
 </head>
 
 <body class="g-sidenav-show rtl bg-gray-100">
@@ -301,7 +299,7 @@
                                             </h6>
                                             <p class="text-xs text-secondary mb-0 ms-auto">
                                                 <i class="fa fa-clock me-1" aria-hidden="true"></i>
-                                                {{ $item->created_at }}   s                                         </p>
+                                                {{ $item->created_at }}                                            </p>
                                         </div>
                                     </div>
                                 </a>

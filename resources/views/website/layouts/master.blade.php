@@ -21,12 +21,10 @@
                 </div>
             </div>
             <div class="main_list" id="mainListDiv">
-             <ul class="nav-links">
-                <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
-                <li><a href="/progects">تصفح المشاريع</a></li>
-                <li><a href="/projectCreate">اضف مشروع</a></li>
-                
-                @auth
+                <ul class="nav-links">
+                    <li><a href="{{ route('providers') }}">بحث عن منجز</a></li>
+                    <li><a href="/projects">تصفح المشاريع</a></li>
+                    <li><a href="{{ route('createProject') }}">اضف مشروع</a></li>
 
                     @auth
 

@@ -67,7 +67,7 @@ border-radius: 4px;background-color: white;
 padding: 10px 10px;">
    <h6>تفاصيل مشروع :{{$data['title']}} </h6>
     </div>
-@dd("ggg");
+
     {{-- <div class="container mt-5"> --}}
     <div class="row">
         <div class="col-lg-8 ">

@@ -29,6 +29,19 @@
     </div>
     <div class="row">
         <div class="col-12 mt-4 ">
+            <div class="page-header min-height-300 border-radius-xl  mt-5" style="min-height: 70px !important;
+            border-right: 4px solid #5ab1c5;
+            border-radius: 4px;background-color: white;
+            padding: 10px 10px;
+            ">
+<h6>  تصفح المشاريع </h6>
+<div class="search-box">
+<button class="btn-search">
+<ion-icon name="search" class="search"></ion-icon>
+</button>
+<input type="text" class="input-search search" placeholder=" ابحث عن ....">
+</div>
+</div>
             <div class="card mb-4 ">
 
                 <div class="card-body p-3 " style="background-color: #cce5ed;">

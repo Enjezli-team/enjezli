@@ -28,7 +28,13 @@ class ProfileController extends Controller
         }
         return view('website.users.profile.index')->with('data', $profiles);
     }
-
+    public function search(Request $request)
+    {
+      $profiles =Roleuser::with('user')->whereRelation("user", 'name', 'LIKE', '%' . $request->search . "%")->get();
+      $data = "";
+      return response(['data' =>  $profiles]);
+    }
+  
     //show one provider
     public function provider_data($id)
     {
