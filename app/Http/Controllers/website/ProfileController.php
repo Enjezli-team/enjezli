@@ -16,19 +16,19 @@ use App\Models\UserWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProfileController extends Controller
 {
     //show providers
     public function index()
     {
-        $profiles = Roleuser::where([['role_id', 2]])->get();
+        $profiles = Roleuser::with(['user.sal_review_to'])->where([['role_id', 3]])->paginate(3);
         foreach ($profiles as $profile) {
             $profile->user['ratings'] = $profile->user->sal_review_to()->avg('rate');
         }
         return view('website.users.profile.index')->with('data', $profiles);
     }
-
     //show one provider
     public function provider_data($id)
     {
@@ -164,13 +164,13 @@ class ProfileController extends Controller
             'describe.min' => 'يجب ان يكون الوصف اكثر  من 70 حرف',
             'phone.required' => ' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',
         ]);
-        if ($request->image!="") {
+        if ($request->image != "") {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
         } else {
             $imageName = $request->imageold;
         }
-        user::where('id', Auth::user()->id)->update(['name' => $request->name,'image'=>$imageName]);
+        user::where('id', Auth::user()->id)->update(['name' => $request->name, 'image' => $imageName]);
         Profile::where('id', $id)->update([
             'phone' => $request->phone, 'gander' => $request->gander, 'birth_date' => $request->birth_date,
             'country' => $request->country, 'major' => $request->major, 'user_id' => Auth::user()->id,
@@ -184,11 +184,11 @@ class ProfileController extends Controller
                 $userSkill->skill_id = $skill;
                 $userSkill->save();
             }
-            if(Auth::check()){
-                $data=['receiver_id'=>Auth::user()->id,'sender_id'=>Auth::user()->id,'title'=>'title of notify','is_read'=> 0,'message'=>'لقد قمت بتعديل ملفك الشخصي','link'=> '/home'];
-          
+            if (Auth::check()) {
+                $data = ['receiver_id' => Auth::user()->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' => 'لقد قمت بتعديل ملفك الشخصي', 'link' => '/home'];
+
                 NotificationController::hiNotification($data);
-              }
+            }
         }
         return redirect('profiles/' . Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
     }

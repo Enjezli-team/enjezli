@@ -118,85 +118,85 @@ function renderSearch(item) {
         return "";
     };
 
-    let html = `<a class='title card' href="projects/${item.id}">
-    <div class="personal_info_container myworks">
-        <div class="container_card">
-            <header class="">
-                <h2>${item.title}</h2>
-                <div>
-                    <div class="flex">
-                        <span>
-                            <ion-icon name="person-outline"></ion-icon>
-                        </span>
-                        <h5>${item.sal_created_by.name}  </h5>
-                    </div>
-                    <div class="flex">
-                        <span>
-                            <ion-icon name="time-outline"></ion-icon>
-                        </span>
-                        <span class="aut_pub">${item.created_at}</span>
-
-                    </div>
-                </div>
-
-                <div>
-                ${item.description.substring(0, 80)}...
-            
-
-                </div>
-                <div class="liks_shows">
-                    <ul>
-                        <li>
-                            <a href="" class="">
-                                <span> الفترة</span>
-                                <span>${item.duration}يوم</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="">
-                                <span> السعر :</span>
-                                <span>${item.price}$</span>
-                            </a>
-                        </li>
-                        <li>
-
-                        <li>
-                            <a href="" class="">
-                                <span>:العروض</span>
-                                <span>${item.sal_offers.length}</span>
-                            </a>
-                        </li>
-
-                        <div class='skills '>
-                            ${item.sal_skills_by
-                                .map(
-                                    (skill) =>
-                                        `<div>${skill.sal_skill.title}</div>`
-                                )
-                                .reduce((prev, current) => prev + current, "")}
-                        </div>
-
-                        <a>
-                      
-                            
-                           ${itemStatus()}
-                        </a>
-                        </li>
-                    </ul>
-                </div>
-            </header>
-
-            <div class="hr">
-            </div>
-            <div class="liks_shows">
-                <a href="products/${item.id}">
-                <button class="show_more">التقديم</button>
-            </a>
-            </div>
-        </div>
-    </div>
-</a>
-    `;
+    let html = `
+     <div class="col-md-4 col-sm-12 cards_contianer ">
+     <a class='title' href="projects/${item.id}">
+     <div class="personal_info_container myworks" style="width: auto;height:380px">
+         <div class="container_card">
+             <header class="">
+                 <h2>${item.title}</h2>
+                 <div>
+                     <div class="flex">
+                         <span>
+                             <ion-icon name="person-outline"></ion-icon>
+                         </span>
+                         <h5>${item.sal_created_by.name}  </h5>
+                     </div>
+                     <div class="flex">
+                         <span>
+                             <ion-icon name="time-outline"></ion-icon>
+                         </span>
+                         <span class="aut_pub">${item.created_at}</span>
+ 
+                     </div>
+                 </div>
+ 
+                 <div>
+                 ${item.description.substring(0, 80)}...
+ 
+                 </div>
+                 <div class="liks_shows">
+                     <ul>
+                         <li>
+                             <a href="" class="">
+                                 <span> الفترة</span>
+                                 <span>${item.duration}يوم</span>
+                             </a>
+                         </li>
+                         <li>
+                             <a href="" class="">
+                                 <span> السعر :</span>
+                                 <span>${item.price}$</span>
+                             </a>
+                         </li>
+                         <li>
+ 
+                         <li>
+                             <a href="" class="">
+                                 <span>:العروض</span>
+                                 <span>${item.sal_offers.length}</span>
+                             </a>
+                         </li>
+ 
+                         <div class='skills '>
+                             ${item.sal_skills_by
+                                 .map(
+                                     (skill) =>
+                                         `<div>${skill.sal_skill.title}</div>`
+                                 )
+                                 .reduce((prev, current) => prev + current, "")}
+                         </div>
+ 
+                         <a>
+ 
+                            ${itemStatus()}
+                         </a>
+                         </li>
+                     </ul>
+                 </div>
+             </header>
+ 
+             <div class="hr">
+             </div>
+             <div class="liks_shows">
+                 <a href="products/${item.id}">
+                 <button class="show_more">التقديم</button>
+             </a>
+             </div>
+         </div>
+     </div>
+ </a>
+ </div> `;
 
     return html;
 }

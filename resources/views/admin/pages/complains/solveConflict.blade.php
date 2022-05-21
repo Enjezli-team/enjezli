@@ -30,73 +30,81 @@
                                             <input type="text" style='display:none' name='conflict_id'
                                                 value="{{ $conflict_id }}">
                                             <label> الخصم مقابل المشروع </label>
-                                            <input id="face" name="percentage" type="text" class="form-control" min='0'
-                                                max='100'>
-                                            @error('percentage')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            <label> توصيف الحل </label>
-                                            <input id="face" name="solution" type="text" class="form-control" rows="6">
-                                            @error('solution')
-                                                <small class="text-danger">{{ $message }}*</small>
-                                            @enderror
-                                            </span>سيتم اشعار طالب الخدمة و مقدم الخدمة بالحل</span>
-                                            <span class="invalid-feedback" role="alert">
-                                                <div class='dan_mesg_po'> </div>
-                                            </span>
-                                            <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
-                                                @error('seeker_reason')
+                                            <div class="w-100">
+                                                <select class="selectpicker w-100" name="percentage" aria-label="الخصم "
+                                                    data-live-search="true">
+                                                    <option value="100">قبول المشروع المسلم</option>
+                                                    <option value="0">رفض المشروع المسلم</option>
+
+                                                </select>
+                                                {{-- <input id="face" name="percentage" type="text" class="form-control"
+                                                    min='0' max='100'>
+                                                @error('percentage')
+                                                    <small class="text-danger">{{ $message }}*</small>
+                                                @enderror --}}
+                                                <label> توصيف الحل </label>
+                                                <input id="face" name="solution" type="text" class="form-control"
+                                                    rows="6">
+                                                @error('solution')
                                                     <small class="text-danger">{{ $message }}*</small>
                                                 @enderror
-                                            </span>
+                                                </span>سيتم اشعار طالب الخدمة و مقدم الخدمة بالحل</span>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <div class='dan_mesg_po'> </div>
+                                                </span>
+                                                <span id='name-error' class="invalid-feedback dan_mesg_po" role="alert">
+                                                    @error('seeker_reason')
+                                                        <small class="text-danger">{{ $message }}*</small>
+                                                    @enderror
+                                                </span>
+
+                                            </div>
+
+                                            <div class='btn-cont'>
+                                                <button class="show_more" type='submit'> حفظ</button>
+                                                <button class="show_more" type=''> الغاء</button>
+                                            </div>
+
+
 
                                         </div>
-
-                                        <div class='btn-cont'>
-                                            <button class="show_more" type='submit'> حفظ</button>
-                                            <button class="show_more" type=''> الغاء</button>
-                                        </div>
-
-
-
                                 </div>
+
+
+
+
+
+                                </form>
+
+
                             </div>
 
-
-
-
-
-                            </form>
-
-
                         </div>
-
                     </div>
                 </div>
-            </div>
 
 
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-                        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
-                        integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
-                        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                                crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+                                integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 
 
-            <script>
-                var loadFile = function(event) {
-                    var image = document.getElementById("output");
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                };
+                <script>
+                    var loadFile = function(event) {
+                        var image = document.getElementById("output");
+                        image.src = URL.createObjectURL(event.target.files[0]);
+                    };
 
-                $(function() {
-                    $('#datepicker').datepicker();
-                });
-            </script>
-        @endsection
+                    $(function() {
+                        $('#datepicker').datepicker();
+                    });
+                </script>
+            @endsection

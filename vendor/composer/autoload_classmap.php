@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\ProjectSkillController' => $baseDir . '/app/Http/Controllers/ProjectSkillController.php',
     'App\\Http\\Controllers\\admin\\ComplainController' => $baseDir . '/app/Http/Controllers/admin/ComplainController.php',
     'App\\Http\\Controllers\\admin\\IndexController' => $baseDir . '/app/Http/Controllers/admin/IndexController.php',
+    'App\\Http\\Controllers\\admin\\ProjectsController' => $baseDir . '/app/Http/Controllers/admin/ProjectsController.php',
     'App\\Http\\Controllers\\admin\\ProviderController' => $baseDir . '/app/Http/Controllers/admin/ProviderController.php',
     'App\\Http\\Controllers\\admin\\SeekerController' => $baseDir . '/app/Http/Controllers/admin/SeekerController.php',
     'App\\Http\\Controllers\\admin\\SkillController' => $baseDir . '/app/Http/Controllers/admin/SkillController.php',
