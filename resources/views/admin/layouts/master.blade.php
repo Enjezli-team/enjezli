@@ -43,18 +43,11 @@
                           <div x-show="notificationOpen"
                               class="absolute left-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-10"
                               style="width: 20rem; display: none;">
-                              <a href="#"
-                              class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
-                              <p class="text-sm mx-2 text-right">
-                                <p class="font-bold" href="#">محمد</span> ارسل شكوى <span
-                                    class="font-bold text-[#8ECAE6]" href="#">اسم المشروع</p>
-                            </p>
-                              <img class="h-8 w-8 rounded-full object-cover mx-1"
-                                  src="images/logo.png"
-                                  alt="avatar">
-                            
-                          </a>
-                          <a href="#"
+                             
+                              
+
+
+                          {{-- <a href="#"
                           class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
                           <p class="text-sm mx-2 text-right">
                             <p class="font-bold" href="#">محمد</span> ارسل شكوى <span
@@ -64,28 +57,48 @@
                               src="images/logo.png"
                               alt="avatar">
                         
-                      </a>
-                      <a href="#"
-                      class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
-                      <p class="text-sm mx-2 text-right">
-                        <p class="font-bold" href="#">محمد</span> ارسل شكوى <span
-                            class="font-bold text-[#8ECAE6]" href="#">اسم المشروع</p>
-                    </p>
-                      <img class="h-8 w-8 rounded-full object-cover mx-1"
-                          src="images/logo.png"
-                          alt="avatar">
+                      </a> --}}
                     
-                  </a>  <a href="#"
-                  class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
-                  <p class="text-sm mx-2 text-right">
-                    <p class="font-bold" href="#">محمد</span> ارسل شكوى <span
-                        class="font-bold text-[#8ECAE6]" href="#">اسم المشروع</p>
-                </p>
-                  <img class="h-8 w-8 rounded-full object-cover mx-1"
-                      src="images/logo.png"
-                      alt="avatar">
-                
-              </a>
+                      
+                  
+                      <a>
+                        <li class="nav-item dropdown ps-2 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-bell cursor-pointer" aria-hidden="true"></i>
+                                <span class="badge badge-pill badge-default badge-danger text-dark badge-default badge-up badge-glow   notif-count" data-count=" {{ $notifications->count()}}">
+                                    {{ $notifications->count()}}
+                                  </span>
+                            </a>
+                            <ul class="dropdown-menu  px-2 py-3 me-sm-n4" id="notify_body" aria-labelledby="dropdownMenuButton">
+                                @forelse ($notifications as $item)
+                                <li class="mb-2">
+                                    <a class="dropdown-item border-radius-md" href="{{$item->body}}">
+                                        <div class="d-flex py-1">
+                                            <div class="my-auto">
+                                                <img src="{{asset('images/'.Auth::user()->image )}}" class="avatar avatar-sm  ms-3 ">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="text-sm font-weight-normal mb-1">
+                                                    <span class="font-weight-bold"> {{ $item->message }} </span> {{Auth::user()->name }}
+                                                </h6>
+                                                <p class="text-xs text-secondary mb-0 ms-auto">
+                                                    <i class="fa fa-clock me-1" aria-hidden="true"></i>
+                                                    {{ $item->created_at }}                                            </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @empty
+                                @endforelse
+                            </ul>
+                        </li>
+                    
+
+                      </a>
+                  
+              
+                      
                             
                           </div>
                       </div>
@@ -365,6 +378,70 @@
 
 
                 </a> 
+
+         
+
+
+            
+            <div x-data="{ isActive: true, open: open }">
+                <!-- active classes 'bg-blue-100 dark:bg-blue-600' -->
+                <a
+                class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
+                  @click="$event.preventDefault(); open = !open"
+                
+                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  role="button"
+                  aria-haspopup="true"
+                  :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                >
+                
+                  
+
+                  <span aria-hidden="true" class="mr-auto">
+                    <!-- active class 'rotate-180' -->
+                    <svg
+                      class="w-4 h-4 transition-transform transform"
+                      :class="{ 'rotate-180': open }"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </span>
+
+                  
+                  <span class="mx-3">المحفظة  </span>
+
+                  <span aria-hidden="true">
+                  
+                <svg xmlns="http://www.w3.org/2000/svg" width="16.017" height="24" viewBox="0 0 16.017 24">
+                    <path id="dollar" d="M18.5,9.5A1.5,1.5,0,0,0,20,8V7.313A5.32,5.32,0,0,0,14.687,2H13.5V1.5a1.5,1.5,0,1,0-3,0V2H9.313A5.313,5.313,0,0,0,7.772,12.4l2.728.746V19H9.313A2.316,2.316,0,0,1,7,16.687V16a1.5,1.5,0,1,0-3,0v.687A5.32,5.32,0,0,0,9.313,22H10.5v.5a1.5,1.5,0,0,0,3,0V22h1.187a5.313,5.313,0,0,0,1.541-10.4L13.5,10.856V5h1.187A2.316,2.316,0,0,1,17,7.313V8A1.5,1.5,0,0,0,18.5,9.5Zm-3.118,4.979a2.314,2.314,0,0,1-.7,4.521H13.5V13.965ZM10.5,10.035,8.618,9.521A2.314,2.314,0,0,1,9.313,5H10.5Z" transform="translate(-3.992)" fill="#8ecae6"/>
+                  </svg>
+
+                      
+                  </span>
+                </a>
+                <div x-show="open" class="mt-2 space-y-2 px-7 text-right" role="menu" arial-label="Pages">
+                  <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                  <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                  <a class="{{ Route::currentRouteName() === '/admin/transactions'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/transactions') }}>
+
+                  <div class="mx-2">محفظتي  </div>
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+                  </a>
+                  <a class="{{ Route::currentRouteName() === '/admin/transactions/'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('/admin/transactions') }}>
+
+                    <div class="mx-2">الاجراءات  </div>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+                    </a>
+              
+               
+
+              
+                </div>
+              </div>
 
                  {{-- <a class="{{(Route::currentRouteName()==='skills')?' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-gray-100' :'flex justify-end mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100'}}"
                 href={{ route('skills') }}>
@@ -669,3 +746,16 @@
     }
     
 </style>
+
+
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script>
+        let user="{{{(Auth::user()) ? Auth::user()->id : 0 }}}";
+        let src="{{asset('images/'.Auth::user()->image )}}";
+        let user_name=  "{{Auth::user()->name }}";
+    </script>
+    <script src="{{ asset('js/realtime_notification.js') }}" ></script>

@@ -10,6 +10,9 @@ use App\Models\User;
 
 class WalletController extends Controller
 {
+
+
+    // show my wallet
     public function showTransactions()
     {
 
@@ -20,6 +23,7 @@ class WalletController extends Controller
         return view('website.users.wallet.index', compact('data', 'balance'));
     }
 
+// 
     public function showWallets()
     {
         $data = DB::table('transactions')

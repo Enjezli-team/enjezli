@@ -9,9 +9,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ProjectsController;
 use App\Http\Controllers\admin\offersController;
-
-
-
+use App\Http\Controllers\admin\WalletController as AdminWalletController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 //website
@@ -260,15 +258,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
 
     // complain
     
-Route::get('/Complains/unsolved', [ComplainController::class, 'loadUnsolved']); //unsoved issoved=0  شكوى
-Route::get('/Complains/solved', [ComplainController::class, 'loadsolved']); //unsoved issoved=0  شكوى
-Route::get('/conflict/solve/{id}', [ComplainController::class, 'loadsolutionForm'])->name('loadsolutionForm');  //issolved=1 قد حلت
+Route::get('/Complains/unsolved', [ComplainController::class, 'loadUnsolved']);
+Route::get('/Complains/solved', [ComplainController::class, 'loadsolved']); 
+Route::get('/conflict/solve/{id}', [ComplainController::class, 'loadsolutionForm'])->name('loadsolutionForm');
 Route::post('/solveConflict', [ComplainController::class, 'solveConflict'])->name('solveConflict');  
 Route::post('/solveSearch', [ComplainController::class, 'search']);
 Route::post('/unsolveSearch', [ComplainController::class, 'searchunsolved']);
 Route::get('/complain_details/{id}', [ComplainController::class, 'show']);
-Route::get('/complain_chat/{id}', [ComplainController::class, 'chat']);
+Route::get('/complain_chat/{id}', [ComplainController::class, 'chat'])->name('complain_chat'); 
 
+
+
+// wallet
+
+// Route::get('/wallet', [AdminWalletController::class, 'index'])->name('walletadmin'); 
+Route::get('/transactions', [WalletController::class, 'showTransactions'])->name('transactionsadmin');
+Route::get('/transactions/{id}', [WalletController::class, 'showUserTransactions']);
 
 });
 

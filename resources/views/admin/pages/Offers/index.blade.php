@@ -1,9 +1,5 @@
 
 
-
-
-
-
 @extends('admin.layouts.master')
 @section('side')
 <!-- Main content -->

@@ -82,7 +82,7 @@
                             <p>{{mb_substr($item->name, 0, 1)}}</p>
                         </div>
                         @else
-                        <img src="{{ asset('images/'.$item->image) }}" alt="" class="h-10 w-10 rounded-full shadow" >
+                        <img src="{{$item->image}}" alt="" class="h-10 w-10 rounded-full shadow" >
                        
                     @endif
                 </div>

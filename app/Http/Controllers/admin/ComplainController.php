@@ -9,6 +9,7 @@ use App\Models\Complain;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\NotificationController;
+use App\Models\Chat;
 use App\Models\Offer;
 use App\Models\Project;
 use App\Models\User;
@@ -82,6 +83,16 @@ class ComplainController extends Controller
        
 
         return view('admin.pages.complains.show')->with('data', $data);
+    }
+
+
+
+    public function chat($id)
+    {
+        $data =  Chat::all();
+        // return response($data);
+
+        return view('admin.pages.complains.complaint_msg', compact('data'));
     }
 
 

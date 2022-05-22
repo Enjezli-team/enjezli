@@ -46,7 +46,7 @@ class ChatController extends Controller
     public function save(Request $request){
        
        if($request->receiver_id2)
-       {
+    {
            if(Auth::user()->id==$request->receiver_id)
            {
                $sender_id=Auth::user()->id;
@@ -82,7 +82,7 @@ class ChatController extends Controller
       $data['sender_name']=User::whereId(Auth::user()->id)->pluck('name')->first();
 // dd($data);
        event(new ProblemEvent($data));
-       }
+    }
        else{
         $data=['message'=>$request->message,
         'sender_id'=>Auth::user()->id,
@@ -96,7 +96,7 @@ class ChatController extends Controller
             'receiver_id'=>$request->receiver_id,
         ]);
         $dataa=$data['message'];
-        $data['recever_name1']=User::whereId($request->receiver_id)->pluck('name')->first();
+        $data['recever_name']=User::whereId($request->receiver_id)->pluck('name')->first();
         $data['sender_name']=User::whereId(Auth::user()->id)->pluck('name')->first();
          event(new ChatEvent($data));
        }
