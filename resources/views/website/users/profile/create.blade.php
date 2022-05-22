@@ -190,17 +190,23 @@
                                 <small id="emailHelp" class="form-text">{{ $errors->first('Job_title') }}</small>
                                 @endif
                             </div>
-                            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
-                                <label for="exampleInputEmail1" class="form-label"> المهارات </label>
-                                <select name="skills[]" class="form-control">
-                                    @foreach ($skills as $skill)
-                                    <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="user-box mb-3 col-sm-12 col-md-6 col-lg-4">
+
+                                <label> <b>المهارات</b> </label>
+                    <div class="w-100">
+                        <select class="selectpicker w-100 " name="skills[]" multiple aria-label="المهارات "
+                           data-live-search="true">
+                            @foreach ($skills as $skill)
+                                     <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
+                       @endforeach
+                        </select>
+                  
                                 @if ($errors->has('skills'))
                                 <small id="emailHelp" class="form-text">{{ $errors->first('skills') }}</small>
                                 @endif
                             </div>
+
+                        </div>
                             <div class="mb-3 col-sm-12 ">
                                 <label for="exampleInputEmail1" class="form-label"> نبذه عنك </label>
                                 <textarea id="face" name="describe" type="text" class="form-control" rows="5"></textarea>

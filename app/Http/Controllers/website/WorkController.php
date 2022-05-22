@@ -19,13 +19,10 @@ class WorkController extends Controller
      */
     public function index()
     {
-        // $data=UserWork::where('is_active',1)->get();
-        // // return response( $data);
-        // return view('website.users.works.index',compact('data'));
-        // $works = user::with(['sal_works','sal_skills','sal_profile'])->find(Auth::user()->id);
+       
         $data = UserWork::with(['sal_user', 'sal_work_attach'])->where('user_id', Auth::user()->id)->where('is_active', 1)->get();
         $works = user::with(['sal_works', 'sal_skills', 'sal_profile'])->find(Auth::user()->id);
-        // return response($data);
+       
 
         return view('website.users.works.index')->with('data', $data);
     }
@@ -33,7 +30,7 @@ class WorkController extends Controller
 
     public function create()
     {
-        // $data=Skill::All();
+       
         return view('website.users.works.create');
     }
 
@@ -44,27 +41,25 @@ class WorkController extends Controller
         Validator::validate($request->all(), [
             'title' => array(
                 'required',
-                'min:10',
+                'min:2',
 
-                // 'regex:/^[a-zA-Z\s]+$/u'
+             
             ),
 
 
             'description' =>  array(
                 'required',
-                // 'regex:/(^([a-zA-Z\s]+)(\d+)?[.،:؛]?$)/u'
+              
             )
 
 
         ], [
             'title.required' => 'يجب ادخال عنوان المشروع',
-            'title.min' => 'لا يقل  عن 10 حروف',
+            'title.min' => 'لا يقل  عن 3 حروف',
 
-            // 'title.regex'=>'يجب أن يحتوي  على حروف فقط ',
-
+           
             'description.required' => 'يجب أدخال وصف المشروع ',
-            // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
-
+          
         ]);
         if ($request->image) {
             $imageName = time() . '.' . $request->image->extension();
@@ -98,7 +93,7 @@ class WorkController extends Controller
                         $Attachments->save();
                     }
                 }
-                return redirect('profiles/' . Auth::user()->id)->with(['success' => ' تم اضافة البيانات ']);
+                return redirect('profiles/' . Auth::user()->id)->with(['success' => ' تم اضافة عمل جديد ']);
             } else {
                 return redirect()->back()->with(['error' => 'لم يتم حفظ البيانات ']);
             }
@@ -136,27 +131,24 @@ class WorkController extends Controller
         Validator::validate($request->all(), [
             'title' => array(
                 'required',
-                'min:10',
+                'min:3',
 
-                // 'regex:/^[a-zA-Z\s]+$/u'
             ),
 
 
             'description' =>  array(
                 'required',
-                // 'regex:/(^([a-zA-Z\s]+)(\d+)?[.،:؛]?$)/u'
             )
 
 
         ], [
             'title.required' => 'يجب ادخال عنوان المشروع',
-            'title.min' => 'لا يقل  عن 10 حروف',
+            'title.min' => 'لا يقل  عن 3 حروف',
 
-            // 'title.regex'=>'يجب أن يحتوي  على حروف فقط ',
+           
 
             'description.required' => 'يجب أدخال وصف المشروع ',
-            // 'description.regex'=>'يجب ألا يحتوي على أرقام أو رموز فقط   ',
-
+            
         ]);
         if ($request->image) {
             $imageName = time() . '.' . $request->image->extension();
@@ -188,9 +180,7 @@ class WorkController extends Controller
                         $Attachments->save();
                     }
                 }
-                // return redirect('profiles/'.Auth::user()->id)->with(['success' => 'تم تعديل البيانات بنجاح']);
             } else {
-                // return redirect()->back()->with(['error' => 'لم يتم تعديل البيانات ']);
 
             }
 

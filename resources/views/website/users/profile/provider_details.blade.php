@@ -30,7 +30,7 @@ background:white;    border:1px solid  #639fae;
         <div class="row gx-4">
             <div class="col-auto">
                 <div class=" avatar-xl position-relative">
-                    <img src={{asset("images/".$data->image)}} alt="profile_image" class="w-50 border-radius-lg shadow-sm">
+                    <img src="{{asset('images/'.$data->image)}}" alt="profile_image" class="w-50 border-radius-lg shadow-sm">
                 </div>
             </div>
             <div class="col-auto my-auto">

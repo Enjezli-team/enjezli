@@ -58,8 +58,6 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         Validator::validate($request->all(), [
-
-            // 'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone' => ['required', 'digits:14'],
             'country' => ['required'],
             'major' => [''],
@@ -95,9 +93,6 @@ class ProfileController extends Controller
             'Job_title' => $request->Job_title, 'image' => $imageName, 'description' => $request->describe, 'facebook' => $request->facebook, 'tweeter' => $request->tweeter, 'github' => $request->github
         ]);
         foreach ($request->skills as $skill) {
-            // return response($request->skills);
-            // print_r($request->skills);
-
             $userSkill = new userSkill;
             $userSkill->user_id = Auth::user()->id;
             $userSkill->skill_id = $skill;
@@ -107,18 +102,12 @@ class ProfileController extends Controller
             foreach ($request->role as $r) {
                 Auth::user()->attachRole($r);
             }
-            return redirect('profiles/' . Auth::user()->id)->with('completed', 'it has been saved!');
-            //  if(sizeof($request->skills)>0){
-            //     foreach($request->skills as $s){
-            //     userSkill::create(['skill_id'=>$s,'user_id'=>Auth::user()->id]);
-
-            //     }
-
+            return redirect('profiles/' . Auth::user()->id)->with('success', 'تم حفظ البيانات' );
 
         }
 
 
-        return redirect()->route('profiles.show', Auth::user()->id)->with('success', '  تم حفظ البياتات بنجاج');
+        return redirect()->route('profiles.show', Auth::user()->id)->with('success', '  تم اضافة ملفك الشخصي  ');
     }
 
 
@@ -138,12 +127,8 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         Validator::validate($request->all(), [
-
-            //'image'=>['mimes:jpg,png,jpeg','size:512'],
             'phone' => ['required', 'digits:14'],
-            //'country'=>['required'],
             'major' => [''],
-            // 'role'=>['required'],
             'tweeter' => ['url'],
             'facebook' => ['url'],
             'github' => ['url'],
@@ -151,20 +136,14 @@ class ProfileController extends Controller
             'describe' => ['required', 'min:50']
         ], [
             'phone.required' => 'يرجى ادخال رقم التلفون ',
-            //'country.required'=>'يرجى ادخال الدولة ',
-            // 'role.required'=>'يرجى ادخال نوع الاستخدام ',
-            //'major.required'=>'يرجى ادخال الاسم التخصص',
-            //'Job_title.required'=>'يرجى ادخال المسمي الوظيفي ',
             'describe.required' => 'يرجى ادخال وصف عنك',
             'tweeter.url' => 'يرجى ادخال عنوان حساب تويتر بشكل صحيح ',
             'facebook.url' => 'يرجى ادخال عنوان حساب فيسبوك بشكل صحيح ',
             'github.url' => 'يرجى ادخال عنوان حساب جيت هب بشكل صحيح ',
-            // 'image.size'=>'حجم الصوره يجب ان يكون اقل من 512 كيلوبايت',
-            //'image.mimes'=>'jpg او png او jpeg يجب ان تكون الصوره من صيغة',
             'describe.min' => 'يجب ان يكون الوصف اكثر  من 70 حرف',
             'phone.required' => ' يرجى ادخال رقم التلفون بشكل صحيح حجمه 14رقم   ',
         ]);
-        if ($request->image != "") {
+        if ($request->image) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
         } else {
@@ -190,12 +169,12 @@ class ProfileController extends Controller
                 NotificationController::hiNotification($data);
             }
         }
-        return redirect('profiles/' . Auth::user()->id)->with('completed', 'تم تعديل البياتات بنجاج');
+        return redirect('profiles/' . Auth::user()->id)->with('success', 'تم تعديل الملف الشخصي ');
     }
 
     public function destroy($id)
     {
         userSkill::where('id', $id)->delete();
-        return redirect()->back()->with(['status' => ' تم حذف البيانات ']);
+        return redirect()->back()->with(['success' => ' تم حذف المهاره ']);
     }
 }

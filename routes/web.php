@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\offersController;
 use App\Http\Controllers\admin\WalletController as AdminWalletController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\reportsController;
 //website
 use App\Http\Controllers\website\OfferHistoryController;
 use App\Http\Controllers\website\WorkController;
@@ -232,6 +233,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('users', UserController::class);
     Route::get('/user_block/{user_id}/{blockValue}',[UserController::class, 'blockUser']);
     Route::post('/userSearch',[UserController::class, 'search']);
+    
     // Route::get('/usertype/{type}',[UserController::class, 'usertype']);
     
     Route::get('/user_status/{type?}',[UserController::class, 'user_upon_status']);
@@ -242,6 +244,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('skills', SkillController::class);
     Route::post('/skillsSearch', [SkillController::class, 'search']);
     Route::get('/skill_status/{user_id}/{status}', [SkillController::class, 'change_status']);
+    
     // projects
     // Route::resource('projects', ProjectsController::class);
     Route::get('/project_status/{status}', [ProjectsController::class, 'project_upon_status']);
@@ -285,8 +288,15 @@ Route::get(
     '/change_status/{project_id}/{status}',
     [ProjectController::class, 'changeStatus']
 )->name('change_status');
+//reports seeker and provider
+Route::get('/reports', [reportsController::class, 'index'])->name('reportss');
+Route::post('reports', [reportsController::class, 'filterdate'])->name('reports_filtter');
+Route::post('reports', [reportsController::class, 'filter'])->name('report_filtter');
 
-Route::post('/offer/accept', [OfferController::class, 'acceptOffer'])->name('acceptOffer');
+Route::get('/offer_reports', [reportsController::class, 'offers'])->name('offers');
+Route::post('offer_reports', [reportsController::class, 'filteroffer'])->name('reports_filtter');
+//end reports seeker and provider
+
 
 Route::post(
     '/offer/cancel_confirm',
