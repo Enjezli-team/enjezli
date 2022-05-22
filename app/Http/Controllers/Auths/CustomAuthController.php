@@ -36,11 +36,9 @@ class CustomAuthController extends Controller
             $user->email_verified_at=Carbon::now()->timestamp;
             $user->save();
             Auth::login($user);
-            // return redirect('profiles/create/'.Auth::user()->id);
             return redirect('/login');
 
         }
-        // return view('auth.verify');
     } 
     public function verifyy ()
     {
@@ -52,27 +50,6 @@ class CustomAuthController extends Controller
     {
         return view('auth.conf');
     }  
-    // public function forgit_check_email(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|email|exists:users',
-    //     ]);
-
-    //     $token = Str::random(64);
-
-    //     $user = User::where('email',$request->email)->update([
-    //         'email' => $request->email, 
-    //         'remember_token' => $token, 
-    //         'created_at' => Carbon::now()
-    //       ]);
-
-    //     Mail::send('forgit_check_email', ['remember_token' => $token], function($message) use($request){
-    //         $message->to($request->email);
-    //         $message->subject('Reset Password');
-    //     });
-
-    //     return back()->with('message', 'We have e-mailed your password reset link!');
-    // }
     public function reset_password ()
     {
         return view('auth.reset_password');
@@ -84,7 +61,6 @@ class CustomAuthController extends Controller
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
             'new_password_confirmation'=> 'required',
-        //    ' new_password_confirmation'=> 'required|confirmed',
         ],[
             'old_password.required'=>'يرجى ادخال كلمة السر القديمه  ',
             'new_password.required'=>'يرجى ادخال السر الجديده ',
@@ -107,29 +83,8 @@ class CustomAuthController extends Controller
 
         return redirect('/login')->with("success", "تم تغير كلمة السر بنجاح!");
 }
-    // public function forgit_check_email (Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'email' => 'required|email|exists:users',
-           
-    //     ], [
-    //         'email.required' => 'يجب ادخال البريد الالكتروني .',
-    //         'email.exists:users' => '  البريد الالكتروني غير موجود .',
-    //         'email.email' => 'يجب ادخال البريد الالكتروني بشكل صحيح .',
-    //     ]);
-    //     $user_vertify=User::where('email',$request->email)->value('token');
-    //     if($user_vertify !=""){
-    //     return view('auth.changename');
-    //     }else{
-    //         return redirect('/forgit_password')->withSuccess('enter email correctly');
-    //     }
-    // }   
     public function customLogin(Request $request)
     {
-        // $request->validate([
-        //     'email' => 'required',
-        //     'password' => 'required',
-        // ]);
        $validatedData = $request->validate([
             'password' => 'required',
             'email' => 'required|email',
@@ -195,48 +150,16 @@ class CustomAuthController extends Controller
        $u->remember_token=$token;
        $u->type=2;
        $u->status=1;
-
-
-        // $user = User::create(['name'=>$request->name,'email'=>$request->email,
-        // 'password'=>$password,'status'=>1,'type'=>2,'remember_token'=>$token]);
         if($u->save()){
         $email_data=array('full'=>$request->name,'url'=>URL::to('/')."/verify_email/".$token);
         Mail::to($request->email)->send(New welcomeEmail($email_data));
-      /*  $to = $user['email'];
-        $subject = "انجزلي";
-        
-        $message = "<b>مرحبا".$user['name']."</b>";
-        $message .= "<h1>هذا رابط التحقق من حسابك اضغط عليه</h1>";
-        $message .= "<a href='http://127.0.0.1:8000/check_email/".$user['id']."'>click here</a>";
-        
-        $header = "From: Your name <salmanalwageeh@gmail.com> \r\n";
-        $header .= "MIME-Version: 1.0\r\n";
-        $header .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
-        
-        $retval = mail ($to,$subject,$message,$header);
-        
-        if( $retval == true ) {
-           echo "Message sent successfully...";
-        }else {
-           echo "Message could not be sent...";
-        }*/
+
         return redirect('verify');
     }
     return redirect('register');
     }    
     public function check_email ($id)
     {
-        // $date=now();
-        // $user_vertify=User::where('id',$id)->value('email_verified_at');
-        // if($user_vertify ==null){
-        // $user=tap(User::where('id',$id))->update(['email_verified_at'=>$date]);
-        // Auth::login($user->first());
-        // return redirect('/profiles/create')->withSuccess('vertifird');
-        // }else{
-        //     return redirect('/login')->withSuccess('login please');
-
-        // }
-
     } 
     public function dashboard()
     {

@@ -1,19 +1,27 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+    integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/style.css ') }}">
+<link rel="stylesheet" href="{{ asset('css/model.css ') }}">
 @extends('website.layouts.master_dash')
 @section('content')
 <!-- End Navbar -->
 @if (session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session()->get('success') }}
-    
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @elseif(session()->has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session()->get('error') }}
-    
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                 @endif
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('success') }}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session()->get('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+                 
 <div class="container-fluid mt-5 ">
     <div class="page-header min-height-300 border-radius-xl mt-4 text-center text-white d-flex justify-content-center" style="">
                     <span class="mask bg-gradient-dark" ></span>
@@ -31,7 +39,7 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class=" avatar-xl position-relative">
-                    <img src={{asset("images/".$data->image)}} alt="profile_image" class="w-50 border-radius-lg shadow-sm">
+                    <img src="{{ asset("images/".$data->image) }}"  alt="profile_image" class="w-50 border-radius-lg shadow-sm">
                 </div>
             </div>
             <div class="col-auto my-auto">
@@ -138,13 +146,37 @@
                         @forelse($data->sal_skills as $skill)
                         <li class="list-group-item border-0 d-flex  justify-content-between align-items-center mb-1">
                             <h6 class="mb-0 text-sm ">{{$skill->sal_skill_u->title}}</h6>
-                            <form action="/profiles/{{$skill->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-link pe-3 ps-0 mb-0  ">
-                                    <i class="fa fa-trash mb-3 "></i>
-                                </button>
-                            </form>
+                            <button type="button" class="btn btn-link pe-3 ps-0 mb-0  " data-bs-toggle="modal"
+                                        data-bs-target="#cancel{{ $skill->id }}">
+                                        <i class="fa fa-trash  text_primary"></i>
+                                    </button>
+                            <div class="modal fade" id="cancel{{ $skill->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">حذف مهاره </h5>
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            هل أنت متأكد من حذف المهاره  ؟
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success"
+                                                data-bs-dismiss="modal">إلغاء</button>
+                                                <form action="/profiles/{{$skill->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit">
+                                                       تاكيد
+                                                    </button>
+                                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         @empty
                         <li class="list-group-item border-0 d-flex  justify-content-between align-items-center mb-2 ">
@@ -213,9 +245,7 @@
                         <div class="col-xl-3 col-md-6 mb-xl-0 mb-2   " style='box-shadow: 0 0 1px grey;
     border-radius: 1rem;'>
                             <div class="card card-blog card-plain ">
-                                <form action="/works/{{$work->id}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
+                                
                                     <div class="col-md-4 text-start d-flex justify-content-end align-items-baseline " style="width: 100%">
                                         <a class="btn btn-link pe-3 ps-0 mb-0  " href="/works/{{$work->id}}">
                                             <i class="fa fa-eye  text_primary"></i>
@@ -223,11 +253,40 @@
                                         <a class="btn btn-link pe-3 ps-0 mb-0  " href="/works/{{$work->id}}/edit">
                                             <i class="fa fa-edit  text_primary"></i>
                                         </a>
-                                        <button class="btn btn-link pe-3 ps-0 mb-0  " type="submit">
-                                            <i class="fa fa-trash  text_primary"></i>
-                                        </button>
+                                        <button type="button" class="btn btn-link pe-3 ps-0 mb-0  " data-bs-toggle="modal"
+                                        data-bs-target="#cancel{{ $work->id }}">
+                                        <i class="fa fa-trash  text_primary"></i>
+                                    </button>
                                     </div>
-                                </form>
+                                
+                                
+                            <div class="modal fade" id="cancel{{ $work->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">حذف العمل </h5>
+                                            <button type="button" class="btn-close " data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            هل أنت متأكد من حذف العمل  ؟
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success"
+                                                data-bs-dismiss="modal">إلغاء</button>
+                                                <form action="/works/{{$work->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger" type="submit">
+                                                        تاكيد
+                                                    </button>
+                                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="position-relative ">
                                     <a class="d-block shadow-xl border-radius-xl ">
                                         <img src="{{asset("images/".$work->file)}}" alt="img-blur-shadow " class="img-fluid shadow border-radius-xl ">
@@ -258,4 +317,12 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                                crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+                                integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection

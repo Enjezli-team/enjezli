@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css"
+    integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<link rel="stylesheet" href="{{ asset('auth_assets/project_assests/css/style.css ') }}">
 @extends('website.layouts.master_dash')
 @section('content')
 <style>
@@ -74,10 +81,9 @@
                                         </svg>
                                     </span>
                                 </label>
-                                <input id="" name="imageold"  hidden type="text" value="{{$data->sal_user->image}}">
                                 <input id="file" name="image" value="" type="file" onchange="loadFile(event)">
-                                <img src={{asset('images/'.$data->sal_user->image)}} id="output" width="200">
-                              
+                                <input id="text" name="imageold" value="{{$data->sal_user->image}}" type="text" hidden>
+                                <img src="{{asset($data->sal_user->image)}}" id="output" width="200">
                             </div>
                         </div>
                         <div class="card-header pb-0 px-3">
@@ -208,17 +214,21 @@
                                 <small id="emailHelp" class="form-text">{{ $errors->first('Job_title') }}</small>
                                 @endif
                             </div>
-                            <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
-                                <label for="exampleInputEmail1" class="form-label"> المهارات </label>
-                                <select name="skills[]" class="form-control">
-                                    @foreach ($skills as $skill)
-                                    <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('skills'))
-                                <small id="emailHelp" class="form-text">{{ $errors->first('skills') }}</small>
-                                @endif
-                            </div>
+                           
+                                <div class="user-box mb-3 col-sm-12 col-md-6 col-lg-4">
+
+                                    <label> <b>المهارات</b> </label>
+                        <div class="w-100">
+                            <select class="selectpicker w-100 " name="skills[]" multiple aria-label="المهارات "
+                               data-live-search="true">
+                                @foreach ($skills as $skill)
+                                         <option value="{{ $skill['id'] }}">{{ $skill['title'] }}</option>
+                           @endforeach
+                            </select>
+                        </div>
+
+                          </div>
+              
                             <div class="mb-3 col-sm-12 ">
                                 <label for="exampleInputEmail1" class="form-label"> نبذه عنك </label>
                                 <textarea id="face" name="describe" type="text" class="form-control" rows="5">{{ $data->description }}</textarea>
@@ -238,6 +248,14 @@
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                                crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"
+                                integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw=="
+                                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <script>
