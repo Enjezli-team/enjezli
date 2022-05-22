@@ -120,7 +120,7 @@ class ComplainController extends Controller
 
     public function solveConflict(Request  $request)
     {
-        try {
+        // try {
 
             Validator::validate($request->all(), [
                 'solution' =>  array(
@@ -164,24 +164,24 @@ class ComplainController extends Controller
             if ($complain->save() &&  $complain->sal_offer->sal_project_id->save()) {
                 $offer_id = $complain->sal_offer->id;
                 $project_id = $complain->sal_offer->project_id;
-                if (Auth::check()) {
-                    $notify_seeker = [
-                        'receiver_id' => $seeker->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution ", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id"
-                    ];
+                // if (Auth::check()) {
+                //     $notify_seeker = [
+                //         'receiver_id' => $seeker->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution ", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id"
+                //     ];
 
-                    NotificationController::hiNotification($notify_seeker);
+                //     NotificationController::hiNotification($notify_seeker);
 
-                    $notify_provider = [
-                        'receiver_id' => $provider->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id "
-                    ];
+                //     $notify_provider = [
+                //         'receiver_id' => $provider->id, 'sender_id' => Auth::user()->id, 'title' => 'title of notify', 'is_read' => 0, 'message' =>  " $complain->solution", 'body' => "/projects/$project_id#offer$offer_id", 'link' => "/projects/$project_id#offer$offer_id "
+                //     ];
 
-                    NotificationController::hiNotification($notify_provider);
-                    return redirect('/Complains/unsolved')->with(['success' => 'تمت العملية بنجاح']);
-                }
+                //     NotificationController::hiNotification($notify_provider);
+                //     return redirect('/Complains/unsolved')->with(['success' => 'تمت العملية بنجاح']);
+                // }
             }
-            return redirect('/Complains/unsolved')->with(['error' => 'فشلت العملية']);
-        } catch (Exception $e) {
-            abort(404);
-        }
+            return redirect('admin/Complains/solved')->with(['error' => 'فشلت العملية']);
+        // } catch (Exception $e) {
+        //     abort(404);
+        // }
     }
 }

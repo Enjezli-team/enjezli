@@ -53,7 +53,7 @@
 						<div class="mb-5 text-right ">
 
 
-							<label for="email" class="font-bold mb-1 text-gray-700 block">الايميل</label>
+							<label for="email" class="font-bold mb-1 text-gray-700 block">المهاره الاب</label>
                             <select name="parent" class="w-full py-2.5 rounded bg-white mb-1 text-right">
                                 <option value=0>لا يوجد</option>
                                 @foreach($parent as $p)

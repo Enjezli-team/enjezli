@@ -22,7 +22,7 @@
                     <h3 class="text-white text-3xl m-2 font-bold">
                       {{$openpro->count()}}
                     </h3>
-                     <a class="bg-sky-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] " href={{ url('admin/project_status') }}>
+                     <a class="bg-sky-50 px-4 py-1 rounded text-lg mt-2 text-[#186D80] " href={{ url('admin/project_status/1') }}>
                        مزيد من التفاصيل
                      </a>
                   </div>
@@ -105,14 +105,14 @@
           
         <li class="flex flex-col items-center space-y-2">
             <!-- Ring -->
-            <a class="block bg-white p-1 rounded-full" href="#">
-                <div class="h-16 w-16 text-lg font-bold rounded-full shadow flex items-center bg-[#8ECAE6] text-white  justify-center" >
+            <div class="block bg-white p-1 rounded-lg" >
+                <div class="h-16 w-16 text-lg font-bold rounded-lg shadow flex items-center bg-[#8ECAE6] text-white  justify-center" >
                   <p class="hidden">  {{mb_internal_encoding("UTF-8");}} </p>
                   <p>{{mb_substr($myskill->title, 0, 1)}}</p>
                 </div>
-            </a>
+              </div>
             <!-- Username -->
-            <span class="text-xs text-gray-500 text-white">
+            <span class="text-xs  text-white">
                 {{$myskill->title}}
             </span>
         </li>
@@ -130,17 +130,17 @@
 		<div class="relative px-4 py-4 bg-white shadow-lg sm:rounded-3xl sm:p-16">
 			<div class="max-w-md mx-auto">
 				<div>
-					<h1 class="text-lg font-semibold text-right">ارسل اشعار لجميع المستخدمين </h1>
+					<h1 class="text-lg font-semibold text-right">   مرحبا بك يا {{Auth::user()->name}} </h1>
 				</div>
 				<div class="divide-y divide-gray-200">
 					<div class="py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
 					
-						<div class="relative">
+						{{-- <div class="relative">
 							<textarea autocomplete="off" id="" name="noti" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" height="4" ></textarea>
-						</div>
-						<div class="relative">
+						</div> --}}
+						{{-- <div class="relative">
 							<button class="bg-[#186D80] text-white rounded-md px-2 py-1">ارسال</button>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>

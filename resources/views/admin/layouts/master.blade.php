@@ -35,6 +35,8 @@
                                       stroke="#186D80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   </path>
                               </svg>
+
+                              <p class="absolute text-white bg-red-400 rounded-full w-4 h-4 -top-1 text-sm"> {{ $notifications->count()}}</p>
                           </button>
       
                           <div x-show="notificationOpen" @click="notificationOpen = false"
@@ -46,48 +48,42 @@
                              
                               
 
-
-                          {{-- <a href="#"
+ 
+                          {{-- <a href="{{$item->body}}"
                           class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
+                           @forelse ($notifications as $item)
                           <p class="text-sm mx-2 text-right">
-                            <p class="font-bold" href="#">محمد</span> ارسل شكوى <span
-                                class="font-bold text-[#8ECAE6]" href="#">اسم المشروع</p>
+                            <p class="text-sm" href="#">{{Auth::user()->name }}</span> {{ $item->message }}   <span
+                                class="text-sm text-[#8ECAE6]" href="#">اسم المشروع</p>
+                                <p class="text-sm">  {{ $item->created_at }}  </p>
                         </p>
                           <img class="h-8 w-8 rounded-full object-cover mx-1"
-                              src="images/logo.png"
+                              src="Auth::user()->image"
                               alt="avatar">
                         
-                      </a> --}}
+                                @empty
+                                @endforelse
+                      </a> --}} 
                     
                       
                   
                       <a>
-                        <li class="nav-item dropdown ps-2 d-flex align-items-center">
-                            <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bell cursor-pointer" aria-hidden="true"></i>
-                                <span class="badge badge-pill badge-default badge-danger text-dark badge-default badge-up badge-glow   notif-count" data-count=" {{ $notifications->count()}}">
-                                    {{ $notifications->count()}}
-                                  </span>
-                            </a>
-                            <ul class="dropdown-menu  px-2 py-3 me-sm-n4" id="notify_body" aria-labelledby="dropdownMenuButton">
+                        <li class="">
+                            
+                            <ul class="dropdown-menu  px-2 py-3 " id="notify_body" aria-labelledby="dropdownMenuButton">
                                 @forelse ($notifications as $item)
-                                <li class="mb-2">
-                                    <a class="dropdown-item border-radius-md" href="{{$item->body}}">
-                                        <div class="d-flex py-1">
-                                            <div class="my-auto">
-                                                <img src="{{asset('images/'.Auth::user()->image )}}" class="avatar avatar-sm  ms-3 ">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="text-sm font-weight-normal mb-1">
-                                                    <span class="font-weight-bold"> {{ $item->message }} </span> {{Auth::user()->name }}
-                                                </h6>
-                                                <p class="text-xs text-secondary mb-0 ms-auto">
-                                                    <i class="fa fa-clock me-1" aria-hidden="true"></i>
-                                                    {{ $item->created_at }}                                            </p>
-                                            </div>
-                                        </div>
+                                <li class=" items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-[#186D80] -mx-2">
+                                    <a class="flex dropdown-item border-radius-md" href="{{$item->body}}">
+                                        <p class="text-sm" href="#">{{Auth::user()->name }}
+                                             {{ $item->message }}   
+                                    </p>
+                                      <img class="h-8 w-8 rounded-full object-cover mx-1"
+                                          src="{{Auth::user()->image}}"
+                                          alt="avatar">
                                     </a>
+                                    
+                                    <p class="text-sm">  {{ $item->created_at }}  </p>
+
                                 </li>
                                 @empty
                                 @endforelse
@@ -108,7 +104,7 @@
                               class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
                               <img class="h-full w-full object-cover shadow"
                                  {{-- src="/images/{{$admin->image}}" alt="Your avatar"> --}}
-                                 src="/images/logo.png" alt="Your avatar">
+                                 src="1652997286.jpg" alt="Your avatar">
                           </button>
       
                           <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"
@@ -306,7 +302,7 @@
 
 
 
-                <a class="{{ Route::currentRouteName() === 'index'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                <a class="{{ Route::currentRouteName() === 'index'? ' flex justify-end mt-4 py-2 px-6 bg-red-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href="{{ route('index') }}">
 
                     <span class="mx-3">الرئيسية</span>
@@ -320,7 +316,7 @@
 
                 </a>
 
-                <a class="{{ Route::currentRouteName() === 'admin/users'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                <a class="{{ Route::currentRouteName() === 'admin/users'? ' flex justify-end mt-4 py-2 px-6 bg-red-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href="{{ url('admin/users') }}">
 
                     <span class="mx-3">المستخدمين</span>
@@ -334,7 +330,7 @@
                 </a>
 
                 
-                <a class="{{ Route::currentRouteName() === 'admin/user_status/3'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                <a class="{{ Route::currentRouteName() === 'admin/user_status/3'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href="{{ url('admin/user_status/3') }}">
 
                     <span class="mx-3">المنجزين</span>
@@ -348,7 +344,7 @@
                 </a>
 
                 
-                <a class="{{ Route::currentRouteName() === 'admin/user_status/2'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                <a class="{{ Route::currentRouteName() === 'admin/user_status/2'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href="{{ url('admin/user_status/2') }}">
 
                     <span class="mx-3">طالبي الخدمات</span>
@@ -361,7 +357,7 @@
 
                 </a>
 
-                <a class="{{ Route::currentRouteName() === '/admin/skills'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
+                <a class="{{ Route::currentRouteName() === '/admin/skills'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}"
                     href={{ url('/admin/skills') }}>
 
                     <span class="mx-3">الاقسام</span>
@@ -386,10 +382,10 @@
             <div x-data="{ isActive: true, open: open }">
                 <!-- active classes 'bg-blue-100 dark:bg-blue-600' -->
                 <a
-                class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
+                class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-white': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
                   @click="$event.preventDefault(); open = !open"
                 
-                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  
                   role="button"
                   aria-haspopup="true"
                   :aria-expanded="(open || isActive) ? 'true' : 'false'"
@@ -462,7 +458,7 @@
                 class="{{ Route::currentRouteName() === '/admin/project_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/project_status') }}
                   @click="$event.preventDefault(); open = !open"
                 
-                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  
                   role="button"
                   aria-haspopup="true"
                   :aria-expanded="(open || isActive) ? 'true' : 'false'"
@@ -549,7 +545,7 @@
                 class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
                   @click="$event.preventDefault(); open = !open"
                 
-                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  
                   role="button"
                   aria-haspopup="true"
                   :aria-expanded="(open || isActive) ? 'true' : 'false'"
@@ -643,7 +639,7 @@
                 class="{{ Route::currentRouteName() === '/admin/offer_status'? ' flex justify-end mt-4 py-2 px-6 bg-gray-700 bg-opacity-25 text-[#8ecae6]': 'flex justify-end mt-4 py-2 px-6 text-gray-300 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100' }}" href={{ url('admin/offer_status') }}
                   @click="$event.preventDefault(); open = !open"
                 
-                  :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }"
+                  
                   role="button"
                   aria-haspopup="true"
                   :aria-expanded="(open || isActive) ? 'true' : 'false'"
@@ -759,3 +755,7 @@
         let user_name=  "{{Auth::user()->name }}";
     </script>
     <script src="{{ asset('js/realtime_notification.js') }}" ></script>
+
+
+
+    {{-- :class="{ 'bg-[#EFF2F4] dark:bg-gray-700 dark:bg-opacity-25': isActive || open }" --}}
