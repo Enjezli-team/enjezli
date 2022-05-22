@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function($view)
         {
             if(Auth::check()){
-                $notification_c = Notification::where([['receiver_id',Auth::user()->id]])->orderBy('created_at','desc')->take(5)->get();
+                $notification_c = Notification::where([['receiver_id',Auth::user()->id],['is_read',0]])->orderBy('created_at','desc')->take(5)->get();
               //  $messages_c = Chat::where([['status',1],['resiver_id',Auth::user()->id]])->orderBy('created_at','desc')->count();
             }else{
                 $notification_c =[];

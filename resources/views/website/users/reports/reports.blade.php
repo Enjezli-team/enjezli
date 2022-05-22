@@ -18,7 +18,7 @@
     </div>
   </div>
   @if (Auth::user()->hasRole(['provider']))
-  <div class="row m-auto mb-4">
+  <div class="row container m-auto mb-4">
     <div class="col-4 mb-4">
       <div class="card bg-transparent shadow-xl">
         <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
@@ -69,7 +69,7 @@
     </div>
   </div>
   @elseif(Auth::user()->hasRole(['seeker']))
-  <div class="row m-auto mb-4">
+  <div class="row container m-auto mb-4">
     <div class="col-6 mb-4">
       <div class="card bg-transparent shadow-xl">
         <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
@@ -112,14 +112,17 @@
     <div class="card mb-4">
 
       <div class="card-header pb-0">
-        <h6 class="row w-100 col-12 ">مشاريعي</h6>
+        <h3 class="row w-100 col-12 ">مشاريعي</h3>
       </div>
       <div class="mb-3">
         <form action="/reports" method="POST">
           @csrf
           <div class="container row">
-            <div class="col-4">
-              <select class="form-select form-select-lg  mb-3" name="project_status">
+            <div class="col-xl-4 col-lg-4  col-md-4 col-sm-3">
+              <select class="form-select form-select-lg  mb-3"  name="project_status">
+
+                <option >عرض حسب...</option>
+
                 <option value="0">معلق</option>
                 <option value="1">مفتوح </option>
                 <option value="2">قيد التنفيذ</option>
@@ -130,21 +133,43 @@
                 <option value="7">علية شكوى</option>
                 <option value="8">حل النزاع </option>
                 <option value="9">مغلق</option>
+
+
+
               </select>
-              <label for="sl" class="form-label">اختيار</label>
             </div>
-            <div class="col-4">
-
-
-              <input class="form-check-input" type="checkbox" id="check1" name="neer">
-              <label class="form-check-label"> الاحدث</label>
-              <input class="form-check-input" type="checkbox" id="check2" name="last">
-              <label class="form-check-label"> الاقدم</label>
-
-
-
+          
+            <div class="col-xl-4 col-lg-4  col-md-4 col-sm-3">
+              <button type="submit" class="btn btn-outline-primary ">بحث</button>
             </div>
-            <div class="col-4">
+          </div>
+        </form>
+        <form action="/reports" method="POST">
+          @csrf
+          <div class="container row">
+
+
+            <div class="col-xl-4 col-lg-4  col-md-4 col-sm-3" style="    display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;">
+              <div class="form-check">
+
+                <input class="form-check-input" name="nearest" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                  الاحدث
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="defaultCheck1">
+                  الاقدم
+                </label>
+                <input class="form-check-input" name="lastest" type="checkbox" value="" id="defaultCheck1">
+
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4  col-md-4 col-sm-3">
               <button type="submit" class="btn btn-outline-primary ">بحث</button>
             </div>
           </div>
@@ -155,6 +180,9 @@
 
       <div class="card-body px-0 pt-0 pb-2">
         <div class="table-responsive p-0">
+          <div class="col-4">
+
+          </div>
           @if (Auth::user()->hasRole(['seeker']))
           <table class="table align-items-center justify-content-center mb-0">
 
@@ -166,11 +194,11 @@
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم المشروع
                 </th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم المزود
+                <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم المزود
                 </th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                   تاريخ التسليم</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الحاله
+                <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الحاله
                 </th>
 
 
@@ -181,18 +209,12 @@
             </thead>
 
             <tbody>
-              {{-- @php
-                                        $result = json_decode($item->meta, true);
-                                        
-                                    @endphp --}}
+
               @forelse ($seeker_project_success as $item)
               <tr>
                 <td>
                   <div class="d-flex px-2">
-                    {{-- <div>
-                                                    <img src="../assets/img/small-logos/logo-spotify.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                                                </div> --}}
+
                     <div class="my-auto">
 
                       <h6 class="mb-0 text-sm">
@@ -205,10 +227,7 @@
       <td>
 
         <div class="d-flex px-2">
-          {{-- <div>
-                                                    <img src="../assets/img/small-logos/logo-spotify.svg"
-                                                        class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                                                </div> --}}
+
 
           <div class="my-auto">
             @if( $item->handled_by!=null)
@@ -297,12 +316,13 @@
       <table class="table align-items-center justify-content-center mb-0">
         <thead>
           <tr>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم المشروع
+            <th  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">اسم المشروع
             </th>
-
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+            <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+               التفاصيل</th>
+            <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
               تاريخ التسليم</th>
-            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الحاله
+            <th style="padding: 10px;" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الحاله
             </th>
 
 
@@ -334,7 +354,11 @@
     </div>
   </div>
   </td>
-
+  <td class=" text-right">
+    <p class="text-sm font-weight-bold mb-0">
+      {{ $item->description }}
+    </p>
+  </td>
   <td class=" text-right">
     <p class="text-sm font-weight-bold mb-0">
       {{ $item->delivery_date }}

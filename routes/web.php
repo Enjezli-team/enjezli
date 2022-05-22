@@ -285,7 +285,9 @@ Route::get(
 )->name('change_status');
 //reports seeker and provider
 Route::get('/reports', [reportsController::class, 'index'])->name('reportss');
-Route::post('reports', [reportsController::class, 'filter'])->name('reports_filtter');
+Route::post('reports', [reportsController::class, 'filterdate'])->name('reports_filtter');
+Route::post('reports', [reportsController::class, 'filter'])->name('report_filtter');
+
 Route::get('/offer_reports', [reportsController::class, 'offers'])->name('offers');
 Route::post('offer_reports', [reportsController::class, 'filteroffer'])->name('reports_filtter');
 //end reports seeker and provider
