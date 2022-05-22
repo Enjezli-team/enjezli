@@ -13,7 +13,7 @@
    
  
       <div class="flex  flex-row-reverse mr-8 hidden md:flex">
-        <div class="ml-1">
+        {{-- <div class="ml-1">
             <form method="POST" action="/admin/offerSearch">   
                 @csrf
                 <div class="relative text-gray-600">
@@ -26,12 +26,12 @@
                   </div>
             </form>
         </div>
-      
+       --}}
       </div>
 
       <div class="ml-8 text-lg text-gray-700 hidden md:flex">
         <div class="text-2xl text-[#186D80]">
-            المحفظة
+            الاجراءات
         </div>
     </div>
 
@@ -49,25 +49,14 @@
                         <tr>
                             <th
                             class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            السعر</th>
+                            الاسم</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                اقل سعر </th>
+                                 الرصيد </th>
                                 <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                 مدة التنفيذ</th>
-                            <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                الوصف</th>
-
-                                <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                منجز المشروع </th>
+                                 التاريخ </th>
                            
-    
-                                <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                اسم المشروع</th>   
                                 <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 العمليات</th>     
@@ -85,8 +74,8 @@
         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
             {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
             <div class="text-sm leading-5 text-gray-500">
-                <span class="">{{$item->price}}</span>
-              
+                <span class="">{{$item->name}}</span>
+            
             </div>
         </td>
 
@@ -95,7 +84,7 @@
             {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
             <div class="text-sm leading-5 text-gray-500">
                 <span class="">
-                    {{$item->net_price}}
+                    {{ $item->wallet->balance}}
                 </span>
               
             </div>
@@ -106,46 +95,16 @@
             <div class="text-sm leading-5 text-gray-500">
                 <span class="">
                     
-        {{$item->duration}}
+        {{$item->wallet->created_at}}
                 </span>
               
             </div>
         </td>
 
-        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
-            <div class="text-sm leading-5 text-gray-500">
-                <span class="">
-                    
-        {{$item->description}}
-                </span>
-              
-            </div>
-        </td>
+    
 
-        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
-            <div class="text-sm leading-5 text-gray-500">
-                <span class="">
-                    
-        {{$item->sal_provider_by->name}}
-                </span>
-              
-            </div>
-        </td>
-
-        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            {{-- <div class="text-sm leading-5 text-gray-900">{{$item->sal_skills->title}}</div> --}}
-            <div class="text-sm leading-5 text-gray-500">
-                <span class="">
-                    
-        {{$item->sal_project_id->title}}
-                </span>
-              
-            </div>
-        </td>
-
-
+     
+   
     
 
          
@@ -155,31 +114,19 @@
 
 
                
-                                    
-
-                    
-                    <form method="POST" action="/admin/offers/{{$item->id}}">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
+                              
                     <div class="flex item-center justify-center">
                         <div class="w-4 mr-2 transform hover:text-teal-500 hover:bg-teal-50 hover:scale-110">
                        
 
-                            <?php if($item->status==0){ ?> 
 
-                                <a href="/admin/offer_block/{{$item->id}}/{{($item->status==1) ? 0:1}}" class="btn btn-sm btn-info"> 
-                                              
-                                
-                                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>   </a>
-                              
-                              
-                              <?php }else{ ?> 
-                                <a href="/admin/offer_block/{{$item->id}}/{{($item->status==0) ? 1 :0}}" class="mx-2">
+                                <a href="/admin/showUserTransactions/{{$item->id}}" class="btn btn-sm btn-info"> 
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                   
-                                      
                                 </a>
-                              <?php } ?>
+                              
+                              
+                         
                    
                         </div>
 
@@ -188,8 +135,7 @@
                   
                      
                     </div>
-                 </form>
-
+                    
 
 
 
@@ -211,11 +157,6 @@
 
 <!-- /.content -->
 @endsection
-
-
-
-
-
 
 
 

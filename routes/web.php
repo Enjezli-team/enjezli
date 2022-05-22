@@ -9,7 +9,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\SkillController;
 use App\Http\Controllers\admin\ProjectsController;
 use App\Http\Controllers\admin\offersController;
-use App\Http\Controllers\admin\WalletController as AdminWalletController;
+use App\Http\Controllers\admin\WalletadminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\reportsController;
@@ -275,8 +275,9 @@ Route::get('/complain_chat/{id}', [ComplainController::class, 'chat'])->name('co
 // wallet
 
 // Route::get('/wallet', [AdminWalletController::class, 'index'])->name('walletadmin'); 
-Route::get('/transactions', [WalletController::class, 'showTransactions'])->name('transactionsadmin');
-Route::get('/transactions/{id}', [WalletController::class, 'showUserTransactions']);
+Route::get('/transactions', [WalletadminController::class, 'showTransactions'])->name('transactionsadmin');
+Route::get('/usertransactions', [WalletadminController::class, 'showWallets'])->name('transactionsudersadmin');
+Route::get('/showUserTransactions/{id}', [WalletadminController::class, 'showUserTransactions'])->name('showUserTransactions');
 
 });
 

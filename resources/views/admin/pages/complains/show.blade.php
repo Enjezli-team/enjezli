@@ -31,7 +31,7 @@
     
     @forelse($data as $item)
 
-    <h2 class="font-bold text-3xl mt-2 text-right">
+    <h2 class="font-bold text-3xl my-2 text-right">
       
       {{ $item->sal_offer->sal_project_id->title }}
 

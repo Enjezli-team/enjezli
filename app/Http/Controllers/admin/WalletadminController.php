@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
-class WalletController extends Controller
+class WalletadminController extends Controller
 {
 
 
     // show my wallet
     public function showTransactions()
     {
-
+       
         $balance = Auth::user()->balance;
         $data = DB::table('transactions')
             ->where('payable_id', Auth::user()->id)
@@ -25,9 +25,19 @@ class WalletController extends Controller
 // 
     public function showWallets()
     {
-        $data = DB::table('transactions')
-            ->get();
-        return view('admin.pages.Wallet.index', compact('data'));
+        // $data = DB::table('transactions')
+        //     ->get();
+        // return view('admin.pages.Wallet.index', compact('data'));
+        $data = User::with('wallet')->where('id', '<>', 0)->get();
+        // return response($data);
+        
+        return view('admin.pages.Wallet.usersWallet', compact('data'));
+
+// $item->wallet->balance;
+// $item->wallet->created_at;
+// $item->name;
+
+        // return view('website.users.wallet.index', compact('data'));
     }
     /**----------------------
      *      admin show single wallet
@@ -44,6 +54,6 @@ class WalletController extends Controller
             ->get();
         // return response($transactions);
         // return view('website.users.offers.transactions', compact('data', 'balance'));
-        return view('admin.pages.Wallet.index', compact('data', 'balance'));
+        return view('admin.pages.Wallet.singleUserWallet', compact('data', 'balance'));
     }
 }

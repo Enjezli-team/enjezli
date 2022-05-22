@@ -52,7 +52,7 @@
 							<input type="text"
                             name='conflict_id'
                             value="{{ $conflict_id }}"
-								class="w-full px-4 py-3 text-right rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+								class="w-full px-4 hidden py-3 text-right rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
 							>
                                 @if ($errors->has('name'))
                                 <small class="text-sm text-red-700">{{ $errors->first('conflict_id') }}</small>
