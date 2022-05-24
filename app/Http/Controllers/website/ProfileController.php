@@ -23,7 +23,7 @@ class ProfileController extends Controller
     //show providers
     public function index()
     {
-        $profiles = Roleuser::with(['user.sal_review_to'])->where([['role_id', 3]])->paginate(3);
+        $profiles = Roleuser::with(['user.sal_review_to'])->where([['role_id', 3]])->paginate(12);
         foreach ($profiles as $profile) {
             $profile->user['ratings'] = $profile->user->sal_review_to()->avg('rate');
         }

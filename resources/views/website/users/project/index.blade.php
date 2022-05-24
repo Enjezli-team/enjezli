@@ -101,11 +101,12 @@
     <link id="pagestyle" href="{{ asset('user_dash_assets/css/soft-ui-dashboard.css') }}?v=1.0.3" rel="stylesheet" />
 
 
-    <div class="container-fluid py-3 mt-5">
+    <div class=" py-3 mt-5">
         <div class="page-header min-height-300 border-radius-xl  mt-5" style="min-height: 70px !important;
                                                                                                                 border-right: 4px solid #5ab1c5;
                                                                                                                 border-radius: 4px;background-color: white;
-                                                                                                                padding: 10px 10px;
+                                                                                                                padding: 10px 10px;margin: 50px;
+    background: #dbe8eb;
                                                                                                                 ">
             <h6> تصفح المشاريع </h6>
             <div class="search-box">
@@ -115,130 +116,359 @@
                 <input type="text" class="input-search search search-input" placeholder=" ابحث عن ....">
             </div>
         </div>
-        <div class="profile mt-1">
-            {{-- <livewire:search /> --}}
-
-            <div class=" row mt-md-5 mt-lg-5 mt-sm-3 min-height-400" style='row-gap:24px!important'>
-                @forelse ($data as $item)
-                    <div class="col-md-4 col-sm-12 cards_contianer ">
-                        <a class='title ' href="{{ route('projects.show', $item['id']) }}">
-                            <div class="personal_info_container myworks" style="width: auto;height:411px">
-                                <div class="container_card">
-                                    <div class="">
-                                        <h2 class="h4">{{ $item['title'] }}</h2>
-                                        <div class='mt-3 mb-3'>
-                                            <div class="flex  align-items-baseline gap-2">
-                                                <span>
-                                                    <ion-icon name="person-outline"></ion-icon>
-                                                </span>
-                                                <h5>{{ $item->sal_created_by->name }} </h5>
-                                            </div>
-                                            <div class="flex gap-2">
-                                                <span>
-                                                    <ion-icon name="time-outline"></ion-icon>
-                                                </span>
-                                                <span class="aut_pub">{{ $item['created_at'] }}</span>
-
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            {{ Str::substr($item->description, 0, 50) }} ...معرفة المزيد
-
-
-                                        </div>
-                                        <div class="liks_shows">
-                                            <ul class="d-grid w-100 gap-1" style=''>
-                                                <div class='d-flex w-100 justify-content-between'
-                                                    style='flex-direction: row-reverse;'>
-                                                    <div>
-                                                        <li>
-                                                            <span class="price">{{ $item['price'] }}$</span>
-                                                        </li>
-                                                    </div>
-
-                                                    <div>
-                                                        <li>
-                                                            <span> الفترة</span>
-                                                            :
-                                                            <span>{{ $item['duration'] }}يوم</span>
-
-                                                        </li>
-
-
-                                                        <li>
-                                                            <span>العروض</span>
-                                                            :
-                                                            <span> {{ $item->sal_offers->count() }}</span>
-                                                        </li>
-                                                    </div>
-                                                </div>
-                                                {{-- {{ $item->sal_skill}}
-                                <div class='skills ' style=''>
-                                    @foreach ($item->sal_skills_by as $skill)
-                                    {{ $skill->sal_skill->title }}<br>
-                                    @endforeach
-                                </div> --}}
-                                                <li>
-                                                    <a href="" class="status">
-
-                                                        <span>الحالة </span>
-                                                        :
-                                                        @if ($item['status'] == 0)
-                                                            <span class="text-success text-sm mr-2"> مفتوح </span>
-                                                            <span class="text-error text-sm mr-2"> بإنتظار الموافقة </span>
-                                                        @elseif($item['status'] == 2)
-                                                            <span class="text-success text-sm mr-2"> مغلق </span>
-                                                        @endif
-
-
-                                                    </a>
-                                                </li>
-
-
-                                            </ul>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="hr">
-                                    </div>
-                                    <div class="liks_shows">
-                                        <a href="/projects/{{ $item['id'] }}"><button class="show_more">
-                                                التقديم</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @empty
-                    <div style="text-align:center;color:white ; font-weight: bold;font-size:2rem;margin-top:100px;"> لا توجد
-                        مشاريع</div>
-                @endforelse
 
 
 
 
-            </div>
+
+
+
+
+
+{{-- code2 --}}
+  <!-- CARD STARTS HERE -->
+  
+  <div class="sec_card">
+  @forelse ($data as $item)
+  <div class="card">
+      <a href="{{ route('projects.show', $item['id']) }}">
+    <div class="card__content">
+      <div class="card__content-left">
+        <img src="svg/enjezle_pro.svg" style="width: 87px;">
+        <div class="h_card">
+          <h2>
+            {{ Str::substr( $item['title'], 0, 20) }} </h2>
+          <h6 class="comfort">
+              {{-- الحالة: --}}
+              @if($item['status']==NULL)
+                                       
+              
+              @if ($item['status'] == 0)
+                  <span> مفتوح </span>
+                  <span> بإنتظار الموافقة </span>
+              @elseif($item['status'] == 2)
+                  <span> مغلق </span>
+              @endif
+
+              @endif     
+        </h6>
+         
         </div>
-        {!! $data->links('website.layouts.pagination') !!}
-        {{-- <nav aria-label="Page navigation exampled-flex justify-content-center">
-            <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
+      </div>
+      <div class="card__content-right">
+        <div class="info-content">
+            <ul>
+              <li>
+                <p class="sound"> {{ $item->sal_created_by->name }}</p>
+              </li>
+              <li>
+                <p class="comfort"> عرض
+                    {{ $item->sal_offers->count() }} </p>
+              </li>
+              <li>
+                <p class="noice">{{ $item['created_at'] }}</p>
+              </li>
             </ul>
-        </nav> --}}
+          </div>
+          <div class="sec_card2" style="justify-content: space-between">
+            <h3 >
+                {{ Str::substr($item->description, 0,100) }}  
+                
+            </h3>
+            <a href="/projects/{{ $item['id'] }}" class="btn"> المزيد </a>
+          </div>
+     
+       
+      </div>
     </div>
-    </div>
+      </a>
+      
+  </div>
+  @empty
+  <div style="text-align:center;color:white ; font-weight: bold;font-size:2rem;margin-top:100px;"> لا توجد
+      مشاريع</div>
+      
+{!! $data->links('website.layouts.pagination') !!}
+@endforelse
+
+
+</div>
+
+  <!-- CARD ENDS HERE -->
+
+
+
+  <style>
+      :root {
+  --clr-white: #11505F;
+  --clr-blue: #8ECAE6;
+  --clr-dark-gray: #fff;
+  --fw-light: 400;
+}
+
+body {
+  /* font-family: "Raleway", sans-serif; */
+  /* margin: 2em; */
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+/* General card container */
+.sec_card{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.sec_card2{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+}
+.card {
+  display: flex;
+  padding-top: 0.5em;
+    padding-right: 2em;
+    padding-bottom: 0.5em;
+    padding-left: 2em;
+  background: #8ECAE6;
+  background: radial-gradient(circle, #f8fafb 76%, #edf3f5 100%);
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 5px 18px -6px #8ECAE6;
+  box-shadow: 0px 3px 10px -6px #8ecae6;
+  max-width: 100%;
+  /* margin: 0 auto; */
+  margin-top: 12px;
+  /* Card inner content */
+  /* Medium screens query */
+  /* Small screens query */
+}
+.card .card__content {
+  /* display: flex; */
+  /* align-items: start; */
+  /* flex-direction: row;
+   */
+  /* Left side content */
+  /* Right side content */
+}
+.h_card{
+    display: flex;
+    align-items: baseline;
+}
+.card .card__content .card__content-left {
+  display: flex;
+  flex-basis: 60%;
+  flex-direction: column;
+  position: relative;
+  /* padding-right: 12em; */
+  /* padding-left: 100px;/ */
+  /* Floating image */
+}
+.card .card__content .card__content-left img {
+  position: absolute;
+  right: 0.4em;
+  top: 1em;
+  /* -webkit-filter: drop-shadow(5px 5px 15px #1b6e82); */
+  /* animation: float 6s ease-in-out infinite; */
+}
+.card .card__content .card__content-left h1,
+.card .card__content .card__content-left h2 {
+  color: #227185;
+  margin: 0px;
+  margin-right: 8rem;
+  /* width: 250px; */
+}
+.card .card__content .card__content-left h6 {
+  color: var(--clr-white);
+  margin-right: 7px;
+}
+.card .card__content .card__content-left span{
+    background-color: #65a0af;
+    color: var(--clr-blue);
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:999px;
+    font-size: 12px;
+  margin: 0px;
+
+}
+.card .card__content .card__content-left h1 {
+  font-size: clamp(40px, 5vw, 50px);
+}
+.card .card__content .card__content-left h2 {
+  font-size: clamp(30px, 3vw, 30px);
+  font-weight: var(--fw-light);
+}
+.card__content-right{
+    /* width: 372px; */
+    padding-right: 8rem;
+}
+.card .card__content .card__content-right h3 {
+  color: var(--clr-white);
+  font-size: clamp(14px, 1.5vw, 14px);
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  line-height: 140%;
+  margin-bottom: 0px;
+}
+.card .card__content .card__content-right .info-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* margin-top: 12px; */
+  /* Shop button */
+}
+.card .card__content .card__content-right .info-content ul {
+  margin: 0px;
+  padding-left: 0px;
+  list-style: none;
+  display: flex;
+}
+.card .card__content .card__content-right .info-content ul li {
+  /* margin-bottom: 10px; */
+  margin-left: 10px;
+}
+.card .card__content .card__content-right .info-content ul li:last-of-type {
+  margin-bottom: 0px;
+}
+.card .card__content .card__content-right .info-content ul li p {
+  font-size: clamp(12px, 1.3vw, 12px);
+  letter-spacing: 0.8px;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  /* Icon list */
+}
+.card .card__content .card__content-right .info-content ul li p.sound::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("svg/person.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* filter: invert(100%); */
+}
+.card .card__content .card__content-right .info-content ul li p.comfort::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("svg/time.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* filter: invert(100%); */
+}
+.card .card__content .card__content-right .info-content ul li p.noice::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("svg/offer.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* filter: invert(100%); */
+}
+.btn {
+  background-color:#227186;
+  border-radius: 25px;
+  max-width: 111px;
+  border: none;
+  padding: 10px 35px;
+  text-decoration: none;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px;
+  color: var(--clr-dark-gray) !important;
+  transition: transform 0.3s ease-in;
+}
+.btn:hover {
+  transform: translate(0px, -3px);
+}
+@media only screen and (max-width: 900px) {
+    .sec_card2{
+    display: grid;
+    grid-template-columns: auto ;
+    gap: 30px;
+}
+    .card .card__content .card__content-right .info-content ul {
+  margin: 0px;
+  padding-left: 0px;
+  list-style: none;
+  display: block;
+}
+    .sec_card{
+    display: grid;
+    grid-template-columns: auto ;
+    gap: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+  .card .card__content {
+    flex-wrap: wrap;
+  }
+  .card .card__content .card__content-left {
+    padding-left: 0px;
+    flex-basis: 100%;
+  }
+  .card .card__content .card__content-left img {
+    max-width: 120px;
+    position: absolute;
+    right: 0px;
+    left: unset;
+    top: 1em;
+  }
+  .card .card__content .card__content-right h3 {
+    margin-bottom: 1em;
+  }
+}
+@media only screen and (max-width: 450px) {
+    .sec_card2{
+    display: grid;
+    grid-template-columns: auto ;
+    gap: 30px;
+}
+    .card .card__content .card__content-right .info-content ul {
+  margin: 0px;
+  padding-left: 0px;
+  list-style: none;
+  display: block;
+}
+    .sec_card{
+    display: grid;
+    grid-template-columns: auto ;
+    gap: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+  .card .card__content-right .info-content {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  .card .card__content-right .info-content ul {
+    margin-bottom: 1.5em !important;
+  }
+  .card .card__content-right .info-content a {
+    width: -webkit-fill-available;
+    text-align: center;
+  }
+}
+
+  </style>
 @endsection

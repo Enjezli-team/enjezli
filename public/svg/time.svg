@@ -1,0 +1,27 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" width="21.999" height="22" viewBox="0 0 21.999 22">
+  <g id="Group_64" data-name="Group 64" transform="translate(-0.998 -1)">
+    <g id="Layer_2" data-name="Layer 2">
+      <circle id="Ellipse_25" data-name="Ellipse 25" cx="1" cy="1" r="1" transform="translate(20.245 14.841)" fill="#fff"/>
+      <path id="Path_119" data-name="Path 119" d="M1,0A1,1,0,1,1,0,1,1,1,0,0,1,1,0Z" transform="translate(18.064 18.062)" fill="#fff"/>
+      <circle id="Ellipse_27" data-name="Ellipse 27" cx="1" cy="1" r="1" transform="translate(20.997 11.004)" fill="#fff"/>
+      <path id="Path_120" data-name="Path 120" d="M1,0A1,1,0,1,1,0,1,1,1,0,0,1,1,0Z" transform="translate(14.825 20.247)" fill="#fff"/>
+      <path id="Path_117" data-name="Path 117" d="M12,21A9,9,0,1,1,17.646,5H16a1,1,0,0,0,0,2h4a1,1,0,0,0,1-1V2a1,1,0,0,0-2,0V3.531A11,11,0,1,0,12,23a1,1,0,1,0,0-2Z" fill="#fff"/>
+      <path id="Path_118" data-name="Path 118" d="M15.707,15.707a1,1,0,0,0,0-1.414L13,11.586V6a1,1,0,0,0-2,0v6a1,1,0,0,0,.293.707l3,3a1,1,0,0,0,1.414,0Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>
+
+ -->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="22.018" height="22" viewBox="0 0 22.018 22">
+  <g id="Group_64" data-name="Group 64" transform="translate(-0.979 -1)">
+    <g id="Layer_2" data-name="Layer 2">
+      <circle id="Ellipse_25" data-name="Ellipse 25" cx="1" cy="1" r="1" transform="translate(20.245 14.841)" fill="#155565"/>
+      <path id="Path_119" data-name="Path 119" d="M1,0A1,1,0,1,1,0,1,1,1,0,0,1,1,0Z" transform="translate(18.064 18.062)" fill="#155565"/>
+      <circle id="Ellipse_27" data-name="Ellipse 27" cx="1" cy="1" r="1" transform="translate(20.997 11.004)" fill="#155565"/>
+      <path id="Path_120" data-name="Path 120" d="M1,0A1,1,0,1,1,0,1,1,1,0,0,1,1,0Z" transform="translate(14.825 20.247)" fill="#155565"/>
+      <path id="Path_117" data-name="Path 117" d="M12,21A9,9,0,1,1,17.646,5H16a1,1,0,0,0,0,2h4a1,1,0,0,0,1-1V2a1,1,0,0,0-2,0V3.531A11,11,0,1,0,12,23a1,1,0,0,0,0-2Z" fill="#155565"/>
+      <path id="Path_118" data-name="Path 118" d="M15.707,15.707a1,1,0,0,0,0-1.414L13,11.586V6a1,1,0,0,0-2,0v6a1,1,0,0,0,.293.707l3,3a1,1,0,0,0,1.414,0Z" fill="#155565"/>
+    </g>
+  </g>
+</svg>
